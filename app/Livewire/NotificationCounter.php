@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Notification;
+use Livewire\Component;
+use Livewire\Attributes\On;
+
+class NotificationCounter extends Component
+{
+
+    public $user_id ;
+
+    public $count  ;
+
+
+
+    #[On('notification_read')]
+    public function render()
+    {
+        $this->count =   Notification::where([
+            'user_id' => $this->user_id ,
+            'read_at' => null
+        ])->count();
+
+        return view('livewire.notification-counter' );
+    }
+}
