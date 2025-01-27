@@ -1,5 +1,5 @@
 
-<x-widgets.section title="{{__('string.Devices') ">
+<x-widgets.section title="{{__('string.Devices')}} ">
 
 
     <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">

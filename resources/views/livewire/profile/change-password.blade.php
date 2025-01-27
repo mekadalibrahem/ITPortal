@@ -1,5 +1,5 @@
      <!--- update password section  --->
-     <x-widgets.section title="{{__('string.Change password') ">
+     <x-widgets.section title="{{__('string.Change password') }}">
 
 
              @if ($edit_passowrd != '')
