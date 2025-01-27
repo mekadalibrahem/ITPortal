@@ -1,6 +1,6 @@
 <div class="   h-screen  overflow-auto  ">
 
-    <h2 class="mb-2 p-4 text-lg font-semibold  border-b text-gray-900 dark:text-white">
+    <h2 class="mb-2 p-4 text-lg font-semibold  border-b border-e text-gray-900 dark:text-white">
         {{ __('string.All notifications') }}
     </h2>
     <ul class="max-w-md space-y-1 text-gray-500  list-none list-inside dark:text-gray-400">
@@ -19,14 +19,14 @@
 
                     <span class="text-sm">{{ $notify->date() }}</span>
 
-                    {{-- @dd($notify) --}}
+
 
 
                 </div>
                 <form action="">
                     @csrf
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        <button type="button"  wire:click="show({{$notify->id}})">
+                        <button  type="button"  wire:click="show({{$notify->id}})">
                             {{ Str::limit($notify->content ,15 ) }}
 
                         </button>
