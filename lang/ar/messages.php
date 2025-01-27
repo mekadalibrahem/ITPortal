@@ -1,0 +1,33 @@
+<?php
+return [
+    "Can't delete Request" => "لا يمكن حذف هذا الطلب",
+    "confirm delete request" => "هل انت متأكد من حذف الطلب",
+    "confirm delete role" =>"هل انت متأكد من حذف الدور",
+    "confirm delete permission" => "هل انت متأكد من حذف الصلاحية",
+    "Required data" => "يجب ملئ جميع الحقول",
+    "Request Saved" => "تم حفظ الطلب",
+    "Request redirect" => "تم إعادة توجيه الطلب",
+    "notify send" => "تم إرسال الاشعار",
+    "Request successfully updated." => "تم تعديل الطلب بنجاح",
+    "Failed to update request."=>"فشل تعديل الطلب",
+    "Can't Edit this Request" =>"لايمكنك تعديل هذا الطلب",
+    "Add Department" => "تم إضافة الشعبة",
+    "Faild Add Department" => "فشل إضافة الشعبة",
+    "Faild edit Department" => "فشل تعديل الشعبة",
+    "department nothing changed" => "هذه المعلومات مسجلة بالفعل",
+    "confirm delete department" => "هل انت متاكد من انك تريد حذف الحساب",
+    "confirm delete employee form department" => "هل انت متاكد من انك تريد حذف الموظف من هذا القسم",
+    "Dont have any Employee" => "لا يوجد اي موظف حاليا",
+    "Faild Add Employee" => "فشل إضافة الموظف",
+    "Add Employee" => "تم إضافة الموظف",
+    "Employee alrady exists" => "الموظف مسجل سابقا",
+    "Employee Saved" => "تم حفظ الملفات",
+    "Faild Edit Employee" => "فشل تعديل الموظف",
+    "should write last 1 value to edit" => "يجب ملئ حقل واحد على الاقل من اجل التعديل",
+    "Request Saved" => "تم حفظ الطلب",
+    "Faild Add Request" => "فشل حفظ الطلب",
+    "Alrady saved" => "هذه المعلومات محفوظة ",
+
+];
+
+
