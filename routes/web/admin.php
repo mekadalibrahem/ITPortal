@@ -1,0 +1,58 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+
+
+Route::group(
+    [
+        'prefix' => 'admin' ,
+        'as' => "admin." ,
+        'middleware' => ['auth']
+    ],function(){
+
+
+
+        Route::group([
+            'prefix' =>'auth' ,
+            'as' => 'auth.'
+        ] ,  function(){
+
+            Route::view('/role' , 'admin.auth.role')->name('role');
+            Route::view('/user' , 'admin.auth.user')->name('user');
+            Route::view('/permission' , 'admin.auth.permission')->name('permission');
+        } );
+
+        Route::view('/collage_information' , 'admin.collage_information')->name('collage_information');
+
+        Route::group([
+            'prefix' => 'requests' ,
+            'as' => 'requests.'
+        ] , function () {
+            Route::view('/type' , 'admin.requests.types')->name('type');
+            Route::view('/requset' , 'admin.requests.request')->name('requset');
+        });
+
+
+        Route::group([
+            'prefix' => 'employee' ,
+            'as' => 'employee.'
+        ], function(){
+
+            Route::view('/employee' , 'admin.employee.employee')->name('employee');
+            Route::view('/department' , 'admin.employee.department')->name('department');
+
+        });
+
+        Route::view("/backups","admin.tools.backup")->name("backups");
+
+
+});
+
+
+
+// Route::view('admin/auth/permission', 'admin.auth.permission')->name('admin.auth.permission');
+// Route::view('admin/auth/user', 'admin.auth.user')->name('admin.auth.user');
+
+
+
