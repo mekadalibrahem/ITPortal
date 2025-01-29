@@ -9,7 +9,9 @@
     </title>
 
     @vite(['resources/css/app.css','resources/js/app.js'])
+
     <livewire:styles />
+
 
 </head>
 @php
@@ -19,16 +21,17 @@
 @endphp
 <body dir="{{$dir}}" >
     <x-layouts.nav />
-   
-    {{-- <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-700"> --}}
-        <main class=" sm:p-4  md:p-10   bg-gray-50 items-center h-screen overflow-auto pt-10" >
+    <x-notify::notify />
+    <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-600">
+        <main class=" sm:p-4  md:p-10   bg-gray-50 items-center h-screen overflow-auto pt-10 dark:bg-gray-600" >
             {{
                 $slot
             }}
         </main>
-    {{-- </div> --}}
+    </div>
 
 
     <livewire:scripts />
+
 </body>
 </html>

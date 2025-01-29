@@ -9,6 +9,9 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
         'node_modules/preline/dist/*.js',
+        './vendor/rappasoft/laravel-livewire-tables/resources/views/*.blade.php',
+
+        './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
     ],
     theme: {
         extend: {

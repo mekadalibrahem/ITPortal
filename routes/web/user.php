@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\RequestListController;
 use Illuminate\Support\Facades\Route ;
 
 
@@ -11,7 +13,15 @@ Route::middleware([
         "prefix" => "user" ,
         "as" => "user."
     ], function(){
-        Route::view('/requests', 'user.requests')->name('requests.create');
+        Route::group([
+            "prefix" => "requests" ,
+            "as" => "requests."
+        ], function(){
+        Route::get('/requests', [RequestListController::class , 'create'])->name('create');
+        Route::get('/requests/{id}', [RequestListController::class , 'index'])->name('index');
+        Route::get('/requests/addNew', [RequestListController::class , 'add'])->name('add');
+        });
+
         Route::view('/notification' , 'user.notification')->name("notification.create");
     });
 

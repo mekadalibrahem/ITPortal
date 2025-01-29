@@ -33,4 +33,5 @@
 * spatie/laravel-backup
 * spatie/laravel-pdf 
 -->
-* predis/predis
+* mckenziearts/laravel-notify
+* rappasoft/laravel-livewire-tables

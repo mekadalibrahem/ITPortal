@@ -23,7 +23,9 @@ class RequestsTable extends Component
 
     public function mount()
     {
+
         $this->all_request_status = RequestStatusEnum::cases();
+        
     }
     public function search()
     {

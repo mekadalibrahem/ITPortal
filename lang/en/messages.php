@@ -27,4 +27,6 @@ return [
     "Request Saved" => "Request saved",
     "Faild Add Request" => "Faild add request",
     "Alrady saved" => "This information Alrady saved",
+    "Don't Have any request yet" => "Don't Have any request yet",
+    "Deleted Item" => "Item Deleted ",
 ];

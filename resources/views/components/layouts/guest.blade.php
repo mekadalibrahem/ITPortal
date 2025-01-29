@@ -19,7 +19,7 @@
 <body dir="{{$dir}}" >
     <x-layouts.nav />
 
-    <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-700">
+    <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-400">
         <main class=" m-auto h-screen overflow-auto pt-10" >
             {{
                 $slot

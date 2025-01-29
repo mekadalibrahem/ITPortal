@@ -27,6 +27,8 @@ return [
     "Request Saved" => "تم حفظ الطلب",
     "Faild Add Request" => "فشل حفظ الطلب",
     "Alrady saved" => "هذه المعلومات محفوظة ",
+    "Don't Have any request yet" => "لا تملك أي طلب بعد",
+    "Deleted Item" => "تم الحذف بنجاح",
 
 ];
 
