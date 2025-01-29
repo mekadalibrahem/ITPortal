@@ -1,31 +1,28 @@
 <?php
 
 use App\Http\Controllers\RequestListController;
-use Illuminate\Support\Facades\Route ;
+use Illuminate\Support\Facades\Route;
 
 
 
 
 Route::middleware([
-    'auth' , 'auth.session'
-])->group(function(){
+    'auth',
+    'auth.session'
+])->group(function () {
     Route::group([
-        "prefix" => "user" ,
+        "prefix" => "user",
         "as" => "user."
-    ], function(){
+    ], function () {
         Route::group([
-            "prefix" => "requests" ,
+            "prefix" => "requests",
             "as" => "requests."
-        ], function(){
-        Route::get('/requests', [RequestListController::class , 'create'])->name('create');
-        Route::get('/requests/{id}', [RequestListController::class , 'index'])->name('index');
-        Route::get('/requests/addNew', [RequestListController::class , 'add'])->name('add');
+        ], function () {
+            Route::get('/', [RequestListController::class, 'create'])->name('create');
+            Route::get('/{id}', [RequestListController::class, 'index'])->name('index');
+            Route::get('/addNew', [RequestListController::class, 'add'])->name('add');
         });
 
-        Route::view('/notification' , 'user.notification')->name("notification.create");
+        Route::view('/notification', 'user.notification')->name("notification.create");
     });
-
 });
-
-
-

@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View ;
 
 class RequestListController extends Controller
 {
 
-    public function create(){
+    public function create()
+    {
         return view('user.requests');
     }
-    public function index($id){
-        return "show request ifnormation [" . $id ."]"  ;
+    public function index($id)
+    {
+        return "show request ifnormation [" . $id . "]";
     }
-    public function add(){
-        return "show add new request "  ;
+    public function add(): View
+    {
+        return view('requestlist.create');
     }
 }

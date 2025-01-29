@@ -57,7 +57,7 @@ class NewRequest extends Component
     }
     public function mount()
     {
-        $this->user = auth()->user();
+        $this->user = auth()->user;
         $this->all_request_type =  $this->fillter_allows_items(RequestType::all());
         $this->all_requests = Requests::active()->get();
     }

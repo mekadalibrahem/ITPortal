@@ -13,7 +13,7 @@ use Masmerise\Toaster\Toaster;
 
 class RequestListTable extends DataTableComponent
 {
-    
+
 
     protected $model = RequestList::class;
     public  $user_id;
@@ -91,8 +91,8 @@ class RequestListTable extends DataTableComponent
 
     public function delete($id)
     {
-       
-       
+
+
         $re =  RequestList::where('id' , '=' , $id)->first();
 
         if (Gate::allows('delete' , $re)) {
@@ -103,7 +103,7 @@ class RequestListTable extends DataTableComponent
             }
         } else {
             Toaster::warning(trans("messages.Can't delete Request"));
-           
+
         }
     }
     public function edit($id)
