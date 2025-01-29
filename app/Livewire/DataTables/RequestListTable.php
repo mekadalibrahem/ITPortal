@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Masmerise\Toaster\Toaster;
 
 class RequestListTable extends DataTableComponent
 {
+    
 
     protected $model = RequestList::class;
     public  $user_id;
@@ -89,23 +91,23 @@ class RequestListTable extends DataTableComponent
 
     public function delete($id)
     {
-        // dd($id);
-        notify()->success(trans("messages.Deleted Item") , 'delet item');
+       
+       
         $re =  RequestList::where('id' , '=' , $id)->first();
 
         if (Gate::allows('delete' , $re)) {
             if ($re) {
                 if ($re->delete()) {
-                    notify()->success(trans("messages.Deleted Item") , 'delet item');
+                    Toaster::success(trans("messages.Deleted Item"));
                 }
             }
         } else {
-
-           notify()->warning(trans("messages.Can't delete Request") , "delete item");
+            Toaster::warning(trans("messages.Can't delete Request"));
+           
         }
     }
     public function edit($id)
     {
-        redirect()->route('user.requests.index' , ["id"=>$id]);
+        redirect()->route('user.requests.index', ["id" => $id]);
     }
 }

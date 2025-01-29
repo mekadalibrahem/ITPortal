@@ -10,8 +10,8 @@ export default {
         './resources/**/*.vue',
         'node_modules/preline/dist/*.js',
         './vendor/rappasoft/laravel-livewire-tables/resources/views/*.blade.php',
-
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
     ],
     theme: {
         extend: {

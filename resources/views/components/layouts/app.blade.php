@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
         {{ $title ?? 'page' }}-{{ Config::get('app.name') }}
     </title>
 
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <livewire:styles />
 
@@ -16,22 +17,24 @@
 </head>
 @php
 
-    $dir = (app()->getLocale() === 'ar' ? 'rtl' : "ltr")
+    $dir = app()->getLocale() === 'ar' ? 'rtl' : 'ltr';
 
 @endphp
-<body dir="{{$dir}}" >
+
+<body dir="{{ $dir }}">
     <x-layouts.nav />
-    <x-notify::notify />
+     <x-toaster-hub />
     <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-600">
-        <main class=" sm:p-4  md:p-10   bg-gray-50 items-center h-screen overflow-auto pt-10 dark:bg-gray-600" >
-            {{
-                $slot
-            }}
+        <main class=" sm:p-4  md:p-10   bg-gray-50 items-center h-screen overflow-auto pt-10 dark:bg-gray-600">
+            {{ $slot }}
         </main>
     </div>
 
 
     <livewire:scripts />
 
+
+
 </body>
+
 </html>

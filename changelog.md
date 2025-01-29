@@ -33,5 +33,5 @@
 * spatie/laravel-backup
 * spatie/laravel-pdf 
 -->
-* mckenziearts/laravel-notify
+* masmerise/livewire-toaster
 * rappasoft/laravel-livewire-tables
