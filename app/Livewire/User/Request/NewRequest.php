@@ -11,8 +11,7 @@ use App\Models\RequireData;
 use App\Traits\AddNewRequestTransaction;
 use App\Traits\FillterAllowsItems;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
@@ -57,7 +56,7 @@ class NewRequest extends Component
     }
     public function mount()
     {
-        $this->user = auth()->user;
+        $this->user = Auth::user();
         $this->all_request_type =  $this->fillter_allows_items(RequestType::all());
         $this->all_requests = Requests::active()->get();
     }

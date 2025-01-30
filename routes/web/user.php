@@ -19,7 +19,7 @@ Route::middleware([
             "as" => "requests."
         ], function () {
             Route::get('/', [RequestListController::class, 'create'])->name('create');
-            Route::get('/{id}', [RequestListController::class, 'index'])->name('index');
+            Route::get('/show/{id}', [RequestListController::class, 'index'])->name('index');
             Route::get('/addNew', [RequestListController::class, 'add'])->name('add');
         });
 
