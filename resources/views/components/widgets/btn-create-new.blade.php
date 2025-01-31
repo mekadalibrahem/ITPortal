@@ -1,7 +1,6 @@
 @props(['href' , "text" => "New"])
-
-<x-button status="primary" >
-    <a href="{{$href}}">
+<a href="{{$href}}">
+    <x-button status="primary" type="button">
         {{$text}}
-    </a>
-</x-button>
+    </x-button>
+</a>
