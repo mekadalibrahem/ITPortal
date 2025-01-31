@@ -9,10 +9,12 @@ use App\Models\RequestList;
 use App\Models\RequestLog;
 use App\Models\RequireData;
 use App\Traits\UpdateRequestTransaction;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 use Livewire\WithFileUploads;
+use Masmerise\Toaster\Toaster;
 
 class Edit extends Component
 {
@@ -20,7 +22,8 @@ class Edit extends Component
 
     use UpdateRequestTransaction;
 
-    public $hidden = true;
+    public $id = 0;
+
     public $req;
     public $request_user;
     public $last_log_name;
@@ -35,12 +38,13 @@ class Edit extends Component
     public $temp_new_value;
     public function mount()
     {
-        $this->request_user = auth()->user();
+        $this->request_user = Auth::user();
     }
 
     public function clear()
     {
-        $this->hidden = true;
+        $this->id;
+
         $this->req;
         $this->request_user;
         $this->last_log_name;
@@ -53,40 +57,24 @@ class Edit extends Component
         $this->require_data;
     }
 
-    #[On("show_request_info", 'id')]
-    public function show($id)
+
+    public function show()
     {
-        $this->clear();
-        if ($id > 0) {
+
+        if ($this->id > 0) {
             $req = RequestList::where([
-                'id' => $id,
-                'user_id' => auth()->user()->id,
+                'id' => $this->id,
+                'user_id' => $this->request_user->id,
             ])->first();
-            $this->hidden = false;
+
             $this->req = $req;
             $this->data = $req->data;
-            // foreach ($this->data as $it) {
-            //     if(
-            //         $it->type() == DataTypeEnum::IMAGE->value
-            //     ){
-            //         $image = file(public_path('uploads/request_photos/' . $it->value));
-            //         $this->request_data[$it->name] = $image;
-            //     }else{
-            //         $this->request_data[$it->name] = $it->value;
-            //     }
-
-
-            // }
-            // dd($this);
             $this->last_log = RequestLog::where('request_list_id', $req->id)
                 ->orderBy('id', 'desc')->first();
             $this->last_log_name = $this->last_log->employee->user->fullname();
             $this->last_log_email = $this->last_log->employee->user->email;
             $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
-        } else {
-            $this->hidden = true;
         }
-        $this->render();
     }
 
 
@@ -141,34 +129,21 @@ class Edit extends Component
                 if ($isdone) {
 
                     // Handle successful save, e.g., set a success message
-                    $this->status = [
-                        "type" => "success",
-                        "message" => trans("messages.Request successfully updated.")
-                    ];
+                    Toaster::success(trans("messages.Request successfully updated."));
+
                 } else {
                     // Handle failure case
-                    $this->status = [
-                        "type" => "danger",
-                        "message" => trans(
-                            "messages.Failed to update request."
-                        )
-                    ];
+                    Toaster::danger(trans( "messages.Failed to update request."));
+
                 }
             } else {
-                $this->status = [
-                    "type" => "warning",
-                    "message" => trans(
-                        "messages.should write last 1 value to edit"
-                    )
-                ];
+
+                    Toaster::warning(trans("messages.should write last 1 value to edit"));
+
             }
         } else {
-            $this->status = [
-                "type" => "danger",
-                "message" => trans(
-                    "messages.Can't Edit this Request"
-                )
-            ];
+            Toaster::danger(trans( "messages.Can't Edit this Request"));
+           
         }
 
         $this->show($this->req->id);
@@ -178,6 +153,7 @@ class Edit extends Component
 
     public function render()
     {
+        $this->show();
         return view('livewire.user.request.edit');
     }
 }

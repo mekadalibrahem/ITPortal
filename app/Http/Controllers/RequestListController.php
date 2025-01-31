@@ -13,7 +13,7 @@ class RequestListController extends Controller
     }
     public function index($id)
     {
-        return "show request ifnormation [" . $id . "]";
+        return view('requestlist.edit' , ['id' => $id]);
     }
     public function add(): View
     {
