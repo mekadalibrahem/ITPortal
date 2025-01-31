@@ -6,9 +6,9 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\RequestList;
 use Illuminate\Database\Eloquent\Builder;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
 
 class RequestListTable extends DataTableComponent
@@ -93,17 +93,27 @@ class RequestListTable extends DataTableComponent
     {
 
 
-        $re =  RequestList::where('id' , '=' , $id)->first();
+        $re =  RequestList::where('id', '=', $id)->first();
 
-        if (Gate::allows('delete' , $re)) {
-            if ($re) {
+        if (Gate::allows('delete', $re)) {
+            try {
+
+                if ($re->request)
+                    dd($re->requestLog);
+                if ($re->requestLog) {
+                    foreach ($re->requestLog as $log) {
+                        dd($log);
+                        $log->delete();
+                    }
+                }
                 if ($re->delete()) {
                     Toaster::success(trans("messages.Deleted Item"));
                 }
+            } catch (\Throwable $th) {
+                Log::error("RequestListTable@delete : " . $th->getMessage());
             }
         } else {
             Toaster::warning(trans("messages.Can't delete Request"));
-
         }
     }
     public function edit($id)

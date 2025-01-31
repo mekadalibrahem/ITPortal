@@ -71,8 +71,10 @@ class Edit extends Component
             $this->data = $req->data;
             $this->last_log = RequestLog::where('request_list_id', $req->id)
                 ->orderBy('id', 'desc')->first();
-            $this->last_log_name = $this->last_log->employee->user->fullname();
-            $this->last_log_email = $this->last_log->employee->user->email;
+            if ($this->last_log) {
+                $this->last_log_name = $this->last_log->employee->user->fullname();
+                $this->last_log_email = $this->last_log->employee->user->email;
+            }
             $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
         }
     }
@@ -130,20 +132,16 @@ class Edit extends Component
 
                     // Handle successful save, e.g., set a success message
                     Toaster::success(trans("messages.Request successfully updated."));
-
                 } else {
                     // Handle failure case
-                    Toaster::danger(trans( "messages.Failed to update request."));
-
+                    Toaster::danger(trans("messages.Failed to update request."));
                 }
             } else {
 
-                    Toaster::warning(trans("messages.should write last 1 value to edit"));
-
+                Toaster::warning(trans("messages.should write last 1 value to edit"));
             }
         } else {
-            Toaster::danger(trans( "messages.Can't Edit this Request"));
-           
+            Toaster::danger(trans("messages.Can't Edit this Request"));
         }
 
         $this->show($this->req->id);
