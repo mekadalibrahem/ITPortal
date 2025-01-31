@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Masmerise\Toaster\Toaster;
 
 class NewRequest extends Component
 {
@@ -90,10 +91,7 @@ class NewRequest extends Component
         );
 
         if($is_done){
-            $this->status = [
-                "type" => "success",
-                "message" => trans("messages.Request Saved")
-            ];
+           Toaster::success(trans("messages.Request Saved"));
         }
         $this->request_data = [];
         $this->render();
