@@ -35,9 +35,9 @@ class Requests extends Model
         return $this->hasMany(RequireData::class);
     }
     public function department( ) :BelongsTo {
-        return $this->belongsTo(department::class , 'to_department');
+        return $this->belongsTo(Department::class, 'to_department');
     }
- 
+
     /**
      * scope retrun just active itme
      */
