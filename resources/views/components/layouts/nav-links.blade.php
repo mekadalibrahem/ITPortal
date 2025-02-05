@@ -25,8 +25,8 @@
                     {{__('string.Requests')}}
                 </x-layouts.link>
                 @hasanyrole(['admin', 'employee'])
-                    <x-layouts.link href="{{ Route('user.requests.create') }}" >
-                        {{__('string.Requests')}}
+                    <x-layouts.link href="{{ Route('dashboard.index') }}" >
+                        {{__('string.Dashboard')}}
                     </x-layouts.link>
                 @endhasanyrole
               @endauth
