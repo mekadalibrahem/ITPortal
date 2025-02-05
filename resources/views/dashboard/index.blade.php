@@ -4,7 +4,7 @@
     </x-slot:title>
 
 
-    welcome in dashboard 
+    welcome in dashboard
 
 
 </x-layouts.app>
