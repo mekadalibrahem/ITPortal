@@ -24,8 +24,8 @@
 <body dir="{{ $dir }}">
     <x-layouts.nav />
      <x-toaster-hub />
-    <div class="antialiased  bg-gray-50 dark:text-white  dark:bg-gray-600">
-        <main class=" sm:p-4  md:p-10   bg-gray-50 items-center h-screen overflow-auto pt-10 dark:bg-gray-600">
+    <div class="antialiased  bg-slate-50 dark:text-white  dark:bg-slate-950">
+        <main class=" sm:p-4  md:p-10   bg-slate-50 items-center h-screen overflow-auto pt-10 dark:bg-slate-950">
             {{ $slot }}
         </main>
     </div>

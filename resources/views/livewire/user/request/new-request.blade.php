@@ -1,9 +1,5 @@
 <x-widgets.section title="{{ __('string.New Request') }}">
-    <div class="bg-white dark:bg-gray-800 relative  overflow-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-3  md:space-y-0 md:space-x-4 p-4">
-            {{-- section title --}}
-        </div>
-        {{-- content --}}
+
         <div class="grid  grid-cols-1 md:grid-cols-2 gap-2">
             <div class="flex flex-row gap-2">
 
@@ -71,5 +67,5 @@
             </div>
         </div>
         @endif
-    </div>
+    
 </x-widgets.section>
