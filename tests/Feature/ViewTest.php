@@ -1,0 +1,74 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Log;
+use Tests\TestCase;
+
+class ViewTest extends TestCase
+{
+     /**
+     *  Test routes that require authentication for authenticated users
+     *
+     * @return void
+     */
+    public function test_example(): void
+    {
+        $response = $this->get('/');
+
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     *   Test routes that require authentication for unauthenticated users
+     *
+     * @return void
+     */
+    public function test_user_auth()
+    {
+        $user = User::where('email', 'rami02@gmail.com')->first();
+        if (!$user) {
+            $this->fail('No existing user found with the specified ID.');
+        }
+        // Authenticate the user before making requests
+        $this->actingAs($user);
+
+        // Test a route that requires authentication
+
+        $response = $this->get(route('user.notification.create'));
+        $response->assertStatus(200);
+
+
+        $response = $this->get(route('user.requests.create'));
+        $response->assertStatus(200);
+        $response = $this->get(route('user.requests.add'));
+        $response->assertStatus(200);
+        $response = $this->get(route('user.requests.index', ['id' => 3]));
+        $response->assertStatus(200);
+    }
+
+    public function test_user_unauth()
+    {
+
+        // Test redirection for unauthenticated users
+        $response = $this->get(route('user.notification.create'));
+        $response->assertStatus(302); // Expecting a redirect
+        $response->assertRedirect(route('login')); // Ensure it redirects to the login page
+
+        $response = $this->get(route('user.requests.create'));
+        $response->assertStatus(302); // Expecting a redirect
+        $response->assertRedirect(route('login')); // Ensure it redirects to the login page
+
+        $response = $this->get(route('user.requests.add'));
+        $response->assertStatus(302); // Expecting a redirect
+        $response->assertRedirect(route('login')); // Ensure it redirects to the login page
+
+        $response = $this->get(route('user.requests.index', ['id' => 3]));
+        $response->assertStatus(302); // Expecting a redirect
+        $response->assertRedirect(route('login')); // Ensure it redirects to the login page
+    }
+}
