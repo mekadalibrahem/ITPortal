@@ -3,7 +3,7 @@
     <div class="py-2 md:py-0  flex flex-col md:flex-row md:items-center gap-0.5 md:gap-1">
           {{-- divider --}}
           <div class="my-2 md:my-0 md:mx-2">
-            <div class="w-full h-px md:w-px md:h-4 bg-gray-100 md:bg-gray-300 dark:bg-neutral-700">
+            <div class="w-full h-px md:w-px md:h-4 bg-slate-100 md:bg-slate-300 dark:bg-slate-700">
 
             </div>
         </div>
