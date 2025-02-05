@@ -62,12 +62,12 @@
             </div>
             @endforeach
             <div class="grid grid-cols-1  md:grid-cols-2 gap-4">
-                <x-button.primary wire:click="store()">
+                <x-button status="primary" wire:click="store()">
                     {{ __('string.Send') }}
-                </x-button.primary>
-                <x-button.primary wire:click="store(true)">
+                </x-button>
+                <x-button wire:click="store(true)">
                     {{ __('string.Save as draft') }}
-                </x-button.primary>
+                </x-button>
             </div>
         </div>
         @endif
