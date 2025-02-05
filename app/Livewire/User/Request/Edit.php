@@ -10,6 +10,7 @@ use App\Models\RequestLog;
 use App\Models\RequireData;
 use App\Traits\UpdateRequestTransaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -44,7 +45,6 @@ class Edit extends Component
     public function clear()
     {
         $this->id;
-
         $this->req;
         $this->request_user;
         $this->last_log_name;
@@ -58,6 +58,12 @@ class Edit extends Component
     }
 
 
+    /**
+     * method to handel RequestList object with RequestListLogs , Data and RequireData
+     * if requestList id not set or invalid with Auth::user will abort for status 404
+     * @return void
+     *
+     */
     public function show()
     {
 
@@ -67,15 +73,30 @@ class Edit extends Component
                 'user_id' => $this->request_user->id,
             ])->first();
 
-            $this->req = $req;
-            $this->data = $req->data;
-            $this->last_log = RequestLog::where('request_list_id', $req->id)
-                ->orderBy('id', 'desc')->first();
-            if ($this->last_log) {
-                $this->last_log_name = $this->last_log->employee->user->fullname();
-                $this->last_log_email = $this->last_log->employee->user->email;
+            if ($req) {
+                // request found
+                $this->req = $req;
+
+
+                $this->data = $req->data;
+                // get request process step
+                $this->last_log = RequestLog::where('request_list_id', $req->id)
+                    ->orderBy('id', 'desc')->first();
+                if ($this->last_log) {
+                    $this->last_log_name = $this->last_log->employee->user->fullname();
+                    $this->last_log_email = $this->last_log->employee->user->email;
+                }
+                // get what require data for this request
+                $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
+            } else {
+                // request not found
+                $this->req = null; // Set to null for invalid IDs
+                abort(404);
             }
-            $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
+        } else {
+            // request id not set so request not found
+            $this->req = null; // Set to null for invalid IDs
+            abort(404);
         }
     }
 
@@ -91,7 +112,13 @@ class Edit extends Component
         $this->req->save();
     }
 
-    public function rules()
+
+    /**
+     * init rules array  for validate  update requestList From
+     *
+     * @return array
+     */
+    public function rules(): array
     {
         $rules = [];
         $data_list = array_filter(
@@ -113,6 +140,12 @@ class Edit extends Component
         return $rules;
     }
 
+    /**
+     * store or update new requestLists info in database  and show  Toast message if done or found any error 
+     *
+     * @param boolean $draft  default value false
+     * @return void
+     */
     public function store($draft = false)
     {
 
