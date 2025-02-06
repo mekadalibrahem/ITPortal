@@ -12,6 +12,7 @@ export default {
         './vendor/rappasoft/laravel-livewire-tables/resources/views/*.blade.php',
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
         './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
+        './app/Traits/RequestStatusStyle.php',
     ],
     theme: {
         extend: {
