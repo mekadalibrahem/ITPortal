@@ -137,6 +137,10 @@ return [
     "SSN" => "employee number",
     "Dont have any Department" => "Dont have any Department",
     "Active" => "Active",
+    "lang direction" => 'ltr',
+    "create_at" =>  "Created at",
+    "update_at" => "Update at ",
+    
 ];
 
 

@@ -10,7 +10,8 @@ Route::group(
         'as' => "employee." ,
         'middleware' => ['auth']
     ],function(){
-        Route::view('/requests' , 'employee.requests')->name('requests');
+        Route::view('/requests' , 'dashboard.employee.requests')->name('requests');
+        Route::view('/request/{id}' , 'dashboard.employee.request')->name('edit.request');
     }
 );
 

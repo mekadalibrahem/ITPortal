@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('dashboard.index');
+        $user = Auth::user();
+        if($user->hasRole('employee')){
+            return redirect()->route('employee.requests');
+        }else if ($user->hasRole('admin')){
+            return view('dashboard.index');
+        }else{
+            abort(401);
+        }
     }
 }

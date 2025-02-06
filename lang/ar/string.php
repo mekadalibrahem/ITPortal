@@ -135,7 +135,9 @@ return [
     "SSN" => 'رقم الموظف',
     "Dont has Department yet" => "لا ينتمي إلى أي قسم",
     "Active" => "مفعل",
-
+    "lang direction" => 'rtl',
+    "create_at" => "تاريخ الإنشاء",
+    "update_at" => "تاريخ التعديل",
 ];
 
 
