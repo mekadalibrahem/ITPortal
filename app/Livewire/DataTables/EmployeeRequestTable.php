@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\RequestList;
 use App\Models\RequestLog;
 use App\Traits\RequestStatusStyle;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
@@ -47,6 +48,9 @@ class EmployeeRequestTable extends DataTableComponent
             MultiSelectFilter::make('Status')
                 ->options(
                     collect(RequestStatusEnum::cases())
+                        ->filter(function ($status) {
+                            return !($status->value == "draft");
+                        })
                         ->mapWithKeys(fn($status) => [
                             $status->value => $status->name
                         ])->toArray()
@@ -57,18 +61,19 @@ class EmployeeRequestTable extends DataTableComponent
         ];
     }
 
-    public function query()
+    public function builder() : Builder
     {
         $requestLogIds = $this->employee->get_request_log_ids();
         $requestListIds = RequestLog::whereIn('id', $requestLogIds)
             ->pluck('request_list_id');
 
-        return RequestList::query()
+        $q = $this->model::query()
             ->with('user')
-            ->whereIn('id', $requestListIds)
+            ->whereIn('request_lists.id', $requestListIds)
             ->when($this->getAppliedFilterWithValue('status'), function ($query, $status) {
                 return $query->whereIn('status', $status);
             });
+       return $q;
     }
     public function columns(): array
     {
@@ -103,11 +108,12 @@ class EmployeeRequestTable extends DataTableComponent
                 ->sortable(),
             LinkColumn::make('Action')
 
-                ->title(function($row){
-                   return view('components.svg.arrow-up',[
-                    'attributes' => new \Illuminate\View\ComponentAttributeBag([
-                        'class' => 'w-6 h-6 text-blue-500', // Add custom attributes here
-                    ]),])->render();
+                ->title(function ($row) {
+                    return view('components.svg.arrow-up', [
+                        'attributes' => new \Illuminate\View\ComponentAttributeBag([
+                            'class' => 'w-6 h-6 text-blue-500', // Add custom attributes here
+                        ]),
+                    ])->render();
                 })
 
                 ->location(fn($row) => route('employee.edit.request', $row->id))
@@ -122,7 +128,4 @@ class EmployeeRequestTable extends DataTableComponent
         }
         return $columns;
     }
-
-
-
 }
