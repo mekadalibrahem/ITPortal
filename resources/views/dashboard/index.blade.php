@@ -1,10 +1,8 @@
-<x-layouts.app >
-    <x-slot:title >
+<x-layouts.dashboard>
+    <x-slot:title>
         {{__('string.Dashboard')}}
     </x-slot:title>
 
+    welcome admin
 
-    welcome in dashboard
-
-
-</x-layouts.app>
+</x-layouts.dashboard>
