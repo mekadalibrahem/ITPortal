@@ -19,6 +19,7 @@ use Spatie\Browsershot\Browsershot;
 
 class RequestsCard extends Component
 {
+    public $id ;
     public $hidden = true;
     public $request;
     public $request_id;
@@ -88,30 +89,36 @@ class RequestsCard extends Component
         $this->last_log_name = $this->last_log->employee->user->fullname();
         $this->last_log_email = $this->last_log->employee->user->email;
     }
-    #[On('show_request_info', 'id')]
-    public function show($id = 0)
+
+    public function show()
     {
-        if ($id > 0) {
+        if ($this->id > 0) {
             $this->hidden = false;
-            $this->request_id = $id;
+            $this->request_id = $this->id;
+
             $this->request = RequestList::where('id', $this->request_id)->first();
-            $datas = Data::where("request_list_id", $this->request_id)->get();
-            $detiles = [];
-            foreach ($datas as $data) {
-                $rd = RequireData::where('name_en', '=', $data->name)->first();
-                $detiles[] = [
-                    'name' => $data->name,
-                    'type' => $rd->type,
-                    'id' => $data->id,
-                    'value' => $data->value,
-                ];
+            if(!$this->request){abort(404);}else{
+                $datas = Data::where("request_list_id", $this->request_id)->get();
+                $detiles = [];
+                foreach ($datas as $data) {
+                    $rd = RequireData::where('name_en', '=', $data->name)->first();
+                    $detiles[] = [
+                        'name' => $data->name,
+                        'type' => $rd->type,
+                        'id' => $data->id,
+                        'value' => $data->value,
+                    ];
+                }
+
+                $this->update_last_log();
+                $this->request_data = $detiles;
+                $this->request_user = User::where("id", "=", $this->request->user_id)->first();
             }
 
-            $this->update_last_log();
-            $this->request_data = $detiles;
-            $this->request_user = User::where("id", "=", $this->request->user_id)->first();
+        }else{
+            abort(404);
         }
-        $this->render();
+
     }
 
 
@@ -120,7 +127,7 @@ class RequestsCard extends Component
     {
         $this->departments = Department::all();
         $this->employee_list = Employee::all();
-        $this->current_employee = Employee::where('user_id', auth()->user()->id)->first();
+        $this->current_employee = Employee::where('user_id', Auth::id())->first();
         // dd($this->current_employee);
     }
 
@@ -181,6 +188,7 @@ class RequestsCard extends Component
     }
     public function render()
     {
+        $this->show();
         return view('livewire.employee.requests-card');
     }
 }

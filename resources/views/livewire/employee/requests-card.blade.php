@@ -1,12 +1,4 @@
-<section class="bg-white rounded-lg dark:bg-gray-900 {{ $hidden ? 'hidden' : '' }}">
-    <div class="px-4 py-8 mx-auto md:w-full">
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('string.Request details') }}</h2>
-
-        @if ($status !== [])
-            <x-alert.alert :type="$status['type']" :message="$status['message']" />
-        @endif
-
-        <div class="relative overflow-auto bg-white dark:bg-gray-800">
+<x-widgets.section title="{{__('string.Request details')}}">
             @if ($request_id > 0)
                 <div
                     class="p-4 space-y-3 border border-blue-200 rounded-lg shadow-md md:space-y-0 md:space-x-4 md:flex md:items-center md:justify-between bg-blue-50 dark:bg-blue-900">
@@ -95,9 +87,9 @@
                                     @enderror
                                 </div>
                                 <div class="col-span-1">
-                                    <x-button.primary wire:click="redirect_to_employee()">
+                                    <x-button  status="primary" type="button" wire:click="redirect_to_employee()">
                                         {{ __('string.Send To Employee') }}
-                                    </x-button.primary>
+                                    </x-button>
                                 </div>
 
                             </div>
@@ -110,9 +102,9 @@
 
                                 </div>
                                 <div class="col-span-1">
-                                    <x-button.primary wire:click="redirect_to_manager()">
+                                    <x-button status="primary" type="button"  wire:click="redirect_to_manager()">
                                         {{ __('string.Send To Manager') }}
-                                    </x-button.primary>
+                                    </x-button>
                                 </div>
 
                             </div>
@@ -131,14 +123,12 @@
                         </div>
 
                         <div class="grid gap-4 md:grid-cols-4 mt-4">
-                            <x-button.success wire:click="accept()">{{ __('string.accept') }}</x-button.success>
-                            <x-button.primary wire:click="cancel()">{{ __('string.cancel') }}</x-button.primary>
-                            <x-button.danger wire:click="reject()">{{ __('string.reject') }}</x-button.danger>
-                            <x-button.primary wire:click="exportToPdf()">{{ __('string.Export') }}</x-button.primary>
+                            <x-button status="success" type="button"  wire:click="accept()">{{ __('string.accept') }}</x-button>
+                            <x-button status="primary" type="button"  wire:click="cancel()">{{ __('string.cancel') }}</x-button>
+                            <x-button status="danger " type="button" wire:click="reject()">{{ __('string.reject') }}</x-button>
+                            <x-button status="primary" type="button"  wire:click="exportToPdf()">{{ __('string.Export') }}</x-button>
                         </div>
                     </div>
                 @endif
             @endif
-        </div>
-    </div>
-</section>
+</x-widgets.section>
