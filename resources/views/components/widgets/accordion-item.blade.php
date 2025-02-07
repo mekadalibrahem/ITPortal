@@ -1,17 +1,25 @@
 @props([
-'id',
+
 'title',
+'id' => null,
 'active' => false,
 'icon' => '',
 ])
+
 @php
-    $childId = $id ."-child" ;
+
+$id = $id ?? "id-" . time() ;
+
+$childId = $id ."-child" ;
 @endphp
+
 <li class="hs-accordion" id="{{ $id }}">
     <button type="button"
         class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-800 rounded-lg hover:bg-slate-100 focus:outline-none focus:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700  dark:focus:bg-slate-700 dark:text-slate-200"
         aria-expanded="{{ $active ? 'true' : 'false' }}" aria-controls="{{ $childId }}">
-        {{ $icon ?? '' }}
+        @if ($icon)
+            {{ $icon }}
+        @endif
         {{ $title }}
 
         <svg class="hs-accordion-active:block ms-auto hidden size-4" xmlns="http://www.w3.org/2000/svg" width="24"
