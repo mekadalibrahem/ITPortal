@@ -9,8 +9,8 @@ use Livewire\Component;
 class FormUpdateCollageInformation extends Component
 {
 
-    #[Rule('required' , message:'هذا الحقل مطلوب')]
-    #[Rule('exists:collage_informations,name' , message:"هذا الاسم غير موجود")]
+    #[Rule('required')]
+    #[Rule('exists:collage_informations,name')]
     public $old_name = '';
 
     // #[Rule('unique:collage_informations,name'  , message:'إن هذا الاسم مستخدم سابقا  ')]

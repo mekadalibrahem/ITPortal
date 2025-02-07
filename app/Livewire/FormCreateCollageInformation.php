@@ -11,8 +11,8 @@ class FormCreateCollageInformation extends Component
 {
     #[Rule('required')]
     #[Rule('unique:collage_informations,name')]
-    #[Rule('required')]
     public $name = '';
+    #[Rule('required')]
     public $value = '';
 
 
