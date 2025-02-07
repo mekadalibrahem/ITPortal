@@ -12,7 +12,7 @@ class DashboardController extends Controller
         if($user->hasRole('employee')){
             return redirect()->route('employee.requests');
         }else if ($user->hasRole('admin')){
-            return view('dashboard.index');
+            return redirect()->route('admin.staticties');
         }else{
             abort(403);
         }
