@@ -26,8 +26,8 @@ Route::group(
             'prefix' => 'requests' ,
             'as' => 'requests.'
         ] , function () {
-            Route::view('/type' , 'admin.requests.types')->name('type');
-            Route::view('/requset' , 'admin.requests.request')->name('requset');
+            Route::view('/type' , 'dashboard.admin.requests.types')->name('type');
+            Route::view('/requset' , 'dashboard.admin.requests.request')->name('requset');
         });
 
 
