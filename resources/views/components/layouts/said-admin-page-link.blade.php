@@ -1,10 +1,11 @@
 <ul class="flex flex-col space-y-1">
     <x-widgets.sidebar-link href="{{Route('admin.staticties')}}">
+        <x-svg.dashboard-matric />
         {{ __("string.Staticties") }}
     </x-widgets.sidebar-link>
     <x-widgets.accordion-item title='{{__("string.Authorization")}}'>
         <x-slot name="icon">
-            <x-svg.account class="w-4 h-4" />
+            <x-svg.user-manager class="w-4 h-4" />
         </x-slot>
         <x-widgets.accordion-child-link href="{{Route('admin.auth.permission')}}">
             {{__("string.Permissions")}}
@@ -21,7 +22,7 @@
   <!--  request section link -->
   <x-widgets.accordion-item title='{{__("string.Manage requests")}}'>
     <x-slot name="icon">
-        <x-svg.account class="w-4 h-4" />
+        <x-svg.orders class="w-4 h-4" />
     </x-slot>
     <x-widgets.accordion-child-link href="{{Route('admin.requests.type')}}">
         {{ __("string.Request type") }}
@@ -36,7 +37,7 @@
  <!-- employee section  link -->
  <x-widgets.accordion-item title='{{__("string.Manage employees")}}'>
     <x-slot name="icon">
-        <x-svg.account class="w-4 h-4" />
+        <x-svg.team class="w-4 h-4" />
     </x-slot>
     <x-widgets.accordion-child-link href="{{Route('admin.employee.department')}}">
         {{ __("string.Departments") }}
@@ -50,9 +51,11 @@
 
 
     <x-widgets.sidebar-link href="{{Route('admin.collage_information')}}">
+        <x-svg.collage />
         {{ __("string.Collage informations") }}
     </x-widgets.sidebar-link>
     <x-widgets.sidebar-link href="{{Route('admin.backups')}}">
+        <x-svg.backup />
         {{ __("string.Backups") }}
     </x-widgets.sidebar-link>
 
