@@ -1,5 +1,5 @@
 <!-- Buttons with Blade components -->
-<div class="flex space-x-2 items-center">
+<div class="flex  gap-x-2 items-center">
 
     <!-- Edit Button -->
     <x-button
