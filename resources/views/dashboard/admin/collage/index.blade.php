@@ -31,7 +31,7 @@
             </section>
 
 
-            <livewire:collage-information-table />
+        
 
         </section>
     </div>
