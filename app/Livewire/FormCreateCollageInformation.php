@@ -5,13 +5,14 @@ namespace App\Livewire;
 use App\Models\CollageInformations;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class FormCreateCollageInformation extends Component
 {
-    #[Rule('required'  , message:'هذا الحقل مطلوب')]
-    #[Rule('unique:collage_informations,name'  , message:'إن هذا الاسم مستخدم سابقا  ')]
+    #[Rule('required')]
+    #[Rule('unique:collage_informations,name')]
+    #[Rule('required')]
     public $name = '';
-    #[Rule('required'  , message:'هذا الحقل مطلوب')]
     public $value = '';
 
 
@@ -26,10 +27,11 @@ class FormCreateCollageInformation extends Component
                 'value' =>$this->value
             ]
         );
+        if($collage){
 
-        session()->flash('create_collage_info_done', 'تم إضافة القيمة بنجاح');
-        
-        $this->dispatch('created');
+            Toaster::success(trans('messages.Item Saved'));
+        }
+
         $this->reset();
         $this->render();
     }
