@@ -31,6 +31,7 @@ return [
     "Don't Have any request yet" => "لا تملك أي طلب بعد",
     "Deleted Item" => "تم الحذف بنجاح",
     "Faild delete item" => "لم يتم حذف العنصر",
+    "Item Saved" => "تم الحفظ",
 ];
 
 
