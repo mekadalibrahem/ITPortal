@@ -142,6 +142,10 @@ class ViewTest extends TestCase
 
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
+
+        $response = $this->get(route("admin.collage_information"));
+        $response->assertStatus(403);
+
         // Authorization Views
         $response = $this->get(route("admin.auth.role"));
         $response->assertStatus(403);
@@ -159,6 +163,9 @@ class ViewTest extends TestCase
         $response->assertRedirect(route("employee.requests"));
 
         $response = $this->get(route("admin.backups"));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("admin.collage_information"));
         $response->assertStatus(403);
         // Authorization Views
         $response = $this->get(route("admin.auth.role"));
@@ -178,6 +185,9 @@ class ViewTest extends TestCase
         $response->assertRedirect(route("admin.staticties"));
 
         $response = $this->get(route("admin.backups"));
+        $response->assertStatus(200);
+
+        $response = $this->get(route("admin.collage_information"));
         $response->assertStatus(200);
         // Authorization Views
         $response = $this->get(route("admin.auth.role"));

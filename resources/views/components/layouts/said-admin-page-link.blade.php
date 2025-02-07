@@ -19,7 +19,9 @@
     </x-widgets.accordion-item>
 
 
-
+    <x-widgets.sidebar-link href="{{Route('admin.collage_information')}}">
+        {{ __("string.Collage informations") }}
+    </x-widgets.sidebar-link>
     <x-widgets.sidebar-link href="{{Route('admin.backups')}}">
         {{ __("string.Backups") }}
     </x-widgets.sidebar-link>
