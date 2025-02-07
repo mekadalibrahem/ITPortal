@@ -30,7 +30,7 @@ return [
     "Alrady saved" => "هذه المعلومات محفوظة ",
     "Don't Have any request yet" => "لا تملك أي طلب بعد",
     "Deleted Item" => "تم الحذف بنجاح",
-
+    "Faild delete item" => "لم يتم حذف العنصر",
 ];
 
 

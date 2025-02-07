@@ -30,4 +30,5 @@ return [
     "Alrady saved" => "This information Alrady saved",
     "Don't Have any request yet" => "Don't Have any request yet",
     "Deleted Item" => "Item Deleted ",
+    "Faild delete item" => "Faild delete item",
 ];
