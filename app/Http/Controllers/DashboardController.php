@@ -14,7 +14,7 @@ class DashboardController extends Controller
         }else if ($user->hasRole('admin')){
             return view('dashboard.index');
         }else{
-            abort(401);
+            abort(403);
         }
     }
 }

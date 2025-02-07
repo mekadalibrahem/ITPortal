@@ -68,4 +68,53 @@ class ViewTest extends TestCase
         $response->assertStatus(302); // Expecting a redirect
         $response->assertRedirect(route('login')); // Ensure it redirects to the login page
     }
+
+    public function test_show_employee_view_by_normal_user(){
+        $user = User::where('email', 'rami02@gmail.com')->first();
+        if (!$user) {
+            $this->fail('No existing user found with the specified ID.');
+        }
+        $this->actingAs($user);
+        $response = $this->get(route('dashboard.index'));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("employee.requests"));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("employee.edit.request" , ['id' => 3]));
+        $response->assertStatus(403);
+    }
+
+    public function test_show_employee_view_by_employee(){
+        $user = User::where('email', 'sami@gmail.com')->first();
+        if (!$user) {
+            $this->fail('No existing user found with the specified ID.');
+        }
+        $this->actingAs($user);
+        $response = $this->get(route('dashboard.index'));
+        $response->assertStatus(302);
+        $response->assertRedirect(route("employee.requests"));
+
+        $response = $this->get(route("employee.requests"));
+        $response->assertStatus(200);
+
+        $response = $this->get(route("employee.edit.request" , ['id' => 3]));
+        $response->assertStatus(200);
+    }
+
+    public function test_show_employee_view_by_admin_user(){
+        $user = User::where('email', 'admin@gmail.com')->first();
+        if (!$user) {
+            $this->fail('No existing user found with the specified ID.');
+        }
+        $this->actingAs($user);
+        $response = $this->get(route('dashboard.index'));
+        $response->assertStatus(200);
+
+        $response = $this->get(route("employee.requests"));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("employee.edit.request" , ['id' => 3]));
+        $response->assertStatus(403);
+    }
 }
