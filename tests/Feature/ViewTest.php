@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\CollageInformations;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -106,7 +107,13 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
 
+        // admin collage views
         $response = $this->get(route("admin.collage.index"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.collage.create"));
+        $response->assertStatus(403);
+        $info = CollageInformations::query()->first();
+        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
         $response->assertStatus(403);
 
         //admin requests Views
@@ -165,7 +172,13 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
 
+       // admin collage views
         $response = $this->get(route("admin.collage.index"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.collage.create"));
+        $response->assertStatus(403);
+        $info = CollageInformations::query()->first();
+        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
         $response->assertStatus(403);
 
         //admin requests Views
@@ -223,7 +236,13 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(200);
 
+        // admin collage views
         $response = $this->get(route("admin.collage.index"));
+        $response->assertStatus(200);
+        $response = $this->get(route("admin.collage.create"));
+        $response->assertStatus(200);
+        $info = CollageInformations::query()->first();
+        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
         $response->assertStatus(200);
 
         // requests Views

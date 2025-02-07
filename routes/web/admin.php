@@ -25,6 +25,8 @@ Route::group(
             'as' => 'collage.'
             ] , function(){
                 Route::view('/' , 'dashboard.admin.collage.index')->name('index');
+                Route::view('/create' , 'dashboard.admin.collage.create')->name('create');
+                Route::view('/{id}' , 'dashboard.admin.collage.edit')->name('edit')->where(['id' => '[0-9]+']);
         });
 
 

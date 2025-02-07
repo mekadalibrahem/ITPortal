@@ -4,7 +4,7 @@
        {{ __("string.Collage informations")}}
     </x-slot:title>
 
-    <div class=" h-screen  overflow-visible  mb-4 m-10">
+    {{-- <div class=" h-screen  overflow-visible  mb-4 m-10">
         <section class="pt-4 mb-4">
             <section class="bg-white  border-gray-200 dark:bg-gray-800" >
                 <div class="mb-4 border-b  rounded-lg ">
@@ -31,9 +31,13 @@
             </section>
 
 
-        
 
-        </section>
+
+        </section> --}}
+
+        <x-widgets.section title="{{__('string.Collage informations')}}">
+            <livewire:data-tables.collage-info-table  />
+        </x-widgets.section>
     </div>
 </x-layouts.dashboard>
 
