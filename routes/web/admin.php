@@ -36,8 +36,8 @@ Route::group(
             'as' => 'employee.'
         ], function(){
 
-            Route::view('/employee' , 'admin.employee.employee')->name('employee');
-            Route::view('/department' , 'admin.employee.department')->name('department');
+            Route::view('/employee' , 'dashboard.admin.employee.employee')->name('employee');
+            Route::view('/department' , 'dashboard.admin.employee.department')->name('department');
 
         });
 

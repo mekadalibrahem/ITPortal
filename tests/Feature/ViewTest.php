@@ -152,6 +152,12 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.requests.type"));
         $response->assertStatus(403);
 
+        // employee Views
+        $response = $this->get(route("admin.employee.department"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.employee.employee"));
+        $response->assertStatus(403);
+
         // Authorization Views
         $response = $this->get(route("admin.auth.role"));
         $response->assertStatus(403);
@@ -178,6 +184,12 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.requests.requset"));
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.type"));
+        $response->assertStatus(403);
+
+        // employee Views
+        $response = $this->get(route("admin.employee.department"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.employee.employee"));
         $response->assertStatus(403);
 
         // Authorization Views
@@ -207,6 +219,12 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.requests.requset"));
         $response->assertStatus(200);
         $response = $this->get(route("admin.requests.type"));
+        $response->assertStatus(200);
+
+        // employee Views
+        $response = $this->get(route("admin.employee.department"));
+        $response->assertStatus(200);
+        $response = $this->get(route("admin.employee.employee"));
         $response->assertStatus(200);
 
         // Authorization Views

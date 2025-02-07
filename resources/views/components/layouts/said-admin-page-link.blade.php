@@ -33,6 +33,20 @@
 
 </x-widgets.accordion-item>
 
+ <!-- employee section  link -->
+ <x-widgets.accordion-item title='{{__("string.Manage employees")}}'>
+    <x-slot name="icon">
+        <x-svg.account class="w-4 h-4" />
+    </x-slot>
+    <x-widgets.accordion-child-link href="{{Route('admin.employee.department')}}">
+        {{ __("string.Departments") }}
+    </x-widgets.accordion-child-link>
+    <x-widgets.accordion-child-link href="{{Route('admin.employee.employee')}}">
+        {{ __("string.Employees") }}
+    </x-widgets.accordion-child-link>
+
+
+</x-widgets.accordion-item>
 
 
     <x-widgets.sidebar-link href="{{Route('admin.collage_information')}}">
