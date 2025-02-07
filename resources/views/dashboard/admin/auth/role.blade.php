@@ -1,6 +1,6 @@
-<x-layouts.app>
+<x-layouts.dashboard>
     <x-slot:title>
-       {{__("string. Roles")}}
+        {{__("string. Roles")}}
     </x-slot:title>
 
 
@@ -12,4 +12,4 @@
 
     <livewire:admin.roles.role-card />
 
-</x-layouts.app>
+</x-layouts.dashboard>

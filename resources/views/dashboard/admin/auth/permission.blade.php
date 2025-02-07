@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.dashboard>
     <x-slot:title>
         {{__("string.Permissions")}}
     </x-slot:title>
@@ -46,4 +46,4 @@
 
 
 
-</x-layouts.app>
+</x-layouts.dashboard>
