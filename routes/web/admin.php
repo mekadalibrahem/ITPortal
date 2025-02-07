@@ -15,9 +15,9 @@ Route::group(
             'as' => 'auth.'
         ] ,  function(){
 
-            Route::view('/role' , 'admin.auth.role')->name('role');
-            Route::view('/user' , 'admin.auth.user')->name('user');
-            Route::view('/permission' , 'admin.auth.permission')->name('permission');
+            Route::view('/role' , 'dashboard.admin.auth.role')->name('role');
+            Route::view('/user' , 'dashboard.admin.auth.user')->name('user');
+            Route::view('/permission' , 'dashboard.admin.auth.permission')->name('permission');
         } );
 
         Route::view('/collage_information' , 'admin.collage_information')->name('collage_information');
