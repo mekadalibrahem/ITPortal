@@ -138,6 +138,8 @@ return [
     "lang direction" => 'rtl',
     "create_at" => "تاريخ الإنشاء",
     "update_at" => "تاريخ التعديل",
+    "Add new Collage Information" =>  "إضافة معلومات جديدة للجامعة" ,
+
 ];
 
 
