@@ -20,7 +20,13 @@ Route::group(
             Route::view('/permission' , 'dashboard.admin.auth.permission')->name('permission');
         } );
 
-        Route::view('/collage_information' , 'dashboard.admin.collage_information')->name('collage_information');
+        Route::group([
+            'prefix' => 'collage',
+            'as' => 'collage.'
+            ] , function(){
+                Route::view('/' , 'dashboard.admin.collage.index')->name('index');
+        });
+
 
         Route::group([
             'prefix' => 'requests' ,

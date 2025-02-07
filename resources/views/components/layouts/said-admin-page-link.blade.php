@@ -50,7 +50,7 @@
 </x-widgets.accordion-item>
 
 
-    <x-widgets.sidebar-link href="{{Route('admin.collage_information')}}">
+    <x-widgets.sidebar-link href="{{Route('admin.collage.index')}}">
         <x-svg.collage />
         {{ __("string.Collage informations") }}
     </x-widgets.sidebar-link>

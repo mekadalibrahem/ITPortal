@@ -143,7 +143,7 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
 
-        $response = $this->get(route("admin.collage_information"));
+        $response = $this->get(route("admin.collage.index"));
         $response->assertStatus(403);
 
         // requests Views
@@ -177,7 +177,7 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
 
-        $response = $this->get(route("admin.collage_information"));
+        $response = $this->get(route("admin.collage.index"));
         $response->assertStatus(403);
 
         // requests Views
@@ -212,7 +212,7 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(200);
 
-        $response = $this->get(route("admin.collage_information"));
+        $response = $this->get(route("admin.collage.index"));
         $response->assertStatus(200);
 
         // requests Views
