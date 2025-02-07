@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(
     [
-        'prefix' => 'admin' ,
+        'prefix' => '' ,
         'as' => "admin." ,
-        'middleware' => ['auth']
+        'middleware' => ['auth' ,  \Spatie\Permission\Middleware\RoleMiddleware::using('admin')]
     ],function(){
-
-
-
         Route::group([
             'prefix' =>'auth' ,
             'as' => 'auth.'
@@ -44,7 +41,8 @@ Route::group(
 
         });
 
-        Route::view("/backups","admin.tools.backup")->name("backups");
+        Route::view("/backups","dashboard.admin.tools.backup")->name("backups");
+        Route::view('/staticties' , 'dashboard.admin.staticties')->name('staticties');
 
 
 });
