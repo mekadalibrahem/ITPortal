@@ -14,7 +14,7 @@
             'success' => 'bg-green-500 text-white hover:bg-green-600 focus:bg-green-600 border-transparent dark:bg-green-600 dark:hover:bg-green-500',
             'primary' => 'bg-blue-600 text-white hover:bg-blue-700 focus:bg-blue-700 border-transparent dark:bg-blue-600 dark:hover:bg-blue-500',
             'warning' => 'bg-yellow-500 text-white hover:bg-yellow-600 focus:bg-yellow-600 border-transparent dark:bg-yellow-600 dark:hover:bg-yellow-500',
-            'default' => 'bg-neutral-800 text-white hover:bg-neutral-600 focus:bg-neutral-600 border-neutral-900 dark:bg-neutral-700 dark:border-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-600',
+            'default' => 'bg-gray-50  text-gray-800 hover:bg-gray-100 focus:bg-gray-100 border-gray-300 dark:bg-neutral-700 dark:border-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-600',
         ],
         'outline' => [
             'danger' => 'border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 dark:border-red-500 dark:text-red-500 dark:hover:border-red-400',
