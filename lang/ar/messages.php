@@ -17,6 +17,7 @@ return [
     "department nothing changed" => "هذه المعلومات مسجلة بالفعل",
     "confirm delete department" => "هل انت متاكد من انك تريد حذف الحساب",
     "confirm delete employee form department" => "هل انت متاكد من انك تريد حذف الموظف من هذا القسم",
+    "confirm delete" => "هل انت متأكد انك تريد حذف هذه العنصر",
     "Dont have any Employee" => "لا يوجد اي موظف حاليا",
     "Faild Add Employee" => "فشل إضافة الموظف",
     "Add Employee" => "تم إضافة الموظف",

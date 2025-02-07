@@ -4,6 +4,7 @@ return [
     "confirm delete request" => "are your sure delete this request",
     "confirm delete role" => "are your sure delete this role",
     "confirm delete permission" => "are your sure delete this permission",
+    "confirm delete" => "are your sure delete this item",
     "Required data" => "Required data",
     "Request Saved" => "Request Saved",
     "Request redirect" => "Request redirect",
