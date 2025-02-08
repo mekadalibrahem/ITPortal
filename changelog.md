@@ -27,8 +27,8 @@
 ### admin 
 * all user features 
 * collage managment 
-    - add new collage information value 
-    - edit collage information value or name 
+    - add new collage information value (tested)
+    - edit collage information value or name (tested)
     - remove collage information 
 
 ## Front-end
