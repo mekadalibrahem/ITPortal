@@ -14,11 +14,7 @@ class FormCreateCollageInformationTest extends TestCase
     */
     public function test_component_render(): void
     {
-        $user = User::where('email', 'admin@gmail.com')->first();
-        if (!$user) {
-            $this->fail("can't find user with email  admin@gmail.com");
-        }
-        $this->actingAs($user);
+       $this->getUser('admin');
         Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
             ->assertHasNoErrors();
     }
@@ -29,11 +25,7 @@ class FormCreateCollageInformationTest extends TestCase
      * @return void
      */
     public function test_save_new_value(){
-        $user = User::where('email', 'admin@gmail.com')->first();
-        if (!$user) {
-            $this->fail("can't find user with email  admin@gmail.com");
-        }
-        $this->actingAs($user);
+        $this->getUser('admin');
         Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
             ->set('name', 'Test Collage Name') // Set the 'name' field
             ->set('value', 'Test Collage Value') // Set the 'value' field
@@ -52,11 +44,7 @@ class FormCreateCollageInformationTest extends TestCase
     }
 
     public function test_save_used_value():void {
-        $user = User::where('email', 'admin@gmail.com')->first();
-        if (!$user) {
-            $this->fail("can't find user with email  admin@gmail.com");
-        }
-        $this->actingAs($user);
+        $this->getUser('admin');
         $info  = CollageInformations::first('name' ,'=' , 'test' );
          // Ensure the record exists
 
@@ -68,7 +56,7 @@ class FormCreateCollageInformationTest extends TestCase
         }
         $this->assertNotNull($info);
         $new_value =$info->value . "new" ;
-        $component = Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
+        Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
         ->set('name', $info->name) // Set the 'name' field
         ->set('value', $new_value) // Set the 'value' field
         ->call('create') // Call the 'create' method
@@ -81,12 +69,8 @@ class FormCreateCollageInformationTest extends TestCase
     }
 
     public function test_empty_values_sent() :void {
-        $user = User::where('email', 'admin@gmail.com')->first();
-        if (!$user) {
-            $this->fail("can't find user with email  admin@gmail.com");
-        }
-        $this->actingAs($user);
-        $component = Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
+        $this->getUser('admin');
+        Livewire::test(\App\Livewire\FormCreateCollageInformation::class)
         ->call('create') // Call the 'create' method
         ->assertHasErrors(['name' => 'required' , 'value' => 'required']);
     }

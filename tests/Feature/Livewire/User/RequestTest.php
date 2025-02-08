@@ -17,11 +17,7 @@ class RequestTest extends TestCase
      */
     public function test_livewire_component_fetches_data()
     {
-        $user = User::where('email' , 'rami02@gmail.com')->first();
-        $this->actingAs($user);
-        if (!$user) {
-            $this->fail('No existing user found with the specified ID.');
-        }
+        $this->getUser();
 
         $request = \App\Models\RequestList::where('id', '=', 3)->first();
         Log::info("TEST LIVWIRE REQUESTLISTTEST@test_livewire_component_fetches_data : requets ". $request->id
@@ -43,11 +39,7 @@ class RequestTest extends TestCase
      */
     public function test_livewire_component_handles_invalid_id()
     {
-        $user = User::where('email' , 'rami02@gmail.com')->first();
-        $this->actingAs($user);
-        if (!$user) {
-            $this->fail('No existing user found with the specified ID.');
-        }
+        $this->getUser();
         // Render the Livewire component with an invalid ID
         Livewire::test(Edit::class, ['id' => 999])
             ->assertSet("req" , null);
