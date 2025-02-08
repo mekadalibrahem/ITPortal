@@ -139,6 +139,7 @@ return [
     "create_at" => "تاريخ الإنشاء",
     "update_at" => "تاريخ التعديل",
     "Add new Collage Information" =>  "إضافة معلومات جديدة للجامعة" ,
+    "Edit Collage Information" => "تعديل  معلومات الكلية",
 
 ];
 

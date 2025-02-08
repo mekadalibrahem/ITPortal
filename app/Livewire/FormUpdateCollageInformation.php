@@ -3,59 +3,69 @@
 namespace App\Livewire;
 
 use App\Models\CollageInformations;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
+use Illuminate\Validation\Rule;
 
 class FormUpdateCollageInformation extends Component
 {
 
-    #[Rule('required')]
-    #[Rule('exists:collage_informations,name')]
-    public $old_name = '';
-
-    // #[Rule('unique:collage_informations,name'  , message:'إن هذا الاسم مستخدم سابقا  ')]
-    public $new_name = '' ;
+    public $info;
+    public $id;
 
 
-    public $new_value = '';
+    public $new_name;
+
+
+    public $new_value;
 
 
 
-    public function edit(){
-        $this->validate();
+    public function edit()
+    {
+        $this->validate([
+            'new_name' => [
+                "required",
+                Rule::unique('collage_informations', 'name')->ignore($this->info->id), // Exclude the current record
+            ],
+            'new_value' => [
+                'required'
+            ]
+        ]);
 
-        $info = CollageInformations::where(['name' => $this->old_name])->first();
-        // dd($info);
-        if($this->new_name  != '' ){
-            $info_exist = CollageInformations::where('name' , '=' , $this->new_name)->first();
-            // dd($info_exist);
-            if($info_exist){
-                session()->flash('name_exists' , 'هذا الاسم مستخدم سابقا') ;
-            }else{
+        $this->info->name = $this->new_name;
+        $this->info->value = $this->new_value;
 
-                $info->name = $this->new_name ;
-            }
 
-        }
-        if($this->new_value != ''){
-            $info->value = $this->new_value;
-        }
-
-        if($info->isDirty()){
-            $info->save();
-            session()->flash('update_collage_info_done' , 'تم تعديل البيانات');
-        }else{
+        if ($this->info->isDirty()) {
+            $this->info->save();
+            Toaster::success(trans('messages.Item Saved'));
+        } else {
             // nothing chanag
         }
-        $this->dispatch('updated');
-        $this->reset();
-        $this->render();
 
+        $this->mount();
+        $this->render();
     }
 
+    public function init()
+    {
+        $this->new_name = $this->info->name;
+        $this->new_value = $this->info->value;
+    }
 
+    public function mount()
+    {
+        $info = CollageInformations::find($this->id);
+        if (!$info) {
+            abort(404);
+        }
+        $this->info = $info;
+        $this->init();
+    }
     public function render()
     {
+
         return view('livewire.form-update-collage-information');
     }
 }

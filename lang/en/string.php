@@ -141,6 +141,7 @@ return [
     "create_at" =>  "Created at",
     "update_at" => "Update at ",
     "Add new Collage Information" =>  "Add new Collage Information " ,
+    "Edit Collage Information" => "Edit Collage Information",
 ];
 
 

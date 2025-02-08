@@ -3,7 +3,6 @@
 namespace Tests\Unit\Livewire\Admin;
 
 use App\Models\CollageInformations;
-use App\Models\User;
 use Livewire\Livewire;
 use Tests\TestCase;
 
