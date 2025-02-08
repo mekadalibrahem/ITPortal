@@ -29,7 +29,8 @@
 * collage managment 
     - add new collage information value (tested)
     - edit collage information value or name (tested)
-    - remove collage information 
+    - show datatable of collage information data 
+    - remove collage informations 
 
 ## Front-end
 
