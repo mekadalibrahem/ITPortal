@@ -27,7 +27,7 @@ $dir = app()->getLocale() === 'ar' ? 'rtl' : 'ltr';
     <div class="antialiased  bg-slate-50 dark:text-white  dark:bg-slate-950">
         <main class=" sm:p-4  md:p-10   bg-slate-50 items-center h-screen overflow-auto pt-10 dark:bg-slate-950">
 
-           
+
             <x-layouts.saidbar >
                 {{ $slot }}
             </x-layouts.saidbar>
