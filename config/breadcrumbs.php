@@ -46,7 +46,7 @@ return  [
                     'route' => null,
                     "children" => [
                         'employee' => [
-                            'name' => 'string.Employee',
+                            'name' => 'string.employee',
                             'route' => 'admin.employee.employee',
                         ],
                         'department' => [
