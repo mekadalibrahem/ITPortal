@@ -140,6 +140,7 @@ return [
     "update_at" => "تاريخ التعديل",
     "Add new Collage Information" =>  "إضافة معلومات جديدة للجامعة" ,
     "Edit Collage Information" => "تعديل  معلومات الكلية",
+    "Edit Request Information" => "تعديل معلومات الطلب",
 
 ];
 

@@ -6,27 +6,30 @@ use App\Models\Department;
 use App\Models\Requests;
 use App\Models\RequestType;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Add extends Component
 {
     public $name;
     public $type;
-    public $department ;
-    public $departments ;
-    public $types ;
-    public $active ;
+    public $department;
+    public $departments;
+    public $types;
+    public $active;
 
 
-    public function mount(){
+    public function mount()
+    {
         $this->departments = Department::all();
         $this->types = RequestType::all();
     }
 
 
-    public function add(){
+    public function add()
+    {
         $this->validate([
             'name' => "required|min:8|unique:requests,name",
-            'type'=> 'required|exists:request_types,id',
+            'type' => 'required|exists:request_types,id',
             'department' => "required|exists:departments,id"
         ]);
 
@@ -34,23 +37,13 @@ class Add extends Component
             'name' => $this->name,
             "type_id" => $this->type,
             "to_department" => $this->department,
-            "isActive" => $this->active ?? 0 ,
+            "isActive" => $this->active ?? 0,
         ]);
-        if($re){
-            session()->flash("status",[
-                "type"=> "success",
-                "message"=> trans("messages.Request Saved")
-            ]);
-        }else{
-            session()->flash("status",[
-                "type"=> "danger",
-                "message" => trans("messages.Faild Add Request")
-            ]);
+        if ($re) {
+            Toaster::success(trans("messages.Request Saved"));
+        } else {
+            Toaster::danger(trans("messages.Faild Add Request"));
         }
-
-
-
-
     }
     public function render()
     {

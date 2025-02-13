@@ -1,11 +1,4 @@
-<div class="p-4 rounded-lg bg-white dark:bg-gray-800" id="add" role="tabpanel" aria-labelledby="add-tab">
-    @if (session()->has('status'))
-        @php
-            $status = session()->get('status');
-        @endphp
-        <x-alert.alert :type="$status['type']" :message="$status['message']" />
-    @endif
-
+<x-widgets.section title="{{__('string.New Request')}}">
 
     <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2  ">
         <x-form.label for="name">
@@ -13,7 +6,7 @@
         </x-form.label>
         <x-form.input type="text" name="name" id="name" wire:model="name" />
         @error('name')
-            <x-alert.alert type="danger" :message="$message" />
+        <x-alert.alert type="danger" :message="$message" />
         @enderror
 
     </div>
@@ -26,15 +19,15 @@
                 {{ __('string.Select request type') }}
             </option>
             @forelse ($types as $t)
-                <option value="{{ $t->id }}">
-                    {{ $t->type }}
-                </option>
+            <option value="{{ $t->id }}">
+                {{ $t->type }}
+            </option>
             @empty
             @endforelse
 
         </select>
         @error('type')
-            <x-alert.alert type="danger" :message="$message" />
+        <x-alert.alert type="danger" :message="$message" />
         @enderror
     </div>
     <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
@@ -44,15 +37,15 @@
             <option value="0">
                 {{ __('string.Department') }}
             </option>
-            @forelse ($departments as  $dep)
-                <option value="{{ $dep->id }}">
-                    {{ $dep->name }}
-                </option>
+            @forelse ($departments as $dep)
+            <option value="{{ $dep->id }}">
+                {{ $dep->name }}
+            </option>
             @empty
             @endforelse
         </select>
         @error('department')
-            <x-alert.alert type="danger" :message="$message" />
+        <x-alert.alert type="danger" :message="$message" />
         @enderror
     </div>
 
@@ -63,7 +56,7 @@
         <input type="checkbox" name="active" id="active" wire:model="active"
             class=" border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-cyan-50 focus:ring-primary-600 focus:border-primary-600 block  p-2.5 dark:bg-gray-700 bg-red dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
         @error('active')
-            <x-alert.alert type="danger" :message="$message" />
+        <x-alert.alert type="danger" :message="$message" />
         @enderror
 
     </div>
@@ -72,13 +65,13 @@
 
     <div class="sm:col-span-2 mb-3 grid grid-cols-4">
 
-        <x-button.primary type="button" wire:click="add()">
+        <x-button status="primary" type="button" wire:click="add()">
             {{ __('string.Add') }}
 
-        </x-button.primary>
+        </x-button>
     </div>
 
 
 
 
-</div>
+</x-widgets.section>

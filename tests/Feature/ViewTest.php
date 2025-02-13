@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Models\CollageInformations;
-use App\Models\User;
+use App\Models\Requests;
 use Tests\TestCase;
 
 class ViewTest extends TestCase
 {
 
-   
+
     /**
      *  Test routes that require authentication for authenticated users
      *
@@ -94,8 +94,14 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
 
         //admin requests Views
-        $response = $this->get(route("admin.requests.requset"));
+        $response = $this->get(route("admin.requests.request.index"));
         $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.request.create"));
+        $response->assertStatus(403);
+        $request= Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
+        $response->assertStatus(403);
+
         $response = $this->get(route("admin.requests.type"));
         $response->assertStatus(403);
 
@@ -159,7 +165,12 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
 
         //admin requests Views
-        $response = $this->get(route("admin.requests.requset"));
+        $response = $this->get(route("admin.requests.request.index"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.request.create"));
+        $response->assertStatus(403);
+        $request= Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.type"));
         $response->assertStatus(403);
@@ -223,7 +234,12 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
 
         // requests Views
-        $response = $this->get(route("admin.requests.requset"));
+        $response = $this->get(route("admin.requests.request.index"));
+        $response->assertStatus(200);
+        $response = $this->get(route("admin.requests.request.create"));
+        $response->assertStatus(200);
+        $request= Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
         $response->assertStatus(200);
         $response = $this->get(route("admin.requests.type"));
         $response->assertStatus(200);

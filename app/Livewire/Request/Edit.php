@@ -5,7 +5,9 @@ namespace App\Livewire\Request;
 use App\Models\Department;
 use App\Models\Requests;
 use App\Models\RequestType;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Edit extends Component
 {
@@ -15,8 +17,8 @@ class Edit extends Component
     public $departments;
     public $types;
     public $active;
-    public $old_name;
     public $req;
+    public $id;
     // public
     public function mount()
     {
@@ -26,25 +28,24 @@ class Edit extends Component
 
     public function index()
     {
-        $this->req = Requests::where('name', "=", $this->old_name)->first();
+        $this->req = Requests::find($this->id);
         if ($this->req) {
             $this->name =  $this->req->name;
-            $this->type = $this->req->type;
-            $this->department =  $this->req->department;
-            $this->active   =  $this->req->active;
+            $this->type = $this->req->type_id;
+            $this->department =  $this->req->to_department;
+            $this->active   =  $this->req->isActive ? true : false;
         } else {
-            $this->name = null;
-            $this->type = null;
-            $this->department = null;
-            $this->active   = null;
+            abort(404);
         }
-        // dd($this->req);
-        $this->render();
     }
     public function edit()
     {
         $this->validate([
-            'name' => "required|min:8|unique:requests,name",
+            'name' => [
+                'required',
+                'min:8',
+                Rule::unique('requests', 'name')->ignore($this->req->id)
+            ],
             'type' => 'required|exists:request_types,id',
             'department' => "required|exists:departments,id"
         ]);
@@ -52,34 +53,25 @@ class Edit extends Component
         $new_req->name = $this->name;
         $new_req->type_id = $this->type;
         $new_req->to_department = $this->department;
-        $new_req->isActive = $this->active;
-        if ($new_req->isDirty()) {
-            session()->flash("status", [
-                "type" => "warning",
-                "message" => trans("messages.")
-            ]);
+        $new_req->isActive = $this->active ? 1 : 0;
+        if (!$new_req->isDirty()) {
+            Toaster::warning(trans('messages.Information Not changed'));
         } else {
             $saved = $new_req->save();
             if ($saved) {
-                session()->flash("status", [
-                    "type" => "success",
-                    "message" => trans("messages.Request Saved")
-                ]);
+                Toaster::success(trans("messages.Request Saved"));
             } else {
-                session()->flash("status", [
-                    "type" => "danger",
-                    "message" => trans("messages.Faild Add Request Saved")
-                ]);
+                Toaster::danger(trans("messages.Faild Add Request Saved"));
             }
         }
 
         $this->req = $new_req;
-        $this->old_name = $new_req->name;
-        $this->index();
+        $this->render();
     }
 
     public function render()
     {
+        $this->index();
         return view('livewire.request.edit');
     }
 }

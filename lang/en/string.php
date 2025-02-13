@@ -142,6 +142,7 @@ return [
     "update_at" => "Update at ",
     "Add new Collage Information" =>  "Add new Collage Information " ,
     "Edit Collage Information" => "Edit Collage Information",
+    "Edit Request Information" => "Edit Request Information",
 ];
 
 
