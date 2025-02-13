@@ -3,8 +3,8 @@
     <x-slot:title>
         {{ __('string.Requests') }}
     </x-slot:title>
-
-    <div class=" h-screen  overflow-visible  mb-4 p-3 sm:p-5">
+    <livewire:data-tables.requests-info-table  />
+    {{-- <div class=" h-screen  overflow-visible  mb-4 p-3 sm:p-5">
 
         <section class=" bg-white  dark:bg-gray-700 shadow rounded">
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -518,5 +518,5 @@
         </section>
 
 
-    </div>
+    </div> --}}
 </x-layouts.dashboard>

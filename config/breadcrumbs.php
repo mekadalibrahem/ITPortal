@@ -35,9 +35,9 @@ return  [
                             'name' => 'string.Request type',
                             'route' => 'admin.requests.type',
                         ],
-                        'requests' => [
-                            'name' => 'string.Requests',
-                            'route' => 'admin.requests.requset',
+                        'request' => [
+                            'name' => 'string.Request details',
+                            'route' => 'admin.requests.request.index',
                         ],
                     ],
                 ],
@@ -84,7 +84,10 @@ return  [
         'admin.collage.edit' => 'dashboard.collage',
         'admin.employee.department' => 'dashboard.employees.department',
         'admin.employee.employee' => 'dashboard.employees.employee',
-        'admin.requests.requset' => 'dashboard.requests.requset',
+        'admin.requests.request.index' => 'dashboard.requests.request',
+        'admin.requests.request.edit' => 'dashboard.requests.request',
+        'admin.requests.request.create' => 'dashboard.requests.request',
+
         'admin.requests.type' => 'dashboard.requests.type',
         'admin.staticties' => 'dashboard.staticties',
         'employee.requests' => 'dashboard.requests',

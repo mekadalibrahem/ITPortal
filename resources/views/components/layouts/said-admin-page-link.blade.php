@@ -27,7 +27,7 @@
     <x-widgets.accordion-child-link href="{{Route('admin.requests.type')}}">
         {{ __("string.Request type") }}
     </x-widgets.accordion-child-link>
-    <x-widgets.accordion-child-link href="{{Route('admin.requests.requset')}}">
+    <x-widgets.accordion-child-link href="{{Route('admin.requests.request.index')}}">
         {{ __("string.Requests") }}
     </x-widgets.accordion-child-link>
 
