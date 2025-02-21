@@ -15,7 +15,7 @@ Route::group(
             'prefix' => 'auth',
             'as' => 'auth.'
         ],  function () {
-
+            // TODO Add Route Authorization Routes
             Route::view('/role', 'dashboard.admin.auth.role')->name('role');
             Route::view('/user', 'dashboard.admin.auth.user')->name('user');
             Route::view('/permission', 'dashboard.admin.auth.permission')->name('permission');
@@ -35,6 +35,7 @@ Route::group(
             'prefix' => 'requests',
             'as' => 'requests.'
         ], function () {
+            // TODO  Add Request Type Managment
             Route::view('/type', 'dashboard.admin.requests.types')->name('type');
 
             Route::group([
@@ -53,12 +54,14 @@ Route::group(
             'prefix' => 'employee',
             'as' => 'employee.'
         ], function () {
-
+            // TODO ADD employee Routes
             Route::view('/employee', 'dashboard.admin.employee.employee')->name('employee');
+            // TODO ADD department Routes
             Route::view('/department', 'dashboard.admin.employee.department')->name('department');
         });
-
+        // TODO  Add backups Routes
         Route::view("/backups", "dashboard.admin.tools.backup")->name("backups");
+        // TODO  Add staticties Routes
         Route::view('/staticties', 'dashboard.admin.staticties')->name('staticties');
     }
 );

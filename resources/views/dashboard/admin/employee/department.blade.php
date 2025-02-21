@@ -3,7 +3,7 @@
     <x-slot:title>
         department
     </x-slot:title>
-
+ {{-- // TODO EDIT PAGE STYLEING --}}
     <div class=" h-screen  overflow-visible  mb-4 m-10">
         <section class="pt-4 mb-4">
 

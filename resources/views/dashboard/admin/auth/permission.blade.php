@@ -2,7 +2,7 @@
     <x-slot:title>
         {{__("string.Permissions")}}
     </x-slot:title>
-
+    {{-- // TODO EDIT PAGE STYLEING --}}
     <section class="bg-white container mx-auto md:w-5/5 lg:w-4/5   mt-8 rounded-lg  dark:bg-gray-900">
         <div class="w-full px-4 py-8 mx-auto ">
 
