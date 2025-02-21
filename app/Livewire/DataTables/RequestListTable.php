@@ -2,7 +2,6 @@
 
 namespace App\Livewire\DataTables;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\RequestList;
 use App\Traits\RequestStatusStyle;
@@ -12,39 +11,20 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
 
-class RequestListTable extends DataTableComponent
+class RequestListTable extends CustomeDataTableComponent
 {
-    use RequestStatusStyle ;
+    use RequestStatusStyle;
 
     protected $model = RequestList::class;
     public  $user_id;
 
 
 
-    public function mount() {}
-
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        $this->setEmptyMessage(trans("messages.Don't Have any request yet"));
-        $this->setSearchStatus(false);
-        // Add this configuration for the header button
-        $this->setConfigurableAreas([
 
-            'toolbar-left-start' => [
-
-                'components.widgets.btn-create-new',
-                [
-
-                    'href' => Route('user.requests.add'),
-
-                    'text' => trans('string.Add'),
-
-                ],
-
-            ],
-
-        ]);
+        $this->setAddButton(Route('user.requests.add'));
     }
 
     public function builder(): Builder
@@ -65,7 +45,7 @@ class RequestListTable extends DataTableComponent
             Column::make('id', 'id')
                 ->sortable()->hideIf(true),
 
-            Column::make("Request name", "requests.name")
+            Column::make(trans('string.Request type'), "requests.name")
                 ->attributes(function ($row) {
 
                     return [
@@ -77,7 +57,7 @@ class RequestListTable extends DataTableComponent
                     ];
                 })
                 ->sortable(),
-                Column::make("Status", "status")
+            Column::make(trans('string.Status'), "status")
                 ->sortable()
                 ->format(function ($value, $row) {
                     // Get the status from the row
@@ -88,31 +68,31 @@ class RequestListTable extends DataTableComponent
 
                     // Return raw HTML with the status badge styled using Tailwind CSS
                     return "<div class='{$class} px-3 py-1 rounded-full text-sm font-medium text-center'>" .
-                           ucfirst($status) .
-                           "</div>";
+                        ucfirst($status) .
+                        "</div>";
                 })->html(),
-            Column::make("Create at", "created_at")
-                ->sortable(),
-            Column::make("Update at", "updated_at")
-                ->sortable(),
-            Column::make('Actions')
-                ->label(
-                    fn($row) => view(
-                        'livewire.actions',
-                        [
-                            'row' => $row,
-                            'confirm_delete_message' => trans("messages.confirm delete request"),
+            // Column::make("Create at", "created_at")
+            //     ->sortable(),
+            // Column::make("Update at", "updated_at")
+            //     ->sortable(),
+            // Column::make('Actions')
+            //     ->label(
+            //         fn($row) => view(
+            //             'livewire.actions',
+            //             [
+            //                 'row' => $row,
+            //                 'confirm_delete_message' => trans("messages.confirm delete request"),
 
-                        ]
-                    )
+            //             ]
+            //         )
 
-                )->html(),
+            //     )->html(),
 
 
         ];
     }
 
-    public function delete($id)
+    public function delete($id=0) :void
     {
 
 
@@ -139,7 +119,7 @@ class RequestListTable extends DataTableComponent
             Toaster::warning(trans("messages.Can't delete Request"));
         }
     }
-    public function edit($id)
+    public function edit($id) : void
     {
         redirect()->route('user.requests.index', ["id" => $id]);
     }
