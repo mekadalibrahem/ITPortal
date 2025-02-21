@@ -31,6 +31,10 @@
     - edit collage information value or name (tested)
     - show datatable of collage information data 
     - remove collage informations 
+* request managment 
+    - edit request (tested)
+    - show requests information table 
+    - delete request 
 
 ## Front-end
 
