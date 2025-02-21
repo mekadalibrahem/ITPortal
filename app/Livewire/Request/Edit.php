@@ -5,6 +5,7 @@ namespace App\Livewire\Request;
 use App\Models\Department;
 use App\Models\Requests;
 use App\Models\RequestType;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -22,6 +23,7 @@ class Edit extends Component
     // public
     public function mount()
     {
+        $this->index();
         $this->departments = Department::all();
         $this->types = RequestType::all();
     }
@@ -47,31 +49,34 @@ class Edit extends Component
                 Rule::unique('requests', 'name')->ignore($this->req->id)
             ],
             'type' => 'required|exists:request_types,id',
-            'department' => "required|exists:departments,id"
+            'department' => "required|exists:departments,id",
+            'active' => 'boolean'
         ]);
-        $new_req = $this->req;
-        $new_req->name = $this->name;
-        $new_req->type_id = $this->type;
-        $new_req->to_department = $this->department;
-        $new_req->isActive = $this->active ? 1 : 0;
-        if (!$new_req->isDirty()) {
-            Toaster::warning(trans('messages.Information Not changed'));
-        } else {
-            $saved = $new_req->save();
-            if ($saved) {
-                Toaster::success(trans("messages.Request Saved"));
-            } else {
-                Toaster::danger(trans("messages.Faild Add Request Saved"));
-            }
-        }
+        try {
+            $this->req->name = $this->name;
+            $this->req->type_id = $this->type;
+            $this->req->to_department = $this->department;
+            $this->req->isActive = $this->active ? 1 : 0;
 
-        $this->req = $new_req;
+            if (!$this->req->isDirty()) {
+
+                Toaster::warning(trans('messages.Information Not changed'));
+            } else {
+                if ($this->req->save()) {
+                    Toaster::success(trans("messages.Request Saved"));
+                } else {
+                    Toaster::danger(trans("messages.Faild Add Request Saved"));
+                }
+            }
+        } catch (\Throwable $th) {
+            Log::error(__CLASS__ . '@' . __FUNCTION__ . " : ERROR is ->" . $th->getMessage());
+        }
         $this->render();
     }
 
     public function render()
     {
-        $this->index();
+
         return view('livewire.request.edit');
     }
 }
