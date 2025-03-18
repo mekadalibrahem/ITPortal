@@ -94,9 +94,9 @@ return [
         "count" => "المدة",
     ],
     "Send" => "إرسال",
-    "Save as draft" => "حفظ  في المسودة" ,
-    "Employee Requests"=> "طلبات الطلاب",
-    'Request details'=> "تفاصيل الطلب",
+    "Save as draft" => "حفظ  في المسودة",
+    "Employee Requests" => "طلبات الطلاب",
+    'Request details' => "تفاصيل الطلب",
     'Send To Employee' => 'إعادة توجيه',
     'Redirect to User' => "الغاء بسبب خطأ",
     'Reject' => "رفض",
@@ -109,7 +109,7 @@ return [
     "cancel note title" => "سبب الرفض او التعديل",
     "placholder_cancel_note" => "اكتب سبب رفض الطلب او اذا كان بحاجة إلى تعديل بيانات",
     "cancel" => "إلغاء",
-    "reject" =>"رفض",
+    "reject" => "رفض",
     "redirect notify" => "اكتب سبب تحويلها",
     "accept" => "قبول",
     "request user" => "مقدم الطلب",
@@ -117,7 +117,7 @@ return [
     "content" => "المحتوى",
     "send notification" => "إرسال إشعار",
     "All notifications" => "جميع الاشعارات",
-    "new notify" => "إشعار جديدة" ,
+    "new notify" => "إشعار جديدة",
     "Backups" => "النسخ الاحتياطي",
     "description" => "الوصف",
     "department manager" => "مدير القسم",
@@ -138,17 +138,8 @@ return [
     "lang direction" => 'rtl',
     "create_at" => "تاريخ الإنشاء",
     "update_at" => "تاريخ التعديل",
-    "Add new Collage Information" =>  "إضافة معلومات جديدة للجامعة" ,
+    "Add new Collage Information" =>  "إضافة معلومات جديدة للجامعة",
     "Edit Collage Information" => "تعديل  معلومات الكلية",
     "Edit Request Information" => "تعديل معلومات الطلب",
-
+    "Edit Request Type" => "تعديل نوع الطلب",
 ];
-
-
-
-
-
-
-
-
-

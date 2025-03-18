@@ -24,7 +24,7 @@
     <x-slot name="icon">
         <x-svg.orders class="w-4 h-4" />
     </x-slot>
-    <x-widgets.accordion-child-link href="{{Route('admin.requests.type')}}">
+    <x-widgets.accordion-child-link href="{{Route('admin.requests.type.index')}}">
         {{ __("string.Request type") }}
     </x-widgets.accordion-child-link>
     <x-widgets.accordion-child-link href="{{Route('admin.requests.request.index')}}">

@@ -32,4 +32,6 @@ return [
     "Deleted Item" => "Item Deleted ",
     "Faild delete item" => "Faild delete item",
     "Item Saved" => "Item Saved",
+    "Don't Have any type yet" =>  "Don't Have any type yet",
+    "Don't support this action yet" => "Don't support this action yet",
 ];

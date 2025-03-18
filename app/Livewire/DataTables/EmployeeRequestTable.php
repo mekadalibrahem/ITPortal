@@ -22,11 +22,15 @@ class EmployeeRequestTable extends DataTableComponent
     protected $model = RequestList::class;
     public Employee $employee;
     public bool $is_manager = false;
+    public $requestListIds ;
 
     public function mount(): void
     {
         $this->employee = Employee::where('user_id', Auth::id())->first();
         $this->is_manager = $this->employee->is_manager();
+        $requestLogIds = $this->employee->get_request_log_ids();
+        $this->requestListIds = RequestLog::whereIn('id', $requestLogIds)
+            ->pluck('request_list_id');
     }
 
 
@@ -63,13 +67,11 @@ class EmployeeRequestTable extends DataTableComponent
 
     public function builder() : Builder
     {
-        $requestLogIds = $this->employee->get_request_log_ids();
-        $requestListIds = RequestLog::whereIn('id', $requestLogIds)
-            ->pluck('request_list_id');
+
 
         $q = $this->model::query()
             ->with('user')
-            ->whereIn('request_lists.id', $requestListIds)
+            ->whereIn('request_lists.id', $this->requestListIds)
             ->when($this->getAppliedFilterWithValue('status'), function ($query, $status) {
                 return $query->whereIn('status', $status);
             });

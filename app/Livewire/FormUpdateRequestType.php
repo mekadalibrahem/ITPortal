@@ -5,32 +5,48 @@ namespace App\Livewire;
 use App\Models\RequestType;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class FormUpdateRequestType extends Component
 {
 
-    #[Rule('required' , message: 'هذا الحقل مطلوب')]
-    #[Rule('exists:request_types,type' ,message: "هذا النوع غير مسجل ")]
-    public $old_type ='' ;
-    #[Rule('required' , message:"هذا الحقل مطلوب")]
-    #[Rule('unique:request_types,type' , message:'هذا النوع مستخدم سايقا')]
-    public $new_type = '';
 
+    #[Rule('required' )]
+    #[Rule('unique:request_types,type')]
+    public $type ;
+    public $request_type ;
+    public $id ;
+    public function mount(){
+
+        if($this->id < 0){
+
+            // Invalid parameter
+            abort(400);
+        }else{
+            $this->request_type = RequestType::find($this->id);
+
+            if(!$this->request_type){
+                // type not found
+                abort(404);
+            }else{
+                $this->type = $this->request_type->type ;
+            }
+        }
+    }
     public function edit(){
         $this->validate();
 
         try {
-            $type= RequestType::where(['type' => $this->old_type])->first();
-            $type->type = $this->new_type ;
-            if($type->isDirty()){
-                $type->save();
-                session()->flash('request_type_update_done' , ' تم التعديل بنجاح');
-                $this->dispatch('request-type-update');
-                $this->reset();
+
+            $this->request_type->type = $this->type ;
+
+            if($this->request_type->isDirty()){
+                $this->request_type->save();
+                Toaster::success(trans("messages.Item Saved"));
                 $this->render();
             }
         } catch (\Throwable $th) {
-            session()->flash('request_type_update_error' , 'ERROR in formUpdateRequestType.edit() :'  . $th);
+         Toaster::error('ERROR in formUpdateRequestType.edit() :'  . $th);
         }
     }
 

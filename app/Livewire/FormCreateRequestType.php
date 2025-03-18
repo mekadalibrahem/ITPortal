@@ -5,11 +5,12 @@ namespace App\Livewire;
 use App\Models\RequestType;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class FormCreateRequestType extends Component
 {
-    #[Rule('required' , message:'هذا الحقل مطلوب')]
-    #[Rule('unique:request_types,type' , message:'هذا النوع مسجل مسبقا')]
+    #[Rule('required')]
+    #[Rule('unique:request_types,type')]
     public $type ='';
 
 
@@ -20,12 +21,11 @@ class FormCreateRequestType extends Component
             RequestType::create([
                 'type' => $this->type
             ]);
-            session()->flash('reqest_type_create_done' , 'تم إضافة النوع الجديد');
-            $this->dispatch('request-type-create');
+            Toaster::success(trans('messages.Item Saved'));
             $this->reset();
             $this->render();
         } catch (\Throwable $th) {
-            session()->flash('request_type_create_error' , 'ERROR in `form-create-request-type` :'. $th  );
+            Toaster::error('ERROR in `form-create-request-type` :'. $th  );
         }
 
     }

@@ -36,7 +36,16 @@ Route::group(
             'as' => 'requests.'
         ], function () {
             // TODO  Add Request Type Managment
-            Route::view('/type', 'dashboard.admin.requests.types')->name('type');
+
+            Route::group([
+                "prefix" => "type",
+                'as' => "type."
+            ], function () {
+                Route::view('/', 'dashboard.admin.requests.type.index')->name('index');
+                Route::view('/create', 'dashboard.admin.requests.type.create')->name('create');
+                Route::view('/{id}', 'dashboard.admin.requests.type.edit')->name('edit')->where(['id' => '[0-9]+']);
+            });
+
 
             Route::group([
                 'prefix' => 'request',

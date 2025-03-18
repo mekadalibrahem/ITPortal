@@ -35,6 +35,10 @@
     - edit request (tested)
     - show requests information table 
     - delete request 
+* reqyest types managment (tested)
+    - show request types table with delete options ( redirect to edit or create new pages) 
+    - edit type 
+    - create new type
 
 ## Front-end
 

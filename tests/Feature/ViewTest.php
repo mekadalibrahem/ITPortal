@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\CollageInformations;
 use App\Models\Requests;
+use App\Models\RequestType;
 use Tests\TestCase;
 
 class ViewTest extends TestCase
@@ -102,7 +103,12 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
         $response->assertStatus(403);
 
-        $response = $this->get(route("admin.requests.type"));
+        $type = RequestType::query()->first();
+        $response = $this->get(route("admin.requests.type.index"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.type.create"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
         $response->assertStatus(403);
 
         //admin employee Views
@@ -172,7 +178,13 @@ class ViewTest extends TestCase
         $request= Requests::query()->first();
         $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
         $response->assertStatus(403);
-        $response = $this->get(route("admin.requests.type"));
+
+        $type = RequestType::query()->first();
+        $response = $this->get(route("admin.requests.type.index"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.type.create"));
+        $response->assertStatus(403);
+        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
         $response->assertStatus(403);
 
         //admin employee Views
@@ -241,7 +253,13 @@ class ViewTest extends TestCase
         $request= Requests::query()->first();
         $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
         $response->assertStatus(200);
-        $response = $this->get(route("admin.requests.type"));
+
+        $type = RequestType::query()->first();
+        $response = $this->get(route("admin.requests.type.index"));
+        $response->assertStatus(200);
+        $response = $this->get(route("admin.requests.type.create"));
+        $response->assertStatus(200);
+        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
         $response->assertStatus(200);
 
         // employee Views

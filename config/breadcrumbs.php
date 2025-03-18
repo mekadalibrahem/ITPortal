@@ -33,7 +33,7 @@ return  [
                     "children" => [
                         'type' => [
                             'name' => 'string.Request type',
-                            'route' => 'admin.requests.type',
+                            'route' => 'admin.requests.type.index',
                         ],
                         'request' => [
                             'name' => 'string.Request details',
@@ -88,7 +88,10 @@ return  [
         'admin.requests.request.edit' => 'dashboard.requests.request',
         'admin.requests.request.create' => 'dashboard.requests.request',
 
-        'admin.requests.type' => 'dashboard.requests.type',
+        'admin.requests.type.index' => 'dashboard.requests.type',
+        'admin.requests.type.create' => 'dashboard.requests.type',
+        'admin.requests.type.edit' => 'dashboard.requests.type',
+
         'admin.staticties' => 'dashboard.staticties',
         'employee.requests' => 'dashboard.requests',
         'employee.edit.requests' => 'dashboard.requests',
