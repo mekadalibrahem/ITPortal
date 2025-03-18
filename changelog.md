@@ -50,6 +50,7 @@
 ## Dev
 
 * add DebugBar Package
+* add Telescope package
 
 ## required packages
 
