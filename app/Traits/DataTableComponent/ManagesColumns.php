@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Database\Eloquent\Model;
+
 trait ManagesColumns
 {
     protected bool $columnUpdateAtStatus = true;
@@ -21,25 +22,34 @@ trait ManagesColumns
 
         if ($className) {
             // Ensure the class is a valid Eloquent model
-        if (is_subclass_of($className, Model::class)) {
-            // Create an instance of the model
-            $modelInstance = new $className();
-            // dd($modelInstance);
-            $table = $modelInstance->getTable(); // Get the table name  // Check if 'updated_at' exists in the table
-            if (!Schema::hasColumn($table, 'updated_at')) {
-                $this->columnUpdateAtStatus = false;
-            }
+            if (is_subclass_of($className, Model::class)) {
+                // Create an instance of the model
+                $modelInstance = new $className();
+                // dd($modelInstance);
+                $table = $modelInstance->getTable(); // Get the table name  // Check if 'updated_at' exists in the table
+                $columns = Schema::getColumns($table);
 
-            // Check if 'created_at' exists in the table
-            if (!Schema::hasColumn($table, 'created_at')) {
-                $this->columnDeleteAtStatus = false;
+
+                if (!$this->schemaHasColumn($columns, 'updated_at')) {
+                    $this->columnUpdateAtStatus = false;
+                }
+
+                // Check if 'created_at' exists in the table
+                if (!$this->schemaHasColumn($columns, 'created_at')) {
+                    $this->columnDeleteAtStatus = false;
+                }
             }
         }
+    }
 
-
-
-
+    public function schemaHasColumn($columns, $name)
+    {
+        foreach ($columns as $column) {
+            if ($column['name'] == $name) {
+                return true;
+            }
         }
+        return false;
     }
     public function appendColumns(): array
     {
