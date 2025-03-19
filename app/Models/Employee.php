@@ -46,6 +46,20 @@ class Employee extends Model
     {
         return $this->belongsToMany(RequestList::class);
     }
+
+    public function scopeCanManager(Builder $quere, $department_id): void
+    {
+        $quere->where(
+            'department_id',
+            "=",
+            null
+        )
+            ->orWhere(
+                'department_id',
+                '=',
+                $department_id
+            );
+    }
     public function scopeFree(Builder $query): void
     {
         $query->where(
@@ -102,12 +116,13 @@ class Employee extends Model
         $emps = Employee::where("id", "=", $dep->manager_id)->first();
         return $emps;
     }
-    public function dep_name(){
+    public function dep_name()
+    {
         $dep = $this->department;
-        if($dep){
+        if ($dep) {
             return $dep->name;
-        }else{
-            return null ;
+        } else {
+            return null;
         }
     }
 
