@@ -144,6 +144,7 @@ return [
     "Edit Collage Information" => "Edit Collage Information",
     "Edit Request Information" => "Edit Request Information",
     "Edit Request Type" => "Edit request type",
+    "edit department" => "edit department" ,
 ];
 
 

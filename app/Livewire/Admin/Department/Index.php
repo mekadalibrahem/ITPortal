@@ -6,45 +6,65 @@ use App\Models\Department;
 use App\Models\Employee;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
-    public $department ;
-    public $employees ;
-    public $hide = true;
+    public $department;
+    public $employees;
+    public $id;
+    public $allowed_employees;
+    public $new_employee;
 
-
-    #[On("show_department" , 'id')]
-    public function show($id){
-        if($id>0){
-            $dep = Department::where('id', '=' , $id)->first();
-            if($dep){
+    public function mount()
+    {
+        if ($this->id > 0) {
+            $dep = Department::where('id', '=', $this->id)->with('employees')->first();
+            $this->allowed_employees = Employee::free()->with('user')->get();
+            if ($dep) {
                 $this->department = $dep;
-                $this->employees = $dep->employees;
-                $this->hide = false;
+                $this->update_data();
+            } else {
+                abort(404);
             }
-
-        }else{
-            $this->hide = true;
+        } else {
+            abort(400);
         }
+    }
+
+    #[On('department-editing')]
+    public function department_edit()
+    {
+        $this->mount();
+        $this->update_data();
         $this->render();
+    }
+
+    public function update_data()
+    {
+        $this->employees = $this->department->employees;
     }
     /**
      * delete employee form curent department then re render component
      */
-    public function delete($id){
-        if($id> 0){
-            $emp = Employee::where('id', '=' , $id)->first();
-            if($emp){
-                $emp->department_id = null;
-                $emp->save();
-                if($this->department->manager_id == $emp->id){
-                    $this->department->manager_id = null;
-                    $this->department->save();
-                }
-            }
+    public function delete($id)
+    {
+        if ($id > 0) {
+            $emp = Employee::where('id', '=', $id)->first();
+            $this->department->removeEmployee($emp);
+            Toaster::success(trans('messages.Deleted Item'));
         }
-        $this->show($this->department->id);
+        $this->dispatch('department-editing');
+    }
+
+    public function insert()
+    {
+        $employee = Employee::find($this->new_employee);
+        if ($employee) {
+            $this->department->addEmployee($employee);
+            Toaster::success(trans("messages.Add Employee"));
+        }
+        $this->dispatch('department-editing');
     }
     public function render()
     {

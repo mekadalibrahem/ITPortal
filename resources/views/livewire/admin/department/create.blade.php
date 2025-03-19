@@ -1,12 +1,5 @@
-<div class="p-4 rounded-lg" id="add" role="tabpanel" aria-labelledby="add-tab">
-
-
-        @if (session()->has('status'))
-            @php
-                $status = session()->get('status');
-            @endphp
-            <x-alert.alert :type="$status['type']" :message="$status['message']" />
-        @endif
+<x-widgets.section title="{{__('string.Add')}}">
+    <div class="p-4 rounded-lg" id="add" role="tabpanel" aria-labelledby="add-tab">
 
         <div class="sm:col-span-2 mb-3 flex flex-row ">
             <label for="name" class="basis-1/4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -64,3 +57,4 @@
 
 
 </div>
+</x-widgets.section>

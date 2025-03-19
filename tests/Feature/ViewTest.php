@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\CollageInformations;
+use App\Models\Department;
 use App\Models\Requests;
 use App\Models\RequestType;
 use Tests\TestCase;
@@ -91,7 +92,7 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.collage.create"));
         $response->assertStatus(403);
         $info = CollageInformations::query()->first();
-        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
+        $response = $this->get(route("admin.collage.edit", ['id' => $info->id]));
         $response->assertStatus(403);
 
         //admin requests Views
@@ -99,8 +100,8 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.request.create"));
         $response->assertStatus(403);
-        $request= Requests::query()->first();
-        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
+        $request = Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit", ['id' => $request->id]));
         $response->assertStatus(403);
 
         $type = RequestType::query()->first();
@@ -108,12 +109,19 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.type.create"));
         $response->assertStatus(403);
-        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
+        $response = $this->get(route("admin.requests.type.edit", ['id' => $type->id]));
         $response->assertStatus(403);
 
         //admin employee Views
-        $response = $this->get(route("admin.employee.department"));
+
+        $response = $this->get(route("admin.department.index"));
         $response->assertStatus(403);
+        $response = $this->get(route("admin.department.create"));
+        $response->assertStatus(403);
+        $department = Department::query()->first();
+        $response = $this->get(route("admin.department.edit", ['id' => $department->id]));
+        $response->assertStatus(403);
+
         $response = $this->get(route("admin.employee.employee"));
         $response->assertStatus(403);
 
@@ -161,13 +169,13 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.backups"));
         $response->assertStatus(403);
 
-       // admin collage views
+        // admin collage views
         $response = $this->get(route("admin.collage.index"));
         $response->assertStatus(403);
         $response = $this->get(route("admin.collage.create"));
         $response->assertStatus(403);
         $info = CollageInformations::query()->first();
-        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
+        $response = $this->get(route("admin.collage.edit", ['id' => $info->id]));
         $response->assertStatus(403);
 
         //admin requests Views
@@ -175,8 +183,8 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.request.create"));
         $response->assertStatus(403);
-        $request= Requests::query()->first();
-        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
+        $request = Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit", ['id' => $request->id]));
         $response->assertStatus(403);
 
         $type = RequestType::query()->first();
@@ -184,12 +192,18 @@ class ViewTest extends TestCase
         $response->assertStatus(403);
         $response = $this->get(route("admin.requests.type.create"));
         $response->assertStatus(403);
-        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
+        $response = $this->get(route("admin.requests.type.edit", ['id' => $type->id]));
         $response->assertStatus(403);
 
         //admin employee Views
-        $response = $this->get(route("admin.employee.department"));
+        $response = $this->get(route("admin.department.index"));
         $response->assertStatus(403);
+        $response = $this->get(route("admin.department.create"));
+        $response->assertStatus(403);
+        $department = Department::query()->first();
+        $response = $this->get(route("admin.department.edit", ['id' => $department->id]));
+        $response->assertStatus(403);
+
         $response = $this->get(route("admin.employee.employee"));
         $response->assertStatus(403);
 
@@ -242,7 +256,7 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.collage.create"));
         $response->assertStatus(200);
         $info = CollageInformations::query()->first();
-        $response = $this->get(route("admin.collage.edit",['id' => $info->id ]));
+        $response = $this->get(route("admin.collage.edit", ['id' => $info->id]));
         $response->assertStatus(200);
 
         // requests Views
@@ -250,8 +264,8 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
         $response = $this->get(route("admin.requests.request.create"));
         $response->assertStatus(200);
-        $request= Requests::query()->first();
-        $response = $this->get(route("admin.requests.request.edit" , ['id' => $request->id]));
+        $request = Requests::query()->first();
+        $response = $this->get(route("admin.requests.request.edit", ['id' => $request->id]));
         $response->assertStatus(200);
 
         $type = RequestType::query()->first();
@@ -259,12 +273,18 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
         $response = $this->get(route("admin.requests.type.create"));
         $response->assertStatus(200);
-        $response = $this->get(route("admin.requests.type.edit" , ['id' => $type->id] ));
+        $response = $this->get(route("admin.requests.type.edit", ['id' => $type->id]));
         $response->assertStatus(200);
 
         // employee Views
-        $response = $this->get(route("admin.employee.department"));
+        $response = $this->get(route("admin.department.index"));
         $response->assertStatus(200);
+        $response = $this->get(route("admin.department.create"));
+        $response->assertStatus(200);
+        $department = Department::query()->first();
+        $response = $this->get(route("admin.department.edit", ['id' => $department->id]));
+        $response->assertStatus(200);
+
         $response = $this->get(route("admin.employee.employee"));
         $response->assertStatus(200);
 

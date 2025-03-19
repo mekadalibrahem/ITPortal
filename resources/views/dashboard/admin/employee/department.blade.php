@@ -4,6 +4,8 @@
         department
     </x-slot:title>
  {{-- // TODO EDIT PAGE STYLEING --}}
+    <livewire:data-tables.department-table>
+ <!--
     <div class=" h-screen  overflow-visible  mb-4 m-10">
         <section class="pt-4 mb-4">
 
@@ -15,7 +17,7 @@
                             <button class="inline-block p-4 border-b-2 rounded-t-lg" id="add-tab"
                                 data-tabs-target="#add" type="button" role="tab" aria-controls="add"
                                 aria-selected="false">
-                                {{ __('string.Add') }}
+                                {{-- {{ __('string.Add') }} --}}
                             </button>
                         </li>
                         <li class="me-2" role="presentation">
@@ -23,7 +25,7 @@
                                 class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="update-tab" data-tabs-target="#update" type="button" role="tab"
                                 aria-controls="update" aria-selected="false">
-                                {{ __('string.Edite') }}
+                                {{-- {{ __('string.Edite') }} --}}
                             </button>
                         </li>
 
@@ -52,4 +54,6 @@
 
         </section>
     </div>
+-->
+
 </x-layouts.dashboard>

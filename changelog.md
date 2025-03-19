@@ -27,18 +27,26 @@
 ### admin 
 * all user features 
 * collage managment 
-    - add new collage information value (tested)
-    - edit collage information value or name (tested)
+    - add new collage information value <b style="color:green ">tested</b>
+    - edit collage information value or name <b style="color:green ">tested</b>
     - show datatable of collage information data 
     - remove collage informations 
 * request managment 
-    - edit request (tested)
+    - edit request <b style="color:green ">tested</b>
     - show requests information table 
     - delete request 
-* reqyest types managment (tested)
+* reqyest types managment  <b style="color:green ">tested</b>
     - show request types table with delete options ( redirect to edit or create new pages) 
     - edit type 
     - create new type
+* employess 
+
+    * departmetn managment  <b style="color:green ">tested</b>
+        - show departmetns informations with options (delete and redirect for edit or create new)
+        - create new Department  
+        - edit Department 
+        - add employee for department or remove them
+        
 
 ## Front-end
 

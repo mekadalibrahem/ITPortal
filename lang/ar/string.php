@@ -142,4 +142,5 @@ return [
     "Edit Collage Information" => "تعديل  معلومات الكلية",
     "Edit Request Information" => "تعديل معلومات الطلب",
     "Edit Request Type" => "تعديل نوع الطلب",
+    "edit department" => "تعديل القسم",
 ];

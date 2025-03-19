@@ -39,7 +39,7 @@
     <x-slot name="icon">
         <x-svg.team class="w-4 h-4" />
     </x-slot>
-    <x-widgets.accordion-child-link href="{{Route('admin.employee.department')}}">
+    <x-widgets.accordion-child-link href="{{Route('admin.department.index')}}">
         {{ __("string.Departments") }}
     </x-widgets.accordion-child-link>
     <x-widgets.accordion-child-link href="{{Route('admin.employee.employee')}}">

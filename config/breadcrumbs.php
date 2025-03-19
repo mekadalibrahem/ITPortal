@@ -51,7 +51,7 @@ return  [
                         ],
                         'department' => [
                             'name' => 'string.Department',
-                            'route' => 'admin.employee.department',
+                            'route' => 'admin.department.index',
                         ],
                     ],
                 ],
@@ -82,8 +82,7 @@ return  [
         'admin.collage.index' => 'dashboard.collage',
         'admin.collage.create' => 'dashboard.collage',
         'admin.collage.edit' => 'dashboard.collage',
-        'admin.employee.department' => 'dashboard.employees.department',
-        'admin.employee.employee' => 'dashboard.employees.employee',
+
         'admin.requests.request.index' => 'dashboard.requests.request',
         'admin.requests.request.edit' => 'dashboard.requests.request',
         'admin.requests.request.create' => 'dashboard.requests.request',
@@ -92,6 +91,11 @@ return  [
         'admin.requests.type.create' => 'dashboard.requests.type',
         'admin.requests.type.edit' => 'dashboard.requests.type',
 
+        'admin.department.index' => 'dashboard.employees.department',
+        'admin.department.create' => 'dashboard.employees.department',
+        'admin.department.edit' => 'dashboard.employees.department',
+
+        'admin.employee.employee' => 'dashboard.employees.employee',
         'admin.staticties' => 'dashboard.staticties',
         'employee.requests' => 'dashboard.requests',
         'employee.edit.requests' => 'dashboard.requests',
