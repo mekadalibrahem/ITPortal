@@ -19,8 +19,8 @@ class NotificationCounter extends Component
     #[On('notification_read')]
     public function render()
     {
-        
-        $this->count = Cache::remember('notifications-unread-count', 1800, function () {
+
+        $this->count = Cache::remember($this->user_id . '-notifications-unread-count', 1800, function () {
             return Notification::where([
                 'user_id' => $this->user_id,
                 'read_at' => null
