@@ -42,7 +42,7 @@
     <x-widgets.accordion-child-link href="{{Route('admin.department.index')}}">
         {{ __("string.Departments") }}
     </x-widgets.accordion-child-link>
-    <x-widgets.accordion-child-link href="{{Route('admin.employee.employee')}}">
+    <x-widgets.accordion-child-link href="{{Route('admin.employee.index')}}">
         {{ __("string.Employees") }}
     </x-widgets.accordion-child-link>
 

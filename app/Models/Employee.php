@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\EmployeeManagmentTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Employee extends Model
 {
     use HasFactory;
+
+    use EmployeeManagmentTrait ;
 
     protected $fillable = [
         "id",
@@ -77,54 +80,7 @@ class Employee extends Model
         );
     }
 
-    public function is_manager(): bool
-    {
-
-
-        $dep  = $this->department;
-        return  (bool) ($dep->manager_id == $this->id);
-    }
-    public  function get_request_log_ids()
-    {
-
-        if ($this->is_manager()) {
-            $dep = $this->department;
-
-            $emps = $dep->get_employees_id();
-
-            $logs = RequestLog::whereIn("employee_id", $emps)->get();
-
-            $logs_id = [];
-            foreach ($logs as $log) {
-                $logs_id[] = $log->id;
-            }
-            return array_unique($logs_id);
-        } else {
-
-            $logs = RequestLog::where("employee_id", '=', $this->id)->get();
-            $logs_id = [];
-            foreach ($logs as $log) {
-                $logs_id[] = $log->id;
-            }
-            return array_unique($logs_id);
-        }
-    }
-
-    public function manager()
-    {
-        $dep = $this->department;
-        $emps = Employee::where("id", "=", $dep->manager_id)->first();
-        return $emps;
-    }
-    public function dep_name()
-    {
-        $dep = $this->department;
-        if ($dep) {
-            return $dep->name;
-        } else {
-            return null;
-        }
-    }
+    
 
     /**
      * Indicates if the model should be timestamped.

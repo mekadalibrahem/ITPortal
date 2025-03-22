@@ -4,110 +4,56 @@ namespace App\Livewire\Admin\Employee;
 
 use App\Models\Department;
 use App\Models\Employee;
-use App\Models\User;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Edit extends Component
 {
-    public $ssn;
-    public $email;
     public $department;
     public $departments;
-    public $current_email;
+    public $nid;
     public $current_dep;
+    public $id;
+    public $employee;
 
 
-
-    public function index()
-    {
-        $emp = Employee::find($this->ssn);
-        if ($emp) {
-            $this->email = $emp->user->email;
-            $this->current_email = $emp->user->email;
-            $this->current_dep = $emp->department_id;
-        } else {
-            $this->current_email = null;
-            $this->current_dep = null;
-            $this->current_email = null;
-        }
-        // dd($this->current_email);
-        $this->render();
-    }
 
     public function mount()
     {
-        $this->departments = Department::all();
-    }
+        if ($this->id > 0) {
+            $this->departments = Department::all();
+            $this->employee  =  Employee::find($this->id);
 
-    public function add()
-    {
-        $this->validate([
-            "email" => "required|email|exists:users,email",
-        ]);
-        $user = User::where("email", $this->email)->first();
-        $exists = Employee::where(
-            'user_id',
-            '=',
-            $user->id
-        )->first();
-        if ($exists) {
-            session()->flash("status", [
-                "type" => "danger",
-                "message" => trans("messages.Employee alrady exists")
-            ]);
-        } else {
-            $dep_id  = $this->department;
-            if (! $dep_id > 0) {
-                $dep_id = null;
-            }
-            $emp = Employee::create(
-                [
-                    'user_id' => $user->id,
-                    'department_id' => $dep_id,
-                ]
-            );
-            if ($emp) {
-                // update user roles
-                try {
-                    $user->assignRole('employee');
-                } catch (\Throwable $th) {
-                    dd($th);
-                }
-                session()->flash("status", [
-                    "type" => "success",
-                    "message" => trans("messages.Add Employee")
-                ]);
+            if ($this->employee) {
+                $this->nid = $this->employee->user->national_id;
+                $this->current_dep = $this->employee->department_id;
+                $this->department = $this->employee->department_id;
             } else {
-                session()->flash("status", [
-                    "type" => "danger",
-                    "message" => trans("messages.Faild Add Employee")
-                ]);
+                abort(404);
             }
+        } else {
+            abort(400);
         }
-
-        $this->dispatch("edit_employee");
-
-        $this->render();
     }
+
+
 
     public function edit()
     {
+        $this->validate([
+            'nid' => "required|exists:users,national_id",
+            'department' =>'nullable|exists:departments,id'
+        ]);
         $dep = ($this->department > 0) ? $this->department : null;
-        $emp = Employee::find($this->ssn);
+        $emp = $this->employee;
         $emp->department_id = $dep;
-        if ($emp->save()) {
-            session()->flash("status", [
-                "type" => "success",
-                "message" => trans("messages.Employee Saved")
-            ]);
+        if ($emp->updateEmployee($dep)) {
+            $this->employee = $emp;
+
+            Toaster::success(trans("messages.Employee Saved"));
         } else {
-            session()->flash("status", [
-                "type" => "danger",
-                "message" => trans("messages.Faild Edit Employee")
-            ]);
+            Toaster::error(trans("messages.Faild Edit Employee"));
         }
-        $this->index();
-        $this->dispatch("edit_employee");
     }
     public function render()
     {

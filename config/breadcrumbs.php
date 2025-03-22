@@ -47,7 +47,7 @@ return  [
                     "children" => [
                         'employee' => [
                             'name' => 'string.employee',
-                            'route' => 'admin.employee.employee',
+                            'route' =>  'admin.employee.index',
                         ],
                         'department' => [
                             'name' => 'string.Department',
@@ -95,7 +95,9 @@ return  [
         'admin.department.create' => 'dashboard.employees.department',
         'admin.department.edit' => 'dashboard.employees.department',
 
-        'admin.employee.employee' => 'dashboard.employees.employee',
+        'admin.employee.index' => 'dashboard.employees.employee',
+        'admin.employee.create' => 'dashboard.employees.employee',
+        'admin.employee.edit' => 'dashboard.employees.employee',
         'admin.staticties' => 'dashboard.staticties',
         'employee.requests' => 'dashboard.requests',
         'employee.edit.requests' => 'dashboard.requests',

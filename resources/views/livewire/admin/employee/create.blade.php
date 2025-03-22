@@ -5,10 +5,10 @@
         aria-labelledby="add-tab">
 
         <div class="grid grid-cols-4 gap-2 ">
-            <x-form.label for="nid">
+            <x-form.label for="email">
                 {{ __('string.ID number') }}
             </x-form.label>
-            <x-form.input name="nid" id="nid" wire:model="nid" />
+            <x-form.input  name="nid" id="nid" wire:model="nid" />
             @error('nid')
                 <x-alert.alert type="danger" :message="$message" />
             @enderror
@@ -24,14 +24,12 @@
                 <option value="0">
                     {{ __('string.Select Department') }}
                 </option>
-
                 @foreach ($departments as $dep)
-
 
                         <option value="{{ $dep->id }}">
                             {{ $dep->name }}
                         </option>
-
+                   
                 @endforeach
 
 
@@ -40,15 +38,18 @@
 
         <div class="grid grid-cols-4 gap-4">
 
-            <x-button status="primary" type="button" wire:click="edit()">
+            <x-button status="primary" type="button" wire:click="add()">
 
-                {{ __('string.Save') }}
+                {{ __('string.Add') }}
 
             </x-button>
+
         </div>
 
 
 
 
     </div>
+
+
 </x-widgets.section>

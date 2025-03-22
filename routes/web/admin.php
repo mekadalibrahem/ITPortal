@@ -64,20 +64,20 @@ Route::group(
             'as' => 'employee.'
         ], function () {
             // TODO ADD employee Routes
-            Route::view('/employee', 'dashboard.admin.employee.employee')->name('employee');
-
-
+            Route::view('/', 'dashboard.admin.employee.employee.index')->name('index');
+            Route::view('/create', 'dashboard.admin.employee.employee.create')->name('create');
+            Route::view('/{id}', 'dashboard.admin.employee.employee.edit')->name('edit')->where(['id' => '[0-9]+']);
         });
 
         Route::group([
             'prefix' => 'department',
             'as' => 'department.'
-        ], function(){
-            Route::view('/' , 'dashboard.admin.employee.department.index')->name('index');
-            Route::view('/create' , 'dashboard.admin.employee.department.create')->name('create');
-            Route::view('/{id}' , 'dashboard.admin.employee.department.edit')->name('edit')->where(['id' => '[0-9]+']);
+        ], function () {
+            Route::view('/', 'dashboard.admin.employee.department.index')->name('index');
+            Route::view('/create', 'dashboard.admin.employee.department.create')->name('create');
+            Route::view('/{id}', 'dashboard.admin.employee.department.edit')->name('edit')->where(['id' => '[0-9]+']);
         });
-        
+
         // TODO  Add backups Routes
         Route::view("/backups", "dashboard.admin.tools.backup")->name("backups");
         // TODO  Add staticties Routes
