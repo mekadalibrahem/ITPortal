@@ -46,6 +46,12 @@
         - create new Department  
         - edit Department 
         - add employee for department or remove them
+
+    * Employee Managment <b style="color:green ">tested</b>
+        - show employees with option for (delete , add new and edit)
+        - create new Employee and assign Role(employee ) for him 
+        - edit employee ( edit department )
+        - delete employee need to some configurtion so now not work correct all time 
         
 
 ## Front-end
