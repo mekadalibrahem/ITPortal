@@ -70,7 +70,6 @@ Route::group(
             'prefix' => 'employee',
             'as' => 'employee.'
         ], function () {
-            // TODO ADD employee Routes
             Route::view('/', 'dashboard.admin.employee.employee.index')->name('index');
             Route::view('/create', 'dashboard.admin.employee.employee.create')->name('create');
             Route::view('/{id}', 'dashboard.admin.employee.employee.edit')->name('edit')->where(['id' => '[0-9]+']);
