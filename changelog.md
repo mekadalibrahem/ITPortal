@@ -61,6 +61,11 @@
       * create new Role
       * edit role and what permission have
       * delete role
+    * Permission Managment 
+      * show Permission Table with option for (delete , add new and edit)
+      * create new Permission
+      * edit Permission
+      * delete Permission
 
 ## Front-end
 

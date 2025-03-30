@@ -3,12 +3,12 @@
 namespace App\Livewire\Admin\Permissions;
 
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 use Spatie\Permission\Models\Permission;
 
 class Add extends Component
 {
 
-    public  $status = [];
     public $name = '';
     public $guard = '';
 
@@ -19,17 +19,12 @@ class Add extends Component
             'name' => ['required', 'min:4', 'unique:permissions,name']
         ]);
 
-        $permission = new Permission();
-        $permission->name = $this->name;
-        if ($this->guard) {
-            $permission->guard_name = $this->guard;
-        }
-        if ($permission->save()) {
-            $this->status = [
-                'type' => 'success',
-                'message' => 'permission [ ' . $this->name . ' ] saved '
-            ];
-            $this->dispatch('add_permission');
+        $permission = Permission::create([
+            'name' => $this->name
+        ]);
+
+        if ($permission) {
+            Toaster::success('permission [ ' . $this->name . ' ] saved ');
         }
 
         $this->render();

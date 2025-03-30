@@ -2,34 +2,43 @@
 
 namespace App\Livewire\Admin\Permissions;
 
+use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 use Spatie\Permission\Models\Permission;
 
 class Edit extends Component
 {
+    public $id;
+    public $name;
+    public $permission;
 
-    public $status = [] ;
+    public function mount()
+    {
 
-    public $old_name ;
-    public $new_name ;
+        if ($this->id) {
 
+            $this->permission = Permission::where('id', $this->id)->first();
+            $this->name = $this->permission->name;
+        } else {
+            abort(404);
+        }
+    }
 
-
-    public function update(){
+    public function update()
+    {
         $this->validate([
-            'old_name' => ['required', 'min:4', 'exists:permissions,name' ] ,
-            'new_name'=> ['required' , 'min:4']
+            'name' => ['required', 'min:4', Rule::unique('permissions', 'name')->ignore($this->permission->id)],
         ]);
 
-        $permission = Permission::findByName($this->old_name);
-        $permission->name = $this->new_name ;
+        $this->permission->name = $this->name;
 
-        if($permission->save()){
-            $this->status = [
-                'type' => 'success' ,
-                'message' => 'Permission [ ' .$this->new_name .' ] saved '
-            ];
-            $this->dispatch('update_permission');
+        if ($this->permission->isDirty()) {
+            if ($this->permission->save()) {
+                Toaster::success('Permission [ ' . $this->name . ' ] saved ');
+            }
+        } else {
+            Toaster::warning(trans('messages.Alrady saved'));
         }
     }
 
