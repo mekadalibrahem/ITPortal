@@ -10,7 +10,7 @@
         <x-widgets.accordion-child-link href="{{Route('admin.auth.permission')}}">
             {{__("string.Permissions")}}
         </x-widgets.accordion-child-link>
-        <x-widgets.accordion-child-link href="{{Route('admin.auth.role')}}">
+        <x-widgets.accordion-child-link href="{{Route('admin.auth.role.index')}}">
             {{__("string.Roles")}}
         </x-widgets.accordion-child-link>
         <x-widgets.accordion-child-link href="{{Route('admin.auth.user')}}">

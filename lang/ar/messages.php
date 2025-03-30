@@ -34,6 +34,7 @@ return [
     "Item Saved" => "تم الحفظ",
     "Don't Have any type yet" => 'لا يوجد انواع بعد',
     "Don't support this action yet" => "هذه العملية غير مدعومة حاليا",
+    'Faild Add Item' => "فشل إضافة العنصر",
 ];
 
 

@@ -3,13 +3,12 @@
 namespace App\Livewire\Admin\Roles;
 
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 use Spatie\Permission\Models\Role;
 
 class AddRoleSection extends Component
 {
 
-
-    public $status = [];
     public $name  = '';
     public $guard;
 
@@ -20,17 +19,14 @@ class AddRoleSection extends Component
             'name' => ['required', 'min:4', 'unique:roles,name']
         ]);
 
-        $role = new Role();
-        $role->name = $this->name;
-        if ($this->guard) {
-            $role->guard_name = $this->guard;
-        }
-        if($role->save()){
-            $this->status = [
-                'type' => 'success' ,
-                'message' => 'Role [ ' .$this->name .' ] saved '
-            ];
-            $this->dispatch('add-role');
+        $role = Role::create([
+            'name' => $this->name ,
+            'guard' => $this->guard ?? null
+        ]);
+        if($role){
+           Toaster::success(trans('messages.Item Saved'));
+        }else{
+            Toaster::error(trans('messages.Faild Add Item'));
         }
 
         $this->render();

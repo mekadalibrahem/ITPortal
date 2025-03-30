@@ -15,7 +15,7 @@ return  [
                     "children" => [
                         'role' => [
                             'name' => 'string.Roles',
-                            'route' => 'admin.auth.role',
+                            'route' => 'admin.auth.role.index',
                         ],
                         'user' => [
                             'name' => 'string.Users',
@@ -77,7 +77,9 @@ return  [
 
     'paths' => [
         'admin.auth.permission' => 'dashboard.auth.permission',
-        'admin.auth.role' => 'dashboard.auth.role',
+        'admin.auth.role.index' => 'dashboard.auth.role',
+        'admin.auth.role.edit' => 'dashboard.auth.role',
+        'admin.auth.role.create' => 'dashboard.auth.role',
         'admin.auth.user' => 'dashboard.auth.user',
         'admin.collage.index' => 'dashboard.collage',
         'admin.collage.create' => 'dashboard.collage',

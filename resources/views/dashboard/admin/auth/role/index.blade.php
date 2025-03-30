@@ -5,11 +5,6 @@
 
  {{-- // TODO EDIT PAGE STYLEING --}}
 
-    <livewire:admin.roles.add-role-section />
-
-    <livewire:admin.roles.show-roles-section />
-
-
-    <livewire:admin.roles.role-card />
+    <livewire:data-tables.roles-data-table />
 
 </x-layouts.dashboard>

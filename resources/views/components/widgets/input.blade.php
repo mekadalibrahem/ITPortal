@@ -1,7 +1,7 @@
-@props(['lable', 'id', 'type'])
+@props(['label', 'id', 'type'])
 <div>
     <label for="{{ $id }}" class="block text-sm font-medium mb-2 dark:text-white">
-        {{ $lable }}
+        {{ $label }}
     </label>
 
     @if ($errors->has($id))
@@ -26,7 +26,7 @@
         <div class="relative">
             <input type="text" id="{{ $id }}" name="{{ $id }}"
                 aria-describedby="{{ $id }}-helper"
-                {{ $attributes->merge(['class' => 'py-2.5 sm:py-3 px-4 block rounded-lg sm:text-sm w-full dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400']) }}>
+                {{ $attributes->merge(['class' => 'py-2.5 sm:py-3 px-4 block rounded-lg sm:text-sm w-full border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400']) }}>
         </div>
     @endif
 

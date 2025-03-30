@@ -1,67 +1,61 @@
-<div>
+{{-- <div>
 
-    @if ($key != 0)
-        <!--- Add new Role section  --->
-        <section class="bg-white container mx-auto md:w-5/5 lg:w-4/5   mt-8 rounded-lg  dark:bg-gray-900">
-            <div class="max-w-2xl px-4 py-8 mx-auto">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('string.Role') }} :
-                    {{ $name }} </h2>
-                @if ($status !== [])
-                    <x-alert.alert :type="$status['type']" :message="$status['message']" />
-                @endif
-                <form wire:submit="update">
-                    @csrf
-                    <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-                        <div class="sm:col-span-2">
-                            <x-form.label for="new_name" value='{{ __('string.Name') }}' />
-                            <x-form.input type='text' wire:model='new_name' id="new_name" name='new_name' required />
-                            @error('new_name')
-                                <x-alert.alert type="danger" :message="$message" />
-                            @enderror
-                        </div>
+    <!--- Add new Role section  --->
+    <section class="bg-white container mx-auto md:w-5/5 lg:w-4/5   mt-8 rounded-lg  dark:bg-gray-900">
 
-                        <div class=" flex  items-center  space-x-4">
-                            <x-button.primary type="submit" class="w-auto">
-                                {{ __('string.Save') }}
-                            </x-button.primary>
+    </section>
 
-                        </div>
-                    </div>
+</div> --}}
 
-                </form>
-                @if ($status_permission !== [])
-                    <x-alert.alert :type="$status_permission['type']" :message="$status_permission['message']" />
-                @endif
-                <form wire:submit="new_permission">
-                    @csrf
-                    <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-                        <div class="sm:col-span-2">
+<x-widgets.section title="{{ __('string.Edit Role') }}">
+    <form wire:submit="update">
+        @csrf
+        <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+            <div class="sm:col-span-2">
+                <x-widgets.input label="{{ __('string.Name') }}" type='text' id='name' wire:model='name' />
+            </div>
 
-                            <x-form.label for="add_permission"
-                                value='{{ __('string.Add permission for this role') }}' />
-                            <select type='text' id="add_permission" name='add_permission' wire:model='add_permission'
-                                class = 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
-                                <option value=""> {{ __('string.Select permission') }} </option>
-                                @foreach ($permissions as $permission)
-                                    <option value="{{ $permission->id }}">
-                                        {{ $permission->name }}
-                                    </option>
-                                @endforeach
+            <div class=" flex  items-center  space-x-4">
+                <x-button status='primary' type="submit" class="w-auto">
+                    {{ __('string.Save') }}
+                </x-button>
 
-                            </select>
-                            @error('add_permission')
-                                <x-alert.alert type="danger" :message="$message" />
-                            @enderror
-                        </div>
+            </div>
+        </div>
 
-                        <div class=" flex align-middle items-center  space-x-4">
-                            <x-button.primary type="submit" class="w-auto">
+    </form>
+    @if ($status_permission !== [])
+        <x-alert.alert :type="$status_permission['type']" :message="$status_permission['message']" />
+    @endif
+    <form wire:submit="new_permission">
+        @csrf
+        <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+            <div class="sm:col-span-2">
 
-                                {{ __('string.Save') }}
-                            </x-button.primary>
+                <x-form.label for="add_permission" value='{{ __('string.Add permission for this role') }}' />
+                <select type='text' id="add_permission" name='add_permission' wire:model='add_permission'
+                    class = 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+                    <option value=""> {{ __('string.Select permission') }} </option>
+                    @foreach ($permissions as $permission)
+                        <option value="{{ $permission->id }}">
+                            {{ $permission->name }}
+                        </option>
+                    @endforeach
 
-                        </div>
-                    </div>
+                </select>
+                @error('add_permission')
+                    <x-alert.alert type="danger" :message="$message" />
+                @enderror
+            </div>
+
+            <div class=" flex align-middle items-center  space-x-4">
+                <x-button status="primary" type="submit" class="w-auto">
+
+                    {{ __('string.Save') }}
+                </x-button>
+
+            </div>
+        </div>
 
                 </form>
                 <div class="gird grid-flow-col auto-cols-max">
@@ -82,8 +76,6 @@
                         </span>
                     @endforeach
 
-                </div>
-            </div>
-        </section>
-    @endif
-</div>
+    </div>
+
+</x-widgets.section>
