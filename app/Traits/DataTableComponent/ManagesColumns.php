@@ -18,6 +18,7 @@ trait ManagesColumns
      */
     public function initializeColumnStatuses()
     {
+
         $className = $this->getModel(); // Get the model instance
 
         if ($className) {
@@ -25,31 +26,16 @@ trait ManagesColumns
             if (is_subclass_of($className, Model::class)) {
                 // Create an instance of the model
                 $modelInstance = new $className();
-                // dd($modelInstance);
-                $table = $modelInstance->getTable(); // Get the table name  // Check if 'updated_at' exists in the table
-                $columns = Schema::getColumns($table);
-
-
-                if (!$this->schemaHasColumn($columns, 'updated_at')) {
+                if($modelInstance->timestamps){
+                    $this->columnUpdateAtStatus = true;
+                    $this->columnDeleteAtStatus = true;
+                }else{
                     $this->columnUpdateAtStatus = false;
-                }
-
-                // Check if 'created_at' exists in the table
-                if (!$this->schemaHasColumn($columns, 'created_at')) {
                     $this->columnDeleteAtStatus = false;
                 }
-            }
-        }
-    }
 
-    public function schemaHasColumn($columns, $name)
-    {
-        foreach ($columns as $column) {
-            if ($column['name'] == $name) {
-                return true;
             }
         }
-        return false;
     }
     public function appendColumns(): array
     {
