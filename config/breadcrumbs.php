@@ -19,11 +19,11 @@ return  [
                         ],
                         'user' => [
                             'name' => 'string.Users',
-                            'route' => 'admin.auth.user',
+                            'route' => 'admin.auth.user.index',
                         ],
                         'permission' => [
                             'name' => 'string.Permissions',
-                            'route' => 'admin.auth.permission',
+                            'route' => 'admin.auth.permission.index',
                         ],
                     ],
                 ],
@@ -76,11 +76,18 @@ return  [
     ],
 
     'paths' => [
-        'admin.auth.permission' => 'dashboard.auth.permission',
+        'admin.auth.permission.index' => 'dashboard.auth.permission',
+        'admin.auth.permission.create' => 'dashboard.auth.permission',
+        'admin.auth.permission.edit' => 'dashboard.auth.permission',
+
         'admin.auth.role.index' => 'dashboard.auth.role',
         'admin.auth.role.edit' => 'dashboard.auth.role',
         'admin.auth.role.create' => 'dashboard.auth.role',
-        'admin.auth.user' => 'dashboard.auth.user',
+
+        'admin.auth.user.index' => 'dashboard.auth.user',
+        'admin.auth.user.create' => 'dashboard.auth.user',
+        'admin.auth.user.edit' => 'dashboard.auth.user',
+
         'admin.collage.index' => 'dashboard.collage',
         'admin.collage.create' => 'dashboard.collage',
         'admin.collage.edit' => 'dashboard.collage',

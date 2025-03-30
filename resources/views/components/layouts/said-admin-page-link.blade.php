@@ -7,13 +7,13 @@
         <x-slot name="icon">
             <x-svg.user-manager class="w-4 h-4" />
         </x-slot>
-        <x-widgets.accordion-child-link href="{{Route('admin.auth.permission')}}">
+        <x-widgets.accordion-child-link href="{{Route('admin.auth.permission.index')}}">
             {{__("string.Permissions")}}
         </x-widgets.accordion-child-link>
         <x-widgets.accordion-child-link href="{{Route('admin.auth.role.index')}}">
             {{__("string.Roles")}}
         </x-widgets.accordion-child-link>
-        <x-widgets.accordion-child-link href="{{Route('admin.auth.user')}}">
+        <x-widgets.accordion-child-link href="{{Route('admin.auth.user.index')}}">
             {{__("string.Users")}}
         </x-widgets.accordion-child-link>
 

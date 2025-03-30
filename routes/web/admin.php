@@ -24,10 +24,23 @@ Route::group(
                 Route::view('/create', 'dashboard.admin.auth.role.create')->name('create');
                 Route::view('/{id}', 'dashboard.admin.auth.role.edit')->name('edit')->where(['id' => '[0-9]+']);
             });
-            // TODO Add Route Authorization User Routes
-            Route::view('/user', 'dashboard.admin.auth.user')->name('user');
-            // TODO Add Route Authorization Permisiion Routes
-            Route::view('/permission', 'dashboard.admin.auth.permission')->name('permission');
+
+          Route::group([
+              'prefix' => 'user',
+              'as' => 'user.'
+          ], function () {
+              Route::view('/', 'dashboard.admin.auth.user.index')->name('index');
+              Route::view('/create', 'dashboard.admin.auth.user.create')->name('create');
+              Route::view('/{id}', 'dashboard.admin.auth.user.edit')->name('edit')->where(['id' => '[0-9]+']);
+          });
+           Route::group([
+               'prefix' => 'permission',
+               'as' => 'permission.'
+           ], function(){
+               Route::view('/', 'dashboard.admin.auth.permission.index')->name('index');
+               Route::view('/create', 'dashboard.admin.auth.permission.create')->name('create');
+               Route::view('/{id}', 'dashboard.admin.auth.permission.edit')->name('edit')->where(['id' => '[0-9]+']);
+           });
         });
 
         Route::group([
@@ -92,7 +105,3 @@ Route::group(
     }
 );
 
-
-
-// Route::view('admin/auth/permission', 'admin.auth.permission')->name('admin.auth.permission');
-// Route::view('admin/auth/user', 'admin.auth.user')->name('admin.auth.user');
