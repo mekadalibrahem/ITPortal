@@ -15,7 +15,7 @@ Route::group(
             'prefix' => 'auth',
             'as' => 'auth.'
         ],  function () {
-            // TODO Add Route Authorization Routes
+
             Route::group([
                 'prefix' => 'role',
                 'as' => 'role.'
@@ -24,7 +24,9 @@ Route::group(
                 Route::view('/create', 'dashboard.admin.auth.role.create')->name('create');
                 Route::view('/{id}', 'dashboard.admin.auth.role.edit')->name('edit')->where(['id' => '[0-9]+']);
             });
+            // TODO Add Route Authorization User Routes
             Route::view('/user', 'dashboard.admin.auth.user')->name('user');
+            // TODO Add Route Authorization Permisiion Routes
             Route::view('/permission', 'dashboard.admin.auth.permission')->name('permission');
         });
 
@@ -42,7 +44,6 @@ Route::group(
             'prefix' => 'requests',
             'as' => 'requests.'
         ], function () {
-            // TODO  Add Request Type Managment
 
             Route::group([
                 "prefix" => "type",
