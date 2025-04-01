@@ -1,12 +1,5 @@
     <!--- update profile section  --->
     <x-widgets.section title="{{ __('string.Update account') }}">
-
-
-
-        @if ($info_status != '')
-            <x-alert.alert type='success' :message="$info_status" />
-        @endif
-
         <form wire:submit="edit">
             @csrf
             <div class="grid gap-4 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:mb-5">
@@ -25,6 +18,5 @@
 
                 </div>
             </div>
-
         </form>
     </x-widgets.section>
