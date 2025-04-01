@@ -13,24 +13,16 @@
             <div
                 class="w-full  md:w-1/2 lg:w-3/5 bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1
+                        class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         {{ __('string.Sign in to your account') }}
                     </h1>
                     <form class="space-y-4 md:space-y-6" action="{{ Route('login_handler') }}" method="GET">
                         @csrf
-                        <div>
-                            <x-form.label for="email" value="{{ __('string.email') }}" />
-                            <x-form.input type="email" name="email" id="email" required="" />
-                            <x-form.input-error :message="$errors->get('email')" />
-                        </div>
-                        <div>
-                            <div>
-                                <x-form.label for="password" value="{{ __('string.password') }}" />
-                                <x-form.input type="password" name="password" id="password" required="" />
-                                <x-form.input-error :message="$errors->get('password')" />
-                            </div>
 
-                        </div>
+                        <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" />
+                        <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" />
+
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
@@ -48,7 +40,7 @@
                                 {{ __('string.Forgot password?') }}
                             </a>
                         </div>
-                        <x-button  status="primary"  type="submit">{{ __('string.login') }}</x-button>
+                        <x-button status="primary" type="submit">{{ __('string.login') }}</x-button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                             {{ __('string.Don’t have an account yet?') }} <a href="{{ route('register') }}"
                                 class="font-medium text-blue-600 hover:underline dark:text-blue-500">

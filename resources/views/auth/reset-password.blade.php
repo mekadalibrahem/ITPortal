@@ -13,7 +13,7 @@
             <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Reset Your Password
+                       {{__('string.Reset Your Password')}}
                     </h1>
                     <form class="space-y-4 md:space-y-6" action="{{Route('password.update')}}" method="POST" >
                         @csrf
@@ -22,24 +22,14 @@
                             <input type="hidden" name="token" id="token" value="{{$token}}"   required=""/>
                             <x-form.input-error  :message="$errors->get('token')" />
                         </div>
-                        <div>
-                            <x-form.label for="email" value="email" />
-                            <x-form.input type="email" name="email" id="email"  required=""/>
-                            <x-form.input-error  :message="$errors->get('email')" />
-                        </div>
-                        <div>
-                            <x-form.label for="password" value="password" />
-                            <x-form.input type="password" name="password" id="password" required=""/>
-                            <x-form.input-error  :message="$errors->get('password')" />
-                        </div>
-                        <div>
-                            <x-form.label for="confirm_password" value="confirm password" />
-                            <x-form.input type="password" name="confirm_password" id="confirm_password" required=""/>
-                            <x-form.input-error  :message="$errors->get('confirm_password')" />
-                        </div>
+
+                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" value="{{ old('email') }}" />
+
+                            <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" value="{{ old('password') }}" />
+                            <x-widgets.input id="confirm_password" name="confirm_password" label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}" />
 
 
-                        <x-button.primary type="submit">Reset password</x-button.primary>
+                        <x-button status="primary" type="submit">{{__('string.Reset Your Password')}}</x-button>
 
                     </form>
                 </div>

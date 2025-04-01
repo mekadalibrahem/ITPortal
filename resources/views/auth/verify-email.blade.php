@@ -19,15 +19,15 @@
                             @csrf
 
                             <div>
-                                <x-button.primary>
+                                <x-button status="primary">
                                     {{ __('Resend Verification Email') }}
-                                </x-button.primary>
+                                </x-button>
                             </div>
                         </form>
 
                         <form action="{{Route('logout_handler')}}" method="GET">
                             @csrf
-                            <x-button.danger type="submit" >logout</x-button.danger>
+                            <x-button status="danger" type="submit" >logout</x-button>
                         </form>
                     </div>
                 </div>
