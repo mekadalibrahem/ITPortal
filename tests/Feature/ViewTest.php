@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Requests;
 use App\Models\RequestType;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
@@ -142,9 +143,16 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.auth.role.edit" , ['id' => $role->id]));
         $response->assertStatus(403);
 
-        $response = $this->get(route("admin.auth.permission"));
+
+        $response = $this->get(route("admin.auth.permission.index"));
         $response->assertStatus(403);
-        $response = $this->get(route("admin.auth.user"));
+        $response = $this->get(route("admin.auth.permission.create"));
+        $response->assertStatus(403);
+        $permission = Permission::first();
+        $response = $this->get(route("admin.auth.permission.edit" , ['id' => $permission->id]));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("admin.auth.user.index"));
         $response->assertStatus(403);
     }
 
@@ -235,9 +243,16 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.auth.role.edit" , ['id' => $role->id]));
         $response->assertStatus(403);
 
-        $response = $this->get(route("admin.auth.permission"));
+
+        $response = $this->get(route("admin.auth.permission.index"));
         $response->assertStatus(403);
-        $response = $this->get(route("admin.auth.user"));
+        $response = $this->get(route("admin.auth.permission.create"));
+        $response->assertStatus(403);
+        $permission = Permission::first();
+        $response = $this->get(route("admin.auth.permission.edit" , ['id' => $permission->id]));
+        $response->assertStatus(403);
+
+        $response = $this->get(route("admin.auth.user.index"));
         $response->assertStatus(403);
     }
 
@@ -327,9 +342,16 @@ class ViewTest extends TestCase
         $response = $this->get(route("admin.auth.role.edit" , ['id' => $role->id]));
         $response->assertStatus(200);
 
-        $response = $this->get(route("admin.auth.permission"));
+
+        $response = $this->get(route("admin.auth.permission.index"));
         $response->assertStatus(200);
-        $response = $this->get(route("admin.auth.user"));
+        $response = $this->get(route("admin.auth.permission.create"));
+        $response->assertStatus(200);
+        $permission = Permission::first();
+        $response = $this->get(route("admin.auth.permission.edit" , ['id' => $permission->id]));
+        $response->assertStatus(200);
+
+        $response = $this->get(route("admin.auth.user.index"));
         $response->assertStatus(200);
     }
 }
