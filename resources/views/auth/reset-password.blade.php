@@ -23,10 +23,10 @@
                             <x-form.input-error  :message="$errors->get('token')" />
                         </div>
 
-                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" value="{{ old('email') }}" />
+                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" value="{{ old('email') }}"  type="email"/>
 
-                            <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" value="{{ old('password') }}" />
-                            <x-widgets.input id="confirm_password" name="confirm_password" label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}" />
+                            <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" value="{{ old('password') }}"  type="password"/>
+                            <x-widgets.input id="confirm_password" name="confirm_password" label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}"  type="password"/>
 
 
                         <x-button status="primary" type="submit">{{__('string.Reset Your Password')}}</x-button>
