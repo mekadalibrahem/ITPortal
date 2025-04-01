@@ -1,28 +1,15 @@
 <x-widgets.section title="{{ __('string.Request type') }}">
     <form action="#" wire:submit ='create'>
+        @csrf
+        <x-widgets.input divstyle="sm:col-span-2" id="type" name="type" label="{{ __('string.Name') }}"
+            wire:model='type' required />
 
 
-        <div class="sm:col-span-2 mb-3 flex flex-row ">
-            <label for="type" class="basis-1/4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('string.Name') }}
-            </label>
-            <input type="text" wire:model='type' name="type" id="type"
-                class="basis-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required="">
 
-            @error('type')
-                <x-alert.alert type="danger" :message='$message' />
-            @enderror
-        </div>
+        <x-button status="primary" type="submit">
+            {{ __('string.Add') }}
 
-
-        <div class="sm:col-span-2 mb-3">
-
-            <x-button status="primary" type="submit">
-                {{ __('string.Add') }}
-
-            </x-button>
-        </div>
+        </x-button>
 
 
 

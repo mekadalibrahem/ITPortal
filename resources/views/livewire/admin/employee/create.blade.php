@@ -1,20 +1,9 @@
 <x-widgets.section title="{{ __('string.employee') }}">
 
 
-    <div class="flex flex-col gap-4  p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="add" role="tabpanel"
+    <div class="flex flex-col gap-4  p-4 rounded-lg" id="add" role="tabpanel"
         aria-labelledby="add-tab">
-
-        <div class="grid grid-cols-4 gap-2 ">
-            <x-form.label for="email">
-                {{ __('string.ID number') }}
-            </x-form.label>
-            <x-form.input  name="nid" id="nid" wire:model="nid" />
-            @error('nid')
-                <x-alert.alert type="danger" :message="$message" />
-            @enderror
-
-        </div>
-
+        <x-widgets.input divstyle="grid grid-cols-4 gap-2" id="nid" name="nid" label="{{ __('string.ID number') }}" wire:model='nid' />
         <div class="grid grid-cols-4 gap-2">
             <x-form.label for="department">
                 {{ __('string.Department') }}
@@ -29,7 +18,7 @@
                         <option value="{{ $dep->id }}">
                             {{ $dep->name }}
                         </option>
-                   
+
                 @endforeach
 
 

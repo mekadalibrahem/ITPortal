@@ -1,27 +1,13 @@
-<x-widgets.section title="{{__('string.Edit Request Type')}}">
+<x-widgets.section title="{{ __('string.Edit Request Type') }}">
     <form action="#" wire:submit='edit'>
-        <div class="sm:col-span-2 mb-3 flex flex-row">
-            <label for="type" class="basis-1/4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              {{__('string.Request type')}}
-            </label>
-            <input type="text" wire:model='type' name="type"
-                id="type"
-                class="basis-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                required="">
+        @csrf
+        <x-widgets.input divstyle="sm:col-span-2" id="type" name="type" label="{{ __('string.Request type') }}"
+            wire:model='type' required />
 
-            @error('type')
-                <x-alert.alert type='danger' :message='$message' />
-            @enderror
+        <x-button status="priamry" type="submit">
+            {{ __('string.Save') }}
+        </x-button>
 
-        </div>
-
-
-
-        <div class="sm:col-span-2 mb-3">
-            <x-button status="priamry" type="submit">
-               {{__('string.Save')}}
-            </x-button>
-        </div>
 
 
 

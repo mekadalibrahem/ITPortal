@@ -145,4 +145,6 @@ return [
     "edit department" => "تعديل القسم",
     "Send link" => "ارسل الرابط",
     "Reset Your Password" => 'إعادة تعيين كلمة المرور',
+    "add Department" => "إضافة شُعبة",
+
 ];

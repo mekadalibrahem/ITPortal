@@ -1,11 +1,4 @@
-{{-- <div>
 
-    <!--- Add new Role section  --->
-    <section class="bg-white container mx-auto md:w-5/5 lg:w-4/5   mt-8 rounded-lg  dark:bg-gray-900">
-
-    </section>
-
-</div> --}}
 
 <x-widgets.section title="{{ __('string.Edit Role') }}">
     <form wire:submit="update">

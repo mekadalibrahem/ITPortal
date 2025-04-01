@@ -1,4 +1,5 @@
 <!--- show  Roles section  --->
+<!-- TODO maybe this page neead to refactoring and improve UI & UX -->
 <section class="bg-white container mx-auto md:w-5/5 lg:w-4/5   mt-8 rounded-lg  dark:bg-gray-900">
 
     <div class="w-full px-4 py-8 mx-auto ">
@@ -13,12 +14,13 @@
             <!--- search --->
 
             <form class="w-full col-span-2 lg:col-span-2  gap-2" wire:submit='search'>
+
                 <div class="w-full grid grid-cols-1  lg:grid-cols-4  gap-4 justify-between items-center">
                     <x-form.label for="input_search" value="{{__('string.email')}}" />
                     <x-form.input type="text" class="lg:col-span-2" wire:model="input_search"
                         id="input_search" placeholder='{{__("string.Write user email")}}' name="input_search" />
-                    <x-button.primary type='submit'> {{__("string.Search")}}
-                    </x-button.primary>
+                    <x-button status="primary" type='submit'> {{__("string.Search")}}
+                    </x-button>
                 </div>
                 @error('input_search')
                     <x-alert.alert type="danger" class="w-full col-span-3" :message="$message" />
@@ -29,8 +31,8 @@
                     <x-form.label for="new_permission" value="{{__('string.Permission')}}" />
                     <x-form.input type="text" class="lg:col-span-2" wire:model="new_permission"
                         id="new_permission" name="new_permission" />
-                    <x-button.primary type='submit'> {{__("string.Add")}}
-                    </x-button.primary>
+                    <x-button status="primary" type='submit'> {{__("string.Add")}}
+                    </x-button>
 
                 </div>
                 @error('new_permission')
@@ -42,8 +44,8 @@
                     <x-form.label for="new_role" value="{{__('string.Role')}}" />
                     <x-form.input type="text" class="lg:col-span-2" wire:model="new_role" id="new_role"
                         name="new_role" />
-                    <x-button.primary type='submit'> {{__("string.Add")}}
-                    </x-button.primary>
+                    <x-button status="primary" type='submit'> {{__("string.Add")}}
+                    </x-button>
                 </div>
                 @error('new_role')
                     <x-alert.alert type="danger" class="w-full col-span-3" :message="$message" />

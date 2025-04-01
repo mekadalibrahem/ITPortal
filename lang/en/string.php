@@ -51,7 +51,7 @@ return [
     "Name" => "Name",
     "Old name" => "Old name",
     "Add" => "Add",
-    "Edite" => "Edite",
+    "Edite" => "Edit",
     "Options" => "Options",
     "Value" => "Value",
     "New Name" =>  "New Name",
@@ -147,6 +147,7 @@ return [
     "edit department" => "edit department" ,
     "Send link" => "Send link" ,
     "Reset Your Password" => "Reset Your Password",
+    "add Department" => "Add Department",
 ];
 
 

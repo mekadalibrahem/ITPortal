@@ -9,13 +9,9 @@
         @else
         @endif
         <div class="grid grid-cols-1 lg:grid-cols-3 grid-flow-row  gap-3  ">
-            <div class="md:col-span-3">
-                <x-form.label>{{ __('string.email') }}</x-form.label>
-                <x-form.input type="email" name="email" id="email" wire:model="email" />
-                @error('email')
-                    <x-alert.alert type="danger" :message="$message" />
-                @enderror
-            </div>
+            <x-widgets.input divstyle="md:col-span-3" id="email" name="email"
+            label="{{ __('string.email') }}" wire:model='email' />
+          
 
             <div class="md:col-span-3">
                 <x-form.label> {{ __('string.content') }} </x-form.label>
