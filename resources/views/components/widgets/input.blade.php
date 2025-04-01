@@ -1,6 +1,6 @@
 @props(['label', 'id', 'type'])
 <div>
-    <label for="{{ $id }}" class="block text-sm font-medium mb-2 dark:text-white">
+    <label for="{{ $id }}" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">
         {{ $label }}
     </label>
 
@@ -8,7 +8,7 @@
         <div class="relative">
             <input type="text" id="{{ $id }}" name="{{ $id }}"
                 aria-describedby="{{ $id }}-helper"
-                {{ $attributes->merge(['class' => 'py-2.5 sm:py-3 px-4 block rounded-lg sm:text-sm w-full dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 border border-red-400 focus:border-red-600 focus:ring-red-600']) }}>
+                {{ $attributes->merge(['class' => 'border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-cyan-50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 bg-red dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-red-400 focus:border-red-600 focus:ring-red-600']) }}>
             @error($id)
                 <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                     <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -26,7 +26,7 @@
         <div class="relative">
             <input type="text" id="{{ $id }}" name="{{ $id }}"
                 aria-describedby="{{ $id }}-helper"
-                {{ $attributes->merge(['class' => 'py-2.5 sm:py-3 px-4 block rounded-lg sm:text-sm w-full border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400']) }}>
+                {{ $attributes->merge(['class' => 'border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-cyan-50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 bg-red dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500']) }}>
         </div>
     @endif
 
