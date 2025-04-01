@@ -7,8 +7,8 @@
 * Home : page show current request (send and not ending yet) his sent and show notifications not read yet
 * Profile managment
   * edit general information  **`tested`**
-  * edit password
-  * logout from another devices ( show what devices used to login )
+  * edit password  **`tested`**
+  * logout from another devices ( show what devices used to login ) 
   * delete account
 * Request
   * add new request based for type of user
