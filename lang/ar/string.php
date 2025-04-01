@@ -143,4 +143,6 @@ return [
     "Edit Request Information" => "تعديل معلومات الطلب",
     "Edit Request Type" => "تعديل نوع الطلب",
     "edit department" => "تعديل القسم",
+    "Send link" => "ارسل الرابط",
+    "Reset Your Password" => 'إعادة تعيين كلمة المرور',
 ];

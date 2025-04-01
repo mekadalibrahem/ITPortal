@@ -145,6 +145,8 @@ return [
     "Edit Request Information" => "Edit Request Information",
     "Edit Request Type" => "Edit request type",
     "edit department" => "edit department" ,
+    "Send link" => "Send link" ,
+    "Reset Your Password" => "Reset Your Password",
 ];
 
 
