@@ -55,17 +55,22 @@
     * create new Employee and assign Role(employee ) for him
     * edit employee ( edit department )
     * delete employee need to some configurtion so now not work correct all time
-  * Auth Managment
-    * Roles Managment  **`tested`**
-      * show Roles Table with option for (delete , add new and edit)
-      * create new Role
-      * edit role and what permission have
-      * delete role
-    * Permission Managment 
-      * show Permission Table with option for (delete , add new and edit)
-      * create new Permission
-      * edit Permission
-      * delete Permission
+* Auth Managment
+  * Roles Managment  **`tested`**
+    * show Roles Table with option for (delete , add new and edit)
+    * create new Role
+    * edit role and what permission have
+    * delete role
+  * Permission Managment
+    * show Permission Table with option for (delete , add new and edit)
+    * create new Permission
+    * edit Permission
+    * delete Permission
+  * User Authorization Managment
+    * show user roles and permissions
+    * search by user email
+    * assign permission or role to user
+    * revoke permission or role from user
 
 ## Front-end
 

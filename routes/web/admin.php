@@ -30,8 +30,8 @@ Route::group(
               'as' => 'user.'
           ], function () {
               Route::view('/', 'dashboard.admin.auth.user.index')->name('index');
-              Route::view('/create', 'dashboard.admin.auth.user.create')->name('create');
-              Route::view('/{id}', 'dashboard.admin.auth.user.edit')->name('edit')->where(['id' => '[0-9]+']);
+            //   Route::view('/create', 'dashboard.admin.auth.user.create')->name('create');
+            //   Route::view('/{id}', 'dashboard.admin.auth.user.edit')->name('edit')->where(['id' => '[0-9]+']);
           });
            Route::group([
                'prefix' => 'permission',
