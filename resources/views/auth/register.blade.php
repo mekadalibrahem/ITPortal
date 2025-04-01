@@ -34,17 +34,23 @@
                                     value="{{ old('username') }} " />
 
                             </div>
-                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" value="{{ old('email') }}" />
+                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}"
+                                value="{{ old('email') }}" />
 
                         </div>
                         <div class="grid  md:grid-cols-1 lg:grid-cols-2 justify-between gap-2">
-                            <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" value="{{ old('password') }}" />
-                            <x-widgets.input id="confirm_password" name="confirm_password" label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}" />
-                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" value="{{ old('email') }}" />
+                            <x-widgets.input id="password" name="password" label="{{ __('string.password') }}"
+                                value="{{ old('password') }}" type="password" />
+                            <x-widgets.input id="confirm_password" name="confirm_password"
+                                label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}"
+                                type="password" />
+                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}"
+                                value="{{ old('email') }}" />
                         </div>
                         <div class="grid  md:grid-cols-1 lg:grid-cols-2 justify-between gap-2">
-                            <x-widgets.input id="nid" name="nid" label="{{ __('string.ID number') }}" value="{{ old('nid') }}" />
-                           
+                            <x-widgets.input id="nid" name="nid" label="{{ __('string.ID number') }}"
+                                value="{{ old('nid') }}" />
+
                             <div>
                                 <x-form.label for="type" value="{{ __('string.Account Type') }}" />
                                 <select name="type" id="type"

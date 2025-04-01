@@ -21,7 +21,7 @@
                         @csrf
 
                         <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" />
-                        <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" />
+                        <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" type="password"/>
 
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
