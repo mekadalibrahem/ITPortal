@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected $seed = true;
 
-    
+
     public function getUser($role = 'normal')
     {
 
@@ -37,8 +37,10 @@ abstract class TestCase extends BaseTestCase
         }
         if (!$user) {
             $this->fail('No existing user found with the specified ID.');
+            return null;
         } else {
             $this->actingAs($user);
+            return $user ;
         }
     }
 }
