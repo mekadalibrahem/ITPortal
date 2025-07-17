@@ -6,6 +6,8 @@ namespace App\Enums;
 
 enum DataTypeEnum: string
 {
+    use EnumToArray ;
+    
     case STRING = "string";
     case IMAGE = "image";
     case NID  = "national id";

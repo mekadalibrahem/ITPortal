@@ -15,8 +15,9 @@ class RequireData extends Model
     protected $fillable = [
         'id',
         'name',
+        'name_en',
         'type',
-        'request_id'
+        'requests_id'
     ];
 
     public function request() :BelongsTo {

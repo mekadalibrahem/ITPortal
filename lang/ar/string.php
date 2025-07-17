@@ -135,6 +135,7 @@ return [
     "SSN" => 'رقم الموظف',
     "Dont has Department yet" => "لا ينتمي إلى أي قسم",
     "Active" => "مفعل",
+    "UnActive" => "غير مفعل",
     "lang direction" => 'rtl',
     "create_at" => "تاريخ الإنشاء",
     "update_at" => "تاريخ التعديل",
@@ -146,5 +147,12 @@ return [
     "Send link" => "ارسل الرابط",
     "Reset Your Password" => 'إعادة تعيين كلمة المرور',
     "add Department" => "إضافة شُعبة",
+    "Save" => "حفظ",
+    "next" => "التالي",
+    "back" => "السابق",
+    "name_en" => "الاسم بالاجنبي",
+    "reset" => "إعادة تعيين",
+    "Actions" =>"العمليات",
+    
 
 ];
