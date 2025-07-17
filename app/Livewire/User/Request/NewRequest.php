@@ -24,27 +24,17 @@ class NewRequest extends Component
     use FillterAllowsItems;
     public $status = [];
     public $request;
-    public $request_item;
     public $require_data = [];
     public $request_data = [];
     public $all_request_type = [];
     public $all_requests;
-    public $select_request_type;
-    public $selected_type_id;
     public $selected_request;
     public $select_request;
     public $user;
 
 
 
-    public function change_type()
-    {
-        $this->selected_type_id = $this->select_request_type;
-        $this->select_request = null;
-        $this->require_data = null;
-        $this->render();
-    }
-
+    
     public function change_request()
     {
         try {
@@ -59,7 +49,17 @@ class NewRequest extends Component
     {
         $this->user = Auth::user();
         $this->all_request_type =  $this->fillter_allows_items(RequestType::all());
-        $this->all_requests = Requests::active()->get();
+        $allowed_ids = [];
+        foreach ($this->all_request_type as  $value) {
+            $allowed_ids[] = $value->id;
+        }
+       
+        $this->all_requests = Requests::whereIn(
+            'type_id',
+            
+            $allowed_ids
+        )->active()->get();
+       
     }
 
 
@@ -71,7 +71,7 @@ class NewRequest extends Component
         $rules = [];
         foreach ($this->require_data as $item) {
 
-            $name = $item->name_en ;
+            $name = $item->name_en;
             $req_data = RequireData::where('name_en', "=", $name)->first();
             $rules_item = DataTypeEnum::get_role($req_data->type);
             $rules["request_data.{$name}"] = $rules_item;
@@ -90,11 +90,10 @@ class NewRequest extends Component
             $this->request_data
         );
 
-        if($is_done){
-           Toaster::success(trans("messages.Request Saved"));
+        if ($is_done) {
+            Toaster::success(trans("messages.Request Saved"));
         }
-        $this->request_data = [];
-        $this->render();
+        return redirect()->route('user.requests.create');
     }
 
 
