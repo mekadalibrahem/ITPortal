@@ -37,7 +37,7 @@ class Requests extends Model
         return $this->hasMany(RequireData::class);
     }
     public function template() : BelongsTo {
-        return $this->belongsTo(RequestTemplate::class);
+        return $this->belongsTo(RequestTemplate::class , 'request_template_id');
     }
 
     /**
