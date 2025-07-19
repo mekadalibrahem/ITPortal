@@ -154,5 +154,21 @@ return [
     "back" => "Back",
     "name_en" => "name en",
     "reset" => "reset",
-    "Actions" => "Actions"
+    "Actions" => "Actions",
+    "request_template" => [
+        'name' => "template",
+        'select' => "select template",
+        'new' => "New template",
+        'edit' => "Edit template",
+    ],
+    "step" => [
+        'name' => "step",
+        'select' => "select step",
+        'new' => "new step",
+        'edit' => "edit step",
+    ],
+    "Description" => "Description",
+    "select role" => "select role",
+    "order" => "order",
+    "selected item" => "Selected item",
 ];

@@ -35,4 +35,5 @@ return [
     "Don't Have any type yet" =>  "Don't Have any type yet",
     "Don't support this action yet" => "Don't support this action yet",
     "Faild Add Item" => "Faild Add Item",
+    "Faild save item" => "Faild save item",
 ];
