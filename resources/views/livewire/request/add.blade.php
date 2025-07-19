@@ -76,7 +76,7 @@
             <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-3 gap-2 " id="data_name_en" name="data_name_en"
                 label="{{ __('string.name_en') }}" wire:model='data_name_en' />
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
-                <x-form.label for="datatype "> {{ __('string.Department') }} </x-form.label>
+                <x-form.label for="datatype "> {{ __('string.Type') }} </x-form.label>
                 <select type="text" name="datatype" id="datatype" wire:model="datatype"
                     class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option value="0">
@@ -184,11 +184,11 @@
                         <dl class="flex flex-col sm:flex-row gap-1">
                             <dt class="min-w-40">
                                 <span class="block text-sm text-gray-500 dark:text-neutral-500">
-                                    {{ __('string.Department') }} :</span>
+                                    {{ __('string.request_template.name') }} :</span>
                             </dt>
                             <dd>
 
-                                {{ $departments[$department-1]->name }}
+                                {{ $templates->where('id', $template)->first()->name }}
                             </dd>
                         </dl>
                         <dl class="flex flex-col sm:flex-row gap-1">

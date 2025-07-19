@@ -146,7 +146,7 @@ class Add extends Component
                 $re = Requests::create([
                     'name' => $this->name,
                     'type_id' => $this->type,
-                    'to_template' => $this->template,
+                    'request_template_id' => $this->template,
                     'isActive' => $this->active ?? 0,
                 ]);
                 if ($re) {
