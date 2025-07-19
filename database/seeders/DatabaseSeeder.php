@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-
+use App\Models\RequestTemplates\RequestTemplate;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,13 +21,16 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             EmployeeSeeder::class,
             ManagerDepartmentsSeeder::class,
+            RequestTemplateSeeder::class,
+            RequestTemplateStepSeeder::class,
+            OrderStepsSeeder::class,
             RequestTypeSeeder::class,
             RequestSeeder::class,
             RequiredSeeder::class,
             CollageinformationSeeder::class,
-            RequestListSeeder::class,
-            DataSeeder::class,
-            RequestLogSeeder::class,
+            // RequestListSeeder::class,
+            // DataSeeder::class,
+            // RequestLogSeeder::class,
             NotificationSeeder::class,
             PermissionsSeeder::class
 

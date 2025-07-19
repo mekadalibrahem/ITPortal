@@ -17,17 +17,16 @@ class RequestSeeder extends Seeder
     {
 
         $json_file = Storage::disk('local')->get('/itportal_db/itportal_db_table_requests.json');
-        $json = json_decode($json_file , true);
+        $json = json_decode($json_file, true);
         foreach ($json['data'] as $row) {
             Requests::query()->create([
                 'name' => $row['name'],
-               'isActive' =>$row['isActive'],
-               'type_id' =>$row['type_id'],
-               'to_department' => $row['to_department']
+                'isActive' => $row['isActive'],
+                'type_id' => $row['type_id'],
+                'request_template_id' => $row['request_template_id']
 
 
-           ]);
+            ]);
         }
-
     }
 }
