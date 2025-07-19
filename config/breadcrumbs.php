@@ -39,6 +39,14 @@ return  [
                             'name' => 'string.Request details',
                             'route' => 'admin.requests.request.index',
                         ],
+                        'template' =>[
+                            'name' => 'string.request_template.name',
+                            'route' => 'admin.requests.templates.index',
+                        ],
+                        'template' =>[
+                            'name' => 'string.steps.name',
+                            'route' => 'admin.requests.steps.index',
+                        ],
                     ],
                 ],
                 'employees' => [
@@ -95,6 +103,14 @@ return  [
         'admin.requests.request.index' => 'dashboard.requests.request',
         'admin.requests.request.edit' => 'dashboard.requests.request',
         'admin.requests.request.create' => 'dashboard.requests.request',
+       
+        'admin.requests.templates.index' => 'dashboard.requests.templates',
+        'admin.requests.templates.edit' => 'dashboard.requests.templates',
+        'admin.requests.templates.create' => 'dashboard.requests.templates',
+
+        'admin.requests.steps.index' => 'dashboard.requests.steps',
+        'admin.requests.steps.edit' => 'dashboard.requests.steps',
+        'admin.requests.steps.create' => 'dashboard.requests.steps',
 
         'admin.requests.type.index' => 'dashboard.requests.type',
         'admin.requests.type.create' => 'dashboard.requests.type',

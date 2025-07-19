@@ -25,22 +25,22 @@ Route::group(
                 Route::view('/{id}', 'dashboard.admin.auth.role.edit')->name('edit')->where(['id' => '[0-9]+']);
             });
 
-          Route::group([
-              'prefix' => 'user',
-              'as' => 'user.'
-          ], function () {
-              Route::view('/', 'dashboard.admin.auth.user.index')->name('index');
-            //   Route::view('/create', 'dashboard.admin.auth.user.create')->name('create');
-            //   Route::view('/{id}', 'dashboard.admin.auth.user.edit')->name('edit')->where(['id' => '[0-9]+']);
-          });
-           Route::group([
-               'prefix' => 'permission',
-               'as' => 'permission.'
-           ], function(){
-               Route::view('/', 'dashboard.admin.auth.permission.index')->name('index');
-               Route::view('/create', 'dashboard.admin.auth.permission.create')->name('create');
-               Route::view('/{id}', 'dashboard.admin.auth.permission.edit')->name('edit')->where(['id' => '[0-9]+']);
-           });
+            Route::group([
+                'prefix' => 'user',
+                'as' => 'user.'
+            ], function () {
+                Route::view('/', 'dashboard.admin.auth.user.index')->name('index');
+                //   Route::view('/create', 'dashboard.admin.auth.user.create')->name('create');
+                //   Route::view('/{id}', 'dashboard.admin.auth.user.edit')->name('edit')->where(['id' => '[0-9]+']);
+            });
+            Route::group([
+                'prefix' => 'permission',
+                'as' => 'permission.'
+            ], function () {
+                Route::view('/', 'dashboard.admin.auth.permission.index')->name('index');
+                Route::view('/create', 'dashboard.admin.auth.permission.create')->name('create');
+                Route::view('/{id}', 'dashboard.admin.auth.permission.edit')->name('edit')->where(['id' => '[0-9]+']);
+            });
         });
 
         Route::group([
@@ -77,6 +77,22 @@ Route::group(
                 Route::view('/create', 'dashboard.admin.requests.request.create')->name('create');
                 Route::view('/{id}', 'dashboard.admin.requests.request.edit')->name('edit')->where(['id' => '[0-9]+']);
             });
+            Route::group([
+                'prefix' => 'templates',
+                'as' => 'templates.'
+            ], function () {
+                Route::view('/' , 'dashboard.admin.requests.template.index')->name('index');
+                Route::view('/create', 'dashboard.admin.requests.template.create')->name('create');
+                Route::view('/{id}', 'dashboard.admin.requests.template.edit')->name('edit')->where(['id' => '[0-9]+']);
+            });
+            Route::group([
+                'prefix' => 'steps',
+                'as' => 'steps.'
+            ], function () {
+                Route::view('/' , 'dashboard.admin.requests.step.index')->name('index');
+                Route::view('/create', 'dashboard.admin.requests.step.create')->name('create');
+                Route::view('/{id}', 'dashboard.admin.requests.step.edit')->name('edit')->where(['id' => '[0-9]+']);
+            });
         });
 
 
@@ -104,4 +120,3 @@ Route::group(
         Route::view('/staticties', 'dashboard.admin.staticties')->name('staticties');
     }
 );
-
