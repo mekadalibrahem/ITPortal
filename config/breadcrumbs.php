@@ -39,12 +39,12 @@ return  [
                             'name' => 'string.Request details',
                             'route' => 'admin.requests.request.index',
                         ],
-                        'template' =>[
+                        'templates' =>[
                             'name' => 'string.request_template.name',
                             'route' => 'admin.requests.templates.index',
                         ],
-                        'template' =>[
-                            'name' => 'string.steps.name',
+                        'steps' =>[
+                            'name' => 'string.step.name',
                             'route' => 'admin.requests.steps.index',
                         ],
                     ],
