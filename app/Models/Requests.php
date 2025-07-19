@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\RequestTemplates\RequestTemplate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,8 +19,9 @@ class Requests extends Model
         'id',
         'name',
         'type_id',
+        'request_template_id',
         'isActive',
-        'to_department'
+       
     ];
 
 
@@ -34,8 +36,8 @@ class Requests extends Model
     public function requireData() : HasMany {
         return $this->hasMany(RequireData::class);
     }
-    public function department( ) :BelongsTo {
-        return $this->belongsTo(Department::class, 'to_department');
+    public function template() : BelongsTo {
+        return $this->belongsTo(RequestTemplate::class);
     }
 
     /**

@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Enums\RequestStatusEnum;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use App\Models\RequestTemplates\RequestTemplate;
 class RequestList extends Model
 {
     use HasFactory;
@@ -20,6 +19,7 @@ class RequestList extends Model
         "id",
         "user_id",
         "request_id",
+        "request_template_id",
         'status',
         'note',
         'dean',
@@ -29,7 +29,10 @@ class RequestList extends Model
     ];
 
 
-   
+    public function template(): BelongsTo {
+        return $this->belongsTo(RequestTemplate::class);
+    }
+
     public function requests(): BelongsTo
     {
         return $this->belongsTo(Requests::class, 'request_id', 'id');
@@ -81,5 +84,4 @@ class RequestList extends Model
         }
     }
 
-    public static function scopeManager($emp_id) {}
 }
