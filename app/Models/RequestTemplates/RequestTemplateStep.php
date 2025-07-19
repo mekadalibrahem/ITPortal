@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\RequestLog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RequestTemplateStep extends Model
@@ -23,14 +24,26 @@ class RequestTemplateStep extends Model
     ];
 
 
-    public function request_list_logs() : HasMany {
+    public function request_list_logs(): HasMany
+    {
         return $this->hasMany(RequestLog::class);
     }
-    public function template_steps(): HasMany
+    public function order_steps(): HasMany
     {
         return $this->hasMany(OrderStep::class);
     }
-    public function department() : BelongsTo {
+    public function department(): BelongsTo
+    {
         return $this->belongsTo(Department::class);
+    }
+
+    public function templates(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            RequestTemplate::class,
+            OrderStep::class, 
+            'request_tamplates_steps_id' ,
+            'request_template_id'
+        );
     }
 }

@@ -22,7 +22,7 @@ class OrderStep extends Model
 
     public function step(): BelongsTo
     {
-        return $this->belongsTo(RequestTemplateStep::class);
+        return $this->belongsTo(RequestTemplateStep::class ,'request_tamplates_steps_id');
     }
     public function template(): BelongsTo
     {
