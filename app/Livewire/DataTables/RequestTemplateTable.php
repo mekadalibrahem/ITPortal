@@ -1,31 +1,29 @@
 <?php
-
 namespace App\Livewire\DataTables;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Requests;
+
+use App\Models\RequestTemplates\RequestTemplate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
 
-class RequestsInfoTable extends CustomeDataTableComponent
+class RequestTemplateTable extends CustomeDataTableComponent
 {
-
-
-    protected $model = Requests::class;
+    protected $model = RequestTemplate::class;
 
 
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        $this->setAddButton(Route('admin.requests.request.create'));
+        $this->setAddButton(Route('admin.requests.templates.create'));
     }
 
     public function builder(): Builder
 
     {
-        return $this->model::query()->with([ 'type']);
+        return $this->model::query();
     }
     public function columns(): array
     {
@@ -37,8 +35,7 @@ class RequestsInfoTable extends CustomeDataTableComponent
                 ->sortable()->hideIf(true),
             Column::make(trans('string.Name'), "name")
                 ->sortable(),
-         
-            Column::make(trans('string.Type'), "type.type")
+            Column::make(trans('string.Description'), "description")
                 ->sortable(),
 
 
@@ -49,9 +46,9 @@ class RequestsInfoTable extends CustomeDataTableComponent
     {
 
         try {
-            $info =  $this->model::where('id', '=', $id)->first();
-            if ($info) {
-                if ($info->delete()) {
+            $item =  $this->model::where('id', '=', $id)->first();
+            if ($item) {
+                if ($item->delete()) {
                     Toaster::success(trans("messages.Deleted Item"));
                 }
             } else {
@@ -63,6 +60,6 @@ class RequestsInfoTable extends CustomeDataTableComponent
     }
     public function edit($id) : void
     {
-        redirect()->route('admin.requests.request.edit', ["id" => $id]);
+        redirect()->route('admin.requests.templates.edit', ["id" => $id]);
     }
 }

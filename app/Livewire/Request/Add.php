@@ -3,8 +3,8 @@
 namespace App\Livewire\Request;
 
 use App\Enums\DataTypeEnum;
-use App\Models\Department;
 use App\Models\Requests;
+use App\Models\RequestTemplates\RequestTemplate;
 use App\Models\RequestType;
 use Exception;
 use Illuminate\Support\Collection;
@@ -18,8 +18,8 @@ class Add extends Component
 {
     public $name;
     public $type;
-    public $department;
-    public $departments;
+    public $template;
+    public $templates;
     public $types;
     public $active;
     public $validationPassed = false;
@@ -37,20 +37,25 @@ class Add extends Component
 
     public function mount()
     {
-        $this->departments = Department::all();
+        $this->templates = RequestTemplate::all();
         $this->types = RequestType::all();
         $this->dataRequired = collect();
-        $this->dataTypes = DataTypeEnum::array(); 
+        $this->dataTypes = DataTypeEnum::array();
+    }
+
+    public  function request_rules(): array
+    {
+        return [
+            'name' => 'required|min:8|unique:requests,name',
+            'type' => 'required|exists:request_types,id',
+            'template' => 'required|exists:request_templates,id',
+        ];
     }
 
     public function validateStepOne()
     {
 
-        $this->validate([
-            'name' => 'required|min:8|unique:requests,name',
-            'type' => 'required|exists:request_types,id',
-            'department' => 'required|exists:departments,id',
-        ]);
+        $this->validate($this->request_rules());
         return true;
     }
 
@@ -63,9 +68,9 @@ class Add extends Component
     {
         switch ($this->step) {
             case 1:
-                if ($this->validateStepOne()) {
+                $this->validate($this->request_rules());
                     $this->step = 2;
-                }
+                
                 break;
 
             case 2:
@@ -134,22 +139,18 @@ class Add extends Component
     }
     public function save()
     {
-        $this->validate([
-            'name' => 'required|min:8|unique:requests,name',
-            'type' => 'required|exists:request_types,id',
-            'department' => 'required|exists:departments,id',
-        ]);
+        $this->validate($this->request_rules());
 
         DB::transaction(function () {
             try {
                 $re = Requests::create([
                     'name' => $this->name,
                     'type_id' => $this->type,
-                    'to_department' => $this->department,
+                    'to_template' => $this->template,
                     'isActive' => $this->active ?? 0,
                 ]);
                 if ($re) {
-                    
+
                     foreach ($this->dataRequired as $item) {
                         RequireData::create([
                             'name' => $item['name'],
@@ -164,11 +165,9 @@ class Add extends Component
                 } else {
                     DB::rollBack();
                 }
-               
-                
             } catch (Exception $e) {
                 DB::rollBack();
-                
+
                 Toaster::error(trans('messages.Faild Add Request'));
             }
         });

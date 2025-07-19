@@ -43,7 +43,8 @@
   * edit type
   * create new type
 * request Template
-  * request steps manager (CRUD)
+  * request steps managment (CRUD)
+  * request template managment (CRUD)
 * employess
 
   * departmetn managment    **`tested`**

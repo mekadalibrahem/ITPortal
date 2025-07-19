@@ -39,20 +39,20 @@
                 @enderror
             </div>
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
-                <x-form.label for="department "> {{ __('string.Department') }} </x-form.label>
-                <select type="text" name="department" id="department" wire:model="department"
+                <x-form.label for="template "> {{ __('string.request_template.name') }} </x-form.label>
+                <select type="text" name="template" id="template" wire:model="template"
                     class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option value="0">
-                        {{ __('string.Department') }}
+                        {{ __('string.request_template.select') }}
                     </option>
-                    @forelse ($departments as $dep)
-                        <option value="{{ $dep->id }}">
-                            {{ $dep->name }}
+                    @forelse ($templates as $t)
+                        <option value="{{ $t->id }}">
+                            {{ $t->name }}
                         </option>
                     @empty
                     @endforelse
                 </select>
-                @error('department')
+                @error('template')
                     <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
                 @enderror
             </div>
