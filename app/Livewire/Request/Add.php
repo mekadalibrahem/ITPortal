@@ -12,20 +12,18 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 use App\Models\RequireData;
-
+use App\Traits\StepsUi\StepTrait;
 
 class Add extends Component
 {
+    use StepTrait ;
     public $name;
     public $type;
     public $template;
     public $templates;
     public $types;
     public $active;
-    public $validationPassed = false;
-    public $step = 1;
-    public $isFinishStep = false;
-    public $MAX_STEP = 3;
+
     public $dataTypes;
     public Collection $dataRequired;
 
@@ -41,6 +39,7 @@ class Add extends Component
         $this->types = RequestType::all();
         $this->dataRequired = collect();
         $this->dataTypes = DataTypeEnum::array();
+        $this->setMaxStep(3);
     }
 
     public  function request_rules(): array
@@ -52,44 +51,19 @@ class Add extends Component
         ];
     }
 
-    public function validateStepOne()
-    {
 
-        $this->validate($this->request_rules());
-        return true;
-    }
-
-    public function validateStepTwo()
-    {
-        // validat step logic 
-        return true;
-    }
     public function next()
     {
         switch ($this->step) {
             case 1:
                 $this->validate($this->request_rules());
-                    $this->step = 2;
+                $this->increment();
                 
                 break;
 
             case 2:
-                if ($this->validateStepTwo()) {
-                    $this->step = 3;
-                    $this->isFinishStep = true;
-                }
+                $this->increment();
                 break;
-        }
-    }
-
-    public function back()
-    {
-        $this->step =  $this->step - 1;
-        if ($this->step < 1) {
-            $this->step = 1;
-        }
-        if ($this->step != 3) {
-            $this->isFinishStep = false;
         }
     }
 

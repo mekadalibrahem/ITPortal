@@ -7,11 +7,11 @@
     <div class="mt-5 sm:mt-8">
         <div class="px-6 py-3">
             <div class="flex items-center gap-x-3">
-                <span class="text-xs text-gray-500 dark:text-neutral-500">{{ $step }}/{{ $MAX_STEP }}</span>
+                <span class="text-xs text-gray-500 dark:text-neutral-500">{{ $step }}/{{ $max_step }}</span>
                 <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
                     <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200"
-                        role="progressbar" style="width: {{ ($step / $MAX_STEP) * 100 }}%"
-                        aria-valuenow="{{ ($step / $MAX_STEP) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        role="progressbar" style="width: {{ ($step / $max_step) * 100 }}%"
+                        aria-valuenow="{{ ($step / $max_step) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
