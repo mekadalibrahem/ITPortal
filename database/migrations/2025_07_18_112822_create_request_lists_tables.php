@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
             $table->foreignId('request_id')->constrained('requests')->cascadeOnUpdate();
             $table->foreignId('request_template_id')->constrained('request_templates');
+            $table->foreignId('current_step_id')->constrained('request_tamplates_steps');
             $table->string("status");
             $table->string("note")->nullable();
             $table->string("dean");

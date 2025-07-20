@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\RequestTemplates\RequestTemplate;
+use App\Models\RequestTemplates\RequestTemplateStep;
+
 class RequestList extends Model
 {
     use HasFactory;
@@ -20,6 +22,7 @@ class RequestList extends Model
         "user_id",
         "request_id",
         "request_template_id",
+        "current_step_id",
         'status',
         'note',
         'dean',
@@ -29,7 +32,8 @@ class RequestList extends Model
     ];
 
 
-    public function template(): BelongsTo {
+    public function template(): BelongsTo
+    {
         return $this->belongsTo(RequestTemplate::class);
     }
 
@@ -83,5 +87,8 @@ class RequestList extends Model
             return false;
         }
     }
-
+    public function currentStep(): BelongsTo
+    {
+        return $this->belongsTo(RequestTemplateStep::class, 'current_step_id');
+    }
 }

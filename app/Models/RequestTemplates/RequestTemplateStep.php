@@ -3,6 +3,7 @@
 namespace App\Models\RequestTemplates;
 
 use App\Models\Department;
+use App\Models\RequestList;
 use App\Models\RequestLog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -45,5 +46,8 @@ class RequestTemplateStep extends Model
             'request_tamplates_steps_id' ,
             'request_template_id'
         );
+    }
+    public function request_list() : HasMany {
+        return $this->hasMany(RequestList::class , 'current_step_id');
     }
 }
