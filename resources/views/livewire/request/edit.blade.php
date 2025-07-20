@@ -7,11 +7,11 @@
     <div class="mt-5 sm:mt-8">
         <div class="px-6 py-3">
             <div class="flex items-center gap-x-3">
-                <span class="text-xs text-gray-500 dark:text-neutral-500">{{ $step }}/{{ $MAX_STEP }}</span>
+                <span class="text-xs text-gray-500 dark:text-neutral-500">{{ $step }}/{{ $max_step }}</span>
                 <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
                     <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200"
-                        role="progressbar" style="width: {{ ($step / $MAX_STEP) * 100 }}%"
-                        aria-valuenow="{{ ($step / $MAX_STEP) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        role="progressbar" style="width: {{ ($step / $max_step) * 100 }}%"
+                        aria-valuenow="{{ ($step / $max_step) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -39,23 +39,24 @@
                 @enderror
             </div>
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
-                <x-form.label for="department "> {{ __('string.Department') }} </x-form.label>
-                <select type="text" name="department" id="department" wire:model="department"
+                <x-form.label for="template "> {{ __('string.request_template.name') }} </x-form.label>
+                <select type="text" name="template" id="template" wire:model="template"
                     class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option value="0">
-                        {{ __('string.Department') }}
+                        {{ __('string.request_template.select') }}
                     </option>
-                    @forelse ($departments as $dep)
-                        <option value="{{ $dep->id }}">
-                            {{ $dep->name }}
+                    @forelse ($templates as $t)
+                        <option value="{{ $t->id }}">
+                            {{ $t->name }}
                         </option>
                     @empty
                     @endforelse
                 </select>
-                @error('department')
+                @error('template')
                     <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
                 @enderror
             </div>
+
 
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2  ">
                 <x-form.label for="active">
@@ -140,6 +141,8 @@
                         <th scope="col" class=" text-center">
                             {{ __('string.Actions') }}
                         </th>
+                    </tr>
+                </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                     @forelse ($requiredDataOriginal as $key =>$item)
                         <tr wire:key="{{ $key }} " class="text-center">
@@ -252,11 +255,11 @@
                         <dl class="flex flex-col sm:flex-row gap-1">
                             <dt class="min-w-40">
                                 <span class="block text-sm text-gray-500 dark:text-neutral-500">
-                                    {{ __('string.Department') }} :</span>
+                                    {{ __('string.request_template.name') }} :</span>
                             </dt>
                             <dd>
 
-                                {{ $departments[$department - 1]->name }}
+                                {{ $templates->where('id', $template)->first()->name }}
                             </dd>
                         </dl>
                         <dl class="flex flex-col sm:flex-row gap-1">
@@ -330,6 +333,8 @@
                             <th scope="col" class=" text-center">
                                 {{ __('string.Actions') }}
                             </th>
+                        </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                         @forelse ($requiredDataOriginal as $key => $item)
                             <tr wire:key="{{ $key }} " class="text-center">
