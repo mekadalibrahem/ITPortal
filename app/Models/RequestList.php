@@ -11,11 +11,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\RequestTemplates\RequestTemplate;
 use App\Models\RequestTemplates\RequestTemplateStep;
+use App\Traits\ModelHelper\HasDateTimeCast;
+use App\Traits\ModelHelper\HasEndAt;
 
 class RequestList extends Model
 {
     use HasFactory;
-
+    use HasEndAt ;
+    use HasDateTimeCast;
+    
     // protected $table  = 'request_lists' ;
     protected $fillable = [
         "id",
@@ -27,6 +31,7 @@ class RequestList extends Model
         'note',
         'dean',
         'coordinator',
+        'end_at',
         'create_at',
         'update_at',
     ];
@@ -90,5 +95,13 @@ class RequestList extends Model
     public function currentStep(): BelongsTo
     {
         return $this->belongsTo(RequestTemplateStep::class, 'current_step_id');
+    }
+
+    public function scopeNotWorking(Builder $query): void
+    {
+
+        $query->whereDoesntHave('requestLogs', function ($q) {
+            $q->where('request_template_steps_id', $this->current_step_id);
+        })->whereNotNull('current_step_id');
     }
 }

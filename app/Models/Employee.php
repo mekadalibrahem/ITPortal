@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Employee\Requests\EmployeeRequestManagment;
 use App\Traits\EmployeeManagmentTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +18,7 @@ class Employee extends Model
     use HasFactory;
 
     use EmployeeManagmentTrait ;
-
+    use EmployeeRequestManagment ;
     protected $fillable = [
         "id",
         "user_id",
