@@ -96,7 +96,7 @@ return [
 
     "Send" => "Send",
     "Save as draft" => "Save as draft",
-    "Employee Requests" => "Student Requests",
+    "Employee Requests" => "The sent requests",
     'Request details' =>  'Request details',
     'Send To Employee' => 'Redirect To Employee',
     'Redirect to User' => "Cancel for error",
@@ -166,9 +166,12 @@ return [
         'select' => "select step",
         'new' => "new step",
         'edit' => "edit step",
+        'current' => 'current step',
     ],
     "Description" => "Description",
     "select role" => "select role",
     "order" => "order",
     "selected item" => "Selected item",
+    'assign to' => "assign to",
+    'end_at' => 'End at',
 ];

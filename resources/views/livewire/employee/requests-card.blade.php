@@ -1,5 +1,6 @@
 <x-widgets.section title="{{__('string.Request details')}}">
             @if ($request_id > 0)
+            <livewire:request-card.steps-card  :id="$request_id"/>
                 <div
                     class="p-4 space-y-3 border border-blue-200 rounded-lg shadow-md md:space-y-0 md:space-x-4 md:flex md:items-center md:justify-between bg-blue-50 dark:bg-blue-900">
                     <div class="flex flex-col gap-2 text-blue-800 dark:text-blue-100">

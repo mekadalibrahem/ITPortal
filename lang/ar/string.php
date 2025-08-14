@@ -95,7 +95,7 @@ return [
     ],
     "Send" => "إرسال",
     "Save as draft" => "حفظ  في المسودة",
-    "Employee Requests" => "طلبات الطلاب",
+    "Employee Requests" => "الطلبات المرسلة",
     'Request details' => "تفاصيل الطلب",
     'Send To Employee' => 'إعادة توجيه',
     'Redirect to User' => "الغاء بسبب خطأ",
@@ -160,14 +160,16 @@ return [
         'edit' => "تعديل القالب",
     ],
     "step" => [
-        'name' => "حطوة",
+        'name' => "خطوة",
         'select' => "اختر الحطوة",
         'new' => "خطوة جديدة",
         'edit' => "تعديل الخطوة",
+        'current' => 'المرحلة الحالية',
     ],
     "Description" => 'الوصف',
     "select role" => "اختر الدور",
     "order" => "الترتيب",
     "selected item" => "العنصر المحدد",
-
+    'assign to' => "الموظف الحالي",
+    'end_at' => 'تاريخ الانتهاء',
 ];
