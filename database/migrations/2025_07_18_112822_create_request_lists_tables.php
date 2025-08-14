@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("note")->nullable();
             $table->string("dean");
             $table->string("coordinator");
+            $table->timestamp('end_at')->nullable();
             $table->timestamps();
         });
         Schema::create('data', function (Blueprint $table) {
@@ -34,10 +35,12 @@ return new class extends Migration
         Schema::create('request_logs', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('employee_id')->constrained('employees');
+            $table->foreignId('employee_id')->nullable()->constrained('employees');
             $table->foreignId('request_list_id')->constrained('request_lists');
             $table->foreignId('request_tamplates_step_id')->constrained('request_tamplates_steps');
             $table->text('note')->nullable();
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('end_at')->nullable();
             $table->timestamps();
         });
     }
