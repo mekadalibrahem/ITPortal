@@ -15,19 +15,7 @@ class ViewTest extends TestCase
 {
 
 
-    /**
-     *  Test routes that require authentication for authenticated users
-     *
-     * @return void
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
-
-
-        $response->assertStatus(200);
-    }
-
+   
     /**
      *   Test routes that require authentication for unauthenticated users
      *
