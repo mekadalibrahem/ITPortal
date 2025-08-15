@@ -8,7 +8,7 @@
 * Profile managment
   * edit general information  **`tested`**
   * edit password  **`tested`**
-  * logout from another devices ( show what devices used to login ) 
+  * logout from another devices ( show what devices used to login )
   * delete account
 * Request
   * add new request based for type of user
@@ -38,10 +38,13 @@
   * edit request   **`tested`**
   * show requests information table
   * delete request
-* reqyest types managment    **`tested`**
+* request types managment    **`tested`**
   * show request types table with delete options ( redirect to edit or create new pages)
   * edit type
   * create new type
+* request Template
+  * request steps managment (CRUD)
+  * request template managment (CRUD)
 * employess
 
   * departmetn managment    **`tested`**

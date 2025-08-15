@@ -96,7 +96,7 @@ return [
 
     "Send" => "Send",
     "Save as draft" => "Save as draft",
-    "Employee Requests" => "Student Requests",
+    "Employee Requests" => "The sent requests",
     'Request details' =>  'Request details',
     'Send To Employee' => 'Redirect To Employee',
     'Redirect to User' => "Cancel for error",
@@ -155,5 +155,30 @@ return [
     "name_en" => "name en",
     "reset" => "reset",
     "Actions" => "Actions",
+<<<<<<< HEAD
     "Change Signature" => "Change Signature",
+=======
+    "request_template" => [
+        'name' => "template",
+        'select' => "select template",
+        'new' => "New template",
+        'edit' => "Edit template",
+    ],
+    "step" => [
+        'name' => "step",
+        'select' => "select step",
+        'new' => "new step",
+        'edit' => "edit step",
+        'current' => 'current step',
+    ],
+    "Description" => "Description",
+    "select role" => "select role",
+    "order" => "order",
+    "selected item" => "Selected item",
+    'assign to' => "assign to",
+    'end_at' => 'End at',
+    'askToedit' => 'want edit',
+    'create request step' => 'create request',
+    'end request step'=>'end request',
+>>>>>>> v2
 ];

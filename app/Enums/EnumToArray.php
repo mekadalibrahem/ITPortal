@@ -20,5 +20,8 @@ trait EnumToArray
   {
     return array_combine( self::names() , self::values());
   }
+  public static function arrayre() :array {
+    return array_combine( self::values() , self::names());
+  }
 
 }

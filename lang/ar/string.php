@@ -95,7 +95,7 @@ return [
     ],
     "Send" => "إرسال",
     "Save as draft" => "حفظ  في المسودة",
-    "Employee Requests" => "طلبات الطلاب",
+    "Employee Requests" => "الطلبات المرسلة",
     'Request details' => "تفاصيل الطلب",
     'Send To Employee' => 'إعادة توجيه',
     'Redirect to User' => "الغاء بسبب خطأ",
@@ -153,6 +153,31 @@ return [
     "name_en" => "الاسم بالاجنبي",
     "reset" => "إعادة تعيين",
     "Actions" =>"العمليات",
+<<<<<<< HEAD
     "Change Signature" => "تعديل التوقيع",
 
+=======
+    "request_template" => [
+        'name' => "قالب",
+        'select' => "اختر قالب",
+        'new' => "قالب جديد",
+        'edit' => "تعديل القالب",
+    ],
+    "step" => [
+        'name' => "خطوة",
+        'select' => "اختر الحطوة",
+        'new' => "خطوة جديدة",
+        'edit' => "تعديل الخطوة",
+        'current' => 'المرحلة الحالية',
+    ],
+    "Description" => 'الوصف',
+    "select role" => "اختر الدور",
+    "order" => "الترتيب",
+    "selected item" => "العنصر المحدد",
+    'assign to' => "الموظف الحالي",
+    'end_at' => 'تاريخ الانتهاء',
+    'askToedit' => 'طلب تعديل',
+    'create request step' => 'إنشاء الطلب',
+    'end request step'=>'انتهاء الطلب',
+>>>>>>> v2
 ];

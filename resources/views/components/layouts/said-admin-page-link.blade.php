@@ -30,6 +30,12 @@
     <x-widgets.accordion-child-link href="{{Route('admin.requests.request.index')}}">
         {{ __("string.Requests") }}
     </x-widgets.accordion-child-link>
+    <x-widgets.accordion-child-link href="{{Route('admin.requests.templates.index')}}">
+        {{ __("string.request_template.name") }}
+    </x-widgets.accordion-child-link>
+    <x-widgets.accordion-child-link href="{{Route('admin.requests.steps.index')}}">
+        {{ __("string.step.name") }}
+    </x-widgets.accordion-child-link>
 
 
 </x-widgets.accordion-item>

@@ -3,30 +3,28 @@
 namespace App\Livewire\Request;
 
 use App\Enums\DataTypeEnum;
-use App\Models\Department;
+
 use App\Models\Requests;
+use App\Models\RequestTemplates\RequestTemplate;
 use App\Models\RequestType;
 use App\Models\RequireData;
+use App\Traits\StepsUi\StepTrait;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
 class Edit extends Component
 {
+    use StepTrait ;
     public $name;
     public $type;
-    public $department;
-    public $departments;
+    public $template;
+    public $templates;
     public $types;
     public $active;
-    public $validationPassed = false;
-    public $step = 1;
-    public $isFinishStep = false;
-    public $MAX_STEP  = 3;
     public $dataTypes = [];
     public $req;
     public $id;
@@ -41,7 +39,8 @@ class Edit extends Component
     public function mount()
     {
         $this->index();
-        $this->departments = Department::all();
+        $this->setMaxStep(3);
+        $this->templates = RequestTemplate::all();
         $this->types = RequestType::all();
         $this->dataTypes = DataTypeEnum::array();
     }
@@ -54,7 +53,7 @@ class Edit extends Component
         if ($this->req) {
             $this->name =  $this->req->name;
             $this->type = $this->req->type_id;
-            $this->department =  $this->req->to_department;
+            $this->template =  $this->req->request_template_id;
             $this->active   =  $this->req->isActive ? true : false;
             $temp_array = [];
             foreach ($this->req->requireData as $i) {
@@ -74,48 +73,34 @@ class Edit extends Component
             abort(404);
         }
     }
-    public function validateStepOne()
+    public function update_request_rules(): array
     {
-
-        $this->validate([
+        return [
             'name' => [
                 'required',
                 'min:8',
                 Rule::unique('requests', 'name')->ignore($this->req->id)
             ],
             'type' => 'required|exists:request_types,id',
-            'department' => 'required|exists:departments,id',
-        ]);
-        return true;
+            'template' => 'required|exists:request_templates,id'
+        ];
     }
+
     public function next()
     {
         switch ($this->step) {
             case 1:
-                if ($this->validateStepOne()) {
-                    $this->step++;
-                }
+                $this->validate($this->update_request_rules());
+                $this->increment();
                 break;
 
             case 2:
-
-                $this->step++;
-                $this->isFinishStep = true;
-
+                $this->increment();
                 break;
         }
     }
 
-    public function back()
-    {
-        $this->step =  $this->step - 1;
-        if ($this->step < 1) {
-            $this->step = 1;
-        }
-        if ($this->step != $this->MAX_STEP) {
-            $this->isFinishStep = false;
-        }
-    }
+    
 
 
     public function resetData($i)
@@ -125,7 +110,7 @@ class Edit extends Component
             case 1:
                 $this->name =  $this->req->name;
                 $this->type = $this->req->type_id;
-                $this->department =  $this->req->to_department;
+                $this->template =  $this->req->request_template_id;
                 $this->active   =  $this->req->isActive ? true : false;
                 break;
             case 2:
@@ -221,21 +206,13 @@ class Edit extends Component
 
     public function save()
     {
-        $this->validate([
-            'name' => [
-                'required',
-                'min:8',
-                Rule::unique('requests', 'name')->ignore($this->req->id)
-            ],
-            'type' => 'required|exists:request_types,id',
-            'department' => "required|exists:departments,id",
-            'active' => 'boolean'
-        ]);
+
+        $this->validate($this->update_request_rules());
         DB::transaction(function () {
             try {
                 $req = $this->req;
                 $req->name = $this->name;
-                $req->to_department = $this->department;
+                $req->request_template_id = $this->template;
                 $req->type_id = $this->type;
                 $req->isActive = $this->active ? 1 : 0;
                 $updated = false;

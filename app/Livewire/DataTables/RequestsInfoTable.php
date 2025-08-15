@@ -25,7 +25,7 @@ class RequestsInfoTable extends CustomeDataTableComponent
     public function builder(): Builder
 
     {
-        return $this->model::query()->with(['department', 'type']);
+        return $this->model::query()->with([ 'type' , 'template']);
     }
     public function columns(): array
     {
@@ -37,10 +37,10 @@ class RequestsInfoTable extends CustomeDataTableComponent
                 ->sortable()->hideIf(true),
             Column::make(trans('string.Name'), "name")
                 ->sortable(),
-            Column::make(trans('string.Department'), "department.name")
-                ->sortable(),
+         
             Column::make(trans('string.Type'), "type.type")
                 ->sortable(),
+            Column::make(trans('string.request_template.name') ,'template.name' )
 
 
         ];
