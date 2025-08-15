@@ -1,5 +1,5 @@
 <x-widgets.section title="{{ __('string.Request details') }}">
-
+    <livewire:request-card.steps-card  :id="$id"/>
 
         <div
             class="p-4 space-y-3 border border-blue-200 rounded-lg shadow-md md:space-y-0 md:space-x-4 md:flex md:items-center md:justify-between bg-blue-50 dark:bg-blue-900">
@@ -7,14 +7,7 @@
                 <div class="font-semibold">{{ __('string.current status') }}:</div>
                 <div class="text-lg">{{ $req->status }}</div>
             </div>
-            <div class="flex flex-col gap-2 text-blue-800 dark:text-blue-100">
-                <div class="font-semibold">{{ __('string.current employee') }}:</div>
-                @if ($last_log_name)
-                <div class="text-lg">{{ $last_log_name }}, {{ $last_log_email }}</div>
-                @else
-                        {{-- not user work in it  --}}
-                @endif
-            </div>
+           
         </div>
 
         <div

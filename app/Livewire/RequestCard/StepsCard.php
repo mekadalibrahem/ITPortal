@@ -38,7 +38,7 @@ class StepsCard extends Component
        
         // If rejected, find the last logged step
         if ($isRejected) {
-            $lastLog = $$this->request_list->requestLog->where('employee_id' , '!=' , null)->sortByDesc('id')->first();
+            $lastLog = $this->request_list->requestLog->where('employee_id' , '!=' , null)->sortByDesc('id')->first();
             $rejectedStepId = $lastLog ? $lastLog->request_tamplates_step_id : null;
         }
         return $this->request_list->requestLog->map(function ($log) use ($isRejected, $rejectedStepId, &$reachedRejectedStep){

@@ -27,10 +27,9 @@ class Edit extends Component
 
     public $req;
     public $request_user;
-    public $last_log_name;
-    public $last_log_email;
+   
     public $request_data = [];
-    public $last_log;
+    
 
     public $status  = [];
     public $data = [];
@@ -47,10 +46,9 @@ class Edit extends Component
         $this->id;
         $this->req;
         $this->request_user;
-        $this->last_log_name;
-        $this->last_log_email;
+     
         $this->request_data = [];
-        $this->last_log;
+       
         $this->image = null;
         $this->status  = [];
         $this->data = [];
@@ -80,12 +78,7 @@ class Edit extends Component
 
                 $this->data = $req->data;
                 // get request process step
-                $this->last_log = RequestLog::where('request_list_id', $req->id)
-                    ->orderBy('id', 'desc')->first();
-                if ($this->last_log) {
-                    $this->last_log_name = $this->last_log->employee->user->fullname();
-                    $this->last_log_email = $this->last_log->employee->user->email;
-                }
+                
                 // get what require data for this request
                 $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
             } else {
@@ -107,7 +100,7 @@ class Edit extends Component
         if ($draft) {
             $this->req->status = RequestStatusEnum::DRAFT->value;
         } else {
-            $this->req->status = RequestStatusEnum::CHECKING->value;
+            $this->req->status = RequestStatusEnum::WORKING->value;
         }
         $this->req->save();
     }
@@ -167,14 +160,14 @@ class Edit extends Component
                     Toaster::success(trans("messages.Request successfully updated."));
                 } else {
                     // Handle failure case
-                    Toaster::danger(trans("messages.Failed to update request."));
+                    Toaster::error(trans("messages.Failed to update request."));
                 }
             } else {
 
                 Toaster::warning(trans("messages.should write last 1 value to edit"));
             }
         } else {
-            Toaster::danger(trans("messages.Can't Edit this Request"));
+            Toaster::error(trans("messages.Can't Edit this Request"));
         }
 
         $this->show($this->req->id);

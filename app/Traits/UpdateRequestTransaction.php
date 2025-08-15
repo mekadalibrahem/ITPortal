@@ -26,7 +26,7 @@ trait UpdateRequestTransaction
                 if ($draft) {
                     $req->status = RequestStatusEnum::DRAFT->value;
                 } else {
-                    $req->status = RequestStatusEnum::CHECKING->value;
+                    $req->status = RequestStatusEnum::WORKING->value;
                 }
                 $req->save();
 

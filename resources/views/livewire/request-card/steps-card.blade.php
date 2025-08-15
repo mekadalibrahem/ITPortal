@@ -4,7 +4,7 @@
     <!-- Heading -->
 
 
-    <livewire:request-card.step-card-item title='create request' status='done' note='' :time="$request_list->created_at"
+    <livewire:request-card.step-card-item title="{{ __('string.create request step') }}" status='done' note='' :time="$request_list->created_at"
         connector="{{ false }}" />
     <!-- End Heading -->
     @forelse ($steps as  $step)
@@ -15,7 +15,7 @@
 
     {{-- end --}}
    
-    <livewire:request-card.step-card-item title='end request' :status="$end_status"  :note="$request_list->status" :time="$request_list->end_at" />
+    <livewire:request-card.step-card-item title="{{ __('string.end request step') }}" :status="$end_status"  :note="$request_list->status" :time="$request_list->end_at" />
 
 </div>
 

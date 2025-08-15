@@ -3,68 +3,53 @@
 namespace App\Livewire\Employee;
 
 use App\Classes\ExportPdf;
+use App\Classes\RequestManagment\RequestManagmentTemplate;
 use App\Enums\RequestStatusEnum;
-use App\Models\Data;
-use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Notification;
 use App\Models\RequestList;
-use App\Models\RequestLog;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\RequireData;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Masmerise\Toaster\Toaster;
 use Spatie\Browsershot\Browsershot;
 
 class RequestsCard extends Component
 {
-    public $id ;
+    public $id;
     public $hidden = true;
     public $request;
     public $request_id;
     public $request_data;
     public $status  = [];
-    public $employee_id;
-    public $employee_list = [];
+    public $current_employee ;
     public $last_log;
-    public $departments = [];
-    public $dep_id;
-    public $dep_employees = [];
-    public $emp_id = 0;
-    public $selected_emp_id = 0;
-    public $last_log_name;
-    public $last_log_email;
-    public $current_employee;
     public $cancel_note;
     public $redirect_note  = null;
     public $request_user;
-
+    public $can_work ;
+    
 
     public  function accept()
     {
-        $this->request->status = RequestStatusEnum::END_ACCEPT;
-        $this->request->save();
-
-        Notification::create([
-            "content" => "تم قبول الطلب بنجاح",
-            "user_id" => $this->request->user_id,
-            "from_id" => Auth::user()->id,
-        ]);
+        $request_manager =  $this->getRequestManager();
+       if($request_manager->hasNext()){
+            $request_manager->next();
+       }else{
+         $request_manager->accept("تم قبول الطلب بنجاح");
+       }
+       Toaster::success("تم الموافقة على الطلب");
+       redirect()->route('employee.requests');
     }
     public function  reject()
     {
         $this->validate([
             "cancel_note" => "required",
         ]);
-        $this->request->status = RequestStatusEnum::END_REJECTED;
-        $this->request->save();
-
-        Notification::create([
-            "content" => $this->cancel_note,
-            "user_id" => $this->request->user_id,
-            "from_id" => Auth::user()->id,
-        ]);
+        $request_manager =  $this->getRequestManager();
+        $request_manager->reject($this->cancel_note);
+        Toaster::success("تم رفض الطلب");
+        redirect()->route('employee.requests');
     }
 
     public function cancel()
@@ -72,123 +57,80 @@ class RequestsCard extends Component
         $this->validate([
             "cancel_note" => "required",
         ]);
-        $this->request->status = RequestStatusEnum::WATING->value;
-        $this->request->save();
-
-        Notification::create([
-            "content" => $this->cancel_note,
-            "user_id" => $this->request->user_id,
-            "from_id" => Auth::user()->id,
-        ]);
+        $request_manager =  $this->getRequestManager();
+        $request_manager->sendToEdit($this->cancel_note);
+        Toaster::success('تم طلب تعديل البيانات بنجاح');
+        redirect()->route('employee.requests');
     }
 
-    public function update_last_log()
-    {
-        $this->last_log = RequestLog::where('request_list_id', $this->request_id)
-            ->orderBy('id', 'desc')->first();
-        $this->last_log_name = $this->last_log->employee->user->fullname();
-        $this->last_log_email = $this->last_log->employee->user->email;
-    }
+   
 
     public function show()
     {
-        if ($this->id > 0) {
-            $this->hidden = false;
-            $this->request_id = $this->id;
 
-            $this->request = RequestList::where('id', $this->request_id)->first();
-            if(!$this->request){abort(404);}else{
-                $datas = Data::where("request_list_id", $this->request_id)->get();
-                $detiles = [];
-                foreach ($datas as $data) {
-                    $rd = RequireData::where('name_en', '=', $data->name)->first();
-                    $detiles[] = [
-                        'name' => $data->name,
-                        'type' => $rd->type,
-                        'id' => $data->id,
-                        'value' => $data->value,
-                    ];
-                }
+        $this->hidden = false;
+        $this->request_id = $this->id;
+        $this->request = RequestList::with(['data', 'user'])
+            ->findOrFail($this->request_id);
+        $requireDataMap = RequireData::whereIn(
+            'name_en',
+            $this->request->data->pluck('name')
+        )->pluck('type', 'name_en'); // [ 'name_en' => 'type' ]
 
-                $this->update_last_log();
-                $this->request_data = $detiles;
-                $this->request_user = User::where("id", "=", $this->request->user_id)->first();
-            }
+      
+        $details = $this->request->data->map(function ($d) use ($requireDataMap) {
+            return [
+                'name'  => $d->name,
+                'type'  => $requireDataMap[$d->name] ?? 'unknown', 
+                'id'    => $d->id,
+                'value' => $d->value,
+            ];
+        })->all();
+        
 
-        }else{
-            abort(404);
-        }
-
+        
+        $this->request_data = $details;
+        $this->request_user = $this->request->user; 
     }
 
 
 
     public function mount()
     {
-        $this->departments = Department::all();
-        $this->employee_list = Employee::all();
         $this->current_employee = Employee::where('user_id', Auth::id())->first();
-        // dd($this->current_employee);
-    }
+        $this->show();
+        $this->can_work_in_request();
+      
+       
 
+    }
+    public function can_work_in_request(){
+        $log = $this->request->requestLog->where('request_tamplates_step_id' , $this->request->current_step_id)->first();
+        $isCurrentEmployee = $log->employee_id == $this->current_employee->id ? true : false ;
+        $is_end = $this->request->end_at != null ? true : false;
+        if($is_end  || !$isCurrentEmployee){
+            $this->can_work = false;
+        }else{
+            $this->can_work= true;
+        }
+    }
+    private function getRequestManager(){
+        $request_managment_template = new RequestManagmentTemplate();
+        $request_managment_template->setEmployee($this->current_employee);
+        $request_managment_template->setRequestList($this->request);
+        return $request_managment_template ;
+    }
 
     public function exportToPdf()
     {
-       return  ExportPdf::export($this->request ,$this->request_data);
+        return  ExportPdf::export($this->request, $this->request_data);
     }
+   
 
-    public function redirect_to($to_emp, $new_status, $notification = null)
-    {
 
-        if ($to_emp) {
-            RequestLog::create([
-                'request_list_id' => $this->request_id,
-                'employee_id' => $to_emp->id,
-            ]);
-            $this->request->status = $new_status;
-            $this->request->save();
-            Notification::create([
-                "content" => $notification ?? 'تم إرسال طلب إليك',
-                "user_id" => $to_emp->user_id,
-                "from_id" => Auth::user()->id,
-            ]);
-            $this->status = [
-                "type" => "success",
-                "message" => trans("messages.Request redirect")
-            ];
-            $this->update_last_log();
-        }
-    }
-    public function redirect_to_manager()
-    {
-
-        $manger = $this->current_employee->manager();
-        $this->redirect_to($manger, RequestStatusEnum::WORKING->value, $this->redirect_note);
-    }
-    public function redirect_to_employee()
-    {
-        // create new log
-        $to_emp = Employee::where("id", "=", $this->selected_emp_id)->first();
-        $this->redirect_to($to_emp, RequestStatusEnum::WORKING->value);
-    }
-    public function select_dep()
-    {
-
-        $this->dep_employees = [];
-        foreach ($this->employee_list as $e) {
-            if ($e->department_id == $this->dep_id) {
-                $this->dep_employees[] = $e;
-            }
-        }
-    }
-
-    public function select_emp()
-    {
-        $this->selected_emp_id = $this->emp_id;
-    }
     public function render()
     {
-        $this->show();
+      
         return view('livewire.employee.requests-card');
     }
 }

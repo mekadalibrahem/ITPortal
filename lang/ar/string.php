@@ -172,4 +172,7 @@ return [
     "selected item" => "العنصر المحدد",
     'assign to' => "الموظف الحالي",
     'end_at' => 'تاريخ الانتهاء',
+    'askToedit' => 'طلب تعديل',
+    'create request step' => 'إنشاء الطلب',
+    'end request step'=>'انتهاء الطلب',
 ];

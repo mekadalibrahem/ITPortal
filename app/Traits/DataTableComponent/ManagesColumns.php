@@ -43,11 +43,11 @@ trait ManagesColumns
         $array = [];
 
         if ($this->columnUpdateAtStatus) {
-            $array[] = DateColumn::make(trans('string.update_at'), 'updated_at')->sortable();
+            $array[] = Column::make(trans('string.update_at'), 'updated_at')->sortable();
         }
 
         if ($this->columnDeleteAtStatus) {
-            $array[] = DateColumn::make(trans('string.create_at'), 'created_at')->sortable();
+            $array[] = Column::make(trans('string.create_at'), 'created_at')->sortable();
         }
 
         if ($this->columnActionsStatus) {

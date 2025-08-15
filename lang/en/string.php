@@ -174,4 +174,7 @@ return [
     "selected item" => "Selected item",
     'assign to' => "assign to",
     'end_at' => 'End at',
+    'askToedit' => 'want edit',
+    'create request step' => 'create request',
+    'end request step'=>'end request',
 ];
