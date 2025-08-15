@@ -33,6 +33,7 @@ class User extends Authenticatable
         'username',
         'national_id',
         'password',
+        'signature',
     ];
 
     /**
@@ -45,6 +46,7 @@ class User extends Authenticatable
         'remember_token',
         'created_at',
         'updated_at',
+        'signature',
     ];
 
     /**

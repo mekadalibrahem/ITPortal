@@ -153,10 +153,11 @@ return [
     "name_en" => "الاسم بالاجنبي",
     "reset" => "إعادة تعيين",
     "Actions" =>"العمليات",
-<<<<<<< HEAD
     "Change Signature" => "تعديل التوقيع",
+    "signature" => "التوقيع",
+    "New Signature Preview" => "عرض التوقيع الجديد",
+    "Current Signature" => "التوقيع الحالي",
 
-=======
     "request_template" => [
         'name' => "قالب",
         'select' => "اختر قالب",
@@ -179,5 +180,5 @@ return [
     'askToedit' => 'طلب تعديل',
     'create request step' => 'إنشاء الطلب',
     'end request step'=>'انتهاء الطلب',
->>>>>>> v2
+
 ];

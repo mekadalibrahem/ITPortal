@@ -4,17 +4,17 @@
     </x-slot:title>
 
 
-    <main class="w-full  mt-8 rounded-lg  " >
+    <x-widgets.section title=" "  sectionstyle="max-w-7xl bg-slate-50 dark:bg-slate-950" >
 
 
 
         <livewire:profile.info />
-
+        <livewire:profile.signature>
         <livewire:profile.change-password />
 
         <livewire:profile.devices  />
 
         <livewire:profile.delete />
 
-    </main>
+    </x-widgets.section>
 </x-layouts.app>

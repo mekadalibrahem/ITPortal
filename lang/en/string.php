@@ -155,9 +155,11 @@ return [
     "name_en" => "name en",
     "reset" => "reset",
     "Actions" => "Actions",
-<<<<<<< HEAD
+
     "Change Signature" => "Change Signature",
-=======
+    "signature" => "signature",
+    "New Signature Preview" => "New Signature Preview",
+    "Current Signature" => "Current Signature",
     "request_template" => [
         'name' => "template",
         'select' => "select template",
@@ -180,5 +182,5 @@ return [
     'askToedit' => 'want edit',
     'create request step' => 'create request',
     'end request step'=>'end request',
->>>>>>> v2
+
 ];
