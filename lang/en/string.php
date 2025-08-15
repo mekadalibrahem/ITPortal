@@ -154,5 +154,6 @@ return [
     "back" => "Back",
     "name_en" => "name en",
     "reset" => "reset",
-    "Actions" => "Actions"
+    "Actions" => "Actions",
+    "Change Signature" => "Change Signature",
 ];
