@@ -1,0 +1,29 @@
+{
+    "type": "table",
+    "name": "collage_informations",
+    "database": "itportal_app_db",
+    "data": 
+[
+{
+    "id": "1",
+    "name": "DEAN",
+    "value": "حاتم علي"
+},
+{
+    "id": "2",
+    "name": "COLLAGE_NAME_AR",
+    "value": "جامعة البعث"
+},
+{
+    "id": "3",
+    "name": "COLLAGE_NAME_EN",
+    "value": "Al Baath University"
+},
+{
+    "id": "4",
+    "name": "COOR_NAME_AR",
+    "value": "اسم المنسق"
+}
+]
+
+}

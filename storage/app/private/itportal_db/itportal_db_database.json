@@ -1,0 +1,11 @@
+[
+{
+    "type": "header",
+    "version": "5.2.1",
+    "comment": "Export to JSON plugin for PHPMyAdmin"
+},
+{
+    "type": "database",
+    "name": "itportal_app_db"
+}
+]

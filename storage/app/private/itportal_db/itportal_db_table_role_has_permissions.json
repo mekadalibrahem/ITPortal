@@ -1,0 +1,15 @@
+{
+    "type": "table",
+    "name": "role_has_permissions",
+    "database": "itportal_app_db",
+    "data": [
+        {
+            "permission_id": "2",
+            "role_id": "3"
+        },
+        {
+            "permission_id": "3",
+            "role_id": "5"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "type": "table",
+    "name": "model_has_permissions",
+    "database": "itportal_app_db",
+    "data": []
+}

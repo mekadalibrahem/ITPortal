@@ -1,0 +1,93 @@
+{
+    "type": "table",
+    "name": "request_tamplates_steps",
+    "database": "itportal_app_db",
+    "data":
+    [
+        
+       
+        {
+            "created_at": "2025-07-18 20:32:55",
+            "department_id": 1,
+            "description": "معالجة الطلب من قبل موظق شؤون الطلاب",
+            "id": 3,
+            "name": "معالجة الطلب-شؤون الطلاب",
+            "role": "employee",
+            "updated_at": "2025-07-18 20:32:55"
+        },
+        {
+            "created_at": "2025-07-18 20:33:40",
+            "department_id": 1,
+            "description": "قبول الطلب من قبل رئيس الشعبى",
+            "id": 4,
+            "name": "قبول الطلب من قبل رئيس شعبة شؤون الطلاب",
+            "role": "manager",
+            "updated_at": "2025-07-18 20:33:40"
+        },
+        {
+            "created_at": "2025-07-18 20:34:20",
+            "department_id": 2,
+            "description": "قبول الطلب من قبل رئيس شعبة الامتحانات",
+            "id": 5,
+            "name": "قبول الطلب من قبل رئيس شعبة الامتحانات",
+            "role": "manager",
+            "updated_at": "2025-07-18 20:34:20"
+        },
+        {
+            "created_at": "2025-07-18 20:34:55",
+            "department_id": 2,
+            "description": "معالجة الطلب من قبل موظف الامتحانات",
+            "id": 6,
+            "name": "معالجة الطلب - الامتحانات",
+            "role": "employee",
+            "updated_at": "2025-07-18 20:34:55"
+        },
+        {
+            "created_at": "2025-07-18 21:21:25",
+            "department_id": 4,
+            "description": "الطلب بحاجة إلى موافقة عميد الكلية",
+            "id": 7,
+            "name": "موافقة عميد الكلية",
+            "role": "manager",
+            "updated_at": "2025-07-18 21:21:25"
+        },
+       
+        {
+            "created_at": "2025-07-19 17:36:29",
+            "department_id": 3,
+            "description": "معالجة طلب  من قبل موظق شؤون الموظفين",
+            "id": 10,
+            "name": "معالجة طلب موظق",
+            "role": "employee",
+            "updated_at": "2025-07-19 17:36:29"
+        },
+        {
+            "created_at": "2025-07-19 17:37:50",
+            "department_id": 3,
+            "description": "طلب موافقة رئيس شعبة شؤون الموظفين على الطلب",
+            "id": 11,
+            "name": "موافقة رئيس شعبة شؤون الموظفين",
+            "role": "manager",
+            "updated_at": "2025-07-19 17:37:50"
+        },
+        {
+            "created_at": "2025-07-19 17:41:05",
+            "department_id": 6,
+            "description": "طلب موافقة من النائب الاداري على الطلب",
+            "id": 12,
+            "name": "موافقة النائب الاداري",
+            "role": "manager",
+            "updated_at": "2025-07-19 17:41:05"
+        },
+        {
+            "created_at": "2025-07-19 17:41:35",
+            "department_id": 5,
+            "description": "طلب موافقة من النائب العلمي",
+            "id": 13,
+            "name": "موافقة النائب العلمي",
+            "role": "manager",
+            "updated_at": "2025-07-19 17:41:35"
+        }
+    ]
+
+}

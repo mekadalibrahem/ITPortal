@@ -1,0 +1,22 @@
+{
+    "type": "table",
+    "name": "request_types",
+    "database": "itportal_app_db",
+    "data":
+[
+{
+    "id": "1",
+    "type": "employee"
+},
+
+{
+    "id": "2",
+    "type": "student"
+},
+{
+    "id": "3",
+    "type": "master"
+}
+]
+
+}

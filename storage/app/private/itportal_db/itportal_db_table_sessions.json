@@ -1,0 +1,17 @@
+{
+    "type": "table",
+    "name": "sessions",
+    "database": "itportal_app_db",
+    "data":
+[
+{
+    "id": "R4GpNe9sbB0JaFMgnwzYHgG1N5DCdIbsieZrfdNi",
+    "user_id": "1",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko\/20100101 Firefox\/123.0",
+    "payload": "YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUFd1bnA3c0hDT0wza081cUdtVEo4c0xRZm9ETEdEb0NuVU13SGVYZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9hdXRoL3VzZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkNmNBd3lEREF3b3FZZHRQMzFaUTRNdWRuZFBMUmVKbDBTVldndWtZL2VRRVVYYmkwdm9SbTIiO30=",
+    "last_activity": "1714749230"
+}
+]
+
+}

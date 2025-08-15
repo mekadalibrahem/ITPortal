@@ -1,0 +1,10 @@
+{
+    "type": "table",
+    "name": "personal_access_tokens",
+    "database": "itportal_app_db",
+    "data":
+[
+
+]
+
+}

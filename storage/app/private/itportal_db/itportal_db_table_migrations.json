@@ -1,0 +1,94 @@
+{
+    "type": "table",
+    "name": "migrations",
+    "database": "itportal_app_db",
+    "data":
+[
+{
+    "id": "1",
+    "migration": "2014_10_12_000000_create_users_table",
+    "batch": "1"
+},
+{
+    "id": "2",
+    "migration": "2014_10_12_100000_create_password_reset_tokens_table",
+    "batch": "1"
+},
+{
+    "id": "3",
+    "migration": "2019_08_19_000000_create_failed_jobs_table",
+    "batch": "1"
+},
+{
+    "id": "4",
+    "migration": "2019_12_14_000001_create_personal_access_tokens_table",
+    "batch": "1"
+},
+{
+    "id": "5",
+    "migration": "2024_03_03_105825_create_notificationss_table",
+    "batch": "1"
+},
+{
+    "id": "6",
+    "migration": "2024_03_03_110547_create_request_types_table",
+    "batch": "1"
+},
+{
+    "id": "7",
+    "migration": "2024_03_03_110624_create_requests_table",
+    "batch": "1"
+},
+{
+    "id": "8",
+    "migration": "2024_03_03_110942_create_requier_data_table",
+    "batch": "1"
+},
+{
+    "id": "9",
+    "migration": "2024_03_03_111232_create_collage_informations_table",
+    "batch": "1"
+},
+{
+    "id": "10",
+    "migration": "2024_03_03_111621_create_departments_table",
+    "batch": "1"
+},
+{
+    "id": "11",
+    "migration": "2024_03_03_111735_create_employees_table",
+    "batch": "1"
+},
+{
+    "id": "12",
+    "migration": "2024_03_03_112212_add_manager_constrain_for_departments",
+    "batch": "1"
+},
+{
+    "id": "13",
+    "migration": "2024_03_03_112822_create_request_lists_table",
+    "batch": "1"
+},
+{
+    "id": "14",
+    "migration": "2024_03_03_113626_create_data_table",
+    "batch": "1"
+},
+{
+    "id": "15",
+    "migration": "2024_03_03_113823_create_request_logs_table",
+    "batch": "1"
+},
+{
+    "id": "16",
+    "migration": "2024_04_16_114044_create_permission_tables",
+    "batch": "1"
+},
+{
+    "id": "17",
+    "migration": "2024_04_17_121758_create_sessions_table",
+    "batch": "1"
+}
+]
+
+}

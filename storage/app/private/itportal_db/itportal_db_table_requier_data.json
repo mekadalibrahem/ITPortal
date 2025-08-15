@@ -1,0 +1,255 @@
+{
+    "type": "table",
+    "name": "requier_data",
+    "database": "itportal_app_db",
+    "data":
+[
+{
+    "id": "1",
+    "name": "رقم الهوية",
+    "name_en": "nid",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "2",
+    "name": "اسم المادة",
+    "name_en": "subject",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "3",
+    "name": "السنة",
+    "name_en": "year",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "4",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "5",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "6",
+    "name": "الرقم الجامعي",
+    "name_en": "collage_id",
+    "type": "string",
+    "requests_id": "1"
+},
+{
+    "id": "7",
+    "name": "السنة",
+    "name_en": "year",
+    "type": "string",
+    "requests_id": "2"
+},
+{
+    "id": "8",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "2"
+},
+
+{
+    "id": "11",
+    "name": "السنة",
+    "name_en": "year",
+    "type": "string",
+    "requests_id": "3"
+},
+{
+    "id": "12",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "3"
+},
+{
+    "id": "18",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "4"
+},
+{
+    "id": "19",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "4"
+},
+{
+    "id": "20",
+    "name": "الرقم الجامعي",
+    "name_en": "collage_id",
+    "type": "string",
+    "requests_id": "4"
+},
+{
+    "id": "21",
+    "name": "من سنة",
+    "name_en": "from_year",
+    "type": "string",
+    "requests_id": "5"
+},
+{
+    "id": "22",
+    "name": "إلى سنة",
+    "name_en": "to_year",
+    "type": "string",
+    "requests_id": "5"
+},
+{
+    "id": "23",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "5"
+},
+{
+    "id": "24",
+    "name": "الرقم الجامعي",
+    "name_en": "collage_id",
+    "type": "string",
+    "requests_id": "5"
+},
+{
+    "id": "25",
+    "name": "السنة",
+    "name_en": "year",
+    "type": "string",
+    "requests_id": "6"
+},
+{
+    "id": "26",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "6"
+},
+{
+    "id": "27",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "7"
+},
+{
+    "id": "28",
+    "name": "فصل التخرج",
+    "name_en": "graduation_class",
+    "type": "string",
+    "requests_id": "7"
+},
+{
+    "id": "29",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "7"
+},
+{
+    "id": "30",
+    "name": "اسم المادة",
+    "name_en": "subject",
+    "type": "string",
+    "requests_id": "8"
+},
+{
+    "id": "31",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "8"
+},
+{
+    "id": "32",
+    "name": "الفصل",
+    "name_en": "term",
+    "type": "string",
+    "requests_id": "8"
+},
+{
+    "id": "33",
+    "name": "اسم المادة",
+    "name_en": "subject",
+    "type": "string",
+    "requests_id": "9"
+},
+{
+    "id": "34",
+    "name": "العام الدراسي",
+    "name_en": "academic_year",
+    "type": "string",
+    "requests_id": "9"
+},
+{
+    "id": "35",
+    "name": "الفصل",
+    "name_en": "term",
+    "type": "string",
+    "requests_id": "9"
+},
+{
+    "id": "36",
+    "name": "الاختصاص",
+    "name_en": "specialization",
+    "type": "string",
+    "requests_id": "10"
+},
+{
+    "id": "37",
+    "name": "الرقم الجامعي",
+    "name_en": "collage_id",
+    "type": "string",
+    "requests_id": "10"
+},
+{
+    "id": "38",
+    "name": "الوظيفة",
+    "name_en": "work",
+    "type": "string",
+    "requests_id": "12"
+},
+{
+    "id": "39",
+    "name": "الدائرة التابع لها",
+    "name_en": "department",
+    "type": "string",
+    "requests_id": "12"
+},
+{
+    "id": "40",
+    "name": "الفئة",
+    "name_en": "category",
+    "type": "string",
+    "requests_id": "12"
+},
+{
+    "id": "41",
+    "name": "تاريخ البدء",
+    "name_en": "start_time",
+    "type": "string",
+    "requests_id": "12"
+},
+{
+    "id": "42",
+    "name": "المدة",
+    "name_en": "count",
+    "type": "string",
+    "requests_id": "12"
+}
+]
+
+}
