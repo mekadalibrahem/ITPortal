@@ -2,4 +2,6 @@
 !private/
 !public/
 !.gitignore
-!private/itportal_db
+!private/itportal_db/
+!private/itportal_db/** 
+
