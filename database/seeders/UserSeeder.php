@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-
+        $json_file = "/itportal_db/itportal_db_table_users.json";
 
         $password = Hash::make('password');
-        if (Storage::disk('local')->get("/itportal_db/itportal_db_table_users.json")) {
-            $user_json = Storage::disk('local')->get("/itportal_db/itportal_db_table_users.json");
+        if (Storage::disk('local')->get($json_file)) {
+            $user_json = Storage::disk('local')->get($json_file);
         $json = json_decode($user_json , true);
         if(is_null($json)){
             throw new \Exception("dont have any json data");
@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
                 'username' => $user['username'],
                 'email' => $user['email'],
                 'password' =>$password,
+                'signature' => $user['signature'],
                 'national_id' =>  $user['national_id'],
             ]);
         }

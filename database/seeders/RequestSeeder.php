@@ -23,9 +23,8 @@ class RequestSeeder extends Seeder
                 'name' => $row['name'],
                 'isActive' => $row['isActive'],
                 'type_id' => $row['type_id'],
+                'page_id' => $row['page_id'],
                 'request_template_id' => $row['request_template_id']
-
-
             ]);
         }
     }

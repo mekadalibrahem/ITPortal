@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('request_id')->constrained('requests')->cascadeOnUpdate();
             $table->foreignId('request_template_id')->constrained('request_templates');
             $table->foreignId('current_step_id')->constrained('request_tamplates_steps');
+            $table->foreignId('page_id')->constrained('pages');
             $table->string("status");
             $table->string("note")->nullable();
             $table->string("dean");

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Employee;
 
+use App\Classes\Export\BrowserShotExportRequest;
+use App\Classes\Export\GrapesJsTemplateRenderer;
 use App\Classes\ExportPdf;
 use App\Classes\RequestManagment\RequestManagmentTemplate;
 use App\Enums\RequestStatusEnum;
@@ -122,12 +124,17 @@ class RequestsCard extends Component
     }
 
     public function exportToPdf()
-    {
-        return  ExportPdf::export($this->request, $this->request_data);
+    {   $request = RequestList::where('id', $this->request->id)->with(
+        [
+            'user',
+            'requestLog.employee.user',
+            'requests',
+        ]
+        )->first();
+        $browser_shot = new  BrowserShotExportRequest(new GrapesJsTemplateRenderer(), $request);
+        return  $browser_shot->export();
+
     }
-   
-
-
     public function render()
     {
       

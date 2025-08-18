@@ -182,5 +182,11 @@ return [
     'askToedit' => 'want edit',
     'create request step' => 'create request',
     'end request step'=>'end request',
-
+     "slut" => [
+        'name' => "print template",
+        'select' => "select template",
+        'new' => "new template",
+        'edit' => "edit template",
+        'current' => '',
+    ],
 ];

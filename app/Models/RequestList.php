@@ -13,6 +13,7 @@ use App\Models\RequestTemplates\RequestTemplate;
 use App\Models\RequestTemplates\RequestTemplateStep;
 use App\Traits\ModelHelper\HasDateTimeCast;
 use App\Traits\ModelHelper\HasEndAt;
+use MSA\LaravelGrapes\Models\Page;
 
 class RequestList extends Model
 {
@@ -27,6 +28,7 @@ class RequestList extends Model
         "request_id",
         "request_template_id",
         "current_step_id",
+        "page_id",
         'status',
         'note',
         'dean',
@@ -36,6 +38,10 @@ class RequestList extends Model
         'update_at',
     ];
 
+    
+    public function page() :BelongsTo {
+        return $this->belongsTo(Page::class);
+    }
 
     public function template(): BelongsTo
     {

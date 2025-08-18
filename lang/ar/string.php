@@ -180,5 +180,11 @@ return [
     'askToedit' => 'طلب تعديل',
     'create request step' => 'إنشاء الطلب',
     'end request step'=>'انتهاء الطلب',
-
+    "slut" => [
+        'name' => "قالب طباعة",
+        'select' => "اختر قالب",
+        'new' => "قالب جديد",
+        'edit' => "تعديل قالب",
+        'current' => 'المرحلة الحالية',
+    ],
 ];

@@ -25,7 +25,8 @@ class RequestsInfoTable extends CustomeDataTableComponent
     public function builder(): Builder
 
     {
-        return $this->model::query()->with([ 'type' , 'template']);
+        return $this->model::query()->with([ 'type' , 'template' , 'page'])
+        ->select([ 'requests.id' , 'requests.name' ,'type.type' , 'template.name' , 'page.name']);
     }
     public function columns(): array
     {
@@ -41,6 +42,9 @@ class RequestsInfoTable extends CustomeDataTableComponent
             Column::make(trans('string.Type'), "type.type")
                 ->sortable(),
             Column::make(trans('string.request_template.name') ,'template.name' )
+            ->sortable(),
+              Column::make(trans('string.slut.name') ,'page.name' )
+            ->sortable()
 
 
         ];

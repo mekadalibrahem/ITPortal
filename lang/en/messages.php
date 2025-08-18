@@ -36,4 +36,5 @@ return [
     "Don't support this action yet" => "Don't support this action yet",
     "Faild Add Item" => "Faild Add Item",
     "Faild save item" => "Faild save item",
+    "print template not set yet" => "print template not set yet",
 ];

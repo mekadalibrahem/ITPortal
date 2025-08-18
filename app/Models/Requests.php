@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use MSA\LaravelGrapes\Models\Page;
 
 class Requests extends Model
 {
@@ -19,11 +20,15 @@ class Requests extends Model
         'id',
         'name',
         'type_id',
+        "page_id",
         'request_template_id',
         'isActive',
        
     ];
 
+    public function page() :BelongsTo {
+        return $this->belongsTo(Page::class);
+    }
 
     public function type():BelongsTo {
         return $this->belongsTo(RequestType::class);

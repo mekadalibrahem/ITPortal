@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('isActive')->default(false);
             $table->foreignId('request_template_id')->constrained('request_templates');
             $table->foreignId('type_id')->constrained('request_types')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('page_id')->constrained('pages');
         });
         Schema::create('requier_data', function (Blueprint $table) {
             $table->id();

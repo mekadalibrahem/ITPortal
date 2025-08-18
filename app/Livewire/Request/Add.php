@@ -13,6 +13,7 @@ use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 use App\Models\RequireData;
 use App\Traits\StepsUi\StepTrait;
+use MSA\LaravelGrapes\Models\Page;
 
 class Add extends Component
 {
@@ -23,6 +24,8 @@ class Add extends Component
     public $templates;
     public $types;
     public $active;
+    public $page ;
+    public $pages;
 
     public $dataTypes;
     public Collection $dataRequired;
@@ -39,6 +42,7 @@ class Add extends Component
         $this->types = RequestType::all();
         $this->dataRequired = collect();
         $this->dataTypes = DataTypeEnum::array();
+        $this->pages = Page::all();
         $this->setMaxStep(3);
     }
 
@@ -48,6 +52,7 @@ class Add extends Component
             'name' => 'required|min:8|unique:requests,name',
             'type' => 'required|exists:request_types,id',
             'template' => 'required|exists:request_templates,id',
+            'page' =>'required|exists:pages,id',
         ];
     }
 
@@ -122,6 +127,7 @@ class Add extends Component
                     'type_id' => $this->type,
                     'request_template_id' => $this->template,
                     'isActive' => $this->active ?? 0,
+                    'page_id' => $this->page ,
                 ]);
                 if ($re) {
 

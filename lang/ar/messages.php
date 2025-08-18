@@ -36,6 +36,7 @@ return [
     "Don't support this action yet" => "هذه العملية غير مدعومة حاليا",
     'Faild Add Item' => "فشل إضافة العنصر",
     "Faild save item" => "فشل حفظ العنصر",
+    "print template not set yet" => "لم يتم اختيار قالب طباعة بعد",
 ];
 
 

@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
+use MSA\LaravelGrapes\Models\Page;
 
 class Edit extends Component
 {
-    use StepTrait ;
+    use StepTrait;
     public $name;
     public $type;
     public $template;
     public $templates;
+    public $pages;
+    public $page;
     public $types;
     public $active;
     public $dataTypes = [];
@@ -43,6 +46,7 @@ class Edit extends Component
         $this->templates = RequestTemplate::all();
         $this->types = RequestType::all();
         $this->dataTypes = DataTypeEnum::array();
+        $this->pages = Page::all();
     }
 
     public function index()
@@ -55,6 +59,7 @@ class Edit extends Component
             $this->type = $this->req->type_id;
             $this->template =  $this->req->request_template_id;
             $this->active   =  $this->req->isActive ? true : false;
+            $this->page = $this->req->page_id;
             $temp_array = [];
             foreach ($this->req->requireData as $i) {
                 $temp_array[$i->id] = [
@@ -82,7 +87,8 @@ class Edit extends Component
                 Rule::unique('requests', 'name')->ignore($this->req->id)
             ],
             'type' => 'required|exists:request_types,id',
-            'template' => 'required|exists:request_templates,id'
+            'template' => 'required|exists:request_templates,id',
+            'page' => 'required|exists:pages,id',
         ];
     }
 
@@ -100,7 +106,7 @@ class Edit extends Component
         }
     }
 
-    
+
 
 
     public function resetData($i)
@@ -215,6 +221,7 @@ class Edit extends Component
                 $req->request_template_id = $this->template;
                 $req->type_id = $this->type;
                 $req->isActive = $this->active ? 1 : 0;
+                $req->page_id = $this->page;
                 $updated = false;
 
                 if ($req->isDirty()) {

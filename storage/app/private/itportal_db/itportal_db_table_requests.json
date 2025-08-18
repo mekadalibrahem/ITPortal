@@ -9,6 +9,7 @@
     "name": "إعادة عملي",
     "isActive": "1",
     "request_template_id": 2 ,
+    "page_id" : 2,
     "type_id": "2"
 },
 {
@@ -16,6 +17,7 @@
     "name": "كشف علامات",
     "isActive": "1",
     "request_template_id": 2 ,
+    "page_id" : 3,
     "type_id": "2"
 },
 {
@@ -23,6 +25,7 @@
     "name": "وثيقة دوام",
     "isActive": "1",
     "request_template_id": 1 ,
+    "page_id" : 4,
     "type_id": "2"
 },
 
@@ -31,6 +34,7 @@
     "name": "إشعار تخرج",
     "isActive": "1",
     "request_template_id": 1 ,
+    "page_id" : 5,
     "type_id": "2"
 },
 {
@@ -38,6 +42,7 @@
     "name": "وثيقة ترفع",
     "isActive": "1",
     "request_template_id": 2 ,
+    "page_id" : 6,
     "type_id": "2"
 },
 {
@@ -45,6 +50,7 @@
     "name": "بيان وضع",
     "isActive": "1",
     "request_template_id": 2 ,
+    "page_id" : 7,
     "type_id": "2"
 },
 {
@@ -52,6 +58,7 @@
     "name": "مصدقة تخرج",
     "isActive": "1",
     "request_template_id": 1 ,
+    "page_id" : 8,
     "type_id": "2"
 },
 {
@@ -59,6 +66,7 @@
     "name": "إعتراض على علامة عملي ",
     "isActive": "0",
     "request_template_id": 2 ,
+    "page_id" : 9,
     "type_id": "2"
 },
 {
@@ -66,6 +74,7 @@
     "name": "اعتراض على  امتحان نظري",
     "isActive": "0",
     "request_template_id": 2 ,
+    "page_id" : 10,
     "type_id": "2"
 },
 {
@@ -73,6 +82,8 @@
     "name": "اختيار اختصاص",
     "isActive": "0",
     "request_template_id": 1 ,
+    "page_id" : 11,
+
     "type_id": "2"
 },
 {
@@ -80,6 +91,8 @@
     "name": "حياة جامعية",
     "isActive": "1",
     "request_template_id": 1 ,
+    "page_id" : 12,
+
     "type_id": "2"
 },
 {
@@ -87,6 +100,7 @@
     "name": "إجازة إدارية",
     "isActive": "1",
     "request_template_id": 3 ,
+    "page_id" : 1,
     "type_id": "1"
 }
 ]

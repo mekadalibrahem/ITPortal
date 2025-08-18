@@ -43,7 +43,8 @@ trait AddNewRequestTransaction
                     "current_step_id" => $firstStep->request_tamplates_steps_id,
                     "request_id" => $request_id,
                     "dean" => $dean->value,
-                    "coordinator" => $coor->value
+                    "coordinator" => $coor->value,
+                    'page_id' => $req->page_id
 
                 ]);
                 // setp 2 :  store request data

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             RequestTemplateStepSeeder::class,
             OrderStepsSeeder::class,
             RequestTypeSeeder::class,
+            SlutSeeder::class,
             RequestSeeder::class,
             RequiredSeeder::class,
             CollageinformationSeeder::class,
