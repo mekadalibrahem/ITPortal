@@ -15,7 +15,9 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "masmerise/livewire-toaster": "^2.6",
+        "msa/laravel-grapes": "^1.0",
         "rappasoft/laravel-livewire-tables": "^3.6",
+        "spatie/browsershot": "^5.0",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {
