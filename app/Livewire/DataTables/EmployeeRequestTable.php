@@ -142,12 +142,14 @@ class EmployeeRequestTable extends DataTableComponent
                         return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'>" .
                             $text
                             . "</div>";
-                    } else {
+                    } else if($this->employee->can_work($row , true)) {
                         return " <button type='button'
                             class='py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none  '
                             wire:click='start(" . $value . ")'>
                         start
                         </button>";
+                    }else{
+                         return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'> ------- </div>";
                     }
                     // Return raw HTML with the status badge styled using Tailwind CSS
 
