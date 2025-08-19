@@ -8,6 +8,7 @@
 * Profile managment
   * edit general information  **`tested`**
   * edit password  **`tested`**
+  * edit signature
   * logout from another devices ( show what devices used to login )
   * delete account
 * Request
@@ -22,9 +23,11 @@
 
 * all user features
 * request managment
-  * show what request send for him
-  * work in request ( redirect for another employee  or another department (when employee is department role))
-  * cansel  ,accept , reject reqest  
+  * show what request  sendt (that have at less one step can work on it) ->(department manager show all requests that have step for his department)
+  * work in request
+    * ask user to edit  (with sent notification to user)
+    * accept , reject  (with notification to user )
+    * export to file (pdf)
 
 ### admin
 
@@ -45,6 +48,7 @@
 * request Template
   * request steps managment (CRUD)
   * request template managment (CRUD)
+  * request print template managment  (package : msa/laravel-grapes)
 * employess
 
   * departmetn managment    **`tested`**
@@ -96,18 +100,17 @@
 ### frontend
 
 * preline
-* edit profile page with its components
 
 ### backend
 
 * jenssegers/agent
-* liveware
+* liveware/liveware
 * spatie/laravel-permission
-<!-- 
-* mpdf/mpdf
 * spatie/browsershot
-* spatie/laravel-backup
-* spatie/laravel-pdf 
--->
+* msa/laravel-grapes
 * masmerise/livewire-toaster
 * rappasoft/laravel-livewire-tables
+<!-- 
+* mpdf/mpdf
+* spatie/laravel-backup
+-->
