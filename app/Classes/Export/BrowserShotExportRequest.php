@@ -48,8 +48,7 @@ class BrowserShotExportRequest extends AbstractExportRequest
     public function get_view()
     {
         $current_page = $this->request->page;
-        $original_page = $this->request->requests->page;
-        $page = $current_page ? $current_page : $original_page;
+        $page =  $current_page ?? $this->request->requests->page;
         if (!$page) {
             Toaster::error(trans("messages.print template not set yet"));
             throw new  Exception("FAILD GET VIEW PRINT TEMPLATE NOT SET YET");
