@@ -23,20 +23,20 @@
             <!-- Preview uploaded file -->
             @if ($signature)
                 <div class="sm:col-span-2 mt-2">
-                    <p class="text-sm text-gray-600">{{ __('string.New Signature Preview') }}:</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-white mb-2">{{ __('string.New Signature Preview') }}:</p>
                     <img src="{{ $signature->temporaryUrl() }}" 
                          alt="Signature Preview" 
-                         class="max-h-32 border rounded" style="max-width: 200px;">
+                         class="max-h-32 border rounded bg-white" style="max-width: 200px;">
                 </div>
             @endif
 
             <!-- Current Signature -->
             @if ($suser->signature )
                 <div class="sm:col-span-2 mt-2">
-                    <p class="text-sm text-gray-600">{{ __('string.Current Signature') }}:</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-white mb-2">{{ __('string.Current Signature') }}:</p>
                     <img src="{{ $suser->signature }}" 
                          alt="Current Signature" 
-                         class="max-h-32 border rounded" style="max-width: 200px;">
+                         class="max-h-32 border rounded bg-white" style="max-width: 200px;">
                 </div>
             @endif
         </div>
