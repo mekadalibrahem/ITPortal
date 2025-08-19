@@ -110,7 +110,4 @@
 * msa/laravel-grapes
 * masmerise/livewire-toaster
 * rappasoft/laravel-livewire-tables
-<!-- 
-* mpdf/mpdf
 * spatie/laravel-backup
--->

@@ -18,6 +18,7 @@
         "msa/laravel-grapes": "^1.0",
         "rappasoft/laravel-livewire-tables": "^3.6",
         "spatie/browsershot": "^5.0",
+        "spatie/laravel-backup": "^9.3",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {
