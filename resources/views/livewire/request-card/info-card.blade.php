@@ -55,8 +55,8 @@
                                     {{ $item->value }}
                                 @break
                                 @case('image')
-                                    <img src="{{ asset('Uploads/request_photos/' . $item->value) }}"
-                                        alt="alt_{{ $item->name }}" class="max-w-xs" />
+                                    <img src="{{ asset('/storage/request_photos/' . $item->value) }}"
+                                        alt="alt_{{ $item->name }}" class="max-w-xs w-[200px] h-[200px]" />
                                 @break
                                 @default
                                     {{ $item->value }}
