@@ -123,18 +123,7 @@ class RequestsCard extends Component
         return $request_managment_template ;
     }
 
-    public function exportToPdf()
-    {   $request = RequestList::where('id', $this->request->id)->with(
-        [
-            'user',
-            'requestLog.employee.user',
-            'requests',
-        ]
-        )->first();
-        $browser_shot = new  BrowserShotExportRequest(new GrapesJsTemplateRenderer(), $request);
-        return  $browser_shot->export();
-
-    }
+    
     public function render()
     {
       

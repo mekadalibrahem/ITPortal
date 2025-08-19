@@ -189,4 +189,5 @@ return [
         'edit' => "edit template",
         'current' => '',
     ],
+    "request data" => "Request data",
 ];

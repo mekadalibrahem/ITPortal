@@ -69,8 +69,8 @@ class Edit extends Component
             $req = RequestList::where([
                 'id' => $this->id,
                 'user_id' => $this->request_user->id,
-            ])->first();
-
+            ])->with(['data' ,'data.require_data'])->first();
+           
             if ($req) {
                 // request found
                 $this->req = $req;
