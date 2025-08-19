@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Data;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+
 class DataSeeder extends Seeder
 {
     /**
@@ -14,15 +15,17 @@ class DataSeeder extends Seeder
     {
 
         $json_file = Storage::disk('local')->get('/itportal_db/itportal_db_table_data.json');
-        $json = json_decode($json_file , true);
+        $json = json_decode($json_file, true);
         foreach ($json['data'] as $row) {
             Data::query()->create([
                 'name' => $row['name'],
-               'value' =>$row['value'],
-               'request_list_id' =>$row['request_list_id']
+                'value' => $row['value'],
+                'request_list_id' => $row['request_list_id'],
+                "created_at" => $row['created_at'],
+                "id" => $row['id'],
+                "updated_at" => $row['updated_at'],
 
-           ]);
+            ]);
         }
-
     }
 }

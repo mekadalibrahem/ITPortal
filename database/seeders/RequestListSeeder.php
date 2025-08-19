@@ -17,20 +17,30 @@ class RequestListSeeder extends Seeder
     {
 
         $json_file = Storage::disk('local')->get('/itportal_db/itportal_db_table_request_lists.json');
-        $json = json_decode($json_file , true);
+        $json = json_decode($json_file, true);
         foreach ($json['data'] as $row) {
             RequestList::query()->create([
                 'user_id' => $row['user_id'],
-               'request_id' =>$row['request_id'],
-               'status' => $row['status'],
-               'dean' => $row['dean'],
-               'coordinator' => $row['coordinator'] ,
-               'created_at' => $row['created_at'],
-               'updated_at' =>$row['updated_at']
+                'request_id' => $row['request_id'],
+                'status' => $row['status'],
+                'dean' => $row['dean'],
+                'coordinator' => $row['coordinator'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at'],
+                "current_step_id" => $row['current_step_id'],
+                "end_at" => $row['end_at'],
+                "id" => $row['id'],
+                "note" => $row['note'],
+                "page_id" =>$row['page_id'],
+                "request_template_id" => $row['request_template_id'],
 
 
-           ]);
+
+
+
+
+
+            ]);
         }
-
     }
 }

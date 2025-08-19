@@ -17,16 +17,21 @@ class RequestLogSeeder extends Seeder
     {
 
         $json_file = Storage::disk('local')->get('/itportal_db/itportal_db_table_request_logs.json');
-        $json = json_decode($json_file , true);
+        $json = json_decode($json_file, true);
         foreach ($json['data'] as $row) {
             RequestLog::query()->create([
                 'request_list_id' => $row['request_list_id'],
-               'employee_id' =>$row['employee_id'],
-               'created_at' => $row['created_at'],
-               'updated_at' =>$row['updated_at'],
+                'employee_id' => $row['employee_id'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at'],
+                "end_at" => $row['end_at'],
+                "id" => $row['id'],
+                "note" => $row['note'],
+                "request_tamplates_step_id" => $row['request_tamplates_step_id'],
+                "start_at" => $row['start_at'],
 
 
-           ]);
+            ]);
         }
     }
 }

@@ -4,105 +4,102 @@
     "database": "itportal_app_db",
     "data":
 [
-{
-    "id": "1",
-    "name": "إعادة عملي",
-    "isActive": "1",
-    "request_template_id": 2 ,
-    "page_id" : 2,
-    "type_id": "2"
-},
-{
-    "id": "2",
-    "name": "كشف علامات",
-    "isActive": "1",
-    "request_template_id": 2 ,
-    "page_id" : 3,
-    "type_id": "2"
-},
-{
-    "id": "3",
-    "name": "وثيقة دوام",
-    "isActive": "1",
-    "request_template_id": 1 ,
-    "page_id" : 4,
-    "type_id": "2"
-},
-
-{
-    "id": "4",
-    "name": "إشعار تخرج",
-    "isActive": "1",
-    "request_template_id": 1 ,
-    "page_id" : 5,
-    "type_id": "2"
-},
-{
-    "id": "5",
-    "name": "وثيقة ترفع",
-    "isActive": "1",
-    "request_template_id": 2 ,
-    "page_id" : 6,
-    "type_id": "2"
-},
-{
-    "id": "6",
-    "name": "بيان وضع",
-    "isActive": "1",
-    "request_template_id": 2 ,
-    "page_id" : 7,
-    "type_id": "2"
-},
-{
-    "id": "7",
-    "name": "مصدقة تخرج",
-    "isActive": "1",
-    "request_template_id": 1 ,
-    "page_id" : 8,
-    "type_id": "2"
-},
-{
-    "id": "8",
-    "name": "إعتراض على علامة عملي ",
-    "isActive": "0",
-    "request_template_id": 2 ,
-    "page_id" : 9,
-    "type_id": "2"
-},
-{
-    "id": "9",
-    "name": "اعتراض على  امتحان نظري",
-    "isActive": "0",
-    "request_template_id": 2 ,
-    "page_id" : 10,
-    "type_id": "2"
-},
-{
-    "id": "10",
-    "name": "اختيار اختصاص",
-    "isActive": "0",
-    "request_template_id": 1 ,
-    "page_id" : 11,
-
-    "type_id": "2"
-},
-{
-    "id": "11",
-    "name": "حياة جامعية",
-    "isActive": "1",
-    "request_template_id": 1 ,
-    "page_id" : 12,
-
-    "type_id": "2"
-},
-{
-    "id": "12",
-    "name": "إجازة إدارية",
-    "isActive": "1",
-    "request_template_id": 3 ,
-    "page_id" : 1,
-    "type_id": "1"
-}
+    {
+        "id": 1,
+        "isActive": 1,
+        "name": "إعادة عملي",
+        "page_id": 2,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 2,
+        "isActive": 1,
+        "name": "كشف علامات",
+        "page_id": 3,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 3,
+        "isActive": 1,
+        "name": "وثيقة دوام",
+        "page_id": 4,
+        "request_template_id": 1,
+        "type_id": 2
+    },
+    {
+        "id": 4,
+        "isActive": 1,
+        "name": "إشعار تخرج",
+        "page_id": 5,
+        "request_template_id": 1,
+        "type_id": 2
+    },
+    {
+        "id": 5,
+        "isActive": 1,
+        "name": "وثيقة ترفع",
+        "page_id": 6,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 6,
+        "isActive": 1,
+        "name": "بيان وضع",
+        "page_id": 7,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 7,
+        "isActive": 1,
+        "name": "مصدقة تخرج",
+        "page_id": 8,
+        "request_template_id": 1,
+        "type_id": 2
+    },
+    {
+        "id": 8,
+        "isActive": 1,
+        "name": "إعتراض على علامة عملي ",
+        "page_id": 9,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 9,
+        "isActive": 1,
+        "name": "اعتراض على  امتحان نظري",
+        "page_id": 10,
+        "request_template_id": 2,
+        "type_id": 2
+    },
+    {
+        "id": 10,
+        "isActive": 1,
+        "name": "اختيار اختصاص",
+        "page_id": 11,
+        "request_template_id": 1,
+        "type_id": 2
+    },
+    {
+        "id": 11,
+        "isActive": 1,
+        "name": "حياة جامعية",
+        "page_id": 12,
+        "request_template_id": 1,
+        "type_id": 2
+    },
+    {
+        "id": 12,
+        "isActive": 1,
+        "name": "إجازة إدارية",
+        "page_id": 1,
+        "request_template_id": 3,
+        "type_id": 1
+    }
 ]
 
 }

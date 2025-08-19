@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             RequestSeeder::class,
             RequiredSeeder::class,
             CollageinformationSeeder::class,
-            // RequestListSeeder::class,
-            // DataSeeder::class,
-            // RequestLogSeeder::class,
+            RequestListSeeder::class,
+            DataSeeder::class,
+            RequestLogSeeder::class,
             NotificationSeeder::class,
             PermissionsSeeder::class
 
