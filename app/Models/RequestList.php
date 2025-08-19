@@ -13,6 +13,7 @@ use App\Models\RequestTemplates\RequestTemplate;
 use App\Models\RequestTemplates\RequestTemplateStep;
 use App\Traits\ModelHelper\HasDateTimeCast;
 use App\Traits\ModelHelper\HasEndAt;
+use App\Traits\ModelHelper\HasRequestStatus;
 use MSA\LaravelGrapes\Models\Page;
 
 class RequestList extends Model
@@ -20,6 +21,9 @@ class RequestList extends Model
     use HasFactory;
     use HasEndAt ;
     use HasDateTimeCast;
+    use HasRequestStatus;
+
+
     
     // protected $table  = 'request_lists' ;
     protected $fillable = [

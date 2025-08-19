@@ -37,4 +37,5 @@ return [
     "Faild Add Item" => "Faild Add Item",
     "Faild save item" => "Faild save item",
     "print template not set yet" => "print template not set yet",
+    "your request finished  , your can not edit it now" => "your request finished  , your can not edit it now",
 ];

@@ -37,6 +37,8 @@ return [
     'Faild Add Item' => "فشل إضافة العنصر",
     "Faild save item" => "فشل حفظ العنصر",
     "print template not set yet" => "لم يتم اختيار قالب طباعة بعد",
+    "your request finished  , your can not edit it now" => "تم الانتهاء من طلبك، لا يمكنك تعديله الآن",
+    
 ];
 
 
