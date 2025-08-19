@@ -10,29 +10,27 @@ use Illuminate\Support\Facades\Storage;
 trait BackupTrait
 {
 
-    public static function backup()
+   public static function backup()
     {
-
-
         try {
-
-
-
-            // Put the application in maintenance mode
-            Artisan::call('down');
+           
+            // Put the application in maintenance mode with a custom view
+            Artisan::call('down', [
+                '--render' => 'errors::503', // Custom maintenance view (e.g., resources/views/errors/503.blade.php)
+                '--retry' => 60, // Seconds after which users can retry
+            ]);
 
             // Run the backup commands
             Artisan::call('backup:clean');
             Artisan::call('backup:run --disable-notifications');
 
-            // Bring the application back online
-            Artisan::call('up');
-
-            // $path_db =
             return true;
         } catch (\Throwable $th) {
-            Log::error("ERROR BACKUP :" . $th->getMessage());
+            Log::error("ERROR BACKUP: " . $th->getMessage());
             return false;
+        } finally {
+            // Always bring the application back online
+            Artisan::call('up');
         }
     }
 }

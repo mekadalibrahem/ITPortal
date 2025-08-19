@@ -78,7 +78,10 @@
     * search by user email
     * assign permission or role to user
     * revoke permission or role from user
-
+* backups
+  * backups for database and all images (files ) uploaded
+  * action : run backup ,show , download   and  delete
+  
 ## Front-end
 
 * add preline library.

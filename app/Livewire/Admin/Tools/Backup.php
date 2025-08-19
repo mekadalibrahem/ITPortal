@@ -5,26 +5,28 @@ namespace App\Livewire\Admin\Tools;
 use App\Http\Controllers\ZipController;
 use App\Traits\BackupTrait;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Backup extends Component
 {
-    public const PATH_BACKUP = 'ITPortal';
+    public const PATH_BACKUP = 'backups/Laravel';
     use BackupTrait;
     public $user;
     public $files;
     public function mount()
     {
-        $this->user = auth()->user();
+        $this->user = Auth::user();
         $this->index();
     }
 
     public function index()
     {
 
-
+        // dd(Storage::allFiles("Laravel"));
         $this->files = array_reverse(
             array_map(
                 "basename",
@@ -39,6 +41,7 @@ class Backup extends Component
             return Storage::download(SELF::PATH_BACKUP . "/" . $filename);
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th->getMessage());
         }
     }
 
