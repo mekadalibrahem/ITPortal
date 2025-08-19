@@ -72,8 +72,9 @@ class RequestsCard extends Component
 
         $this->hidden = false;
         $this->request_id = $this->id;
-        $this->request = RequestList::with(['data', 'user'])
+        $this->request = RequestList::with(['data', 'user' ,'data.require_data'])
             ->findOrFail($this->request_id);
+        // dd($this->request);
         $requireDataMap = RequireData::whereIn(
             'name_en',
             $this->request->data->pluck('name')
