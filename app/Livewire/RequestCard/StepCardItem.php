@@ -9,6 +9,7 @@ class StepCardItem extends Component
     public $status ;
     public $time ;
     public $note ;
+    public $hasnote = true;
     public $title ;
     public $connector = true ;
     public function render()

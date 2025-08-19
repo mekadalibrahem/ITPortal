@@ -1,5 +1,5 @@
 <x-widgets.section title="{{ __('string.Request details') }}">
-    <livewire:request-card.steps-card :id="$id" />
+    <livewire:request-card.steps-card :id="$id" hasnote="{{ false }}"/>
 
 
 

@@ -15,6 +15,7 @@ class StepsCard extends Component
     public $all_template_steps;
     public Collection $steps;
     public $end_status;
+    public $hasnote = true;
 
     public function init_steps()
     {
