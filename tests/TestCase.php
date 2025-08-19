@@ -23,13 +23,13 @@ abstract class TestCase extends BaseTestCase
         $user = null;
         switch ($role) {
             case ('normal'):
-                $user = User::where('email', 'rami02@gmail.com')->first();
+                $user = User::where('email', 'user01@gmail.com')->first();
                 break;
             case ('admin'):
                 $user = User::where('email', 'admin@gmail.com')->first();
                 break;
             case ('employee'):
-                $user = User::where('email', 'sami@gmail.com')->first();
+                $user = User::where('email', 'dean@gmail.com')->first();
 
                 break;
             default:

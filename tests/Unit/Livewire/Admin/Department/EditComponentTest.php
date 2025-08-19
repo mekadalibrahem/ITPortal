@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Unit\Livewire\Admin\RequestType;
+namespace Tests\Unit\Livewire\Admin\Department;
 
 use App\Livewire\Admin\Department\Edit;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\RequestType;
+use App\Models\User;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -151,7 +152,8 @@ class EditComponentTest extends TestCase
         ]);
     }
 
-    public function test_valid_set_manager() : void {
+    public function test_valid_set_manager(): void
+    {
         $this->getUser('admin');
 
 
@@ -162,19 +164,25 @@ class EditComponentTest extends TestCase
         ]);
 
         $this->assertNotNull($dep);
+        $newUser = User::factory()->create();
+        $this->assertNotNull($newUser);
+        $employee = Employee::create([
+            'user_id' => $newUser->id,
+        ]);
+        $this->assertNotNull($employee);
         $manager = Employee::canManager($dep->id)->first();
         $this->assertNotNull($manager);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
-
-        $manager_id = $manager->id ;
-        $component->set('manager_id', $manager_id);
-        $component->call('edit');
-        $this->assertDatabaseHas($this->table_name, [
-            "name" => $dep->name,
-            "description" => $dep->description,
-            "manager_id" => $manager_id
-        ]);
+       
+            $manager_id = $manager->id;
+            $component->set('manager_id', $manager_id);
+            $component->call('edit');
+            $this->assertDatabaseHas($this->table_name, [
+                "name" => $dep->name,
+                "description" => $dep->description,
+                "manager_id" => $manager_id
+            ]);
+       
     }
-
 }

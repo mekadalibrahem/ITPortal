@@ -5,6 +5,7 @@ namespace Tests\Unit\Livewire\Admin\RequestType;
 use App\Livewire\Admin\Department\Index;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\User;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -39,15 +40,20 @@ class IndexComponentTest extends TestCase
         ]);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
-
-        $employee = Employee::free()->first();
+        $newUser = User::factory()->create();
+        $this->assertNotNull($newUser);
+        $employee = Employee::create([
+            'user_id' => $newUser->id,
+        ]);
         $this->assertNotNull($employee);
-        $component->set('new_employee' , $employee->id);
+        $employee2 = Employee::free()->first();
+        $this->assertNotNull($employee2);
+        $component->set('new_employee', $employee2->id);
         $component->call('insert');
         $component->assertHasNoErrors();
         $this->assertDataBaseHas('employees', [
-            'user_id' => $employee->user_id ,
-            'id' => $employee->id ,
+            'user_id' => $employee2->user_id,
+            'id' => $employee2->id,
             'department_id' => $dep->id
         ]);
     }
@@ -62,20 +68,25 @@ class IndexComponentTest extends TestCase
         ]);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
-
-        $employee = Employee::free()->first();
+        $newUser = User::factory()->create();
+        $this->assertNotNull($newUser);
+        $employee = Employee::create([
+            'user_id' => $newUser->id,
+        ]);
         $this->assertNotNull($employee);
-        $dep->addEmployee($employee);
+        $employee2 = Employee::free()->first();
+        $this->assertNotNull($employee2);
+        $dep->addEmployee($employee2);
         $this->assertDataBaseHas('employees', [
-            'user_id' => $employee->user_id ,
-            'id' => $employee->id ,
+            'user_id' => $employee2->user_id,
+            'id' => $employee2->id,
             'department_id' => $dep->id
         ]);
-        $component->call('delete' , $employee->id);
+        $component->call('delete', $employee2->id);
         $component->assertHasNoErrors();
         $this->assertDatabaseMissing('employees', [
-            'user_id' => $employee->user_id ,
-            'id' => $employee->id ,
+            'user_id' => $employee2->user_id,
+            'id' => $employee2->id,
             'department_id' => $dep->id
         ]);
     }
