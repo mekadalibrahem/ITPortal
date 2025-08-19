@@ -33,4 +33,5 @@ require __DIR__ . "/web/admin.php";
 require __DIR__ . "/web/user.php";
 require __DIR__ . "/web/employee.php";
 require __DIR__ . "/web/dashboard.php";
+require __DIR__ . "/web/print_template.php";
 require __DIR__ . "/web/test.php";

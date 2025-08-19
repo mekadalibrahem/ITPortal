@@ -36,9 +36,9 @@
     <x-widgets.accordion-child-link href="{{Route('admin.requests.steps.index')}}">
         {{ __("string.step.name") }}
     </x-widgets.accordion-child-link>
-    {{-- <x-widgets.accordion-child-link href="{{Route('admin.requests.sluts.index')}}">
+    <x-widgets.accordion-child-link href="{{Route('website.builder')}}">
         {{ __("string.slut.name") }}
-    </x-widgets.accordion-child-link> --}}
+    </x-widgets.accordion-child-link>
 
 
 </x-widgets.accordion-item>
