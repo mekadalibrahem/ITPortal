@@ -4,6 +4,7 @@
     </x-slot:title>
 
     {{__("string.Staticties")}}
+    <livewire:staticties.department-request-count />
     <livewire:staticties.request-list-count />
-
+    
 </x-layouts.dashboard>
