@@ -114,7 +114,6 @@ Route::group(
             Route::view('/{id}', 'dashboard.admin.employee.department.edit')->name('edit')->where(['id' => '[0-9]+']);
         });
 
-        // TODO  Add backups Routes
         Route::view("/backups", "dashboard.admin.tools.backup")->name("backups");
         // TODO  Add staticties Routes
         Route::view('/staticties', 'dashboard.admin.staticties')->name('staticties');
