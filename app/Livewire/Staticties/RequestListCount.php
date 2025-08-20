@@ -11,7 +11,7 @@ use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class RequestList extends Component
+class RequestListCount extends Component
 {
     use WithChart;
 
@@ -42,6 +42,6 @@ class RequestList extends Component
 
     public function render()
     {
-        return view('livewire.staticties.request-list', ['chart' => $this->chart()]);
+        return view('livewire.staticties.request-list-count', ['chart' => $this->chart()]);
     }
 }
