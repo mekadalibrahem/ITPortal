@@ -4,6 +4,7 @@ namespace App\Livewire\Staticties;
 
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use App\Classes\Chart\Traits\WithChart;
+use App\Livewire\Staticties\Traits\HasHeader;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class EmployeeRequestCount extends Component
 {
     use WithChart;
+    use HasHeader;
     public function mount()
     {
         $employees = Employee::with('user')->orderBy('employees.id')->get();
@@ -21,6 +23,7 @@ class EmployeeRequestCount extends Component
         $this->setChartLabels($names);
         $this->setChartName('employeerequestcount');
         $this->setChartType('bar');
+        $this->setHeader(trans('string.request_employee_count'));
     }
 
     public function data(): array

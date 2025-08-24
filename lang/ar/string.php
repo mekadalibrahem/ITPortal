@@ -188,5 +188,8 @@ return [
         'current' => 'المرحلة الحالية',
     ],
     "request data" => "بيانات الطلب",
-
+    "request_list_count" => "عدد الطلبات",
+    "request_status_count" => "حالة الطلبات",
+    'request_employee_count' => 'الطلبات المنفذة من قبل الموظق',
+    "request_department_count" => 'الطلبات المنفذة بكل قسم',
 ];

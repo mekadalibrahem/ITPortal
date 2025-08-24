@@ -84,7 +84,7 @@ return [
         "collage_id" => "collage id",
         "collage_card" => "collage card",
         "from_year" => "from year",
-        "to year" => "to year",
+        "to_year" => "to year",
         "graduation_class" => "graduation class",
         "term" => "term",
         "work" => "work",
@@ -190,4 +190,9 @@ return [
         'current' => '',
     ],
     "request data" => "Request data",
+    "request_list_count" => "requests count",
+    "request_status_count" => "request status",
+    "request_employee_count" => 'request worked by employee',
+    "request_department_count"=> 'request worked by deparmtent',
+    
 ];

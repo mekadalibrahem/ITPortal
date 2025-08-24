@@ -4,30 +4,36 @@ namespace App\Livewire\Staticties;
 
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use App\Classes\Chart\Traits\WithChart;
-use App\Classes\Colors\ColorGenerator;
-use App\Models\RequestList as ModelsRequestList;
+use App\Livewire\Staticties\Traits\HasHeader;
+use App\Models\RequestList;
 use App\Models\Requests;
-use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Support\Facades\DB;
+
 use Livewire\Component;
 
 class RequestListCount extends Component
 {
     use WithChart;
+    use HasHeader;
+   
+
+
 
     public function mount()
     {
         $this->setChartLabels(Requests::distinct()->orderBy('id')->pluck('name')->toArray());
         $this->setChartName('test');
         $this->setChartType('bar');
+        $this->setHeader(trans('string.request_list_count'));
     }
 
     public function data(): array
     {
+        $query =  RequestList::select('request_id', DB::raw('count(*) as total'));
+        $query->groupBy('request_id');
+
         return [
-            ModelsRequestList::select('request_id', DB::raw('count(*) as total'))
-                ->groupBy('request_id')
-                ->pluck('total')->toArray()
+            $query->pluck('total')->toArray()
         ];
     }
     public function datasets(): array
@@ -42,6 +48,7 @@ class RequestListCount extends Component
 
     public function render()
     {
-        return view('livewire.staticties.request-list-count', ['chart' => $this->chart()]);
+
+        return view('livewire.staticties.request-list-count');
     }
 }

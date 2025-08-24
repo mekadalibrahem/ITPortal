@@ -5,19 +5,20 @@ namespace App\Livewire\Staticties;
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use Livewire\Component;
 use App\Classes\Chart\Traits\WithChart;
+use App\Livewire\Staticties\Traits\HasHeader;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
-use App\Models\RequestList;
-use App\Models\Requests;
 
 class DepartmentRequestCount extends Component
 {
     use WithChart;
+    use HasHeader;
     public function mount()
     {
         $this->setChartLabels(Department::select('name', 'id')->orderBy('id')->pluck('name')->toArray());
         $this->setChartName('departmentrequestcount');
-        $this->setChartType('bar');
+        $this->setChartType('doughnut');
+        $this->setHeader(trans('string.request_department_count'));
     }
 
     public function data(): array

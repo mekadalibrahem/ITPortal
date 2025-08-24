@@ -6,20 +6,24 @@ use Livewire\Component;
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use App\Classes\Chart\Traits\WithChart;
 use App\Enums\RequestStatusEnum;
+use App\Livewire\Staticties\Traits\HasHeader;
 use App\Models\RequestList as RequestList;
-
-use Illuminate\Support\Facades\DB;
 
 
 class RequestStatusCount extends Component
 {
     use WithChart;
-
+    use HasHeader;
     public function mount()
     {
-        $this->setChartLabels(['working', 'rejected', 'accepted']);
+        $this->setChartLabels([
+            'rejected',
+            'accepted',
+            'working',
+        ]);
         $this->setChartName('requeststatuscount');
         $this->setChartType('pie');
+        $this->setHeader(trans('string.request_status_count'));
     }
 
     public function data(): array
@@ -42,9 +46,9 @@ class RequestStatusCount extends Component
 
         return [
             [
-                RequestList::whereIn('status', $working_cases)->count(),
                 RequestList::whereIn('status', $rejected_cases)->count(),
-                RequestList::whereIn('status', $accepted_cases)->count()
+                RequestList::whereIn('status', $accepted_cases)->count(),
+                RequestList::whereIn('status', $working_cases)->count(),
             ]
         ];
     }
