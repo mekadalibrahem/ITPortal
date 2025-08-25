@@ -81,7 +81,11 @@
 * backups
   * backups for database and all images (files ) uploaded
   * action : run backup ,show , download   and  delete
-  
+* staticties
+  * show staticts about requests
+  * filter staticts by year  (from year , to year)
+  * export to excel
+
 ## Front-end
 
 * add preline library.
