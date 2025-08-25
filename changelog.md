@@ -23,7 +23,9 @@
 
 * all user features
 * request managment
-  * show what request  sendt (that have at less one step can work on it) ->(department manager show all requests that have step for his department)
+  * show what request
+    * search by request id
+    * sendt (that have at less one step can work on it) ->(department manager show all requests that have step for his department)
   * work in request
     * ask user to edit  (with sent notification to user)
     * accept , reject  (with notification to user )

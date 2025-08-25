@@ -45,6 +45,7 @@ class EmployeeRequestTable extends DataTableComponent
             ->setPerPageAccepted([5, 10, 25]);
         $this->setEmptyMessage(trans("messages.Don't Have any request yet"));
         $this->setSearchStatus(false);
+        $this->setSearchEnabled();
         $this->setThAttributes(function (Column $column) {
             return [
                 'default' => true,
@@ -91,11 +92,10 @@ class EmployeeRequestTable extends DataTableComponent
         $columns = [
 
             Column::make('id', 'id')
-                ->sortable()->hideIf(true),
+                ->sortable()->searchable(),
             Column::make(trans('string.request user'), 'user_id')->format(function ($value, $row) {
                 return $row->user->fullname();
-            })
-                ->sortable(),
+            })->sortable(),
             Column::make(trans('string.Request type'), "requests.name")
                 ->sortable(),
             Column::make(trans('string.Status'), "status")
@@ -114,15 +114,13 @@ class EmployeeRequestTable extends DataTableComponent
             Column::make(trans('string.step.current'), "current_step_id")
                 ->sortable()
                 ->format(function ($value, $row) {
-
                     $step = $row->currentStep;
                     $text = "----";
                     if ($step) {
                         $text =  $step->name;
                         $text = $row->isEnd() ? "-----" : $text;
                     }
-                    return
-                        "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'>" .
+                    return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'>" .
                         $text
                         . "</div>";
                 })->html(),
@@ -142,14 +140,14 @@ class EmployeeRequestTable extends DataTableComponent
                         return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'>" .
                             $text
                             . "</div>";
-                    } else if($this->employee->can_work($row , true)) {
+                    } else if ($this->employee->can_work($row, true)) {
                         return " <button type='button'
                             class='py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none  '
                             wire:click='start(" . $value . ")'>
                         start
                         </button>";
-                    }else{
-                         return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'> ------- </div>";
+                    } else {
+                        return "<div class=' px-3 py-1 rounded-full text-sm font-medium text-center'> ------- </div>";
                     }
                     // Return raw HTML with the status badge styled using Tailwind CSS
 
@@ -157,11 +155,9 @@ class EmployeeRequestTable extends DataTableComponent
             Column::make(trans('string.create_at'), "created_at")
                 ->sortable(),
             Column::make(trans('string.update_at'), "updated_at")
-                ->sortable(),
+                ->sortable()->hideIf(true),
             Column::make(trans('string.end_at'), "end_at")
                 ->sortable(),
-            // DateColumn::make(trans('end at'), $row->getEndTime())
-            //     ->sortable(),
             LinkColumn::make('Action')
 
                 ->title(function ($row) {
