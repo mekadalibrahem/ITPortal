@@ -4,7 +4,7 @@ namespace App\Livewire\Staticties;
 
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use App\Classes\Chart\Traits\WithChart;
-use App\Livewire\Staticties\Traits\HasHeader;
+use App\Livewire\Staticties\Traits\HasOptions;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -12,45 +12,52 @@ use Livewire\Component;
 class EmployeeRequestCount extends Component
 {
     use WithChart;
-    use HasHeader;
+    use HasOptions;
     public function mount()
     {
         $employees = Employee::with('user')->orderBy('employees.id')->get();
         $names = $employees->map->user->map(function ($user) {
             return $user ? $user->fullname() : null;
         })->toArray();
-        
+
         $this->setChartLabels($names);
-        $this->setChartName('employeerequestcount');
+        $this->setChartName('employee_request_count');
         $this->setChartType('bar');
         $this->setHeader(trans('string.request_employee_count'));
+        $this->setExportHeadings(['employee', 'request count']);
     }
 
     public function data(): array
     {
 
+        $query = Employee::leftJoin('request_logs', 'employees.id', '=', 'request_logs.employee_id')
+            ->select(
+                'employees.id',
+                DB::raw('COUNT(request_logs.request_list_id) as request_count')
+            );
 
+        if ($this->hasYearFilter()) {
+            if (!empty($this->from_year)) {
+                $query->whereYear('created_at', '>=', $this->from_year);
+            }
+            if (!empty($this->to_year)) {
+                $query->whereYear('created_at', '<=', $this->to_year);
+            }
+        }
+      
         return [
-            DB::table('employees as emp')
-                ->leftJoin('request_logs as rl', 'emp.id', '=', 'rl.employee_id')
-
-                ->select(
-                    'emp.id',
-
-                    DB::raw('COUNT(rl.request_list_id) as request_count')
-                )
-                ->groupBy('emp.id')
-                ->orderBy('emp.id') // Order by department ID
-                ->get()
-                ->pluck('request_count')
-                ->toArray()
+              $query->groupBy('employees.id')
+            ->orderBy('employees.id') // Order by department ID
+            ->get()
+            ->pluck('request_count')
+            ->toArray()
         ];
     }
-    public function datasets(): array
+    public function getDatasets(): array
     {
 
         $data =  $this->data();
-        // dd(count($this->getChartLabels()), count($data[0]));
+
         $colors = $this->getColorsInstance(count($this->getChartLabels()), count($data));
 
         return [
@@ -60,8 +67,7 @@ class EmployeeRequestCount extends Component
     }
     public function render()
     {
-        return view('livewire.staticties.employee-request-count', [
-            'chart' => $this->chart()
-        ]);
+        $this->getData();
+        return view('livewire.staticties.employee-request-count');
     }
 }

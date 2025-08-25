@@ -6,14 +6,14 @@ use Livewire\Component;
 use App\Classes\Chart\Attributes\DatasetAttribute\Dataset;
 use App\Classes\Chart\Traits\WithChart;
 use App\Enums\RequestStatusEnum;
-use App\Livewire\Staticties\Traits\HasHeader;
+use App\Livewire\Staticties\Traits\HasOptions;
 use App\Models\RequestList as RequestList;
 
 
 class RequestStatusCount extends Component
 {
     use WithChart;
-    use HasHeader;
+    use HasOptions;
     public function mount()
     {
         $this->setChartLabels([
@@ -21,9 +21,10 @@ class RequestStatusCount extends Component
             'accepted',
             'working',
         ]);
-        $this->setChartName('requeststatuscount');
+        $this->setChartName('request_status_count');
         $this->setChartType('pie');
         $this->setHeader(trans('string.request_status_count'));
+        $this->setExportHeadings(['requests', 'total']);
     }
 
     public function data(): array
@@ -43,27 +44,42 @@ class RequestStatusCount extends Component
             RequestStatusEnum::END_UNDER_DELIVERY->value,
             RequestStatusEnum::END_DELEVERED->value
         ];
-
+        $rejected_count = RequestList::whereIn('status', $rejected_cases);
+        $accepted_count = RequestList::whereIn('status', $accepted_cases);
+        $working_count  = RequestList::whereIn('status', $working_cases);
+        if ($this->hasYearFilter()) {
+            if (!empty($this->from_year)) {
+                $rejected_count->whereYear('created_at', '>=', $this->from_year);
+                $accepted_count->whereYear('created_at', '>=', $this->from_year);
+                $working_count->whereYear('created_at', '>=', $this->from_year);
+            }
+            if (!empty($this->to_year)) {
+                $rejected_count->whereYear('created_at', '<=', $this->to_year);
+                $accepted_count->whereYear('created_at', '<=', $this->to_year);
+                $accepted_count->whereYear('created_at', '<=', $this->to_year);
+            }
+        }
         return [
             [
-                RequestList::whereIn('status', $rejected_cases)->count(),
-                RequestList::whereIn('status', $accepted_cases)->count(),
-                RequestList::whereIn('status', $working_cases)->count(),
+                $rejected_count->count(),
+                $accepted_count->count(),
+                $working_count->count(),
             ]
         ];
     }
-    public function datasets(): array
+    public function getDatasets(): array
     {
         $data =  $this->data();
 
         $colors = $this->getColorsInstance(count($this->getChartLabels()), count($data));
         return  [
-            Dataset::make("Request Registrations", $colors['colors'][0], $colors['hovers'][0], $data[0])
+            Dataset::make("Request Registrations status", $colors['colors'][0], $colors['hovers'][0], $data[0])
 
         ];
     }
     public function render()
     {
-        return view('livewire.staticties.request-status-count', ['chart' => $this->chart()]);
+        $this->getData();
+        return view('livewire.staticties.request-status-count');
     }
 }

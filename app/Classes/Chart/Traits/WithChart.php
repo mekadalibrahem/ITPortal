@@ -3,6 +3,7 @@
 namespace App\Classes\Chart\Traits;
 
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
+use Livewire\Attributes\Computed;
 
 trait WithChart
 {
@@ -12,17 +13,28 @@ trait WithChart
     use HasSize;
     use HasName;
     use HasType;
-
-    public abstract function datasets(): array;
+    public $datasets;
+    public abstract function getDatasets(): array;
     public abstract function data(): array;
+    #[Computed]
     public function chart()
-    {   
-        $chart = Chartjs::build()
+    {
+        return Chartjs::build()
             ->name($this->getChartName())
             ->type($this->getChartType())
             ->size($this->getChartSize())
-            ->labels($this->getChartLabels())
-            ->datasets($this->datasets());
-        return $chart;
+            ->livewire()
+            ->model("datasets");
+    }
+    public function getData()
+    {
+        $this->datasets = [
+            'datasets' => $this->getDatasets(),
+            'labels' => $this->getChartLabels()
+        ];
+    }
+    public function update_chart()
+    {
+        $this->render();
     }
 }
