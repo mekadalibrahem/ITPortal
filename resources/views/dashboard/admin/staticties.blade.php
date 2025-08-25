@@ -14,6 +14,13 @@
                 <livewire:staticties.employee-request-count />
 
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <livewire:staticties.avarage-time-step />
+                <livewire:staticties.avarage-time-department />
+                
+
+            </div>
+
 
         </div>
 
