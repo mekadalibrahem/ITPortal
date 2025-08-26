@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Department;
 
 use App\Models\Department;
 use App\Models\Employee;
+use App\Traits\HasConvertImageToBase64;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,6 +13,8 @@ use Masmerise\Toaster\Toaster;
 class Edit extends Component
 {
     use WithFileUploads;
+    use HasConvertImageToBase64;
+
     public $department;
     public $id;
     public $departments;
@@ -21,6 +24,7 @@ class Edit extends Component
     public $allowed_employees = [];
     public $manager;
     public $stamp;
+    public $stamp_name;
     public $new_stamp;
 
     public function mount()
@@ -32,7 +36,8 @@ class Edit extends Component
                 $this->allowed_employees = Employee::canManager($this->id)->with('user')->get();
                 $this->name = $this->department->name;
                 $this->description = $this->department->description;
-                $this->stamp = $this->department->stamp;
+                $this->stamp = $this->storage2base64(Storage::disk('stamps')->get($this->department->stamp), $this->department->stamp);
+                $this->stamp_name = $this->department->stamp;
                 if ($this->department->manager_id !== null) {
                     $this->manager = Employee::where("id", "=", $this->department->manager_id)->first();
                     $this->manager_id = $this->manager->id;
@@ -67,14 +72,15 @@ class Edit extends Component
         if ($this->new_stamp) {
             $extension = $this->new_stamp->getClientOriginalExtension();
             $file_name = $this->name . "_" . time() . "." . $extension;
-            $this->new_stamp->storeAs("stamps", $file_name, 'stamps');
+            $this->new_stamp->storeAs("", $file_name, 'stamps');
             $new->stamp = $file_name;
         }
 
         if ($new->isDirty()) {
             if ($new->save()) {
-                if (Storage::disk('stamps')->exists('stamps/' . $this->stamp)) {
-                    Storage::disk('stamps')->delete('stamps/' . $this->stamp);
+                if (Storage::disk('stamps')->exists($this->stamp_name)) {
+
+                    Storage::disk('stamps')->delete($this->stamp_name);
                 }
                 $emp = Employee::find($this->manager_id) ?? null;
                 $this->department->setManager($emp);

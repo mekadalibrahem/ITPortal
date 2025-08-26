@@ -55,7 +55,7 @@
                     @if ($stamp)
                         <p class="text-sm font-medium text-gray-500 dark:text-white mb-2">
                             {{ __('string.original stamp preview') }}:</p>
-                        <img src="{{ asset('/storage/stamps/' . $stamp) }}" alt="stamp Preview"
+                        <img src="{{ $stamp }}" alt="stamp Preview"
                             class="max-h-32 border rounded bg-white" style="max-width: 200px;">
                     @endif
                 </div>

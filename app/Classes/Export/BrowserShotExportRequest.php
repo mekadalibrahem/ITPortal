@@ -70,7 +70,7 @@ class BrowserShotExportRequest extends AbstractExportRequest
         foreach ($department_stamps as $item) {
 
 
-            $array['stamp_' . $item->id] = $this->storage2base64(Storage::disk('stamps')->get('stamps/' . $item->stamp), $item->stamp);
+            $array['stamp_' . $item->id] = $this->storage2base64(Storage::disk('stamps')->get( $item->stamp), $item->stamp);
         }
         return $array;
     }

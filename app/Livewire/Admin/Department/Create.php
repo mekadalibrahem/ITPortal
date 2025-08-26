@@ -40,7 +40,7 @@ class Create extends Component
         ]);
         $extension = $this->stamp->getClientOriginalExtension();
         $file_name = $this->name . "_" . time() . "." . $extension;
-        $this->stamp->storeAs("stamps", $file_name, 'stamps');
+        $this->stamp->storeAs("", $file_name, 'stamps');
 
         $dep = Department::create([
             "name" => $this->name,
