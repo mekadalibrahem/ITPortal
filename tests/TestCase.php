@@ -5,6 +5,7 @@ namespace Tests;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\DB;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -42,5 +43,23 @@ abstract class TestCase extends BaseTestCase
             $this->actingAs($user);
             return $user ;
         }
+    }
+     protected function setUp(): void
+    {
+        parent::setUp();
+
+        
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            DB::reconnect();
+        }
+    }
+
+    protected function tearDown(): void
+    {
+        
+        DB::disconnect();
+        parent::tearDown();
     }
 }
