@@ -37,7 +37,7 @@ class BrowserShotExportRequest extends AbstractExportRequest
             "fname" => $user->mname,
             "lname" => $user->mname,
             "user_nid" => $user->nid,
-            "user_sig" => $user->signature,
+            "user_sig" =>  $this->storage2base64(Storage::disk("signature")->get($user->signature), $user->signature),
             'title' => $this->request->requests->name
 
 
@@ -143,7 +143,7 @@ class BrowserShotExportRequest extends AbstractExportRequest
             $user = $item->employee->user;
             $array["step_" . $step_count] = [
                 'name' => $user->fullname(),
-                'sig' => $user->signature,
+                'sig' =>   $this->storage2base64(Storage::disk("signature")->get($user->signature), $user->signature),
             ];
             $step_count++;
         }

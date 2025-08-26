@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Profile;
 
+use App\Traits\HasConvertImageToBase64;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Masmerise\Toaster\Toaster;
@@ -11,15 +13,20 @@ use Masmerise\Toaster\Toaster;
 class Signature extends Component
 {
     use WithFileUploads;
+    use HasConvertImageToBase64;
     public $spassword;
     public $suser;
     public $signature;
+    public $current_signature;
+    public $current_signature_name;
 
 
 
     public function mount()
     {
         $this->suser = Auth::user();
+        $this->current_signature_name = $this->suser->signature;
+        $this->current_signature  = $this->storage2base64(Storage::disk("signature")->get($this->current_signature_name), $this->current_signature_name);
     }
 
     public function edit()
@@ -31,16 +38,22 @@ class Signature extends Component
         if (Hash::check($this->spassword, $this->suser->password)) {
 
 
-              $image = $this->signature; 
 
-            $imageData = file_get_contents($image->getRealPath());
-            $base64Image = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageData);
+            $extension = $this->signature->getClientOriginalExtension();
+            $file_name = $this->suser->id . "_" . time() . "." . $extension;
+            $this->signature->storeAs("", $file_name, 'signature');
+            $this->suser->signature = $file_name;
 
-            $this->suser->signature = $base64Image;
 
             if ($this->suser->save()) {
+                if (Storage::disk('signature')->exists($this->current_signature_name)) {
+
+                    Storage::disk('signature')->delete($this->current_signature_name);
+                }
+                $this->current_signature_name = $this->suser->signature;
+                $this->current_signature  = $this->storage2base64(Storage::disk("signature")->get($this->current_signature_name), $this->current_signature_name);
                 Toaster::success(__('messages.Item Saved'));
-                $this->reset('signature', 'spassword'); 
+                $this->reset('signature', 'spassword');
             } else {
                 Toaster::error(__('messages.Faild save item'));
             }
