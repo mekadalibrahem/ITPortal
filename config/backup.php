@@ -17,6 +17,8 @@ return [
                 'include' => [
                     base_path("public"),
                     base_path("storage/app/public"),
+                    base_path("storage/app/private/stamps"),
+                    base_path("storage/app/private/signature"),
                     base_path("database"),
 
                 ],
