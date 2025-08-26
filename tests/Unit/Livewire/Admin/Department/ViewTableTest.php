@@ -28,7 +28,8 @@ class ViewTableTest extends TestCase
         $department = Department::create([
             "name" => 'test-department' ,
             "description" => "department description this for just testing",
-            "manager_id" => Employee::query()->first()->id
+            "manager_id" => Employee::query()->first()->id,
+            'stamp' => "test"
         ]);
         $this->assertNotNull($department);
 
@@ -46,7 +47,8 @@ class ViewTableTest extends TestCase
         $department = Department::create([
             "name" => 'test-department' ,
             "description" => "department description this for just testing",
-            "manager_id" => $employee->id
+            "manager_id" => $employee->id,
+            'stamp' => "test"
         ]);
         $this->assertNotNull($department);
         $this->assertDatabaseHas($this->table_name, [

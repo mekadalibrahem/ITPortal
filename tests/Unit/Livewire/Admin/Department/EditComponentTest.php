@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Employee;
 use App\Models\RequestType;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -35,6 +36,7 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => "test",
         ]);
 
         $this->assertNotNull($dep);
@@ -59,6 +61,7 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => 'test'
         ]);
 
         $this->assertNotNull($dep);
@@ -82,11 +85,13 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name1",
             'description' => "THIS Department for Testing only Don't Forget that1",
             'dep_manager' => null,
+            'stamp' => "test"
         ]);
         $dep = Department::create([
             'name' => "Test Add new Department name2",
             'description' => "THIS Department for Testing only Don't Forget that2",
             'dep_manager' => null,
+            'stamp' => 'test'
         ]);
 
         $this->assertNotNull($dep);
@@ -112,6 +117,7 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => 'test'
         ]);
 
         $this->assertNotNull($dep);
@@ -136,6 +142,7 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => 'test',
         ]);
 
         $this->assertNotNull($dep);
@@ -161,6 +168,7 @@ class EditComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => 'test'
         ]);
 
         $this->assertNotNull($dep);
@@ -174,15 +182,39 @@ class EditComponentTest extends TestCase
         $this->assertNotNull($manager);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
-       
-            $manager_id = $manager->id;
-            $component->set('manager_id', $manager_id);
-            $component->call('edit');
-            $this->assertDatabaseHas($this->table_name, [
-                "name" => $dep->name,
-                "description" => $dep->description,
-                "manager_id" => $manager_id
-            ]);
-       
+
+        $manager_id = $manager->id;
+        $component->set('manager_id', $manager_id);
+        $component->call('edit');
+        $this->assertDatabaseHas($this->table_name, [
+            "name" => $dep->name,
+            "description" => $dep->description,
+            "manager_id" => $manager_id
+        ]);
+    }
+    public function test_valid_edit_stamp(): void
+    {
+        $this->getUser('admin');
+
+
+        $dep = Department::create([
+            'name' => "Test Add new Department name",
+            'description' => "THIS Department for Testing only Don't Forget that",
+            'dep_manager' => null,
+            'stamp' => 'test'
+        ]);
+
+        $this->assertNotNull($dep);
+        $component = Livewire::test($this->component, ['id' => $dep->id])
+            ->assertHasNoErrors();
+        $file = UploadedFile::fake()->image('avatar.png', 100, 100)->size(500);
+        $component->set('new_stamp', $file);
+        $component->call('edit');
+        $this->assertDatabaseMissing($this->table_name, [
+            "name" => $dep->name,
+            "description" => $dep->description,
+            "manager_id" => null,
+            "stamp" => 'test'
+        ]);
     }
 }

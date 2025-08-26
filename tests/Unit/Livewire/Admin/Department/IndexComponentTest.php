@@ -25,6 +25,7 @@ class IndexComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => "test"
         ]);
         Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
@@ -37,6 +38,7 @@ class IndexComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => "test"
         ]);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
@@ -65,6 +67,7 @@ class IndexComponentTest extends TestCase
             'name' => "Test Add new Department name",
             'description' => "THIS Department for Testing only Don't Forget that",
             'dep_manager' => null,
+            'stamp' => "test"
         ]);
         $component = Livewire::test($this->component, ['id' => $dep->id])
             ->assertHasNoErrors();
