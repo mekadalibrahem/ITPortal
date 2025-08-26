@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Traits\HasCopyFiles;
 use App\Models\Department;
 
 use Illuminate\Database\Seeder;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DepartmentSeeder extends Seeder
 {
+    use HasCopyFiles;
     /**
      * Run the database seeds.
      */
@@ -24,5 +26,6 @@ class DepartmentSeeder extends Seeder
                 "stamp" =>  $row['stamp']
             ]);
         }
+        $this->copy_files(storage_path('app/private/itportal_db/stamps'), storage_path('app/private/stamps'));
     }
 }
