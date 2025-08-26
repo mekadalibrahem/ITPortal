@@ -2,18 +2,20 @@
 
 namespace App\Classes\Export;
 
+use App\Models\Department;
 use App\Models\RequestList;
+use App\Traits\HasConvertImageToBase64;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Masmerise\Toaster\Toaster;
-use MSA\LaravelGrapes\Models\Page;
 use Spatie\Browsershot\Browsershot;
 
 class BrowserShotExportRequest extends AbstractExportRequest
 {
+    use HasConvertImageToBase64;
     protected GrapesJsTemplateRenderer $renderer;
 
     public function __construct(GrapesJsTemplateRenderer $renderer, RequestList $request)
@@ -40,9 +42,36 @@ class BrowserShotExportRequest extends AbstractExportRequest
 
 
         ];
+        $array = $this->add_department_stamps($array);
+
         $array = $this->add_request_data($array);
         $array = $this->add_request_steps($array);
 
+        return $array;
+    }
+    public function add_department_stamps($array)
+    {
+        $department_id =  array_unique(RequestList::where('request_lists.id', '=', $this->request->id)
+            ->join('request_logs', 'request_logs.request_list_id', '=', 'request_lists.id')
+            ->join('request_tamplates_steps', 'request_tamplates_steps.id', '=', 'request_logs.request_tamplates_step_id')
+            ->select([
+                'request_lists.id',
+                'request_logs.request_list_id',
+                'request_tamplates_steps.id',
+                'request_logs.request_tamplates_step_id',
+                'request_tamplates_steps.department_id'
+            ])
+            ->get()->pluck('department_id')->toArray());
+
+        $department_stamps = Department::whereIn('id', $department_id)->select(['id', 'stamp'])->get();
+
+
+
+        foreach ($department_stamps as $item) {
+
+
+            $array['stamp_' . $item->id] = $this->storage2base64(Storage::disk('stamps')->get('stamps/' . $item->stamp), $item->stamp);
+        }
         return $array;
     }
     public function get_view()
@@ -68,13 +97,18 @@ class BrowserShotExportRequest extends AbstractExportRequest
         try {
             $view = $this->get_view();
             $file_name = $this->request->user->id . "_" . $this->request->requests->name . "_" . $this->request->id . "_" . time() . ".pdf";
-            $browsershot = Browsershot::html($view)
-                ->setNodeBinary('/home/mekad/.nvm/versions/node/v22.14.0/bin/node')
-                ->setNpmBinary("/home/mekad/.nvm/versions/node/v22.14.0/bin/npm")
+            $browsershot = Browsershot::html($view);
+            
+            if (!empty(config("browsershot.node_path", ''))) {
+                $browsershot->setNodeBinary(config("browsershot.node_path", ''));
+            }
+            if (!empty(config("browsershot.npm_path", ''))) {
+                $browsershot->setNpmBinary(config("browsershot.npm_path", ''));
+            }
+            $browsershot->format('A4')
                 // ->baseUrl(config('app.url'))
-                ->format('A4')
-                ->waitUntil('domcontentloaded'); // Use domcontentloaded instead of networkidle0
-            // ->timeout(90000) // Increase to 90 seconds
+                ->waitUntil('domcontentloaded') // Use domcontentloaded instead of networkidle0
+                ->timeout(90000); // Increase to 90 seconds
             // ->showBrowserOutput(); // Enable debug output
 
             // Disable JavaScript if not needed

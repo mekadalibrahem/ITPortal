@@ -33,7 +33,7 @@ class DepartmentTable extends CustomeDataTableComponent
         return [
 
             Column::make('id', 'id')
-                ->sortable()->hideIf(true),
+                ->sortable(),
             Column::make(trans('string.Name'), 'name')
                 ->sortable(),
             Column::make(trans('string.description'), 'description'),
