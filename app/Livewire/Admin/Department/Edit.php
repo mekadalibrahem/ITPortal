@@ -4,11 +4,14 @@ namespace App\Livewire\Admin\Department;
 
 use App\Models\Department;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
 
 class Edit extends Component
 {
+    use WithFileUploads;
     public $department;
     public $id;
     public $departments;
@@ -17,6 +20,8 @@ class Edit extends Component
     public $manager_id;
     public $allowed_employees = [];
     public $manager;
+    public $stamp;
+    public $new_stamp;
 
     public function mount()
     {
@@ -27,6 +32,7 @@ class Edit extends Component
                 $this->allowed_employees = Employee::canManager($this->id)->with('user')->get();
                 $this->name = $this->department->name;
                 $this->description = $this->department->description;
+                $this->stamp = $this->department->stamp;
                 if ($this->department->manager_id !== null) {
                     $this->manager = Employee::where("id", "=", $this->department->manager_id)->first();
                     $this->manager_id = $this->manager->id;
@@ -50,15 +56,26 @@ class Edit extends Component
         $this->validate([
             'name' => "required|min:10|unique:departments,name," . $this->department->id,
             'description' => 'required|min:20',
+            'new_stamp' => 'nullable|image|max:2024'
+
         ]);
 
         $new = $this->department;
         $new->name = $this->name;
         $new->manager_id = ($this->manager_id > 0) ? $this->manager_id : null;
         $new->description = $this->description;
+        if ($this->new_stamp) {
+            $extension = $this->new_stamp->getClientOriginalExtension();
+            $file_name = $this->name . "_" . time() . "." . $extension;
+            $this->new_stamp->storeAs("stamps", $file_name, 'stamps');
+            $new->stamp = $file_name;
+        }
 
         if ($new->isDirty()) {
             if ($new->save()) {
+                if (Storage::disk('stamps')->exists('stamps/' . $this->stamp)) {
+                    Storage::disk('stamps')->delete('stamps/' . $this->stamp);
+                }
                 $emp = Employee::find($this->manager_id) ?? null;
                 $this->department->setManager($emp);
 

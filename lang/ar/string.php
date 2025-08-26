@@ -194,4 +194,7 @@ return [
     "request_department_count" => 'الطلبات المنفذة بكل قسم',
     "department_performance_avg_time" => 'متوسط عمل القسم',
     'step_performance_avg_time' => 'متوسط وقت كل مرحلة',
+    "stamp" => "الختم",
+    "stamp preview" => 'عرض الختم',
+    'original stamp preview' => 'الختم الحالي',
 ];

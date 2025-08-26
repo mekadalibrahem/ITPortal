@@ -181,8 +181,8 @@ return [
     'end_at' => 'End at',
     'askToedit' => 'want edit',
     'create request step' => 'create request',
-    'end request step'=>'end request',
-     "slut" => [
+    'end request step' => 'end request',
+    "slut" => [
         'name' => "print template",
         'select' => "select template",
         'new' => "new template",
@@ -193,8 +193,11 @@ return [
     "request_list_count" => "requests count",
     "request_status_count" => "request status",
     "request_employee_count" => 'request worked by employee',
-    "request_department_count"=> 'request worked by deparmtent',
-    'department_performance_avg_time'=> 'department avg time',
+    "request_department_count" => 'request worked by deparmtent',
+    'department_performance_avg_time' => 'department avg time',
     'step_performance_avg_time' => 'request step avg time',
-    
+    "stamp" => "stamp",
+    "stamp preview" => 'stamp preview',
+    'original stamp preview' => 'current stamp',
+
 ];

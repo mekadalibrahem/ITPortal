@@ -44,6 +44,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'stamps' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
         'request' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
