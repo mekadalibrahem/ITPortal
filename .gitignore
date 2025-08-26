@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+!/storage/app/private/itportal_db/*.json
+!/storage/app/private/itportal_db/stamps/*.*
+!/storage/app/private/itportal_db/signatures/*.*

@@ -1,3 +1,5 @@
 *
 !.gitignore
 !/itportal_db/*.json
+!/itportal_db/stamps/*.*
+!/itportal_db/signatures/*.*

@@ -2,4 +2,6 @@
 
 !public/
 !.gitignore
-
+!/private/itportal_db/*.json
+!/private/itportal_db/stamps/*.*
+!/private/itportal_db/signatures/*.*
