@@ -44,22 +44,4 @@ abstract class TestCase extends BaseTestCase
             return $user ;
         }
     }
-     protected function setUp(): void
-    {
-        parent::setUp();
-
-        
-        try {
-            DB::connection()->getPdo();
-        } catch (\Exception $e) {
-            DB::reconnect();
-        }
-    }
-
-    protected function tearDown(): void
-    {
-        
-        DB::disconnect();
-        parent::tearDown();
-    }
 }
