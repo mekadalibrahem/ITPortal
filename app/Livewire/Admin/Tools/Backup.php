@@ -13,12 +13,12 @@ use Livewire\Component;
 
 class Backup extends Component
 {
-    public const PATH_BACKUP = 'backups/Laravel';
     use BackupTrait;
     public $user;
     public $files;
     public function mount()
     {
+      
         $this->user = Auth::user();
         $this->index();
     }
@@ -26,19 +26,25 @@ class Backup extends Component
     public function index()
     {
 
-        // dd(Storage::allFiles("Laravel"));
+       
         $this->files = array_reverse(
             array_map(
                 "basename",
-                Storage::allFiles(SELF::PATH_BACKUP)
+                Storage::disk('backups')->allFiles()
+
             )
         );
     }
     public function download($filename)
     {
-        // dd($filename);
+        $filePath = Storage::disk('backups')->path(config('app.name').'/'.$filename);
+        $filePath = str_replace('/', DIRECTORY_SEPARATOR, $filePath);
+       
         try {
-            return Storage::download(SELF::PATH_BACKUP . "/" . $filename);
+
+            return response()->download($filePath, $filename, [
+                'Content-Type' => 'application/zip',
+            ]);
         } catch (\Throwable $th) {
             //throw $th;
             Log::error($th->getMessage());
@@ -51,7 +57,7 @@ class Backup extends Component
         // dd($filename);
         try {
 
-            Storage::delete(SELF::PATH_BACKUP . "/" . $filename);
+            Storage::disk('backups')->delete(config('app.name').'/'.$filename);
 
             $this->index();
             $this->render();
