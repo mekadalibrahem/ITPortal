@@ -27,7 +27,7 @@ trait BackupTrait
             $command = "cd " . base_path() . " && php artisan backup:run --disable-notifications";
 
             $output = shell_exec($command);
-
+            // Artisan::call('backup:run --disable-notifications');
             return true;
         } catch (\Throwable $th) {
             Log::error("ERROR BACKUP: " . $th->getMessage());

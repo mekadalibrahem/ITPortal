@@ -56,7 +56,10 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
-           
+            // 'dump' => [
+            //     'dump_binary_path' => env('MYSQLDUMP_PATH'), // Adjust this path if necessary
+            //     'use_single_transaction',
+            // ],
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
