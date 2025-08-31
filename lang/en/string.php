@@ -199,5 +199,5 @@ return [
     "stamp" => "stamp",
     "stamp preview" => 'stamp preview',
     'original stamp preview' => 'current stamp',
-
+    "Edit Role" => "Edit Role",
 ];

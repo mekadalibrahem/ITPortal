@@ -197,4 +197,5 @@ return [
     "stamp" => "الختم",
     "stamp preview" => 'عرض الختم',
     'original stamp preview' => 'الختم الحالي',
+    "Edit Role" => "تعديل الدور",
 ];
