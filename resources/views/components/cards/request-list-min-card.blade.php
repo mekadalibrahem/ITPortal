@@ -5,7 +5,7 @@
             {{  __("request_status.".$request->status)}}
         </span>
 
-        <span class="text-sm">{{ $request->created_at->format("Y-m-d") }}</span>
+        <span class="text-sm">{{ $request->created_at}}</span>
     </div>
     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><span> {{ $request->requests->name  ?? 'name' }} </span></h2>
     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
