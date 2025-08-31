@@ -59,10 +59,10 @@
 </x-widgets.accordion-item>
 
 
-    <x-widgets.sidebar-link href="{{Route('admin.collage.index')}}">
+    {{-- <x-widgets.sidebar-link href="{{Route('admin.collage.index')}}">
         <x-svg.collage />
         {{ __("string.Collage informations") }}
-    </x-widgets.sidebar-link>
+    </x-widgets.sidebar-link> --}}
     <x-widgets.sidebar-link href="{{Route('admin.backups')}}">
         <x-svg.backup />
         {{ __("string.Backups") }}
