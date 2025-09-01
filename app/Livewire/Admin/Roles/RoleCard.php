@@ -71,7 +71,7 @@ class RoleCard extends Component
                 $this->show();
                 $this->render();
             } catch (\Throwable $th) {
-              Log::error(__CLASS__ .'@' . __FUNCTION__ . " : Error is => " . $th->getMessage());
+                Log::error(__CLASS__ . '@' . __FUNCTION__ . " : Error is => " . $th->getMessage());
             }
         }
     }
@@ -87,7 +87,7 @@ class RoleCard extends Component
         if ($this->role->save()) {
 
             Toaster::success(trans('messages.Item Saved'));
-
+            return redirect()->route('admin.auth.role.index');
         }
     }
     public function render()

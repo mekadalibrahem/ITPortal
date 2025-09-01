@@ -11,10 +11,11 @@ class FormCreateRequestType extends Component
 {
     #[Rule('required')]
     #[Rule('unique:request_types,type')]
-    public $type ='';
+    public $type = '';
 
 
-    public function create(){
+    public function create()
+    {
         $this->validate();
 
         try {
@@ -22,12 +23,10 @@ class FormCreateRequestType extends Component
                 'type' => $this->type
             ]);
             Toaster::success(trans('messages.Item Saved'));
-            $this->reset();
-            $this->render();
+            return redirect()->route('admin.requests.type.index');
         } catch (\Throwable $th) {
-            Toaster::error('ERROR in `form-create-request-type` :'. $th  );
+            Toaster::error('ERROR in `form-create-request-type` :' . $th);
         }
-
     }
 
     public function render()

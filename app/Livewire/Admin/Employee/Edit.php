@@ -42,7 +42,7 @@ class Edit extends Component
     {
         $this->validate([
             'nid' => "required|exists:users,national_id",
-            'department' =>'nullable|exists:departments,id'
+            'department' => 'nullable|exists:departments,id'
         ]);
         $dep = ($this->department > 0) ? $this->department : null;
         $emp = $this->employee;
@@ -51,6 +51,7 @@ class Edit extends Component
             $this->employee = $emp;
 
             Toaster::success(trans("messages.Employee Saved"));
+            return redirect()->route('admin.employee.index');
         } else {
             Toaster::error(trans("messages.Faild Edit Employee"));
         }

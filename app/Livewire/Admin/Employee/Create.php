@@ -44,6 +44,7 @@ class Create extends Component
                 try {
                     $user->addEmployee($this->department);
                     Toaster::success(trans("messages.Add Employee"));
+                    return redirect()->route('admin.employee.index');
                 } catch (\Throwable $th) {
                     Log::error(__CLASS__ . '@' . __FUNCTION__ . ": added empty ");
                     Toaster::error(trans("messages.Faild Add Employee"));

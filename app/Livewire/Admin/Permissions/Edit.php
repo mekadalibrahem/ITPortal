@@ -36,6 +36,7 @@ class Edit extends Component
         if ($this->permission->isDirty()) {
             if ($this->permission->save()) {
                 Toaster::success('Permission [ ' . $this->name . ' ] saved ');
+                return redirect()->route('admin.auth.permission.index');
             }
         } else {
             Toaster::warning(trans('messages.Alrady saved'));

@@ -88,6 +88,7 @@ class Edit extends Component
 
                 $this->department = $new;
                 Toaster::success(trans("messages.Item Saved"));
+                return redirect()->route('admin.department.index');
             } else {
                 // falid edit
                 Toaster::error(trans("messages.Faild edit Department"));
@@ -95,7 +96,6 @@ class Edit extends Component
         } else {
             Toaster::warning(trans("messages.department nothing changed"));
         }
-        $this->dispatch('department-editing');
         $this->render();
     }
     public function render()

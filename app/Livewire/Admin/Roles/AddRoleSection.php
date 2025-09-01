@@ -25,6 +25,8 @@ class AddRoleSection extends Component
         ]);
         if($role){
            Toaster::success(trans('messages.Item Saved'));
+            return redirect()->route('admin.auth.role.index');
+
         }else{
             Toaster::error(trans('messages.Faild Add Item'));
         }

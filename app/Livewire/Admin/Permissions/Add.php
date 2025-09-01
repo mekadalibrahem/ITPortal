@@ -25,6 +25,7 @@ class Add extends Component
 
         if ($permission) {
             Toaster::success('permission [ ' . $this->name . ' ] saved ');
+            return redirect()->route('admin.auth.permission.index');
         }
 
         $this->render();

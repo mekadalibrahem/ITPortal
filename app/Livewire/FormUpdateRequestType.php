@@ -11,42 +11,44 @@ class FormUpdateRequestType extends Component
 {
 
 
-    #[Rule('required' )]
+    #[Rule('required')]
     #[Rule('unique:request_types,type')]
-    public $type ;
-    public $request_type ;
-    public $id ;
-    public function mount(){
+    public $type;
+    public $request_type;
+    public $id;
+    public function mount()
+    {
 
-        if($this->id < 0){
+        if ($this->id < 0) {
 
             // Invalid parameter
             abort(400);
-        }else{
+        } else {
             $this->request_type = RequestType::find($this->id);
 
-            if(!$this->request_type){
+            if (!$this->request_type) {
                 // type not found
                 abort(404);
-            }else{
-                $this->type = $this->request_type->type ;
+            } else {
+                $this->type = $this->request_type->type;
             }
         }
     }
-    public function edit(){
+    public function edit()
+    {
         $this->validate();
 
         try {
 
-            $this->request_type->type = $this->type ;
+            $this->request_type->type = $this->type;
 
-            if($this->request_type->isDirty()){
+            if ($this->request_type->isDirty()) {
                 $this->request_type->save();
                 Toaster::success(trans("messages.Item Saved"));
-                $this->render();
+                return redirect()->route('admin.requests.type.index');
             }
         } catch (\Throwable $th) {
-         Toaster::error('ERROR in formUpdateRequestType.edit() :'  . $th);
+            Toaster::error('ERROR in formUpdateRequestType.edit() :'  . $th);
         }
     }
 

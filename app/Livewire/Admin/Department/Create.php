@@ -52,8 +52,8 @@ class Create extends Component
         ]);
         if ($dep) {
             $dep->setManager($this->dep_manager);
-            return redirect()->route('admin.department.index');
             Toaster::success(trans("messages.Add Department"));
+            return redirect()->route('admin.department.index');
         } else {
             Toaster::error(trans("messages.Faild Add Department"));
         }
