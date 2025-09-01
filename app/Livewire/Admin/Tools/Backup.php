@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Backup extends Component
 {
@@ -18,7 +19,7 @@ class Backup extends Component
     public $files;
     public function mount()
     {
-      
+
         $this->user = Auth::user();
         $this->index();
     }
@@ -26,7 +27,7 @@ class Backup extends Component
     public function index()
     {
 
-       
+
         $this->files = array_reverse(
             array_map(
                 "basename",
@@ -37,9 +38,9 @@ class Backup extends Component
     }
     public function download($filename)
     {
-        $filePath = Storage::disk('backups')->path(config('app.name').'/'.$filename);
+        $filePath = Storage::disk('backups')->path(config('app.name') . '/' . $filename);
         $filePath = str_replace('/', DIRECTORY_SEPARATOR, $filePath);
-       
+
         try {
 
             return response()->download($filePath, $filename, [
@@ -57,7 +58,7 @@ class Backup extends Component
         // dd($filename);
         try {
 
-            Storage::disk('backups')->delete(config('app.name').'/'.$filename);
+            Storage::disk('backups')->delete(config('app.name') . '/' . $filename);
 
             $this->index();
             $this->render();
@@ -71,15 +72,9 @@ class Backup extends Component
         // dd("store");
         $is_done =  $this->backup();
         if ($is_done) {
-            session()->flash("status", [
-                "type" => "success",
-                "message" => "Backup done"
-            ]);
+            Toaster::success("Backup done");
         } else {
-            session()->flash("status", [
-                "type" => "danger",
-                "message" => "Backup Faild"
-            ]);
+            Toaster::error("Backup Faild");
         }
         $this->index();
         $this->render();
