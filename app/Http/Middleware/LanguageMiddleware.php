@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -20,7 +19,6 @@ class LanguageMiddleware
         $language = session('language');
 
         app()->setlocale($language);
-        Debugbar::addMessage("Locale set to: " . $language . " (Selected language: " . $language . ")");
 
         return $next($request);
     }
