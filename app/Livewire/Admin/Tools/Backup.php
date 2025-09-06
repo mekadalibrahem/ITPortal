@@ -59,7 +59,7 @@ class Backup extends Component
         try {
 
             Storage::disk('backups')->delete(config('app.name') . '/' . $filename);
-
+             Toaster::success(trans('messages.Deleted Item'));
             $this->index();
             $this->render();
         } catch (\Throwable $th) {
