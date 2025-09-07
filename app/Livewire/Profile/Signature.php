@@ -26,7 +26,9 @@ class Signature extends Component
     {
         $this->suser = Auth::user();
         $this->current_signature_name = $this->suser->signature;
-        $this->current_signature  = $this->storage2base64(Storage::disk("signature")->get($this->current_signature_name), $this->current_signature_name);
+        if ($this->current_signature_name) {
+            $this->current_signature  = $this->storage2base64(Storage::disk("signature")->get($this->current_signature_name), $this->current_signature_name);
+        }
     }
 
     public function edit()
