@@ -2,15 +2,15 @@
 return [
     "Can't delete Request" => "لا يمكن حذف هذا الطلب",
     "confirm delete request" => "هل انت متأكد من حذف الطلب",
-    "confirm delete role" =>"هل انت متأكد من حذف الدور",
+    "confirm delete role" => "هل انت متأكد من حذف الدور",
     "confirm delete permission" => "هل انت متأكد من حذف الصلاحية",
     "Required data" => "يجب ملئ جميع الحقول",
     "Request Saved" => "تم حفظ الطلب",
     "Request redirect" => "تم إعادة توجيه الطلب",
     "notify send" => "تم إرسال الاشعار",
     "Request successfully updated." => "تم تعديل الطلب بنجاح",
-    "Failed to update request."=>"فشل تعديل الطلب",
-    "Can't Edit this Request" =>"لايمكنك تعديل هذا الطلب",
+    "Failed to update request." => "فشل تعديل الطلب",
+    "Can't Edit this Request" => "لايمكنك تعديل هذا الطلب",
     "Add Department" => "تم إضافة الشعبة",
     "Faild Add Department" => "فشل إضافة الشعبة",
     "Faild edit Department" => "فشل تعديل الشعبة",
@@ -38,7 +38,7 @@ return [
     "Faild save item" => "فشل حفظ العنصر",
     "print template not set yet" => "لم يتم اختيار قالب طباعة بعد",
     "your request finished  , your can not edit it now" => "تم الانتهاء من طلبك، لا يمكنك تعديله الآن",
-    
+    "Restor Item" => "تم الاستعادة",
+    "Faild restor item" => "فشل استعادة الملف",
+
 ];
-
-

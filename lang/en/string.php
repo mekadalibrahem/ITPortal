@@ -200,4 +200,7 @@ return [
     "stamp preview" => 'stamp preview',
     'original stamp preview' => 'current stamp',
     "Edit Role" => "Edit Role",
+    'full name' => "Full name",
+    "new User" => "New user",
+    "show User" => "show user information",
 ];

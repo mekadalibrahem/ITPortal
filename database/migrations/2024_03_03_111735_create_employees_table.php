@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedBigInteger('department_id')->nullable();
-            $table->foreign('department_id')->references('id')->on('departments')->nullOnDelete()->cascadeOnUpdate() ;
+            $table->foreign('department_id')->references('id')->on('departments')->nullOnDelete()->cascadeOnUpdate();
+            $table->softDeletes();
         });
     }
 
