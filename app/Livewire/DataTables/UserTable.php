@@ -84,7 +84,7 @@ class UserTable extends DataTableComponent
     }
     public function edit($id): void
     {
-        redirect()->route('admin.auth.user.edit');
+        redirect()->route('admin.auth.user.edit' , $id);
     }
 
     public function setAddButton($addButtonRoute)
