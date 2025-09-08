@@ -5,9 +5,10 @@ namespace App\Livewire\DataTables;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Masmerise\Toaster\Toaster;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class EmployeesTable extends CustomeDataTableComponent
+class EmployeesTable extends DataTableComponent
 {
 
     protected $model = Employee::class;
@@ -15,16 +16,15 @@ class EmployeesTable extends CustomeDataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        $this->setAddButton(Route('admin.employee.create'));
+        $this->setDefaultSort('id', 'desc');
+        // $this->setAddButton(Route('admin.employee.create'));
     }
 
     public function builder(): Builder
     {
-        return $this->model::query()
-            ->with('user');
-
-
-        
+        return $this->model::query()->withTrashed()
+            ->with(['user', 'department'])
+            ->select('employees.id', 'employees.deleted_at', 'fname', 'lname', 'mname', 'email', 'department.name');
     }
 
     public function columns(): array
@@ -34,11 +34,23 @@ class EmployeesTable extends CustomeDataTableComponent
             Column::make('id', 'id')
                 ->sortable(),
             Column::make(trans('string.username'), 'user_id')->format(function ($value, $row) {
-                return $row->user->fullname();
+
+                return  $row->user->fullname();
             })->sortable(),
-            Column::make(trans('string.email'), 'user_id')->format(function ($value, $row) {
-                return $row->user->email;
-            })->sortable()
+            Column::make(trans('string.email'), 'user.email')
+                ->sortable()->searchable(),
+            Column::make(trans('string.Department'), 'department.name')
+                ->sortable(),
+            Column::make(trans('string.Options'))
+                ->label(
+                    fn($row) => view(
+                        'livewire.user-actions',
+                        [
+                            'row' => $row,
+                            'confirm_delete_message' => trans("messages.confirm delete request"),
+                        ]
+                    )
+                )->html(),
         ];
     }
 
@@ -56,6 +68,19 @@ class EmployeesTable extends CustomeDataTableComponent
                     Toaster::success(trans('messages.Deleted Item'));
                 } else {
                     Toaster::error(trans('messages.Faild delete item'));
+                }
+            }
+        }
+    }
+    public function restore($id)
+    {
+        if ($id > 0) {
+            $emp = $this->model::query()->withTrashed()->where('id', '=', $id)->first();
+            if ($emp) {
+                if ($emp->restore()) {
+                    Toaster::success(trans("messages.Restor Item"));
+                } else {
+                    Toaster::error(trans('messages.Faild restor item'));
                 }
             }
         }
