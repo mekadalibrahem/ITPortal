@@ -25,7 +25,7 @@ class AvarageTimeDepartment extends Component
 
     public function data(): array
     {
-        
+
         $allDepartments = Department::select('id', 'name')->orderBy('id')->get();
 
         $query = Department::leftJoin('request_tamplates_steps', 'departments.id', '=', 'request_tamplates_steps.department_id')
@@ -33,10 +33,8 @@ class AvarageTimeDepartment extends Component
                 $join->on('request_tamplates_steps.id', '=', 'request_logs.request_tamplates_step_id')
                     ->whereNotNull('request_logs.end_at');
             })
-            ->select(
-                'departments.id',
-                DB::raw('COALESCE(AVG(TIMESTAMPDIFF(SECOND, request_logs.start_at, request_logs.end_at) / 3600), 0) as avg_duration_hours')
-            );
+            ->select('departments.id')
+            ->selectAvgTimeDiffInHours('request_logs.start_at', 'request_logs.end_at', 'avg_duration_hours');
 
         if ($this->hasYearFilter()) {
             if (!empty($this->from_year)) {
@@ -46,7 +44,6 @@ class AvarageTimeDepartment extends Component
                 $query->whereYear('request_logs.created_at', '<=', $this->to_year);
             }
         }
-
         $results = $query
             ->groupBy('departments.id')
             ->orderBy('departments.id')
@@ -54,13 +51,14 @@ class AvarageTimeDepartment extends Component
 
        
         $departmentAverages = $results->pluck('avg_duration_hours', 'id')->toArray();
-
         
+
         $finalData = [];
         foreach ($allDepartments as $department) {
             $finalData[] = $departmentAverages[$department->id] ?? 0;
         }
 
+     
         return [$finalData];
     }
 

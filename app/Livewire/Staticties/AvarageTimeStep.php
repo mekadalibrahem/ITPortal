@@ -33,10 +33,8 @@ class AvarageTimeStep extends Component
             $join->on('request_tamplates_steps.id', '=', 'request_logs.request_tamplates_step_id')
                 ->whereNotNull('request_logs.end_at');
         })
-            ->select(
-                'request_tamplates_steps.id',
-                DB::raw('COALESCE(AVG(TIMESTAMPDIFF(SECOND, request_logs.start_at, request_logs.end_at) / 3600), 0) as avg_duration_hours')
-            );
+            ->select('request_tamplates_steps.id')
+             ->selectAvgTimeDiffInHours('request_logs.start_at', 'request_logs.end_at', 'avg_duration_hours');
 
        
         if ($this->hasYearFilter()) {
