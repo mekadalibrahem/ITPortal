@@ -10,7 +10,7 @@
     @else
         <x-button status="danger" wire:click="delete({{ $row->id }})" size='sm'
             wire:confirm="{{ $confirm_delete_message }}">
-            <x-svg.trash />
+            <x-svg.archive />
         </x-button>
     @endif
 </div>
