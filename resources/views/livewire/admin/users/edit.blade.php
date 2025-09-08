@@ -17,13 +17,7 @@
                 <x-widgets.input id="email" name="email" label="{{ __('string.email') }}" wire:model='email' />
 
             </div>
-            <div class="grid  md:grid-cols-1 lg:grid-cols-2 justify-between gap-2">
-                <x-widgets.input id="password" name="password" label="{{ __('string.password') }}" type="password"
-                    wire:model='password' />
-                <x-widgets.input id="confirm_password" name="confirm_password"
-                    label="{{ __('string.confirm_password') }}" type="password" wire:model='confirm_password' />
-
-            </div>
+          
             <div class="grid  md:grid-cols-1 lg:grid-cols-2 justify-between gap-2">
                 <x-widgets.input id="nid" name="nid" label="{{ __('string.ID number') }}"
                     wire:model='national_id' />
@@ -54,10 +48,11 @@
             </div>
             <div class="gird grid-flow-col auto-cols-max">
                 @foreach ($user_roles as $i)
+                
                     <span id="badge-dismiss-default"
                         class="inline-flex items-center px-2 py-1 me-2 mt-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
-                        {{ $i['role']->name }}
-                        <button type="button" wire:click="removeRole('{{ $i['id']}}')"
+                        {{ $i->name }}
+                        <button type="button" wire:click="removeRole('{{ $i->id}}')"
                             class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
                             data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
                             <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -72,7 +67,8 @@
             </div>
 
 
-            <x-button status="primary" type="button" wire:click='save()'> {{ __('string.Save') }} </x-button>
+            <x-button status="primary" type="button" wire:click='save()'> {{ __('string.register') }} </x-button>
+            <x-button status="primary" type="button" wire:click='resetPassword()'> {{ __('string.reset password') }} </x-button>
 
         </form>
     </div>

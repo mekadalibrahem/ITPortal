@@ -39,6 +39,6 @@ return [
     "print template not set yet" => "لم يتم اختيار قالب طباعة بعد",
     "your request finished  , your can not edit it now" => "تم الانتهاء من طلبك، لا يمكنك تعديله الآن",
     "Restor Item" => "تم الاستعادة",
-    "Faild restor item" => "فشل استعادة الملف",
+    "Faild restor item" => "فشل استعادة العنصر",
 
 ];

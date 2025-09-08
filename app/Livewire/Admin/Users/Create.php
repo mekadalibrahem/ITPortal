@@ -3,8 +3,10 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Classes\Services\Actions\UserAction;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
+use Spatie\Permission\Models\Role;
 
 class Create extends Component
 {
@@ -18,6 +20,15 @@ class Create extends Component
     public $confirm_password;
     public $national_id;
     public $type;
+    public $roles;
+    public $role;
+    public Collection $user_roles;
+
+    public function mount()
+    {
+        $this->roles = Role::all();
+        $this->user_roles = collect();
+    }
 
     public function save()
     {
@@ -31,9 +42,10 @@ class Create extends Component
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
 
                 'password' => ['required', 'min:8', 'same:confirm_password'],
-                "type" => ['required'],
+               
             ]
         );
+
         $registerd = UserAction::register([
             'fname' => $this->fname,
             'mname' =>  $this->mname,
@@ -42,14 +54,28 @@ class Create extends Component
             "username" =>   $this->username,
             'email' =>  $this->email,
             'password' => $this->password,
-            "type" => $this->type,
-        ]);
+
+        ],$this->user_roles->toArray());
         if ($registerd) {
             Toaster::success(trans('messages.Item Saved'));
             return redirect()->route('admin.auth.user.index');
         } else {
             Toaster::error(trans('messages.Faild Add Item'));
         }
+    }
+    public function addRole()
+    {
+        $role = $this->roles->where('id' , '=' , $this->role)->first();
+
+        $this->user_roles->push([
+            'id' => $role->id,
+            'role' => $role
+        ]);
+        $this->reset(['role']);
+
+    }
+    public function removeRole($id){
+        $this->user_roles = $this->user_roles->reject(fn($item) => $item['id'] == $id);
     }
     public function render()
     {

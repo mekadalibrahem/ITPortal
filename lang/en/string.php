@@ -203,4 +203,5 @@ return [
     'full name' => "Full name",
     "new User" => "New user",
     "show User" => "show user information",
+    "reset password" => "Reset password",
 ];
