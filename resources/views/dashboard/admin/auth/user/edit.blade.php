@@ -3,7 +3,6 @@
         Users Auth
     </x-slot:title>
 
-    {{-- <livewire:admin.users.auth-user-info /> --}}
-    <livewire:data-tables.user-table />
+   <livewire:admin.users.edit :id="$id">
 
 </x-layouts.dashboard>

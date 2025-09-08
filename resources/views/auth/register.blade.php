@@ -44,8 +44,7 @@
                             <x-widgets.input id="confirm_password" name="confirm_password"
                                 label="{{ __('string.confirm_password') }}" value="{{ old('confirm_password') }}"
                                 type="password" />
-                            <x-widgets.input id="email" name="email" label="{{ __('string.email') }}"
-                                value="{{ old('email') }}" />
+
                         </div>
                         <div class="grid  md:grid-cols-1 lg:grid-cols-2 justify-between gap-2">
                             <x-widgets.input id="nid" name="nid" label="{{ __('string.ID number') }}"

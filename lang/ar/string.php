@@ -152,7 +152,7 @@ return [
     "back" => "السابق",
     "name_en" => "الاسم بالاجنبي",
     "reset" => "إعادة تعيين",
-    "Actions" =>"العمليات",
+    "Actions" => "العمليات",
     "Change Signature" => "تعديل التوقيع",
     "signature" => "التوقيع",
     "New Signature Preview" => "عرض التوقيع الجديد",
@@ -179,7 +179,7 @@ return [
     'end_at' => 'تاريخ الانتهاء',
     'askToedit' => 'طلب تعديل',
     'create request step' => 'إنشاء الطلب',
-    'end request step'=>'انتهاء الطلب',
+    'end request step' => 'انتهاء الطلب',
     "slut" => [
         'name' => "قالب طباعة",
         'select' => "اختر قالب",
@@ -198,4 +198,9 @@ return [
     "stamp preview" => 'عرض الختم',
     'original stamp preview' => 'الختم الحالي',
     "Edit Role" => "تعديل الدور",
+    'full name' => "الاسم الكامل",
+    "new User" => "مستخدم جديد",
+    "show User" => "عرض بيانات المستخدم",
+    "reset password" => "إعادة تعين كلمة المرور",
+    'add employee' => 'إضافة موظف',
 ];
