@@ -32,7 +32,7 @@
 
             </div>
             <div class="grid  md:grid-cols-1 lg:grid-cols-4 justify-between gap-2">
-                <x-form.label for="role" value="{{ __('string.Account Type') }}" />
+                <x-form.label for="role" value="  {{ __('string.select role') }}" />
                 <select name="role" id="role" wire:model='role'
                     class='border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-cyan-50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 bg-red dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
                     <option value="0">
@@ -52,12 +52,19 @@
                 </div>
 
             </div>
+            <div class="flex gap-4">
+                <input type="checkbox" wire:model='isemployee' class="shrink-0 mt-0.5 border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-default-checkbox">
+                <x-form.label for="isemployee" value="{{ __('string.add employee') }}" />
+                
+
+                <x-form.input-error :message="$errors->get('isemployee')" />
+            </div>
             <div class="gird grid-flow-col auto-cols-max">
                 @foreach ($user_roles as $i)
                     <span id="badge-dismiss-default"
                         class="inline-flex items-center px-2 py-1 me-2 mt-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
                         {{ $i['role']->name }}
-                        <button type="button" wire:click="removeRole('{{ $i['id']}}')"
+                        <button type="button" wire:click="removeRole('{{ $i['id'] }}')"
                             class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
                             data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
                             <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

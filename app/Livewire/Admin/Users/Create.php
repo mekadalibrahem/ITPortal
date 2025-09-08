@@ -23,6 +23,7 @@ class Create extends Component
     public $roles;
     public $role;
     public Collection $user_roles;
+    public $isemployee;
 
     public function mount()
     {
@@ -42,11 +43,11 @@ class Create extends Component
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
 
                 'password' => ['required', 'min:8', 'same:confirm_password'],
-               
+
             ]
         );
 
-        $registerd = UserAction::register([
+        $user = UserAction::register([
             'fname' => $this->fname,
             'mname' =>  $this->mname,
             'lname' =>  $this->lname,
@@ -55,8 +56,12 @@ class Create extends Component
             'email' =>  $this->email,
             'password' => $this->password,
 
-        ],$this->user_roles->toArray());
-        if ($registerd) {
+        ], $this->user_roles->toArray());
+
+        if ($user) {
+            if ($this->isemployee) {
+                UserAction::addToEmployee($user);
+            }
             Toaster::success(trans('messages.Item Saved'));
             return redirect()->route('admin.auth.user.index');
         } else {
@@ -65,16 +70,16 @@ class Create extends Component
     }
     public function addRole()
     {
-        $role = $this->roles->where('id' , '=' , $this->role)->first();
+        $role = $this->roles->where('id', '=', $this->role)->first();
 
         $this->user_roles->push([
             'id' => $role->id,
             'role' => $role
         ]);
         $this->reset(['role']);
-
     }
-    public function removeRole($id){
+    public function removeRole($id)
+    {
         $this->user_roles = $this->user_roles->reject(fn($item) => $item['id'] == $id);
     }
     public function render()

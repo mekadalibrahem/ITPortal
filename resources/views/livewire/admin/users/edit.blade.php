@@ -26,7 +26,7 @@
 
             </div>
             <div class="grid  md:grid-cols-1 lg:grid-cols-4 justify-between gap-2">
-                <x-form.label for="role" value="{{ __('string.Account Type') }}" />
+                <x-form.label for="role" value="  {{ __('string.select role') }}" />
                 <select name="role" id="role" wire:model='role'
                     class='border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-cyan-50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 bg-red dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
                     <option value="0">
@@ -67,8 +67,9 @@
             </div>
 
 
-            <x-button status="primary" type="button" wire:click='save()'> {{ __('string.register') }} </x-button>
+            <x-button status="primary" type="button" wire:click='save()'> {{ __('string.Save') }} </x-button>
             <x-button status="primary" type="button" wire:click='resetPassword()'> {{ __('string.reset password') }} </x-button>
+            <x-button status="primary" type="button" wire:click='addEmployee()'> {{ __('string.add employee') }} </x-button>
 
         </form>
     </div>

@@ -102,6 +102,15 @@ class Edit extends Component
             Toaster::error(trans('messages.Faild save item'));
         }
     }
+    public function addEmployee()
+    {
+
+        if (UserAction::addToEmployee($this->user)) {
+            Toaster::success(trans('messages.Item Saved'));
+        } else {
+            Toaster::error(trans('messages.Faild save item'));
+        }
+    }
     public function render()
     {
         return view('livewire.admin.users.edit');

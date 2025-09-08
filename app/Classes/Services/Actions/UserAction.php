@@ -2,6 +2,7 @@
 
 namespace App\Classes\Services\Actions;
 
+use App\Models\Employee;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Collection;
@@ -13,7 +14,7 @@ class UserAction
     public static $USER_TYPE_STUDENT = 1;
     public static $USER_TYPE_EMPLOYEE = 2;
 
-    public static function register(array $user_data, array $roles = []): bool
+    public static function register(array $user_data, array $roles = [])
     {
         $user = User::create([
             'fname' => $user_data['fname'],
@@ -32,7 +33,7 @@ class UserAction
             return false;
         }
 
-        return true;
+        return $user;
     }
 
     public static function update(User $user, array $data,  Collection $roles): bool
@@ -99,5 +100,23 @@ class UserAction
             'password' => Hash::make($user->national_id)
         ]);
         return true;
+    }
+
+    public static function addToEmployee(User $user)
+    {
+        try {
+            Employee::create([
+                'user_id' => $user->id
+            ]);
+            if ($user->hasRole('employee')) {
+                // do nothing 
+            } else {
+                $user->assignRole('employee');
+            }
+            return true;
+        } catch (\Throwable $th) {
+            throw $th;
+            return false;
+        }
     }
 }

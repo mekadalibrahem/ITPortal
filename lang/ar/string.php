@@ -202,4 +202,5 @@ return [
     "new User" => "مستخدم جديد",
     "show User" => "عرض بيانات المستخدم",
     "reset password" => "إعادة تعين كلمة المرور",
+    'add employee' => 'إضافة موظف',
 ];
