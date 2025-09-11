@@ -70,6 +70,7 @@
             <x-button status="primary" type="button" wire:click='save()'> {{ __('string.Save') }} </x-button>
             <x-button status="primary" type="button" wire:click='resetPassword()'> {{ __('string.reset password') }} </x-button>
             <x-button status="primary" type="button" wire:click='addEmployee()'> {{ __('string.add employee') }} </x-button>
+            <x-button status="warning" type="button" wire:click='forceLogout()'> {{ __('string.force logout') }} </x-button>
 
         </form>
     </div>

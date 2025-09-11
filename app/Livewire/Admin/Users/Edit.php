@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Classes\Services\Actions\UserAction;
+use App\Classes\Services\Actions\UserSessionAction;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Collection;
@@ -12,6 +13,8 @@ use Spatie\Permission\Models\Role;
 
 class Edit extends Component
 {
+
+
     public $id;
     public $fname;
     public $lname;
@@ -102,6 +105,15 @@ class Edit extends Component
             Toaster::error(trans('messages.Faild save item'));
         }
     }
+    public function forceLogout()
+    {
+        if (UserSessionAction::forcLogout($this->user, true)) {
+            Toaster::success(trans('messages.Item Saved'));
+        } else {
+            Toaster::error(trans('messages.Faild save item'));
+        }
+    }
+
     public function addEmployee()
     {
 

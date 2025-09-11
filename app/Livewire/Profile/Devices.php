@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Classes\Services\Actions\UserSessionAction;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\ConfirmPassword;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class Devices extends Component
 
     public $user;
 
-    public $password ;
+    public $password;
 
     public $logout_status = [];
 
@@ -29,36 +30,21 @@ class Devices extends Component
     public function mount()
     {
         $this->user = Auth::user();
-
-
-
-
-
-
     }
 
-    public function logout_others(){
-            $this->validate([
-                'password' => 'required|min:8'
-            ]);
-            if(Hash::check($this->password,$this->user->password)){
+    public function logout_others()
+    {
+        $this->validate([
+            'password' => 'required|min:8'
+        ]);
+        if (Hash::check($this->password, $this->user->password)) {
 
-                $ids = DB::table('sessions')
-                    ->where('user_id', '=', Auth::user()->id)
-                    ->where('id', '!=', session()->getId())
-                    ->pluck('id');
-
-
-                if ($ids->isNotEmpty()) {
-                    DB::table('sessions')->whereIn('id', $ids)->delete();
-                }
-                $this->logout_status = ['type' => 'success' , 'message' => 'logout done '];
-                $this->render();
-            }else{
-                $this->logout_status = ['type' => 'danger' , 'message' => 'wrong password'];
-            }
-
-
+            UserSessionAction::forcLogout($this->user);
+            $this->logout_status = ['type' => 'success', 'message' => 'logout done '];
+            $this->render();
+        } else {
+            $this->logout_status = ['type' => 'danger', 'message' => 'wrong password'];
+        }
     }
 
 
@@ -66,16 +52,17 @@ class Devices extends Component
      * Get the current sessions.
      *
      * @return \Illuminate\Support\Collection
-    */
-    protected function sessions(){
+     */
+    protected function sessions()
+    {
         if (config('session.driver') !== 'database') {
             return []; // Return an empty array if session driver is not 'database'
         }
 
         $sessions = DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
-                          ->where('user_id', $this->user->id)
-                          ->orderBy('last_activity', 'desc')
-                          ->get();
+            ->where('user_id', $this->user->id)
+            ->orderBy('last_activity', 'desc')
+            ->get();
 
         $result = [];
         foreach ($sessions as $session) {
@@ -83,7 +70,7 @@ class Devices extends Component
             $result[] = [
                 'agent' => $agent,
                 'ip_address' => $session->ip_address,
-                'is_current_device' => $session->id ===session()->getId(),
+                'is_current_device' => $session->id === session()->getId(),
                 'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
             ];
         }
@@ -91,7 +78,7 @@ class Devices extends Component
         return $result;
     }
 
-     /**
+    /**
      * Create a new agent instance from the given session.
      *
      * @param  mixed  $session
@@ -99,7 +86,7 @@ class Devices extends Component
      */
     protected function createAgent($session)
     {
-        return tap(new Agent(), fn ($agent) => $agent->setUserAgent($session->user_agent));
+        return tap(new Agent(), fn($agent) => $agent->setUserAgent($session->user_agent));
     }
     public function render()
     {
