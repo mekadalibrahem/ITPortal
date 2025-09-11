@@ -165,6 +165,7 @@ return [
         'select' => "select template",
         'new' => "New template",
         'edit' => "Edit template",
+        'create or select one' => 'create or select one',
     ],
     "step" => [
         'name' => "step",
