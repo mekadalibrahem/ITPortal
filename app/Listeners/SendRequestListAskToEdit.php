@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Classes\Services\RequestLogNoteBuilder\RequestLogNoteAskToEdit;
 use App\Events\RequestListAskToEdit;
 use App\Models\RequestList;
 use App\Models\RequestLog;
@@ -24,7 +25,7 @@ class SendRequestListAskToEdit
     public function handle(RequestListAskToEdit $event): void
     {
         try {
-            
+
             $currentLog = RequestLog::query()->where([
                 'request_list_id' =>  $event->requestListId,
                 'request_tamplates_step_id' =>  $event->current_step_id
@@ -32,13 +33,11 @@ class SendRequestListAskToEdit
             if (!$currentLog) {
                 logger()->warning('No RequestLog found for request_list_id: ' . $event->requestListId .
                     ' and step_id: ' . $event->current_step_id . '. Note not updated.');
-                return; 
+                return;
             }
 
-            $note = $event->message . "\n";
-            $note .= "by : " . $event->byUserEmial . " (" . now()->format('Y-m-d H:i:s') . ")\n";
-            $note .= "----------------------\n";
-            $currentLog->note =  $note . "\n" . $currentLog->note;
+
+            $currentLog->note =  RequestLogNoteAskToEdit::build($event->byUserEmial, $event->message) . "\n" . $currentLog->note;
             $currentLog->save();
         } catch (\Throwable $th) {
             logger()->error($th->getMessage());
