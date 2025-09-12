@@ -18,7 +18,7 @@ class RequestListAskToEdit
     /**
      * Create a new event instance.
      */
-    public function __construct( public RequestList $requestList , public $message)
+    public function __construct( public  $requestListId ,public $current_step_id , public $byUserEmial , public $message)
     {
         //
     }

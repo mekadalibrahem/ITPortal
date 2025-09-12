@@ -40,7 +40,7 @@ abstract class AbstractRequestManagment
             if ($req->save()) {
                 $this->setRequestList($req);
                 $this->sendNotification($message);
-                event(new RequestListAskToEdit( $req , $message));
+                event(new RequestListAskToEdit( $req->id ,$req->current_step_id,$this->getEmployee()->user->email, $message));
                 return true;
             }
         }

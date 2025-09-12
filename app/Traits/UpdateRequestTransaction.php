@@ -68,7 +68,7 @@ trait UpdateRequestTransaction
 
 
                 DB::commit();
-                event(new RequestListEdited($req, $this->data_changed));
+                event(new RequestListEdited($req->id, $req->user->email , $req->current_step_id ,$this->data_changed));
                 // self::delete_old_image($this->images_for_deleted);
                 $this->is_done = true;
             } catch (\Throwable $th) {

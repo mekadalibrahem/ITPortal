@@ -24,13 +24,13 @@ class SendRequestListEdited
     {
         try {
             $currentLog = RequestLog::query()->where([
-                'request_list_id' =>  $event->requestList->id,
-                'request_tamplates_step_id' =>  $event->requestList->current_step_id
+                'request_list_id' =>  $event->requestListId,
+                'request_tamplates_step_id' =>  $event->current_step_id
             ])->first();
 
             if (!$currentLog) {
-                logger()->warning('No RequestLog found for request_list_id: ' . $event->requestList->id .
-                    ' and step_id: ' . $event->requestList->current_step_id . '. Note not updated.');
+                logger()->warning('No RequestLog found for request_list_id: ' . $event->requestListId .
+                    ' and step_id: ' . $event->current_step_id . '. Note not updated.');
                 return; 
             }
 
@@ -43,7 +43,7 @@ class SendRequestListEdited
                     $note .=  "[ " . $item['key'] . " ] image updated \n";
                 }
             }
-            $note .= "\nby : " . $event->requestList->user->email . " (" . now()->format('Y-m-d H:i:s') . ")\n";
+            $note .= "\nby : " . $event->byUserEmail . " (" . now()->format('Y-m-d H:i:s') . ")\n";
             $note .= "---------------------------\n";
             $currentLog->note =  $note . "\n" . $currentLog->note;
             $currentLog->save();

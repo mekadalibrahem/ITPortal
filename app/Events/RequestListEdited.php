@@ -18,7 +18,7 @@ class RequestListEdited
     /**
      * Create a new event instance.
      */
-    public function __construct(public RequestList $requestList , public array $dataChanged)
+    public function __construct(public  $requestListId ,  public $byUserEmail , public $current_step_id , public array $dataChanged)
     {
         //
     }
