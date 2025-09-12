@@ -11,16 +11,16 @@
                     <div class="flex flex-col gap-2">
                         <div class="flex gap-2">
                             <span> {{ __('string.employee name') }} </span>
-                            <span> {{ $requestlog->employee->user->fullname() }}</span>
+                            <span> {{ $requestlog->employee?->user->fullname() }}</span>
                         </div>
                         <div class="flex gap-2">
                             <span> {{ __('string.email') }} </span>
-                            <span> {{ $requestlog->employee->user->email }} </span>
+                            <span> {{ $requestlog->employee?->user->email }} </span>
                         </div>
                         <div class="flex gap-2">
-                            <span> {{ $requestlog->getRawOriginal('start_at') }} </span>
+                            <span> {{ $requestlog->getRawOriginal('start_at') ?? 0 }} </span>
                             -
-                            <span> <span> {{ $requestlog->getRawOriginal('end_at') }} </span> </span>
+                            <span> <span> {{ $requestlog->getRawOriginal('end_at') ??  0 }} </span> </span>
                         </div>
                         <div class="flex gap-2 border-t-2 border-teal-100">
 
