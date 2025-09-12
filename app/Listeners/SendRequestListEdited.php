@@ -27,6 +27,13 @@ class SendRequestListEdited
                 'request_list_id' =>  $event->requestList->id,
                 'request_tamplates_step_id' =>  $event->requestList->current_step_id
             ])->first();
+
+            if (!$currentLog) {
+                logger()->warning('No RequestLog found for request_list_id: ' . $event->requestList->id .
+                    ' and step_id: ' . $event->requestList->current_step_id . '. Note not updated.');
+                return; 
+            }
+
             $note = "Data updated : \n";
 
             foreach ($event->dataChanged as $item) {

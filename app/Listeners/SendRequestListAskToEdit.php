@@ -29,6 +29,12 @@ class SendRequestListAskToEdit
                 'request_list_id' =>  $event->requestList->id,
                 'request_tamplates_step_id' =>  $event->requestList->current_step_id
             ])->first();
+            if (!$currentLog) {
+                logger()->warning('No RequestLog found for request_list_id: ' . $event->requestList->id .
+                    ' and step_id: ' . $event->requestList->current_step_id . '. Note not updated.');
+                return; 
+            }
+
             $note = $event->message . "\n";
             $note .= "by : " . $currentLog->employee->user->email . " (" . now()->format('Y-m-d H:i:s') . ")\n";
             $note .= "----------------------\n";
