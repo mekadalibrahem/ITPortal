@@ -206,5 +206,7 @@ return [
     "reset password" => "Reset password",
     'add employee' => 'Add employee',
     'Key' => 'Key',
+    'employee name' => 'Employee name',
+
 
 ];

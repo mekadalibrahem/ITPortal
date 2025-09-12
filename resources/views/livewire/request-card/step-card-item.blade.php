@@ -6,6 +6,29 @@
         <h3 class="flex gap-x-1.5 font-semibold text-gray-900 dark:text-white text-sm">
 
             {{ $title }}
+            @if ($id)
+                <x-widgets.popover>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex gap-2">
+                            <span> {{ __('string.employee name') }} </span>
+                            <span> {{ $requestlog->employee->user->fullname() }}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span> {{ __('string.email') }} </span>
+                            <span> {{ $requestlog->employee->user->email }} </span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span> {{ $requestlog->getRawOriginal('start_at') }} </span>
+                            -
+                            <span> <span> {{ $requestlog->getRawOriginal('end_at') }} </span> </span>
+                        </div>
+                        <div class="flex gap-2 border-t-2 border-teal-100">
+
+                            {{ $requestlog->note }}
+                        </div>
+                    </div>
+                </x-widgets.popover>
+            @endif
         </h3>
         @if ($hasnote)
             <div class="mt-1 -ms-1 p-1 inline-flex   items-center gap-x-2 text-xs  dark:text-gray-100 text-gray-600   ">

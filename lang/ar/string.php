@@ -204,5 +204,6 @@ return [
     "reset password" => "إعادة تعين كلمة المرور",
     'add employee' => 'إضافة موظف',
     'Key' => 'مفتاح',
+    'employee name' => 'اسم الموظف',
     
 ];
