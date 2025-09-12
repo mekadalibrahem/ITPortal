@@ -39,24 +39,6 @@
                 @enderror
             </div>
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
-                <x-form.label for="template "> {{ __('string.request_template.name') }} </x-form.label>
-                <select type="text" name="template" id="template" wire:model="template"
-                    class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option value="0">
-                        {{ __('string.request_template.select') }}
-                    </option>
-                    @forelse ($templates as $t)
-                        <option value="{{ $t->id }}">
-                            {{ $t->name }}
-                        </option>
-                    @empty
-                    @endforelse
-                </select>
-                @error('template')
-                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-                <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
                 <x-form.label for="page "> {{ __('string.slut.name') }} </x-form.label>
                 <select type="text" name="page" id="page" wire:model="page"
                     class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -100,7 +82,7 @@
             <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-3 gap-2 " id="data_name_en" name="data_name_en"
                 label="{{ __('string.name_en') }}" wire:model='data_name_en' />
             <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
-                <x-form.label for="datatype "> {{ __('string.Department') }} </x-form.label>
+                <x-form.label for="datatype "> {{ __('string.Type') }} </x-form.label>
                 <select type="text" name="datatype" id="datatype" wire:model="datatype"
                     class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option value="0">
@@ -253,7 +235,284 @@
         </x-widgets.step-section>
 
         <x-widgets.step-section show="{{ $step == 3 }}">
-            @if ($step == 3)
+            <div class="sm:col-span-2 mb-3 grid grid-cols-4 gap-2">
+                <x-form.label for="template">{{ __('string.request_template.name') }}</x-form.label>
+                <select name="template_id" id="template_id" wire:model.live="template_id"
+                    class="bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    wire:loading.attr="disabled">
+                    <option value="0">{{ __('string.request_template.create or select one') }}</option>
+                    @forelse ($templates as $t)
+                        <option value="{{ $t->id }}">{{ $t->name }}</option>
+                    @empty
+                    @endforelse
+                </select>
+                @error('template_id')
+                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            @if ($template_id == 0)
+                <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-4 gap-2" id="template_name"
+                    name="template_name" label="{{ __('string.Name') }}" wire:model='template_name' />
+                <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-4 gap-2" id="template_disc"
+                    name="template_disc" label="{{ __('string.Description') }}" wire:model='template_disc' />
+            @else
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                    <thead class="bg-gray-50 dark:bg-neutral-800">
+                        <tr class="text-center">
+
+
+                            <th scope="col" class="text-center">
+
+
+                                {{ __('string.Name') }}
+
+                            </th>
+
+                            <th scope="col" class=" text-center">
+
+
+                                {{ __('string.Description') }}
+
+                            </th>
+
+                            <th scope="col" class=" text-center">
+
+
+                                {{ __('string.order') }}
+
+                            </th>
+                            <th scope="col" class=" text-center">
+
+
+                                {{ __('string.Department') }}
+
+                            </th>
+                            <th scope="col" class=" text-center">
+
+
+                                {{ __('string.Role') }}
+
+                            </th>
+
+                            <th scope="col" class=" text-center">
+                                {{ __('string.Delete') }}
+                            </th>
+                    <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                        @php
+                            $template_item = $templates->find($template_id);
+
+                        @endphp
+
+                        @forelse ($template_item->order_steps as $item)
+                            <tr wire:key="{{ $item['id'] }} " class="text-center">
+                                <td class="size-px whitespace-nowrap">
+                                    <div>
+                                        {{ $item->step->name }}
+                                    </div>
+                                </td>
+                                <td class="size-px whitespace-nowrap">
+                                    <div>
+                                        {{ $item->step->description }}
+
+                                    </div>
+                                </td>
+                                <td class="size-px whitespace-nowrap">
+                                    <div>
+
+                                        {{ $item->order }}
+                                    </div>
+                                </td>
+                                <td class="size-px whitespace-nowrap">
+                                    <div>
+
+                                        {{ $item->step->department->name }}
+                                    </div>
+                                </td>
+                                <td class="size-px whitespace-nowrap">
+                                    <div>
+                                        {{ $item->step->role }}
+
+                                    </div>
+                                </td>
+                                <td class="size-px whitespace-nowrap">
+                                    <button type="button" wire:click="removeTemplaeStep('{{ $item['id'] }}')"
+                                        class=" text-red-400 hover:text-red-200 shrink-0 size-4 inline-flex items-center justify-center rounded-full ">
+
+                                        <x-svg.trash />
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan='6' class="text-center">
+                                    {{ __('string.Empty') }}
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            @endif
+
+        </x-widgets.step-section>
+
+        <x-widgets.step-section show="{{ $step == 4 }}">
+            <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
+                <x-form.label for="template_step">{{ __('string.step.name') }}</x-form.label>
+                <select name="template_step" id="template_step" wire:model.live="template_step"
+                    class="bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    wire:loading.attr="disabled">
+                    <option value="0">{{ __('string.request_template.create or select one') }}</option>
+                    @forelse ($template_steps as $s)
+                        <option value="{{ $s->id }}">{{ $s->name }}</option>
+                    @empty
+                    @endforelse
+                </select>
+                @error('template_step')
+                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                @enderror
+
+            </div>
+
+            @if ($template_step == 0)
+                <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-3 gap-2 " id="step_name"
+                    name="step_name" label="{{ __('string.Name') }}" wire:model='step_name' />
+                <x-widgets.input divstyle="sm:col-span-2 mb-3 grid grid-cols-3 gap-2 " id="step_description"
+                    name="step_description" label="{{ __('string.Description') }}" wire:model='step_description' />
+
+                <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
+                    <x-form.label for="step_department "> {{ __('string.Department') }} </x-form.label>
+                    <select type="text" name="step_department" id="step_department" wire:model="step_department"
+                        class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="0">
+                            {{ __('string.Select Department') }}
+                        </option>
+                        @forelse ($departments as $dep)
+                            <option value="{{ $dep->id }}">
+                                {{ $dep->name }}
+                            </option>
+                        @empty
+                        @endforelse
+                    </select>
+                    @error('step_department')
+                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="sm:col-span-2 mb-3 grid grid-cols-3 gap-2">
+                    <x-form.label for="step_role "> {{ __('string.Role') }} </x-form.label>
+                    <select type="text" name="step_role" id="step_role" wire:model="step_role"
+                        class="  bg-cyan-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="0">
+                            {{ __('string.select role') }}
+                        </option>
+                        @forelse ($roles as $key => $value)
+                            <option value="{{ $key }}">
+                                {{ $value }}
+                            </option>
+                        @empty
+                        @endforelse
+                    </select>
+                    @error('step_role')
+                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+            @endif
+            <div>
+                <x-button wire:click='addStep()'>
+                    {{ __('string.Add') }}
+                </x-button>
+            </div>
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                <thead class="bg-gray-50 dark:bg-neutral-800">
+                    <tr class="text-center">
+
+
+                        <th scope="col" class="text-center">
+
+
+                            {{ __('string.Name') }}
+
+                        </th>
+
+                        <th scope="col" class=" text-center">
+
+
+                            {{ __('string.Description') }}
+
+                        </th>
+
+
+                        <th scope="col" class=" text-center">
+
+
+                            {{ __('string.Department') }}
+
+                        </th>
+                        <th scope="col" class=" text-center">
+
+
+                            {{ __('string.Role') }}
+
+                        </th>
+
+                        <th scope="col" class=" text-center">
+                            {{ __('string.Delete') }}
+                        </th>
+                <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+
+
+                    @forelse ($template_steps_list as $key => $i)
+                        @php
+                            $item = $i['step'];
+
+                        @endphp
+
+                        <tr wire:key="{{ $key }} " class="text-center">
+                            <td class="size-px whitespace-nowrap">
+                                <div>
+                                    {{ $item['name'] }}
+                                </div>
+                            </td>
+                            <td class="size-px whitespace-nowrap">
+                                <div>
+                                    {{ $item['description'] }}
+
+                                </div>
+                            </td>
+                            <td class="size-px whitespace-nowrap">
+                                <div>
+
+                                    {{ $departments->find($item['department_id'])->name }}
+
+                                </div>
+                            </td>
+                            <td class="size-px whitespace-nowrap">
+                                <div>
+                                    {{ $item['role'] }}
+
+                                </div>
+                            </td>
+                            <td class="size-px whitespace-nowrap">
+                                <button type="button" wire:click="removeStep({{ $key }})"
+                                    class=" text-red-400 hover:text-red-200 shrink-0 size-4 inline-flex items-center justify-center rounded-full ">
+
+                                    <x-svg.trash />
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan='6' class="text-center">
+                                {{ __('string.Empty') }}
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </x-widgets.step-section>
+
+        <x-widgets.step-section show="{{ $step == 5 }}">
+            @if ($step == 5)
                 <h3> {{ __('text.Your request info will saved') }} </h3>
                 <div class="flex flex-col gap-4">
                     <div class="space-y-3">
@@ -267,16 +526,6 @@
 
                                 {{ $name }}
 
-                            </dd>
-                        </dl>
-                        <dl class="flex flex-col sm:flex-row gap-1">
-                            <dt class="min-w-40">
-                                <span class="block text-sm text-gray-500 dark:text-neutral-500">
-                                    {{ __('string.request_template.name') }} :</span>
-                            </dt>
-                            <dd>
-
-                                {{ $templates->where('id', $template)->first()->name }}
                             </dd>
                         </dl>
                         <dl class="flex flex-col sm:flex-row gap-1">
@@ -413,7 +662,101 @@
                         @endforelse
                     </tbody>
                 </table>
+                  <div>
+                    <dl class="flex flex-col sm:flex-row gap-1">
+                        <dt class="min-w-40">
+                            <span class="block text-sm text-gray-500 dark:text-neutral-500">
+                                {{ __('string.request_template.name') }} :</span>
+                        </dt>
+                        <dd>
 
+                            @if ($template_id)
+                                {{ $templates->find($template_id)->name }}
+                            @else
+                                {{ $template_name }}
+                            @endif
+                        </dd>
+                    </dl>
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                        <thead class="bg-gray-50 dark:bg-neutral-800">
+                            <tr class="text-center">
+
+
+                                <th scope="col" class="text-center">
+
+
+                                    {{ __('string.Name') }}
+
+                                </th>
+
+                                <th scope="col" class=" text-center">
+
+
+                                    {{ __('string.Description') }}
+
+                                </th>
+
+
+                                <th scope="col" class=" text-center">
+
+
+                                    {{ __('string.Department') }}
+
+                                </th>
+                                <th scope="col" class=" text-center">
+
+
+                                    {{ __('string.Role') }}
+
+                                </th>
+
+
+                        <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+
+
+                            @forelse ($template_steps_list as $key => $i)
+                                @php
+                                    $item = $i['step'];
+
+                                @endphp
+
+                                <tr wire:key="{{ $key }} " class="text-center">
+                                    <td class="size-px whitespace-nowrap">
+                                        <div>
+                                            {{ $item['name'] }}
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div>
+                                            {{ $item['description'] }}
+
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div>
+
+                                            {{ $departments->find($item['department_id'])->name }}
+
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div>
+                                            {{ $item['role'] }}
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan='6' class="text-center">
+                                        {{ __('string.Empty') }}
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             @endif
         </x-widgets.step-section>
     </div>
