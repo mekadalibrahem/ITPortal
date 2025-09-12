@@ -7,9 +7,10 @@ use Masmerise\Toaster\Toaster;
 use Spatie\Permission\Models\Permission;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class PermissionDataTable extends CustomeDataTableComponent {
+class PermissionDataTable extends CustomeDataTableComponent
+{
 
-    public $model = Permission::class ;
+    public $model = Permission::class;
 
     public function configure(): void
     {
@@ -17,22 +18,25 @@ class PermissionDataTable extends CustomeDataTableComponent {
         $this->setAddButton(Route('admin.auth.permission.create'));
     }
 
-    public function builder(): Builder {
+    public function builder(): Builder
+    {
 
         return $this->model::query();
-
     }
 
-    public function columns(): array {
+    public function columns(): array
+    {
         return [
             Column::make('ID', 'id')
-            ->sortable(),
-        Column::make('Name', 'name')
-            ->sortable(),
+                ->sortable(),
+            Column::make(trans('string.key'), 'name')
+                ->sortable(),
+            Column::make(trans('string.Name'), 'display_name'),
         ];
     }
 
-    public function edit($id = 0): void {
+    public function edit($id = 0): void
+    {
         redirect()->route('admin.auth.permission.edit', ['id' => $id]);
     }
 
@@ -50,5 +54,3 @@ class PermissionDataTable extends CustomeDataTableComponent {
         }
     }
 }
-
-

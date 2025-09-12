@@ -31,7 +31,7 @@
                     <option value=""> {{ __('string.Select permission') }} </option>
                     @foreach ($permissions as $permission)
                         <option value="{{ $permission->id }}">
-                            {{ $permission->name }}
+                            {{ $permission->display_name }}
                         </option>
                     @endforeach
 
@@ -55,7 +55,7 @@
                     @foreach ($role_permissions as $role_permission)
                         <span id="badge-dismiss-default"
                             class="inline-flex items-center px-2 py-1 me-2 mt-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
-                            {{ $role_permission->name }}
+                            {{ $role_permission->display_name }}
                             <button type="button" wire:click="remove_permission('{{ $role_permission->name }}')"
                                 class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
                                 data-dismiss-target="#badge-dismiss-default" aria-label="Remove">

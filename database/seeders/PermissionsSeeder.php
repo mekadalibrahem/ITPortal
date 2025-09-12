@@ -22,6 +22,7 @@ class PermissionsSeeder extends Seeder
             DB::table('permissions')->insert([
                 'name' => $row['name'],
                 'guard_name' => $row["guard_name"],
+                'display_name' => $row['display_name'],
                 'created_at' => $row['created_at'],
                 "updated_at" => $row['updated_at']
             ]);

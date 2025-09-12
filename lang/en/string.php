@@ -205,5 +205,6 @@ return [
     "show User" => "show user information",
     "reset password" => "Reset password",
     'add employee' => 'Add employee',
+    'Key' => 'Key',
 
 ];

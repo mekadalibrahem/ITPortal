@@ -5,7 +5,9 @@
             <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
 
                 <div class="sm:col-span-2">
-                    <x-widgets.input id="name" label="{{ __('string.Name') }}" type="text" wire:model='name' />
+                    <x-widgets.input id="name" label="{{ __('string.Key') }}" type="text" wire:model='name' />
+                    <x-widgets.input id="display_name" type="display_name" label="{{ __('string.Name') }}"
+                        wire:model='display_name' />
                 </div>
 
                 <div class=" flex  items-center  space-x-4">

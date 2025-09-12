@@ -11,16 +11,18 @@ class Add extends Component
 
     public $name = '';
     public $guard = '';
-
+    public $display_name;
 
     public function store()
     {
         $this->validate([
-            'name' => ['required', 'min:4', 'unique:permissions,name']
+            'name' => ['required', 'min:4', 'unique:permissions,name'],
+            'display_name' =>  ['required', 'min:4']
         ]);
 
         $permission = Permission::create([
-            'name' => $this->name
+            'name' => $this->name,
+            'display_name' => $this->display_name
         ]);
 
         if ($permission) {

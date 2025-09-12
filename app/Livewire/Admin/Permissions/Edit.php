@@ -11,6 +11,7 @@ class Edit extends Component
 {
     public $id;
     public $name;
+    public $display_name;
     public $permission;
 
     public function mount()
@@ -20,6 +21,7 @@ class Edit extends Component
 
             $this->permission = Permission::where('id', $this->id)->first();
             $this->name = $this->permission->name;
+            $this->display_name = $this->permission->display_name;
         } else {
             abort(404);
         }
@@ -29,9 +31,11 @@ class Edit extends Component
     {
         $this->validate([
             'name' => ['required', 'min:4', Rule::unique('permissions', 'name')->ignore($this->permission->id)],
+            'display_name' => ['required', 'min:4'],
         ]);
 
         $this->permission->name = $this->name;
+        $this->permission->display_name = $this->display_name;
 
         if ($this->permission->isDirty()) {
             if ($this->permission->save()) {

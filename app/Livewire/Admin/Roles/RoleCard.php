@@ -52,7 +52,7 @@ class RoleCard extends Component
 
             if ($permission = Permission::findById($this->add_permission)) {
                 $this->role->givePermissionTo($permission);
-                Toaster::success('permission [ ' . $permission->name . '  ] added  ');
+                Toaster::success('permission [ ' . $permission->display_name . '  ] added  ');
                 $this->show();
                 $this->render();
             } else {
@@ -67,7 +67,7 @@ class RoleCard extends Component
             try {
                 $permission = Permission::findByName($permission_name);
                 $this->role->revokePermissionTo($permission);
-                Toaster::success('permission [ ' . $permission->name . '  ] removed  ');
+                Toaster::success('permission [ ' . $permission->display_name . '  ] removed  ');
                 $this->show();
                 $this->render();
             } catch (\Throwable $th) {
