@@ -24,7 +24,7 @@
                         </div>
                         <div class="flex gap-2 border-t-2 border-teal-100">
 
-                            {{ $requestlog->note }}
+                            {!! nl2br(e($requestlog->note)) !!}
                         </div>
                     </div>
                 </x-widgets.popover>
