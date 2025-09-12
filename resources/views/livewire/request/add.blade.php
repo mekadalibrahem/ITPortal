@@ -222,9 +222,7 @@
 
                             </th>
 
-                            <th scope="col" class=" text-center">
-                                {{ __('string.Delete') }}
-                            </th>
+                         
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                         @php
                             $template_item = $templates[$template - 1];
@@ -262,13 +260,7 @@
 
                                     </div>
                                 </td>
-                                <td class="size-px whitespace-nowrap">
-                                    <button type="button" wire:click="removeTemplaeStep('{{ $item['id'] }}')"
-                                        class=" text-red-400 hover:text-red-200 shrink-0 size-4 inline-flex items-center justify-center rounded-full ">
-
-                                        <x-svg.trash />
-                                    </button>
-                                </td>
+                               
                             </tr>
                         @empty
                             <tr>
