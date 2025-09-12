@@ -208,6 +208,8 @@ return [
     'add employee' => 'Add employee',
     'Key' => 'Key',
     'employee name' => 'Employee name',
+    'start_at' => "Start at",
+    'end_at' =>  "End at",
 
 
 ];

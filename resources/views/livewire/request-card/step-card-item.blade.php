@@ -8,23 +8,31 @@
             {{ $title }}
             @if ($id)
                 <x-widgets.popover>
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2 max-w-sm">
                         <div class="flex gap-2">
-                            <span> {{ __('string.employee name') }} </span>
-                            <span> {{ $requestlog->employee?->user->fullname() }}</span>
+                            <span class="font-medium text-gray-700">{{ __('string.employee name') }}</span>
+                            <span>{{ $requestlog->employee?->user?->fullname() ?? '—' }}</span>
                         </div>
-                        <div class="flex gap-2">
-                            <span> {{ __('string.email') }} </span>
-                            <span> {{ $requestlog->employee?->user->email }} </span>
-                        </div>
-                        <div class="flex gap-2">
-                            <span> {{ $requestlog->getRawOriginal('start_at') ?? 0 }} </span>
-                            -
-                            <span> <span> {{ $requestlog->getRawOriginal('end_at') ??  0 }} </span> </span>
-                        </div>
-                        <div class="flex gap-2 border-t-2 border-teal-100">
 
-                            {!! nl2br(e($requestlog->note)) !!}
+                        <div class="flex gap-2">
+                            <span class="font-medium text-gray-700">{{ __('string.email') }}</span>
+                            <span>{{ $requestlog->employee?->user?->email ?? '—' }}</span>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <span class="font-medium text-gray-700">{{ __('string.start_at') }}</span>
+                            <span>{{ $requestlog->getRawOriginal('start_at') ?? '—' }}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="font-medium text-gray-700">{{ __('string.end_at') }}</span>
+                            <span>{{ $requestlog->getRawOriginal('end_at') ?? '—' }}</span>
+                        </div>
+
+                        <div class="flex gap-2 border-t-2 border-teal-100 pt-2">
+                            <div
+                                class="max-w-xs md:max-w-md overflow-auto max-h-48 bg-gray-50 rounded p-3 text-sm font-mono whitespace-pre-wrap">
+                                {!! nl2br(e($requestlog->note)) !!}
+                            </div>
                         </div>
                     </div>
                 </x-widgets.popover>
