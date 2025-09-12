@@ -32,7 +32,7 @@ class SendRequestListAskToEdit
             $note = $event->message . "\n";
             $note .= "by : " . $currentLog->employee->user->email . " (" . now()->format('Y-m-d H:i:s') . ")\n";
             $note .= "----------------------\n";
-            $currentLog->note .= "\n" . $note;
+            $currentLog->note =  $note . "\n" . $currentLog->note;
             $currentLog->save();
         } catch (\Throwable $th) {
             logger()->error($th->getMessage());
