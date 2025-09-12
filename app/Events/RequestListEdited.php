@@ -9,18 +9,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
+use App\Jobs\ReuqetsListEdited as JobRequestListEdited ;
 use Illuminate\Queue\SerializesModels;
 
-class RequestListEdited
+class RequestListEdited implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public  $requestListId ,  public $byUserEmail , public $current_step_id , public array $dataChanged)
+    public function __construct(public  $requestListId,  public $byUserEmail, public $current_step_id, public array $dataChanged)
     {
-        //
+            JobRequestListEdited::dispatch(
+            $requestListId,
+            $byUserEmail,
+            $current_step_id,
+            $dataChanged,
+            "REQUEST LIST UPDATED"
+        );
     }
 
     /**
@@ -31,7 +38,7 @@ class RequestListEdited
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new PrivateChannel('request.' . $this->requestListId),
         ];
     }
 }
