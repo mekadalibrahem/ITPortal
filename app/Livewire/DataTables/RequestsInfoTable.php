@@ -25,8 +25,8 @@ class RequestsInfoTable extends CustomeDataTableComponent
     public function builder(): Builder
 
     {
-        return $this->model::query()->with([ 'type' , 'template' , 'page'])
-        ->select([ 'requests.id' , 'requests.name' ,'type.type' , 'template.name' , 'page.name']);
+        return $this->model::query()->with(['type', 'template', 'page'])
+            ->select(['requests.id', 'requests.isActive', 'requests.name', 'type.type', 'template.name', 'page.name']);
     }
     public function columns(): array
     {
@@ -38,19 +38,25 @@ class RequestsInfoTable extends CustomeDataTableComponent
                 ->sortable()->hideIf(true),
             Column::make(trans('string.Name'), "name")
                 ->sortable(),
-         
+
             Column::make(trans('string.Type'), "type.type")
                 ->sortable(),
-            Column::make(trans('string.request_template.name') ,'template.name' )
-            ->sortable(),
-              Column::make(trans('string.slut.name') ,'page.name' )
-            ->sortable()
+            Column::make(trans('string.request_template.name'), 'template.name')
+                ->sortable(),
+            Column::make(trans('string.slut.name'), 'page.name')
+                ->sortable(),
+            Column::make(trans('string.Status'), 'isActive')
+                ->label(fn($row) => view('livewire.components.active-toggle', [
+                    'id' => $row->id,
+                    'isActive' => $row->isActive(),
+                ]))
+                ->sortable(),
 
 
         ];
     }
 
-    public function delete($id=0) :void
+    public function delete($id = 0): void
     {
 
         try {
@@ -66,8 +72,31 @@ class RequestsInfoTable extends CustomeDataTableComponent
             Log::error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $th->getMessage());
         }
     }
-    public function edit($id) : void
+    public function edit($id): void
     {
         redirect()->route('admin.requests.request.edit', ["id" => $id]);
+    }
+    public function activate($id): void
+    {
+        try {
+            $request = Requests::findOrFail($id);
+            $request->active(); 
+            Toaster::success(__('messages.Status changed to Active'));
+        } catch (\Throwable $th) {
+            Log::error(__CLASS__ . '@' . __FUNCTION__ . " : " . $th->getMessage());
+            Toaster::error(__('messages.Failed to activate request'));
+        }
+    }
+
+    public function deactivate($id): void
+    {
+        try {
+            $request = Requests::findOrFail($id);
+            $request->unactive(); 
+            Toaster::success(__('messages.Status changed to Inactive'));
+        } catch (\Throwable $th) {
+            Log::error(__CLASS__ . '@' . __FUNCTION__ . " : " . $th->getMessage());
+            Toaster::error(__('messages.Failed to deactivate request'));
+        }
     }
 }

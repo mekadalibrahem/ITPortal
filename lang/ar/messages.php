@@ -40,5 +40,9 @@ return [
     "your request finished  , your can not edit it now" => "تم الانتهاء من طلبك، لا يمكنك تعديله الآن",
     "Restor Item" => "تم الاستعادة",
     "Faild restor item" => "فشل استعادة العنصر",
+    "Status changed to Active" => 'تم تفعيل الطلب',
+    "Status changed to Inactive" => 'تم الغاء تفعيل الطلب',
+    "Failed to deactivate request" => 'فشل الغاء تفعيل الطلب'
+    
 
 ];

@@ -23,38 +23,61 @@ class Requests extends Model
         "page_id",
         'request_template_id',
         'isActive',
-       
+
     ];
 
-    public function page() :BelongsTo {
+    public function page(): BelongsTo
+    {
         return $this->belongsTo(Page::class);
     }
 
-    public function type():BelongsTo {
+    public function type(): BelongsTo
+    {
         return $this->belongsTo(RequestType::class);
     }
 
-    public function requestList():HasMany {
+    public function requestList(): HasMany
+    {
         return $this->hasMany(RequestList::class);
     }
 
-    public function requireData() : HasMany {
+    public function requireData(): HasMany
+    {
         return $this->hasMany(RequireData::class);
     }
-    public function template() : BelongsTo {
-        return $this->belongsTo(RequestTemplate::class , 'request_template_id');
+    public function template(): BelongsTo
+    {
+        return $this->belongsTo(RequestTemplate::class, 'request_template_id');
     }
 
     /**
      * scope retrun just active itme
      */
-    public function scopeActive(Builder $query) :void {
-        $query->where('isActive' , "=" , 1) ;
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('isActive', "=", 1);
     }
 
 
+    public function active()
+    {
+        $this->update(['isActive' => 1]);
+    }
+    public function unactive()
+    {
+        $this->update(['isActive' => 0]);
+    }
+    public function isActive(): bool
+    {
+        if ($this->isActive > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        /**
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
