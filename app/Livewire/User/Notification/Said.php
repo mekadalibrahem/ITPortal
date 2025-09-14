@@ -25,7 +25,11 @@ class Said extends Component
 
     public function loadNotifications()
     {
-        $query = Notification::with(['user', 'from']);
+        $query = Notification::where(function ($query) {
+            $query->where('user_id', $this->user_id)
+                ->orWhere('from_id', $this->user_id);
+        })
+            ->with(['user', 'from']);
 
         if ($this->activeTab === 'sent') {
             $query->where('from_id',  $this->user_id);
@@ -49,7 +53,7 @@ class Said extends Component
                         ->orWhere('from_id', $this->user_id);
                 })
                 ->first();
-            
+
             if ($notify) {
                 if ($notify->from_id != $this->user_id) {
                     $notify->mark_read();
