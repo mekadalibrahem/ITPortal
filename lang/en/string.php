@@ -212,6 +212,7 @@ return [
     'start_at' => "Start at",
     'end_at' =>  "End at",
     'user information' => 'user information',
-    "force logout" => "force logout"
+    "force logout" => "force logout",
+    "Security" => "Security",
 
 ];

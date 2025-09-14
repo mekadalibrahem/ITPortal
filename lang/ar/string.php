@@ -211,4 +211,5 @@ return [
     'end_at' => "تاريخ الانتهاء",
     'user information' => "معلومات المستخدم",
     'force logout' => 'إجبار تسجيل الخروج',
+    "Security" => "اﻷمان",
 ];
