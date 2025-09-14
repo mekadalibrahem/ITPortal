@@ -35,7 +35,7 @@ class BrowserShotExportRequest extends AbstractExportRequest
             "name" => $user->fname,
             // father name  => mname
             "fname" => $user->mname,
-            "lname" => $user->mname,
+            "lname" => $user->lname,
             "user_nid" => $user->nid,
             "user_sig" =>  $this->storage2base64(Storage::disk("signature")->get($user->signature), $user->signature),
             'title' => $this->request->requests->name
