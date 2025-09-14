@@ -163,7 +163,7 @@ return [
         'select' => "اختر قالب",
         'new' => "قالب جديد",
         'edit' => "تعديل القالب",
-        "create or select one"=> "إنشاء او اختر قالب محدد",
+        "create or select one" => "إنشاء او اختر قالب محدد",
     ],
     "step" => [
         'name' => "خطوة",
@@ -201,6 +201,7 @@ return [
     "Edit Role" => "تعديل الدور",
     'full name' => "الاسم الكامل",
     "new User" => "مستخدم جديد",
+    "Edit user" => "تعديل بيانات المستخدم",
     "show User" => "عرض بيانات المستخدم",
     "reset password" => "إعادة تعين كلمة المرور",
     'add employee' => 'إضافة موظف',
@@ -208,5 +209,6 @@ return [
     'employee name' => 'اسم الموظف',
     'start_at' => "تاريخ البدء",
     'end_at' => "تاريخ الانتهاء",
-    
+    'user information' => "معلومات المستخدم",
+    'force logout' => 'إجبار تسجيل الخروج',
 ];

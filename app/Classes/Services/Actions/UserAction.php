@@ -36,12 +36,14 @@ class UserAction
         return $user;
     }
 
-    public static function update(User $user, array $data,  Collection $roles): bool
+    public static function update(User $user, array $data,  bool|Collection $roles = false): bool
     {
         try {
 
             $updated = $user->update($data);
-            self::updateUserRoles($user, $roles);
+            if ($roles != false) {
+                self::updateUserRoles($user, $roles);
+            }
             return true;
         } catch (Exception $e) {
             // return false;

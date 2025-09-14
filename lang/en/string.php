@@ -203,6 +203,7 @@ return [
     "Edit Role" => "Edit Role",
     'full name' => "Full name",
     "new User" => "New user",
+    "Edit user" => "Edit user information",
     "show User" => "show user information",
     "reset password" => "Reset password",
     'add employee' => 'Add employee',
@@ -210,6 +211,7 @@ return [
     'employee name' => 'Employee name',
     'start_at' => "Start at",
     'end_at' =>  "End at",
-
+    'user information' => 'user information',
+    "force logout" => "force logout"
 
 ];

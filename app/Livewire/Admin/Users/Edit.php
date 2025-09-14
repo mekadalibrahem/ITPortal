@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Users;
 use App\Classes\Services\Actions\UserAction;
 use App\Classes\Services\Actions\UserSessionAction;
 use App\Models\User;
+use App\Traits\HasSessionTrait;
 use Exception;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -13,7 +14,7 @@ use Spatie\Permission\Models\Role;
 
 class Edit extends Component
 {
-
+    use HasSessionTrait;
 
     public $id;
     public $fname;
@@ -29,7 +30,12 @@ class Edit extends Component
     public $role;
     public $user;
     public Collection $user_roles;
-
+    public $selected_tap = 1;
+  
+    public function selectTab($index)
+    {
+        $this->selected_tap = $index;
+    }
     public function index()
     {
         $user = User::where('id', $this->id)->with('roles')->first();
@@ -50,9 +56,19 @@ class Edit extends Component
     {
         $this->index();
         $this->roles = Role::all();
+      
     }
 
-    public function save()
+    public function saveRoles()
+    {
+        $saved  = UserACtion::updateUserRoles($this->user, $this->user_roles);
+        if ($saved) {
+            Toaster::success(trans('messages.Item Saved'));
+        } else {
+            Toaster::error(trans('messages.Faild save item'));
+        }
+    }
+    public function saveInfo()
     {
         $this->validate(
             [
@@ -75,10 +91,9 @@ class Edit extends Component
             "username" =>   $this->username,
             'email' =>  $this->email,
 
-        ], $this->user_roles);
+        ]);
         if ($registerd) {
             Toaster::success(trans('messages.Item Saved'));
-            return redirect()->route('admin.auth.user.index');
         } else {
             Toaster::error(trans('messages.Faild save item'));
         }
@@ -125,6 +140,6 @@ class Edit extends Component
     }
     public function render()
     {
-        return view('livewire.admin.users.edit');
+        return view('livewire.admin.users.edit', ['user_sessions' => $this->sessions($this->user->id)]);
     }
 }
