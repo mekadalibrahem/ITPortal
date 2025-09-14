@@ -40,4 +40,5 @@ return [
     "your request finished  , your can not edit it now" => "your request finished  , your can not edit it now",
     "Restor Item" => "Item Restored",
     "Faild restor item" => "Faild restor item",
+    "Can't Export request if not ened" => "Can't Export request if not ened",
 ];

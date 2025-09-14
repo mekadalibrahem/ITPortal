@@ -42,7 +42,8 @@ return [
     "Faild restor item" => "فشل استعادة العنصر",
     "Status changed to Active" => 'تم تفعيل الطلب',
     "Status changed to Inactive" => 'تم الغاء تفعيل الطلب',
-    "Failed to deactivate request" => 'فشل الغاء تفعيل الطلب'
+    "Failed to deactivate request" => 'فشل الغاء تفعيل الطلب',
+    "Can't Export request if not ened" => "لا يمكن تصدير الطلب إذا لم ينتهي بعد",
     
 
 ];
