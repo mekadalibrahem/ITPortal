@@ -30,15 +30,15 @@ class RequestsCard extends Component
     public $redirect_note  = null;
     public $request_user;
     public $can_work ;
-    
+    private RequestManagmentTemplate $requestManager ;
 
     public  function accept()
     {
-        $request_manager =  $this->getRequestManager();
-       if($request_manager->hasNext()){
-            $request_manager->next();
+       
+       if($this->requestManager->hasNext()){
+            $this->requestManager->next();
        }else{
-         $request_manager->accept("تم قبول الطلب بنجاح");
+         $this->requestManager->accept("تم قبول الطلب بنجاح");
        }
        Toaster::success("تم الموافقة على الطلب");
        redirect()->route('employee.requests');
@@ -48,8 +48,7 @@ class RequestsCard extends Component
         $this->validate([
             "cancel_note" => "required",
         ]);
-        $request_manager =  $this->getRequestManager();
-        $request_manager->reject($this->cancel_note);
+        $this->requestManager->reject($this->cancel_note);
         Toaster::success("تم رفض الطلب");
         redirect()->route('employee.requests');
     }
@@ -103,6 +102,7 @@ class RequestsCard extends Component
         $this->current_employee = Employee::where('user_id', Auth::id())->first();
         $this->show();
         $this->can_work_in_request();
+        $this->requestManager = $this->getRequestManager();
       
        
 
