@@ -70,7 +70,14 @@ class User extends Authenticatable
         'national_id',
     ];
 
-
+    public function hasActiveEmployeeRecord()
+    {
+        if ($this->employee) {
+            return true;
+        } else {
+            return null;
+        }
+    }
     public function fullname(): string
     {
         return $this->fname . ' ' . $this->mname . ' ' . $this->lname;
