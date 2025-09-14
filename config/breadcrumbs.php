@@ -93,8 +93,8 @@ return  [
         'admin.auth.role.create' => 'dashboard.auth.role',
 
         'admin.auth.user.index' => 'dashboard.auth.user',
-        // 'admin.auth.user.create' => 'dashboard.auth.user',
-        // 'admin.auth.user.edit' => 'dashboard.auth.user',
+        'admin.auth.user.create' => 'dashboard.auth.user',
+        'admin.auth.user.edit' => 'dashboard.auth.user',
 
         'admin.collage.index' => 'dashboard.collage',
         'admin.collage.create' => 'dashboard.collage',
