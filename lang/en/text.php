@@ -10,4 +10,5 @@ return [
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." => "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
     "Your request info will saved" => "Your request info will saved",
     "Empty session" => "No sessions found at this time",
+    "Empty notifications" => "Don't have any message yet",
 ];

@@ -17,7 +17,7 @@
                     <x-layouts.link href="{{ Route('profile.create') }}">
                         {{ __('string.Profile') }}
                     </x-layouts.link>
-                    <x-layouts.link href="{{ Route('user.notification.create') }}">
+                    <x-layouts.link href="{{ Route('user.notification.index') }}">
                         {{ __('string.notifications') }}
                         <livewire:notification-counter :user_id="Auth::user()->id" />
                     </x-layouts.link>

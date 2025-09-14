@@ -33,6 +33,9 @@ class Notification extends Model
     public function date(){
         return Carbon::parse($this->create_at)->format('Y-m-d');
     }
+    public function from(): BelongsTo {
+        return $this->belongsTo(User::class, 'from_id');
+    }
     public function sender() :User {
         $sender = User::where("id" , "=" , $this->from_id)->first();
         return $sender ;

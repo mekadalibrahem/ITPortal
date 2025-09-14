@@ -212,4 +212,6 @@ return [
     'user information' => "معلومات المستخدم",
     'force logout' => 'إجبار تسجيل الخروج',
     "Security" => "اﻷمان",
+    'Sent' => "المرسلة",
+    "Received" => "المستلمة",
 ];

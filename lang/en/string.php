@@ -214,5 +214,7 @@ return [
     'user information' => 'user information',
     "force logout" => "force logout",
     "Security" => "Security",
+    'Sent' => "Sent",
+    "Received" => "Received",
 
 ];

@@ -41,4 +41,5 @@ return [
     "Restor Item" => "Item Restored",
     "Faild restor item" => "Faild restor item",
     "Can't Export request if not ened" => "Can't Export request if not ened",
+    "notify send" => "notify send",
 ];

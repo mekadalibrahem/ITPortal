@@ -44,6 +44,6 @@ return [
     "Status changed to Inactive" => 'تم الغاء تفعيل الطلب',
     "Failed to deactivate request" => 'فشل الغاء تفعيل الطلب',
     "Can't Export request if not ened" => "لا يمكن تصدير الطلب إذا لم ينتهي بعد",
-    
+    "notify send" => "تم إرسال الرسالة",
 
 ];

@@ -22,7 +22,12 @@ Route::middleware([
             Route::get('/show/{id}', [RequestListController::class, 'index'])->name('index');
             Route::get('/addNew', [RequestListController::class, 'add'])->name('add');
         });
-
-        Route::view('/notification', 'user.notification')->name("notification.create");
+        Route::group([
+            "prefix" => "notification",
+            "as" => "notification."
+        ], function () {
+            Route::view('', 'user.notification.index')->name("index");
+            Route::view('/create', 'user.notification.create')->name('create');
+        });
     });
 });
