@@ -24,7 +24,7 @@
                             wire:click="accept()">{{ __('string.accept') }}</x-button>
                         <x-button status="primary" type="button"
                             wire:click="cancel()">{{ __('string.askToedit') }}</x-button>
-                        <x-button status="danger " type="button"
+                        <x-button status="danger" type="button"
                             wire:click="reject()">{{ __('string.reject') }}</x-button>
 
 
