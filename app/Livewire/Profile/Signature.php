@@ -48,9 +48,12 @@ class Signature extends Component
 
 
             if ($this->suser->save()) {
-                if (Storage::disk('signature')->exists($this->current_signature_name)) {
+                if ($this->current_signature_name) {
 
-                    Storage::disk('signature')->delete($this->current_signature_name);
+                    if (Storage::disk('signature')->exists($this->current_signature_name)) {
+
+                        Storage::disk('signature')->delete($this->current_signature_name);
+                    }
                 }
                 $this->current_signature_name = $this->suser->signature;
                 $this->current_signature  = $this->storage2base64(Storage::disk("signature")->get($this->current_signature_name), $this->current_signature_name);

@@ -7,7 +7,8 @@ return [
     "Empty request list" => "لا يوجد طلبات مقدمة",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." => "نسيت كلمة المرور ؟ لا مشكلة . فقط اكتب بريدك الالكتروني و سوف نرسل اليك رابط اعادة تعيين كلمة المرور",
     "Your request info will saved" => "سيتم حفظ هذه المعلومات لطلبك ",
-    "Empty session"=> "لا يوجد اي عمليات تسجيل دخول حاليا",
-    "Empty notifications" => "لا يوجد لديك رسائل بعد ", 
+    "Empty session" => "لا يوجد اي عمليات تسجيل دخول حاليا",
+    "Empty notifications" => "لا يوجد لديك رسائل بعد ",
+    "A signature is required before you can submit any requests." => 'يرجى رفع توقيعك لتتمكن من إرسال الطلبات'
 
 ];

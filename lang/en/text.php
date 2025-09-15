@@ -11,4 +11,5 @@ return [
     "Your request info will saved" => "Your request info will saved",
     "Empty session" => "No sessions found at this time",
     "Empty notifications" => "Don't have any message yet",
+    "A signature is required before you can submit any requests." => "A signature is required before you can submit any requests.",
 ];
