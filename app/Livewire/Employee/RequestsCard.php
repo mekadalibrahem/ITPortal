@@ -24,24 +24,25 @@ class RequestsCard extends Component
     public $request_id;
     public $request_data;
     public $status  = [];
-    public $current_employee ;
+    public $current_employee;
     public $last_log;
     public $cancel_note;
     public $redirect_note  = null;
     public $request_user;
-    public $can_work ;
-    private RequestManagmentTemplate $requestManager ;
+    public $can_work;
+    private RequestManagmentTemplate $requestManager;
 
     public  function accept()
     {
-       
-       if($this->requestManager->hasNext()){
-            $this->requestManager->next();
-       }else{
-         $this->requestManager->accept("تم قبول الطلب بنجاح");
-       }
-       Toaster::success("تم الموافقة على الطلب");
-       redirect()->route('employee.requests');
+
+        $te =  $this->getRequestManager();
+        if ($te->hasNext()) {
+            $te->next();
+        } else {
+            $te->accept("تم قبول الطلب بنجاح");
+        }
+        Toaster::success("تم الموافقة على الطلب");
+        redirect()->route('employee.requests');
     }
     public function  reject()
     {
@@ -64,14 +65,14 @@ class RequestsCard extends Component
         redirect()->route('employee.requests');
     }
 
-   
+
 
     public function show()
     {
 
         $this->hidden = false;
         $this->request_id = $this->id;
-        $this->request = RequestList::with(['data', 'user' ,'data.require_data'])
+        $this->request = RequestList::with(['data', 'user', 'data.require_data'])
             ->findOrFail($this->request_id);
         // dd($this->request);
         $requireDataMap = RequireData::whereIn(
@@ -79,20 +80,20 @@ class RequestsCard extends Component
             $this->request->data->pluck('name')
         )->pluck('type', 'name_en'); // [ 'name_en' => 'type' ]
 
-      
+
         $details = $this->request->data->map(function ($d) use ($requireDataMap) {
             return [
                 'name'  => $d->name,
-                'type'  => $requireDataMap[$d->name] ?? 'unknown', 
+                'type'  => $requireDataMap[$d->name] ?? 'unknown',
                 'id'    => $d->id,
                 'value' => $d->value,
             ];
         })->all();
-        
 
-        
+
+
         $this->request_data = $details;
-        $this->request_user = $this->request->user; 
+        $this->request_user = $this->request->user;
     }
 
 
@@ -103,31 +104,30 @@ class RequestsCard extends Component
         $this->show();
         $this->can_work_in_request();
         $this->requestManager = $this->getRequestManager();
-      
-       
-
     }
-    public function can_work_in_request(){
-        $log = $this->request->requestLog->where('request_tamplates_step_id' , $this->request->current_step_id)->first();
-        $isCurrentEmployee = $log->employee_id == $this->current_employee->id ? true : false ;
+    public function can_work_in_request()
+    {
+        $log = $this->request->requestLog->where('request_tamplates_step_id', $this->request->current_step_id)->first();
+        $isCurrentEmployee = $log->employee_id == $this->current_employee->id ? true : false;
         $is_end = $this->request->end_at != null ? true : false;
-        if($is_end  || !$isCurrentEmployee){
+        if ($is_end  || !$isCurrentEmployee) {
             $this->can_work = false;
-        }else{
-            $this->can_work= true;
+        } else {
+            $this->can_work = true;
         }
     }
-    private function getRequestManager(){
+    private function getRequestManager()
+    {
         $request_managment_template = new RequestManagmentTemplate();
         $request_managment_template->setEmployee($this->current_employee);
         $request_managment_template->setRequestList($this->request);
-        return $request_managment_template ;
+        return $request_managment_template;
     }
 
-    
+
     public function render()
     {
-      
+
         return view('livewire.employee.requests-card');
     }
 }

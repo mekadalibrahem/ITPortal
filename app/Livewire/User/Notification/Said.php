@@ -8,36 +8,51 @@ use Livewire\Component;
 
 class Said extends Component
 {
-    public $notify_list = [];
+    public $notify_list;
     public $activeTab = 'all';
     public $user_id;
+    public $all;
+    public $sent;
+    public $received;
+    public $notifications;
     public function mount()
     {
-        $this->user_id = Auth::user()->id;
+        $this->user_id = Auth::id();
         $this->loadNotifications();
     }
 
     public function setTab($tab)
     {
         $this->activeTab = $tab;
-        $this->loadNotifications();
+        $this->notifications = $this->notify_list;
+        if ($this->activeTab == 'sent') {
+            $this->notifications = $this->sent;
+        } elseif ($this->activeTab == 'received') {
+            $this->notifications = $this->received;
+        }
     }
 
     public function loadNotifications()
     {
-        $query = Notification::where(function ($query) {
+        $this->notify_list  = Notification::where(function ($query) {
             $query->where('user_id', $this->user_id)
                 ->orWhere('from_id', $this->user_id);
-        })
-            ->with(['user', 'from']);
+        })->with(['from:id,email'])
+            ->orderBy('create_at', 'desc')->get();
 
-        if ($this->activeTab === 'sent') {
-            $query->where('from_id',  $this->user_id);
-        } elseif ($this->activeTab === 'received') {
-            $query->where('user_id', '=',  $this->user_id);
-        }
 
-        $this->notify_list = $query->orderBy('create_at', 'desc')->get();
+        $this->received = $this->notify_list->filter(function ($item) {
+            return $item->user_id == $this->user_id;
+        });
+
+        $this->sent = $this->notify_list->filter(function ($item) {
+            return $item->from_id == $this->user_id;
+        });
+
+
+
+
+        $this->notifications = $this->notify_list;
     }
     public function createNew()
     {

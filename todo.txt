@@ -1,0 +1,2 @@
+TODO : CLICK IN ROW  -> redirect to show page 
+TODO : request status
