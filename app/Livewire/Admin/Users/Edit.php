@@ -38,7 +38,7 @@ class Edit extends Component
     }
     public function index()
     {
-        $user = User::where('id', $this->id)->with('roles')->first();
+        $user = User::query()->withTrashed()->where('id', $this->id)->with('roles')->first();
         if ($user) {
             $this->user = $user;
             $this->fname = $user->fname;
