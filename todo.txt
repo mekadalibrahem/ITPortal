@@ -1,1 +1,0 @@
-TODO : CLICK IN ROW  -> redirect to show page 
