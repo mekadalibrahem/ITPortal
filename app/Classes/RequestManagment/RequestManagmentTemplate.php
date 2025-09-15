@@ -3,6 +3,7 @@
 namespace App\Classes\RequestManagment;
 
 use App\Classes\RequestManagment\Traits\HasRequesSteps;
+use App\Classes\Services\MessagesBuilder\RequestMessageBuilder;
 use App\Enums\RequestStatusEnum;
 use App\Models\RequestLog;
 use Carbon\Carbon;
@@ -35,17 +36,15 @@ class RequestManagmentTemplate extends AbstractRequestManagment {
         $this->request_list->end_at = Carbon::now();
         $this->request_list->save();
         // code for sent notification to user 
-        $this->sendNotification($message);
+        $this->sendNotification(RequestMessageBuilder::build($message ,$this->request_list->id));
     }
     public function accept(?string $message = null){
         $this->end(RequestStatusEnum::END_ACCEPT->value, $message);
     }
     public function reject(?string $message = null){
-        $this->end( RequestStatusEnum::END_REJECTED->value, $message);
+        $this->end( RequestStatusEnum::REJECTED->value, $message);
     }
-    public function timeout(){
-        $this->end( RequestStatusEnum::TIMEOUT->value, "انتهاء مدة تقديم الطلب");
-    }
+    
 
     function hasNext():bool{
         return !$this->is_last_step($this->request_list);

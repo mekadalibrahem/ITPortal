@@ -30,7 +30,7 @@ class RequestsCard extends Component
     public $redirect_note  = null;
     public $request_user;
     public $can_work;
-    private RequestManagmentTemplate $requestManager;
+
 
     public  function accept()
     {
@@ -49,7 +49,8 @@ class RequestsCard extends Component
         $this->validate([
             "cancel_note" => "required",
         ]);
-        $this->requestManager->reject($this->cancel_note);
+        $te =  $this->getRequestManager();
+        $te->reject($this->cancel_note);
         Toaster::success("تم رفض الطلب");
         redirect()->route('employee.requests');
     }
@@ -103,7 +104,6 @@ class RequestsCard extends Component
         $this->current_employee = Employee::where('user_id', Auth::id())->first();
         $this->show();
         $this->can_work_in_request();
-        $this->requestManager = $this->getRequestManager();
     }
     public function can_work_in_request()
     {

@@ -9,8 +9,8 @@
             <span class="text-sm">{{ $notify->date()}}</span>
         </div>
         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">
-
-               {{$notify->content}}
+            {!! $notify->content !!}
+               {{-- {{$notify->content}} --}}
             </a></h2>
         <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
             رسالة من : {{$notify->sender()->email}}

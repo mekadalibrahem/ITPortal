@@ -2,6 +2,7 @@
 
 namespace App\Classes\RequestManagment;
 
+use App\Classes\Services\MessagesBuilder\RequestMessageBuilder;
 use App\Enums\RequestStatusEnum;
 use App\Events\RequestListAskToEdit;
 use App\Models\Employee;
@@ -39,7 +40,7 @@ abstract class AbstractRequestManagment
             $req->status = RequestStatusEnum::WATING_EDIT->value;
             if ($req->save()) {
                 $this->setRequestList($req);
-                $this->sendNotification($message);
+                $this->sendNotification(RequestMessageBuilder::build($message ,$req->id));
                 event(new RequestListAskToEdit( $req->id ,$req->current_step_id,$this->getEmployee()->user->email, $message));
                 return true;
             }
@@ -62,6 +63,5 @@ abstract class AbstractRequestManagment
     abstract function next();
     abstract function accept(?string $message = null);
     abstract function reject(?string $message = null);
-    abstract function timeout();
     abstract function hasNext(): bool;
 }
