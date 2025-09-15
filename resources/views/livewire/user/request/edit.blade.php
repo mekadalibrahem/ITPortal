@@ -1,5 +1,5 @@
 <x-widgets.section title="{{ __('string.Request details') }}">
-    <livewire:request-card.steps-card :id="$id" hasnote="{{ false }}"/>
+    <livewire:request-card.steps-card :id="$id" hasnote="{{ false }}" />
 
 
 
@@ -36,7 +36,9 @@
                                         wire:model="{{ $model }}" value="{{ $item->value }}" />
                                 @break
                             @endswitch
-
+                            @error($model)
+                                <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
 
                         </div>
                     @endforeach
@@ -60,12 +62,13 @@
                 @endif
             </div>
         @else
-            <div class="m-2 bg-blue-100 border border-blue-200 text-md text-blue-800 rounded-lg p-4 dark:bg-blue-800/10 dark:border-blue-900 dark:text-blue-500 font-bold">
-              <span class="m-4" >  {{ __('messages.your request finished  , your can not edit it now') }}</span>
+            <div
+                class="m-2 bg-blue-100 border border-blue-200 text-md text-blue-800 rounded-lg p-4 dark:bg-blue-800/10 dark:border-blue-900 dark:text-blue-500 font-bold">
+                <span class="m-4"> {{ __('messages.your request finished  , your can not edit it now') }}</span>
             </div>
         @endif
 
     </div>
-  
+
 
 </x-widgets.section>

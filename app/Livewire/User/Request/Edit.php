@@ -27,9 +27,9 @@ class Edit extends Component
 
     public $req;
     public $request_user;
-   
+
     public $request_data = [];
-    
+
 
     public $status  = [];
     public $data = [];
@@ -46,9 +46,9 @@ class Edit extends Component
         $this->id;
         $this->req;
         $this->request_user;
-     
+
         $this->request_data = [];
-       
+
         $this->image = null;
         $this->status  = [];
         $this->data = [];
@@ -69,8 +69,8 @@ class Edit extends Component
             $req = RequestList::where([
                 'id' => $this->id,
                 'user_id' => $this->request_user->id,
-            ])->with(['data' ,'data.require_data'])->first();
-           
+            ])->with(['data', 'data.require_data'])->first();
+
             if ($req) {
                 // request found
                 $this->req = $req;
@@ -78,7 +78,7 @@ class Edit extends Component
 
                 $this->data = $req->data;
                 // get request process step
-                
+
                 // get what require data for this request
                 $this->require_data = RequireData::where('requests_id', "=", $this->req->request_id)->get();
             } else {
@@ -171,6 +171,7 @@ class Edit extends Component
         }
 
         $this->show($this->req->id);
+        $this->render();
     }
 
 

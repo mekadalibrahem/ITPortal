@@ -8,6 +8,7 @@ use App\Events\RequestListEdited;
 use App\Models\Data;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Masmerise\Toaster\Toaster;
 
 trait UpdateRequestTransaction
 {
@@ -27,7 +28,11 @@ trait UpdateRequestTransaction
                 if ($draft) {
                     $req->status = RequestStatusEnum::DRAFT->value;
                 } else {
-                    $req->status = RequestStatusEnum::WORKING->value;
+                    if ($req->status == RequestStatusEnum::WATING->value) {
+                        // don't change request status
+                    } elseif ($req->status == RequestStatusEnum::WATING_EDIT->value) {
+                        $req->status = RequestStatusEnum::WORKING->value;
+                    }
                 }
                 $req->save();
 
@@ -58,24 +63,26 @@ trait UpdateRequestTransaction
                         $value = $file_name;
                         $item['isImage'] = 1;
                     }
+                    if ($value) {
+                        $edited_data->value = $value;
+                        if ($edited_data->isDirty()) {
+                            $this->data_changed[]  = $item;
+                        }
+                    } 
 
-                    $edited_data->value = $value;
-                    if ($edited_data->isDirty()) {
-                        $this->data_changed[]  = $item;
-                    }
                     $edited_data->save();
                 }
 
 
                 DB::commit();
-                event(new RequestListEdited($req->id, $req->user->email , $req->current_step_id ,$this->data_changed));
+                event(new RequestListEdited($req->id, $req->user->email, $req->current_step_id, $this->data_changed));
                 // self::delete_old_image($this->images_for_deleted);
                 $this->is_done = true;
             } catch (\Throwable $th) {
                 DB::rollBack();
-                // throw new \Exception("Error Processing Request" . $th, 1);
-
-                dd("FALID TRANSACTION UPDATE REQUEST LIST ITEM : $th");
+                // // throw new \Exception("Error Processing Request" . $th, 1);
+                logger()->error("FALID TRANSACTION UPDATE REQUEST LIST ITEM : $th->getMessage()");
+                // dd("FALID TRANSACTION UPDATE REQUEST LIST ITEM : $th");
             }
         });
         return $this->is_done;

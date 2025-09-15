@@ -36,7 +36,7 @@ abstract class AbstractRequestManagment
     {
         $req = $this->getRequestList();
         if ($req) {
-            $req->status = RequestStatusEnum::WATING->value;
+            $req->status = RequestStatusEnum::WATING_EDIT->value;
             if ($req->save()) {
                 $this->setRequestList($req);
                 $this->sendNotification($message);

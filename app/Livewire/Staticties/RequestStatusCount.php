@@ -30,19 +30,18 @@ class RequestStatusCount extends Component
     public function data(): array
     {
         $working_cases = [
-            RequestStatusEnum::CHECKING->value,
+
             RequestStatusEnum::WATING->value,
+            RequestStatusEnum::WATING_EDIT->value,
             RequestStatusEnum::WORKING->value
         ];
         $rejected_cases = [
-            RequestStatusEnum::END_REJECTED->value,
+
             RequestStatusEnum::REJECTED->value,
-            RequestStatusEnum::TIMEOUT->value
+
         ];
         $accepted_cases = [
             RequestStatusEnum::END_ACCEPT->value,
-            RequestStatusEnum::END_UNDER_DELIVERY->value,
-            RequestStatusEnum::END_DELEVERED->value
         ];
         $rejected_count = RequestList::whereIn('status', $rejected_cases);
         $accepted_count = RequestList::whereIn('status', $accepted_cases);

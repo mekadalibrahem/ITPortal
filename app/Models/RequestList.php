@@ -72,7 +72,7 @@ class RequestList extends Model
         $query->whereIn('status', [
             RequestStatusEnum::WATING->value,
             RequestStatusEnum::WORKING->value,
-            RequestStatusEnum::CHECKING->value,
+            RequestStatusEnum::WATING_EDIT->value,
             RequestStatusEnum::DRAFT->value,
 
         ]);
@@ -95,7 +95,7 @@ class RequestList extends Model
         if (
             $this->status == RequestStatusEnum::DRAFT->value ||
             $this->status == RequestStatusEnum::WATING->value ||
-            $this->status == RequestStatusEnum::CHECKING->value
+            $this->status == RequestStatusEnum::WATING_EDIT->value
         ) {
             return true;
         } else {
