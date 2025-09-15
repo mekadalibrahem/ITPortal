@@ -30,7 +30,7 @@ class RegisterUserControlelr extends Controller
             'fname' => ['required', 'string', 'max:255'],
             'mname' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
-            'nid' => ['required', 'string', 'max:255'],
+            'nid' => ['required', 'string', 'max:255','unique:users,national_id'],
             "username" =>  ['required', 'string', 'max:255', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
 
