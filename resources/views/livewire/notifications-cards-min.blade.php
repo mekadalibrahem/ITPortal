@@ -18,7 +18,7 @@
                 </p>
                 <div class="flex justify-between items-center">
 
-                    <a href="#"
+                    <a href="{{ route('user.notification.index') }}"
                         class="inline-flex items-center font-medium text-blue-600 dark:text-primary-500 hover:underline">
                         {{ __('string.Show notifications') }}
                     </a>
