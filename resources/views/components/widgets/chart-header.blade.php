@@ -21,16 +21,24 @@
     @if ($this->hasYearFilter())
         <div class="grid  grid-cols-1 md:grid-cols-2 gap-2">
 
-            <input type="number" id="hs-floating-input-from-year-value" wire:model='from_year'
-                wire:change='update_chart()'
-                class="py-1.5 sm:py-2 px-3 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                plasholder ="{{ __('string.data.from_year') }}" />
 
 
+            <select id="from-select" wire:model='from_year' wire:change='update_chart()'
+                class="py-1.5 sm:py-2  px-3 block  p-4 border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option value="">{{ __('string.data.from_year') }}</option>
+                @for ($year = date('Y'); $year >= 2020; $year--)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endfor
+            </select>
+            <select id="to-select" wire:model='to_year' wire:change='update_chart()'
+                class="py-1.5 sm:py-2 px-3 block  p-2.5 border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option value="">{{ __('string.data.to_year') }}</option>
+                @for ($year = date('Y'); $year >= 2020; $year--)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endfor
+            </select>
 
-            <input type="number" id="hs-floating-input-to-year-value" wire:model='to_year' wire:change='update_chart()'
-                class="py-1.5 sm:py-2 px-3 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                plasholder ="{{ __('string.data.to_year') }}" />
+
 
 
         </div>
