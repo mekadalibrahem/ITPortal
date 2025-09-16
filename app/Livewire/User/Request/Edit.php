@@ -143,9 +143,10 @@ class Edit extends Component
     {
 
         if ($this->req->can_edit()) {
-            $roles = $this->rules();
-            if (!empty($roles)) {
 
+            $roles = $this->rules();
+            if ($roles != []) {
+               
                 // edit
                 $this->validate($roles);
                 $isdone = $this->update_request_trans(
@@ -158,13 +159,21 @@ class Edit extends Component
 
                     // Handle successful save, e.g., set a success message
                     Toaster::success(trans("messages.Request successfully updated."));
+                    return redirect()->route('user.requests.create');
                 } else {
                     // Handle failure case
                     Toaster::error(trans("messages.Failed to update request."));
                 }
             } else {
 
-                Toaster::warning(trans("messages.should write last 1 value to edit"));
+                if ($this->req->status == RequestStatusEnum::DRAFT->value && $draft == false) {
+                    $this->req->status = RequestStatusEnum::WATING->value;
+                    $this->req->save();
+                    Toaster::success(trans("messages.Request successfully updated."));
+                    return redirect()->route('user.requests.create');
+                } else {
+                    Toaster::warning(trans("messages.should write last 1 value to edit"));
+                }
             }
         } else {
             Toaster::error(trans("messages.Can't Edit this Request"));

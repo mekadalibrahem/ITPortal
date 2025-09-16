@@ -32,6 +32,8 @@ trait UpdateRequestTransaction
                         // don't change request status
                     } elseif ($req->status == RequestStatusEnum::WATING_EDIT->value) {
                         $req->status = RequestStatusEnum::WORKING->value;
+                    } else {
+                        $req->status = RequestStatusEnum::WATING->value;
                     }
                 }
                 $req->save();
@@ -68,7 +70,7 @@ trait UpdateRequestTransaction
                         if ($edited_data->isDirty()) {
                             $this->data_changed[]  = $item;
                         }
-                    } 
+                    }
 
                     $edited_data->save();
                 }
