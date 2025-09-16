@@ -3,6 +3,7 @@
 namespace App\Livewire\DataTables;
 
 use App\Models\RequestType;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
 use Masmerise\Toaster\Toaster;
@@ -53,11 +54,11 @@ class RequestTypeTable extends CustomeDataTableComponent
                 } else {
                     Toaster::error(trans('messages.Faild delete item'));
                 }
-            } catch (QueryException $e) {
-                if ($e->errorInfo[1] == 1451) {
-                    Toaster::error('Cannot delete: Linked records exist.');
+            } catch (Exception $e) {
+                if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                    Toaster::error(trans('messages.CANNOT_DELETE_ITEM_IN_USE'));
                 } else {
-                    Toaster::error('Deletion failed: Unknown error.');
+                   logger()->error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $e->getMessage());
                 }
             }
         }

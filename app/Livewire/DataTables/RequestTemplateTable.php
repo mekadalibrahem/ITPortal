@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Livewire\DataTables;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 use App\Models\RequestTemplates\RequestTemplate;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
@@ -42,7 +44,7 @@ class RequestTemplateTable extends CustomeDataTableComponent
         ];
     }
 
-    public function delete($id=0) :void
+    public function delete($id = 0): void
     {
 
         try {
@@ -54,11 +56,15 @@ class RequestTemplateTable extends CustomeDataTableComponent
             } else {
                 Toaster::error(trans('messages.Faild delete item'));
             }
-        } catch (\Throwable $th) {
-            Log::error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $th->getMessage());
+        } catch (Exception $e) {
+            if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                Toaster::error(trans('messages.CANNOT_DELETE_ITEM_IN_USE'));
+            } else {
+                Log::error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $e->getMessage());
+            }
         }
     }
-    public function edit($id) : void
+    public function edit($id): void
     {
         redirect()->route('admin.requests.templates.edit', ["id" => $id]);
     }

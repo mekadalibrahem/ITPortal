@@ -3,6 +3,7 @@
 namespace App\Livewire\DataTables;
 
 use App\Livewire\DataTables\CustomeDataTableComponent;
+use Exception;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -47,13 +48,20 @@ class RolesDataTable extends CustomeDataTableComponent
         if ($id > 0) {
             $role = Role::find($id);
             if ($role) {
-              
-                if ($role->id > 5) {
 
-                    if ($role->delete()) {
-                        Toaster::success(trans('messages.Deleted Item'));
-                    } else {
-                        Toaster::error(trans('messages.Faild delete item'));
+                if ($role->id > 5) {
+                    try {
+                        if ($role->delete()) {
+                            Toaster::success(trans('messages.Deleted Item'));
+                        } else {
+                            Toaster::error(trans('messages.Faild delete item'));
+                        }
+                    } catch (Exception $e) {
+                        if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                            Toaster::error(trans('messages.CANNOT_DELETE_ITEM_IN_USE'));
+                        } else {
+                            logger()->error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $e->getMessage());
+                        }
                     }
                 } else {
                     Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));

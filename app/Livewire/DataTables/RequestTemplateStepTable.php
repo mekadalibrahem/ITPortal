@@ -6,6 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 
 use App\Models\RequestTemplates\RequestTemplateStep;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
@@ -60,8 +61,12 @@ class RequestTemplateStepTable extends CustomeDataTableComponent
             } else {
                 Toaster::error(trans('messages.Faild delete item'));
             }
-        } catch (\Throwable $th) {
-            Log::error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $th->getMessage());
+        } catch (Exception $e) {
+            if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                Toaster::error(trans('messages.CANNOT_DELETE_ITEM_IN_USE'));
+            } else {
+                logger()->error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $e->getMessage());
+            }
         }
     }
     public function edit($id): void

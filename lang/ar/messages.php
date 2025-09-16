@@ -49,5 +49,6 @@ return [
     "YOU CANNOT DELETE LAST ADMIN SHOULD ADD ANOTHER ADMIN BEFOR DELETE THIS ONE" => "لا يمكنك حذف آخر مسؤول. يرجى منح صلاحية المسؤول لمستخدم آخر قبل المتابعة.",
     "YOU CANNOT DELETE ROLE ADMIN SHOULD ADD ADMIN ROLE FOR ANOTHER USER BEFOR DELETE THIS ONE" => "لا يمكنك إزالة صلاحية المسؤول إذا كانت الوحيدة. يرجى منحها لمستخدم آخر أولاً.",
     "CANNOT_DELETE_DEPARTMENT_IN_USE" => 'إن هذه الشعبة مستخدمة بالفعل لا يمكن حذفها',
+    "CANNOT_DELETE_ITEM_IN_USE" => 'إن هذا العنصر مستخدم بالفعل لا يمكن حذفه',
 
 ];

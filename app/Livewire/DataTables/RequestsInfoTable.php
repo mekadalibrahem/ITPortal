@@ -4,6 +4,7 @@ namespace App\Livewire\DataTables;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Requests;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
@@ -68,8 +69,12 @@ class RequestsInfoTable extends CustomeDataTableComponent
             } else {
                 Toaster::error(trans('messages.Faild delete item'));
             }
-        } catch (\Throwable $th) {
-            Log::error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $th->getMessage());
+        } catch (Exception $e) {
+            if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                Toaster::error(trans('messages.CANNOT_DELETE_ITEM_IN_USE'));
+            } else {
+                logger()->error(__CLASS__ . '@' .  __FUNCTION__ . " : " . $e->getMessage());
+            }
         }
     }
     public function edit($id): void
@@ -80,7 +85,7 @@ class RequestsInfoTable extends CustomeDataTableComponent
     {
         try {
             $request = Requests::findOrFail($id);
-            $request->active(); 
+            $request->active();
             Toaster::success(__('messages.Status changed to Active'));
         } catch (\Throwable $th) {
             Log::error(__CLASS__ . '@' . __FUNCTION__ . " : " . $th->getMessage());
@@ -92,7 +97,7 @@ class RequestsInfoTable extends CustomeDataTableComponent
     {
         try {
             $request = Requests::findOrFail($id);
-            $request->unactive(); 
+            $request->unactive();
             Toaster::success(__('messages.Status changed to Inactive'));
         } catch (\Throwable $th) {
             Log::error(__CLASS__ . '@' . __FUNCTION__ . " : " . $th->getMessage());

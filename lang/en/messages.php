@@ -46,4 +46,5 @@ return [
     "YOU CANNOT DELETE LAST ADMIN SHOULD ADD ANOTHER ADMIN BEFOR DELETE THIS ONE" => "You cannot delete the last admin. Please assign the admin role to another user before proceeding.",
     "YOU CANNOT DELETE ROLE ADMIN SHOULD ADD ADMIN ROLE FOR ANOTHER USER BEFOR DELETE THIS ONE" => "You cannot remove the admin role if it’s the last one. Please assign the admin role to another user first.",
     "CANNOT_DELETE_DEPARTMENT_IN_USE" =>  "This Deparment in use You can't delete it",
+    "CANNOT_DELETE_ITEM_IN_USE" =>  "This item in use You can't delete it",
 ];
