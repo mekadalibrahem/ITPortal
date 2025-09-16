@@ -80,6 +80,7 @@ class EmployeeRequestTable extends DataTableComponent
         $q = $this->model::query()
             ->with(['user', 'requestLog', 'requestLog.employee', 'currentStep'])
             ->whereIn('request_lists.id', $this->requestListIds)
+            ->whereNot('status'  , RequestStatusEnum::DRAFT->value)
             ->when($this->getAppliedFilterWithValue('status'), function ($query, $status) {
                 return $query->whereIn('status', $status);
             });
