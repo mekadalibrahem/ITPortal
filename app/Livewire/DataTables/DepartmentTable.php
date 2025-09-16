@@ -5,6 +5,8 @@ namespace App\Livewire\DataTables;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 use Masmerise\Toaster\Toaster;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -54,10 +56,21 @@ class DepartmentTable extends CustomeDataTableComponent
         if ($id > 0) {
             $dep = Department::where("id", '=', $id)->first();
             if ($dep) {
-                if ($dep->delete()) {
-                    Toaster::success(trans('messages.Deleted Item'));
-                } else {
-                    Toaster::error(trans('messages.Faild delete item'));
+                try {
+                    if ($dep->delete()) {
+                        Toaster::success(trans('messages.Deleted Item'));
+                    } else {
+                        Toaster::error(trans('messages.Faild delete item'));
+                    }
+                } catch (QueryException $e) {
+
+                    if ($e->getCode() === '23000' || $e->getPrevious()?->getCode() === '19') {
+                        Toaster::error(trans('messages.CANNOT_DELETE_DEPARTMENT_IN_USE'));
+                    } else {
+
+                        Log::error('Department deletion failed: ' . $e->getMessage());
+                        Toaster::error(trans('messages.Faild delete item'));
+                    }
                 }
             }
         }
