@@ -115,6 +115,11 @@ class UserAction
             } else {
                 $user->assignRole('employee');
             }
+            if ($user->hasRole('employee_requests')) {
+                // do nothing 
+            } else {
+                $user->assignRole('employee_requests');
+            }
             return true;
         } catch (\Throwable $th) {
             throw $th;

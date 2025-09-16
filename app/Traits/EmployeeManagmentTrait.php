@@ -46,7 +46,11 @@ trait EmployeeManagmentTrait
 
 
         $dep  = $this->department;
-        return  (bool) ($dep->manager_id == $this->id);
+        if ($dep) {
+            return  (bool) ($dep->manager_id == $this->id);
+        } else {
+            return false;
+        }
     }
     /**
      * return array of id's for request_logs that will handle it employee
