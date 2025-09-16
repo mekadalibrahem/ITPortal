@@ -87,6 +87,7 @@ class UserTable extends DataTableComponent
     {
         try {
             $item =  $this->model::where('id', '=', $id)->first();
+          
             if ($item) {
                 if (UserAction::delete($item)) {
                     Toaster::success(trans("messages.Deleted Item"));
@@ -133,13 +134,13 @@ class UserTable extends DataTableComponent
 
         // dd($roles);
         $text = $roles->pluck('name')->implode(', ');
-        $html = "<div class='flex' gap-1>"; 
-        foreach($roles as  $r){
-            $html .="<span class='inline-flex ms-1 items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white'>";
+        $html = "<div class='flex' gap-1>";
+        foreach ($roles as  $r) {
+            $html .= "<span class='inline-flex ms-1 items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white'>";
             $html .= $r->name;
             $html .= "</span>";
         }
-        $html .="</div>";
+        $html .= "</div>";
         return  $html;
     }
 }

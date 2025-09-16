@@ -43,4 +43,6 @@ return [
     "Can't Export request if not ened" => "Can't Export request if not ened",
     "notify send" => "notify send",
     "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED" => "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED",
+    "YOU CANNOT DELETE LAST ADMIN SHOULD ADD ANOTHER ADMIN BEFOR DELETE THIS ONE" => "You cannot delete the last admin. Please assign the admin role to another user before proceeding.",
+    "YOU CANNOT DELETE ROLE ADMIN SHOULD ADD ADMIN ROLE FOR ANOTHER USER BEFOR DELETE THIS ONE" => "You cannot remove the admin role if it’s the last one. Please assign the admin role to another user first."
 ];

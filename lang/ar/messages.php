@@ -46,5 +46,7 @@ return [
     "Can't Export request if not ened" => "لا يمكن تصدير الطلب إذا لم ينتهي بعد",
     "notify send" => "تم إرسال الرسالة",
     "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED" => "هذا العنصر ثابت لا يمكن تعديله او حذفه",
+    "YOU CANNOT DELETE LAST ADMIN SHOULD ADD ANOTHER ADMIN BEFOR DELETE THIS ONE" => "لا يمكنك حذف آخر مسؤول. يرجى منح صلاحية المسؤول لمستخدم آخر قبل المتابعة.",
+    "YOU CANNOT DELETE ROLE ADMIN SHOULD ADD ADMIN ROLE FOR ANOTHER USER BEFOR DELETE THIS ONE" => "لا يمكنك إزالة صلاحية المسؤول إذا كانت الوحيدة. يرجى منحها لمستخدم آخر أولاً."
 
 ];

@@ -6,8 +6,11 @@ use App\Models\Employee;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Masmerise\Toaster\Toaster;
 
 class UserAction
 {
@@ -53,31 +56,44 @@ class UserAction
     public static function updateUserRoles(User $user, Collection $roles): bool
     {
         try {
-            $original_roles = $user->roles;
-            $roles_2_add = $roles->diff($original_roles);
-            $roles_2_remove = $original_roles->diff($roles);
-            $user->assignRole($roles_2_add->pluck('name')->toArray());
+            $originalRoles = $user->roles;
+            $rolesToAdd = $roles->diff($originalRoles);
+            $rolesToRemove = $originalRoles->diff($roles);
 
 
-            foreach ($roles_2_remove as $role) {
+            foreach ($rolesToRemove as $role) {
+                if ($role->name === 'admin' && User::isLastAdmin($user)) {
+                    Toaster::error(trans('messages.YOU CANNOT DELETE ROLE ADMIN SHOULD ADD ADMIN ROLE FOR ANOTHER USER BEFOR DELETE THIS ONE'));
+                    return false;
+                }
+            }
+
+            // Proceed with role assignment
+            $user->assignRole($rolesToAdd->pluck('name')->toArray());
+
+            foreach ($rolesToRemove as $role) {
                 $user->removeRole($role);
             }
 
-
             return true;
         } catch (\Throwable $th) {
-            throw $th;
-            return false;
+            Log::error('Failed to update user roles: ' . $th->getMessage());
+            throw $th; // Re-throw after logging (return false is unreachable)
         }
     }
     public static function delete(User $user,  $force = false): bool
     {
         try {
-            if ($force) {
-                return $user->forceDelete();
-            } else {
 
-                return $user->delete();
+            if (Gate::allows('delete', $user)) {
+                if ($force) {
+                    return $user->forceDelete();
+                } else {
+
+                    return $user->delete();
+                }
+            } else {
+                return false;
             }
         } catch (Exception $e) {
             throw $e;
