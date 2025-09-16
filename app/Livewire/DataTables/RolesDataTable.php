@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Livewire\DataTables;
+
 use App\Livewire\DataTables\CustomeDataTableComponent;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Masmerise\Toaster\Toaster;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RolesDataTable extends CustomeDataTableComponent
 {
-    public $model = Role::class ;
+    public $model = Role::class;
 
 
     public function configure(): void
@@ -18,7 +21,8 @@ class RolesDataTable extends CustomeDataTableComponent
         $this->setAddButton(Route('admin.auth.role.create'));
     }
 
-    public function builder(): Builder {
+    public function builder(): Builder
+    {
         return $this->model::query();
     }
 
@@ -42,14 +46,18 @@ class RolesDataTable extends CustomeDataTableComponent
     {
         if ($id > 0) {
             $role = Role::find($id);
-            if ($role) {
-                if ($role->delete()) {
-                    Toaster::success(trans('messages.Deleted Item'));
-                } else {
-                    Toaster::error(trans('messages.Faild delete item'));
+            if (Gate::allows('delete', $role, Auth::user())) {
+
+                if ($role) {
+                    if ($role->delete()) {
+                        Toaster::success(trans('messages.Deleted Item'));
+                    } else {
+                        Toaster::error(trans('messages.Faild delete item'));
+                    }
                 }
+            } else {
+                Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
             }
         }
     }
 }
-

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin\Roles;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -77,17 +79,21 @@ class RoleCard extends Component
     }
     public function update()
     {
+        
+        if (Gate::allows('update', $this->role, Auth::user())) {
+            $this->validate([
+                'name' => ['required', 'min:4', 'unique:roles,name']
+            ]);
+            // dd($this->new_name);
+            $this->role->name = $this->name;
 
-        $this->validate([
-            'name' => ['required', 'min:4', 'unique:roles,name']
-        ]);
-        // dd($this->new_name);
-        $this->role->name = $this->name;
+            if ($this->role->save()) {
 
-        if ($this->role->save()) {
-
-            Toaster::success(trans('messages.Item Saved'));
-            return redirect()->route('admin.auth.role.index');
+                Toaster::success(trans('messages.Item Saved'));
+                return redirect()->route('admin.auth.role.index');
+            }
+        } else {
+            Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
         }
     }
     public function render()

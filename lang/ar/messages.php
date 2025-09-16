@@ -45,5 +45,6 @@ return [
     "Failed to deactivate request" => 'فشل الغاء تفعيل الطلب',
     "Can't Export request if not ened" => "لا يمكن تصدير الطلب إذا لم ينتهي بعد",
     "notify send" => "تم إرسال الرسالة",
+    "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED" => "هذا العنصر ثابت لا يمكن تعديله او حذفه",
 
 ];

@@ -42,4 +42,5 @@ return [
     "Faild restor item" => "Faild restor item",
     "Can't Export request if not ened" => "Can't Export request if not ened",
     "notify send" => "notify send",
+    "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED" => "THIS ITEM IS STATIC CAN NOT EDIT OR DELETED",
 ];
