@@ -9,14 +9,15 @@ use Livewire\Component;
 class NotificationsCard extends Component
 {
 
-    public Notification $notification ;
-    public $text = 'read_at ' ;
+    public Notification $notification;
+    public $text = 'read_at ';
 
 
-    public function markread(){
+    public function markread()
+    {
 
         $this->notification->mark_read();
-        $this->text = $this->notification->read_at->format() ;
+
 
         $this->dispatch('notification_read');
     }

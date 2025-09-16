@@ -19,7 +19,7 @@ class Notification extends Model
         "user_id",
         "note",
         "create_at",
-
+        'read_at'
     ];
 
 

@@ -20,12 +20,11 @@ class NotificationCounter extends Component
     public function render()
     {
 
-        $this->count = Cache::remember($this->user_id . '-notifications-unread-count', 1800, function () {
-            return Notification::where([
-                'user_id' => $this->user_id,
-                'read_at' => null
-            ])->count();;
-        });
+        $this->count = Notification::where([
+            'user_id' => $this->user_id,
+            'read_at' => null
+        ])->count();;
+
         return view('livewire.notification-counter');
     }
 }
