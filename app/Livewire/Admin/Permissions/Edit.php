@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin\Permissions;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -29,21 +31,25 @@ class Edit extends Component
 
     public function update()
     {
-        $this->validate([
-            'name' => ['required', 'min:4', Rule::unique('permissions', 'name')->ignore($this->permission->id)],
-            'display_name' => ['required', 'min:4'],
-        ]);
+        if (Gate::allows('delete',  Auth::user(),  $this->permission)) {
+            $this->validate([
+                'name' => ['required', 'min:4', Rule::unique('permissions', 'name')->ignore($this->permission->id)],
+                'display_name' => ['required', 'min:4'],
+            ]);
 
-        $this->permission->name = $this->name;
-        $this->permission->display_name = $this->display_name;
+            $this->permission->name = $this->name;
+            $this->permission->display_name = $this->display_name;
 
-        if ($this->permission->isDirty()) {
-            if ($this->permission->save()) {
-                Toaster::success('Permission [ ' . $this->name . ' ] saved ');
-                return redirect()->route('admin.auth.permission.index');
+            if ($this->permission->isDirty()) {
+                if ($this->permission->save()) {
+                    Toaster::success('Permission [ ' . $this->name . ' ] saved ');
+                    return redirect()->route('admin.auth.permission.index');
+                }
+            } else {
+                Toaster::warning(trans('messages.Alrady saved'));
             }
         } else {
-            Toaster::warning(trans('messages.Alrady saved'));
+            Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
         }
     }
 

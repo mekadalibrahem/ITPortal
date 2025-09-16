@@ -46,17 +46,17 @@ class RolesDataTable extends CustomeDataTableComponent
     {
         if ($id > 0) {
             $role = Role::find($id);
-            if (Gate::allows('delete', $role, Auth::user())) {
+            if ($role) {
+                if (Gate::allows('delete', $role, Auth::user())) {
 
-                if ($role) {
                     if ($role->delete()) {
                         Toaster::success(trans('messages.Deleted Item'));
                     } else {
                         Toaster::error(trans('messages.Faild delete item'));
                     }
+                } else {
+                    Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
                 }
-            } else {
-                Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
             }
         }
     }

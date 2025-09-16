@@ -3,6 +3,8 @@
 namespace App\Livewire\DataTables;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Masmerise\Toaster\Toaster;
 use Spatie\Permission\Models\Permission;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -45,10 +47,14 @@ class PermissionDataTable extends CustomeDataTableComponent
         if ($id > 0) {
             $permission = Permission::find($id);
             if ($permission) {
-                if ($permission->delete()) {
-                    Toaster::success(trans('messages.Deleted Item'));
+                if (Gate::allows('delete',  Auth::user() , $permission)) {
+                    if ($permission->delete()) {
+                        Toaster::success(trans('messages.Deleted Item'));
+                    } else {
+                        Toaster::error(trans('messages.Faild delete item'));
+                    }
                 } else {
-                    Toaster::error(trans('messages.Faild delete item'));
+                    Toaster::warning(trans("messages.THIS ITEM IS STATIC CAN NOT EDIT OR DELETED"));
                 }
             }
         }
