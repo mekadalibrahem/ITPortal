@@ -29,18 +29,33 @@ class RequestListCount extends Component
 
     public function data(): array
     {
-        $query =  RequestList::select('request_id', DB::raw('count(*) as total'));
-        $query->groupBy('request_id');
-        if ($this->hasYearFilter()) {
-            if (!empty($this->from_year)) {
-                $query->whereYear('created_at', '>=', $this->from_year);
-            }
-            if (!empty($this->to_year)) {
-                $query->whereYear('created_at', '<=', $this->to_year);
-            }
-        }
+        $query = DB::table('requests')
+            ->leftJoin('request_lists', function ($join) {
+                $join->on('requests.id', '=', 'request_lists.request_id');
+
+                // Apply date filters to the join
+                if ($this->hasYearFilter()) {
+                    if (!empty($this->from_year)) {
+                        $join->whereYear('request_lists.created_at', '>=', $this->from_year);
+                    }
+                    if (!empty($this->to_year)) {
+                        $join->whereYear('request_lists.created_at', '<=', $this->to_year);
+                    }
+                }
+            })
+            ->select('requests.id', DB::raw('COUNT(request_lists.id) as total'))
+            ->groupBy('requests.id')
+            ->orderBy('requests.id');
+
+        $results = $query->get();
+        $counts = $results->pluck('total')->toArray();
+
+        logger()->info("Final array with zeros (join method): ", $counts);
+
+       
         return [
-            $query->pluck('total')->toArray()
+
+            $counts
         ];
     }
     public function getDatasets(): array
