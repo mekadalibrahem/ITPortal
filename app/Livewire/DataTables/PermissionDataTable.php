@@ -47,7 +47,7 @@ class PermissionDataTable extends CustomeDataTableComponent
         if ($id > 0) {
             $permission = Permission::find($id);
             if ($permission) {
-                if (Gate::allows('delete',  Auth::user() , $permission)) {
+              if ($permission->id > 5) {
                     if ($permission->delete()) {
                         Toaster::success(trans('messages.Deleted Item'));
                     } else {

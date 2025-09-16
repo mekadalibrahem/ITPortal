@@ -79,8 +79,8 @@ class RoleCard extends Component
     }
     public function update()
     {
-        
-        if (Gate::allows('update', $this->role, Auth::user())) {
+
+        if ($this->role->id > 5) {
             $this->validate([
                 'name' => ['required', 'min:4', 'unique:roles,name']
             ]);

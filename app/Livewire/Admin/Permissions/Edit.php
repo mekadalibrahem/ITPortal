@@ -31,7 +31,7 @@ class Edit extends Component
 
     public function update()
     {
-        if (Gate::allows('update',  Auth::user(),  $this->permission)) {
+       if (  $this->permission->id > 5){
             $this->validate([
                 'name' => ['required', 'min:4', Rule::unique('permissions', 'name')->ignore($this->permission->id)],
                 'display_name' => ['required', 'min:4'],

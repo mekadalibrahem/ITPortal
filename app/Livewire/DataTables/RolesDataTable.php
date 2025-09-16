@@ -47,7 +47,8 @@ class RolesDataTable extends CustomeDataTableComponent
         if ($id > 0) {
             $role = Role::find($id);
             if ($role) {
-                if (Gate::allows('delete', $role, Auth::user())) {
+              
+                if ($role->id > 5) {
 
                     if ($role->delete()) {
                         Toaster::success(trans('messages.Deleted Item'));
