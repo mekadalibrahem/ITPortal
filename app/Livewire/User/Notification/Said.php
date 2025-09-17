@@ -40,7 +40,7 @@ class Said extends Component
             $query->where('user_id', $this->user_id)
                 ->orWhere('from_id', $this->user_id);
         })->with(['from:id,email'])
-            ->orderBy('create_at', 'desc')->get();
+            ->orderBy('id', 'desc')->get();
 
 
         $this->received = $this->notify_list->filter(function ($item) {
@@ -76,7 +76,6 @@ class Said extends Component
                     $notify->mark_read();
                     $this->dispatch('notification_read');
                 }
-               
             }
         }
     }
