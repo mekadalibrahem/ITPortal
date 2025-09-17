@@ -64,10 +64,11 @@ class EmployeesTable extends DataTableComponent
     {
         if ($id > 0) {
             $emp = Employee::find($id);
-
+            $user =  $emp->user;
+            RoleBackRequests::roleBackAfterEmployeeArchived($user);
             if ($emp) {
                 if ($emp->delete()) {
-                    RoleBackRequests::roleBackAfterEmployeeArchived($emp->user);
+
                     Toaster::success(trans('messages.Deleted Item'));
                 } else {
                     Toaster::error(trans('messages.Faild delete item'));
