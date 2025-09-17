@@ -43,7 +43,7 @@ class RequestListTable extends CustomeDataTableComponent
         return [
 
             Column::make('id', 'id')
-                ->sortable()->hideIf(true),
+                ->sortable(),
 
             Column::make(trans('string.Request type'), "requests.name")
                 ->attributes(function ($row) {
