@@ -39,7 +39,7 @@ class StepsCard extends Component
             $employee = null;
             if ($log->start_at != null) {
                 $time = $log->start_at;
-                $employee = $log->employee->user->fullname() ?? null;
+                $employee = $log->employee?->user->fullname() ?? null;
                 if ($log->end_at != null) {
                     $time .= " - " . $log->end_at;
                 } else {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\DataTables;
 
+use App\Classes\Services\Actions\RoleBackRequests;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Masmerise\Toaster\Toaster;
@@ -63,8 +64,10 @@ class EmployeesTable extends DataTableComponent
     {
         if ($id > 0) {
             $emp = Employee::find($id);
+
             if ($emp) {
                 if ($emp->delete()) {
+                    RoleBackRequests::roleBackAfterEmployeeArchived($emp->user);
                     Toaster::success(trans('messages.Deleted Item'));
                 } else {
                     Toaster::error(trans('messages.Faild delete item'));

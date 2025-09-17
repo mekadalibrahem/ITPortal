@@ -86,12 +86,16 @@ class UserAction
         try {
 
             if (Gate::allows('delete', $user)) {
+                RoleBackRequests::roleBackAfterEmployeeArchived($user);
+                $deleted = false;
                 if ($force) {
-                    return $user->forceDelete();
+                    $deleted = $user->forceDelete();
                 } else {
 
-                    return $user->delete();
+                    $deleted = $user->delete();
                 }
+
+                return  $deleted;
             } else {
                 return false;
             }
