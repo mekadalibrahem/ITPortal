@@ -15,6 +15,8 @@ class Said extends Component
     public $sent;
     public $received;
     public $notifications;
+    public $notification;
+    public $hidden = true;
     public function mount()
     {
         $this->user_id = Auth::id();
@@ -62,19 +64,19 @@ class Said extends Component
     public function show($id)
     {
         if ($id > 0) {
-            $notify = Notification::where('id', $id)
-                ->where(function ($query) {
-                    $query->where('user_id', $this->user_id)
-                        ->orWhere('from_id', $this->user_id);
-                })
-                ->first();
 
-            if ($notify) {
+            $notify = $this->notifications->firstWhere('id', $id);
+
+
+            if ($notify && ($notify->user_id == $this->user_id || $notify->from_id == $this->user_id)) {
+                $this->hidden = false;
+                $this->notification = $notify;
+
                 if ($notify->from_id != $this->user_id) {
                     $notify->mark_read();
                     $this->dispatch('notification_read');
                 }
-                $this->dispatch('show_notify', id: $id);
+               
             }
         }
     }
