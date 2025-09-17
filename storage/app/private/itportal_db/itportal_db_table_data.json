@@ -3,303 +3,415 @@
     "name": "data",
     "database": "itportal_app_db",
     "data":
-[
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 1,
-        "name": "nid",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "00000000014"
-    },
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 2,
-        "name": "subject",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "تحليل عددي"
-    },
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 3,
-        "name": "year",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "الثانية"
-    },
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 4,
-        "name": "academic_year",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "2023"
-    },
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 5,
-        "name": "collage_id",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "10001"
-    },
-    {
-        "created_at": "2023-08-18 17:02:55",
-        "id": 6,
-        "name": "specialization",
-        "request_list_id": 1,
-        "updated_at": "2023-08-18 17:02:55",
-        "value": "لايوجد"
-    },
-    {
-        "created_at": "2023-08-18 18:40:00",
-        "id": 7,
-        "name": "year",
-        "request_list_id": 2,
-        "updated_at": "2023-08-18 18:40:00",
-        "value": "الثانية"
-    },
-    {
-        "created_at": "2023-08-18 18:40:00",
-        "id": 8,
-        "name": "specialization",
-        "request_list_id": 2,
-        "updated_at": "2023-08-18 18:40:00",
-        "value": "لايوجد"
-    },
-    {
-        "created_at": "2023-08-18 18:59:17",
-        "id": 9,
-        "name": "year",
-        "request_list_id": 3,
-        "updated_at": "2023-08-18 18:59:17",
-        "value": "الثالثة"
-    },
-    {
-        "created_at": "2023-08-18 18:59:17",
-        "id": 10,
-        "name": "specialization",
-        "request_list_id": 3,
-        "updated_at": "2023-08-18 18:59:17",
-        "value": "لا يوجد"
-    },
-    {
-        "created_at": "2023-08-18 18:59:17",
-        "id": 11,
-        "name": "collage_id",
-        "request_list_id": 2,
-        "updated_at": "2023-08-18 18:59:17",
-        "value": "10001"
-    },
-    {
-        "created_at": "2023-08-18 18:59:17",
-        "id": 12,
-        "name": "collage_id",
-        "request_list_id": 3,
-        "updated_at": "2023-08-18 18:59:17",
-        "value": "10002"
-    },
-    {
-        "created_at": "2023-08-18 19:27:56",
-        "id": 16,
-        "name": "specialization",
-        "request_list_id": 5,
-        "updated_at": "2023-08-18 19:27:56",
-        "value": "برمجيات"
-    },
-    {
-        "created_at": "2023-08-18 19:27:56",
-        "id": 17,
-        "name": "graduation_class",
-        "request_list_id": 5,
-        "updated_at": "2023-08-18 19:27:56",
-        "value": "الدورة الصيفية  "
-    },
-    {
-        "created_at": "2023-08-18 19:27:56",
-        "id": 18,
-        "name": "academic_year",
-        "request_list_id": 5,
-        "updated_at": "2023-08-18 19:27:56",
-        "value": "2023"
-    },
-    {
-        "created_at": "2023-08-18 19:27:56",
-        "id": 19,
-        "name": "collage_id",
-        "request_list_id": 5,
-        "updated_at": "2023-08-18 19:27:56",
-        "value": "10002"
-    },
-    {
-        "created_at": "2023-08-18 19:43:02",
-        "id": 20,
-        "name": "specialization",
-        "request_list_id": 6,
-        "updated_at": "2023-08-18 19:43:02",
-        "value": "برمجيات"
-    },
-    {
-        "created_at": "2023-08-18 19:43:02",
-        "id": 21,
-        "name": "academic_year",
-        "request_list_id": 6,
-        "updated_at": "2023-08-18 19:43:02",
-        "value": "2023"
-    },
-    {
-        "created_at": "2023-08-18 19:43:02",
-        "id": 22,
-        "name": "collage_id",
-        "request_list_id": 6,
-        "updated_at": "2023-08-18 19:43:02",
-        "value": "10002"
-    },
-    {
-        "created_at": "2023-08-18 19:48:42",
-        "id": 23,
-        "name": "subject",
-        "request_list_id": 7,
-        "updated_at": "2023-08-18 19:48:42",
-        "value": "برمجة تفرعية"
-    },
-    {
-        "created_at": "2023-08-18 19:48:42",
-        "id": 24,
-        "name": "academic_year",
-        "request_list_id": 7,
-        "updated_at": "2023-08-18 19:48:42",
-        "value": "2024"
-    },
-    {
-        "created_at": "2023-08-18 19:48:42",
-        "id": 25,
-        "name": "term",
-        "request_list_id": 7,
-        "updated_at": "2023-08-18 19:48:42",
-        "value": "2"
-    },
-    {
-        "created_at": "2023-08-18 19:48:42",
-        "id": 26,
-        "name": "collage_id",
-        "request_list_id": 7,
-        "updated_at": "2023-08-18 19:48:42",
-        "value": "10003"
-    },
-    {
-        "created_at": "2023-08-18 19:49:27",
-        "id": 27,
-        "name": "subject",
-        "request_list_id": 8,
-        "updated_at": "2023-08-18 19:49:27",
-        "value": "قواعد معطيات 2"
-    },
-    {
-        "created_at": "2023-08-18 19:49:27",
-        "id": 28,
-        "name": "academic_year",
-        "request_list_id": 8,
-        "updated_at": "2023-08-18 19:49:27",
-        "value": "2024"
-    },
-    {
-        "created_at": "2023-08-18 19:49:27",
-        "id": 29,
-        "name": "term",
-        "request_list_id": 8,
-        "updated_at": "2023-08-18 19:49:27",
-        "value": "2"
-    },
-    {
-        "created_at": "2023-08-18 19:49:27",
-        "id": 30,
-        "name": "collage_id",
-        "request_list_id": 8,
-        "updated_at": "2023-08-18 19:49:27",
-        "value": "10003"
-    },
-    {
-        "created_at": "2023-08-18 20:10:44",
-        "id": 31,
-        "name": "from_year",
-        "request_list_id": 9,
-        "updated_at": "2023-08-18 20:10:44",
-        "value": "الرابعة"
-    },
-    {
-        "created_at": "2023-08-18 20:10:44",
-        "id": 32,
-        "name": "to_year",
-        "request_list_id": 9,
-        "updated_at": "2023-08-18 20:10:44",
-        "value": "الخامسة"
-    },
-    {
-        "created_at": "2023-08-18 20:10:44",
-        "id": 33,
-        "name": "academic_year",
-        "request_list_id": 9,
-        "updated_at": "2023-08-18 20:10:44",
-        "value": "2024"
-    },
-    {
-        "created_at": "2023-08-18 20:10:44",
-        "id": 34,
-        "name": "collage_id",
-        "request_list_id": 9,
-        "updated_at": "2023-08-18 20:10:44",
-        "value": "10003"
-    },
-    {
-        "created_at": "2023-08-18 20:34:07",
-        "id": 35,
-        "name": "year",
-        "request_list_id": 10,
-        "updated_at": "2023-08-18 20:34:07",
-        "value": "الرابعة"
-    },
-    {
-        "created_at": "2023-08-18 20:34:07",
-        "id": 36,
-        "name": "specialization",
-        "request_list_id": 10,
-        "updated_at": "2023-08-18 20:34:07",
-        "value": "برمجيات"
-    },
-    {
-        "created_at": "2023-08-18 20:34:07",
-        "id": 37,
-        "name": "collage_id",
-        "request_list_id": 10,
-        "updated_at": "2023-08-18 20:34:07",
-        "value": "10004"
-    },
-    {
-        "created_at": "2023-08-18 20:38:06",
-        "id": 38,
-        "name": "collage_id",
-        "request_list_id": 11,
-        "updated_at": "2023-08-18 20:38:06",
-        "value": "10004"
-    },
-    {
-        "created_at": "2023-08-18 20:41:06",
-        "id": 39,
-        "name": "specialization",
-        "request_list_id": 12,
-        "updated_at": "2023-08-18 20:41:06",
-        "value": "شبكات"
-    },
-    {
-        "created_at": "2023-08-18 20:41:06",
-        "id": 40,
-        "name": "collage_id",
-        "request_list_id": 12,
-        "updated_at": "2023-08-18 20:41:06",
-        "value": "10005"
-    }
-]
+    [
+        {
+            "id": "1",
+            "name": "nid",
+            "value": "00000000014",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "2",
+            "name": "subject",
+            "value": "تحليل عددي",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "3",
+            "name": "year",
+            "value": "الثانية",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "4",
+            "name": "academic_year",
+            "value": "2023",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "5",
+            "name": "collage_id",
+            "value": "10001",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "6",
+            "name": "specialization",
+            "value": "لايوجد",
+            "request_list_id": "1",
+            "created_at": "2023-08-18 17:02:55",
+            "updated_at": "2023-08-18 17:02:55"
+        },
+        {
+            "id": "7",
+            "name": "year",
+            "value": "الثانية",
+            "request_list_id": "2",
+            "created_at": "2023-08-18 18:40:00",
+            "updated_at": "2023-08-18 18:40:00"
+        },
+        {
+            "id": "8",
+            "name": "specialization",
+            "value": "لايوجد",
+            "request_list_id": "2",
+            "created_at": "2023-08-18 18:40:00",
+            "updated_at": "2023-08-18 18:40:00"
+        },
+        {
+            "id": "9",
+            "name": "year",
+            "value": "الثالثة",
+            "request_list_id": "3",
+            "created_at": "2023-08-18 18:59:17",
+            "updated_at": "2023-08-18 18:59:17"
+        },
+        {
+            "id": "10",
+            "name": "specialization",
+            "value": "لا يوجد",
+            "request_list_id": "3",
+            "created_at": "2023-08-18 18:59:17",
+            "updated_at": "2023-08-18 18:59:17"
+        },
+        {
+            "id": "11",
+            "name": "collage_id",
+            "value": "10001",
+            "request_list_id": "2",
+            "created_at": "2023-08-18 18:59:17",
+            "updated_at": "2023-08-18 18:59:17"
+        },
+        {
+            "id": "12",
+            "name": "collage_id",
+            "value": "10002",
+            "request_list_id": "3",
+            "created_at": "2023-08-18 18:59:17",
+            "updated_at": "2023-08-18 18:59:17"
+        },
+        {
+            "id": "16",
+            "name": "specialization",
+            "value": "برمجيات",
+            "request_list_id": "5",
+            "created_at": "2023-08-18 19:27:56",
+            "updated_at": "2023-08-18 19:27:56"
+        },
+        {
+            "id": "17",
+            "name": "graduation_class",
+            "value": "الدورة الصيفية  ",
+            "request_list_id": "5",
+            "created_at": "2023-08-18 19:27:56",
+            "updated_at": "2023-08-18 19:27:56"
+        },
+        {
+            "id": "18",
+            "name": "academic_year",
+            "value": "2023",
+            "request_list_id": "5",
+            "created_at": "2023-08-18 19:27:56",
+            "updated_at": "2023-08-18 19:27:56"
+        },
+        {
+            "id": "19",
+            "name": "collage_id",
+            "value": "10002",
+            "request_list_id": "5",
+            "created_at": "2023-08-18 19:27:56",
+            "updated_at": "2023-08-18 19:27:56"
+        },
+        {
+            "id": "20",
+            "name": "specialization",
+            "value": "برمجيات",
+            "request_list_id": "6",
+            "created_at": "2023-08-18 19:43:02",
+            "updated_at": "2023-08-18 19:43:02"
+        },
+        {
+            "id": "21",
+            "name": "academic_year",
+            "value": "2023",
+            "request_list_id": "6",
+            "created_at": "2023-08-18 19:43:02",
+            "updated_at": "2023-08-18 19:43:02"
+        },
+        {
+            "id": "22",
+            "name": "collage_id",
+            "value": "10002",
+            "request_list_id": "6",
+            "created_at": "2023-08-18 19:43:02",
+            "updated_at": "2023-08-18 19:43:02"
+        },
+        {
+            "id": "23",
+            "name": "subject",
+            "value": "برمجة تفرعية",
+            "request_list_id": "7",
+            "created_at": "2023-08-18 19:48:42",
+            "updated_at": "2023-08-18 19:48:42"
+        },
+        {
+            "id": "24",
+            "name": "academic_year",
+            "value": "2024",
+            "request_list_id": "7",
+            "created_at": "2023-08-18 19:48:42",
+            "updated_at": "2023-08-18 19:48:42"
+        },
+        {
+            "id": "25",
+            "name": "term",
+            "value": "2",
+            "request_list_id": "7",
+            "created_at": "2023-08-18 19:48:42",
+            "updated_at": "2023-08-18 19:48:42"
+        },
+        {
+            "id": "26",
+            "name": "collage_id",
+            "value": "10003",
+            "request_list_id": "7",
+            "created_at": "2023-08-18 19:48:42",
+            "updated_at": "2023-08-18 19:48:42"
+        },
+        {
+            "id": "27",
+            "name": "subject",
+            "value": "قواعد معطيات 2",
+            "request_list_id": "8",
+            "created_at": "2023-08-18 19:49:27",
+            "updated_at": "2023-08-18 19:49:27"
+        },
+        {
+            "id": "28",
+            "name": "academic_year",
+            "value": "2024",
+            "request_list_id": "8",
+            "created_at": "2023-08-18 19:49:27",
+            "updated_at": "2023-08-18 19:49:27"
+        },
+        {
+            "id": "29",
+            "name": "term",
+            "value": "2",
+            "request_list_id": "8",
+            "created_at": "2023-08-18 19:49:27",
+            "updated_at": "2023-08-18 19:49:27"
+        },
+        {
+            "id": "30",
+            "name": "collage_id",
+            "value": "10003",
+            "request_list_id": "8",
+            "created_at": "2023-08-18 19:49:27",
+            "updated_at": "2023-08-18 19:49:27"
+        },
+        {
+            "id": "31",
+            "name": "from_year",
+            "value": "الرابعة",
+            "request_list_id": "9",
+            "created_at": "2023-08-18 20:10:44",
+            "updated_at": "2023-08-18 20:10:44"
+        },
+        {
+            "id": "32",
+            "name": "to_year",
+            "value": "الخامسة",
+            "request_list_id": "9",
+            "created_at": "2023-08-18 20:10:44",
+            "updated_at": "2023-08-18 20:10:44"
+        },
+        {
+            "id": "33",
+            "name": "academic_year",
+            "value": "2024",
+            "request_list_id": "9",
+            "created_at": "2023-08-18 20:10:44",
+            "updated_at": "2023-08-18 20:10:44"
+        },
+        {
+            "id": "34",
+            "name": "collage_id",
+            "value": "10003",
+            "request_list_id": "9",
+            "created_at": "2023-08-18 20:10:44",
+            "updated_at": "2023-08-18 20:10:44"
+        },
+        {
+            "id": "35",
+            "name": "year",
+            "value": "الرابعة",
+            "request_list_id": "10",
+            "created_at": "2023-08-18 20:34:07",
+            "updated_at": "2023-08-18 20:34:07"
+        },
+        {
+            "id": "36",
+            "name": "specialization",
+            "value": "برمجيات",
+            "request_list_id": "10",
+            "created_at": "2023-08-18 20:34:07",
+            "updated_at": "2023-08-18 20:34:07"
+        },
+        {
+            "id": "37",
+            "name": "collage_id",
+            "value": "10004",
+            "request_list_id": "10",
+            "created_at": "2023-08-18 20:34:07",
+            "updated_at": "2023-08-18 20:34:07"
+        },
+        {
+            "id": "38",
+            "name": "collage_id",
+            "value": "10004",
+            "request_list_id": "11",
+            "created_at": "2023-08-18 20:38:06",
+            "updated_at": "2023-08-18 20:38:06"
+        },
+        {
+            "id": "39",
+            "name": "specialization",
+            "value": "شبكات",
+            "request_list_id": "12",
+            "created_at": "2023-08-18 20:41:06",
+            "updated_at": "2023-08-18 20:41:06"
+        },
+        {
+            "id": "40",
+            "name": "collage_id",
+            "value": "10005",
+            "request_list_id": "12",
+            "created_at": "2023-08-18 20:41:06",
+            "updated_at": "2023-08-18 20:41:06"
+        },
+        {
+            "id": "41",
+            "name": "collage_id",
+            "value": "10001",
+            "request_list_id": "13",
+            "created_at": "2025-09-17 09:42:42",
+            "updated_at": "2025-09-17 09:42:42"
+        },
+        {
+            "id": "42",
+            "name": "year",
+            "value": "الخامسة",
+            "request_list_id": "14",
+            "created_at": "2025-09-17 09:43:25",
+            "updated_at": "2025-09-17 09:43:25"
+        },
+        {
+            "id": "43",
+            "name": "specialization",
+            "value": "شبكات",
+            "request_list_id": "14",
+            "created_at": "2025-09-17 09:43:25",
+            "updated_at": "2025-09-17 09:43:25"
+        },
+        {
+            "id": "44",
+            "name": "collage_id",
+            "value": "100025",
+            "request_list_id": "14",
+            "created_at": "2025-09-17 09:43:25",
+            "updated_at": "2025-09-17 09:43:25"
+        },
+        {
+            "id": "45",
+            "name": "subject",
+            "value": "هندسة برمجيات 2",
+            "request_list_id": "15",
+            "created_at": "2025-09-17 09:49:46",
+            "updated_at": "2025-09-17 09:49:46"
+        },
+        {
+            "id": "46",
+            "name": "academic_year",
+            "value": "2025",
+            "request_list_id": "15",
+            "created_at": "2025-09-17 09:49:46",
+            "updated_at": "2025-09-17 09:49:46"
+        },
+        {
+            "id": "47",
+            "name": "term",
+            "value": "2",
+            "request_list_id": "15",
+            "created_at": "2025-09-17 09:49:46",
+            "updated_at": "2025-09-17 09:49:46"
+        },
+        {
+            "id": "48",
+            "name": "collage_id",
+            "value": "10025",
+            "request_list_id": "15",
+            "created_at": "2025-09-17 09:49:46",
+            "updated_at": "2025-09-17 10:01:12"
+        },
+        {
+            "id": "49",
+            "name": "subject",
+            "value": "هندسة برمجيات 3 ",
+            "request_list_id": "16",
+            "created_at": "2025-09-17 09:53:35",
+            "updated_at": "2025-09-17 09:53:35"
+        },
+        {
+            "id": "50",
+            "name": "academic_year",
+            "value": "2025",
+            "request_list_id": "16",
+            "created_at": "2025-09-17 09:53:35",
+            "updated_at": "2025-09-17 09:53:35"
+        },
+        {
+            "id": "51",
+            "name": "term",
+            "value": "2",
+            "request_list_id": "16",
+            "created_at": "2025-09-17 09:53:35",
+            "updated_at": "2025-09-17 09:53:35"
+        },
+        {
+            "id": "52",
+            "name": "collage_id",
+            "value": "100025",
+            "request_list_id": "16",
+            "created_at": "2025-09-17 09:53:35",
+            "updated_at": "2025-09-17 09:53:35"
+        },
+        {
+            "id": "57",
+            "name": "specialization",
+            "value": "ذكاء صنعي",
+            "request_list_id": "18",
+            "created_at": "2025-09-17 09:59:26",
+            "updated_at": "2025-09-17 09:59:26"
+        },
+        {
+            "id": "58",
+            "name": "collage_id",
+            "value": "100025",
+            "request_list_id": "18",
+            "created_at": "2025-09-17 09:59:26",
+            "updated_at": "2025-09-17 09:59:26"
+        }
+        ]
 
 }

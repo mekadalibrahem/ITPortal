@@ -3,115 +3,152 @@
     "name": "notifications",
     "database": "itportal_app_db",
     "data":
-[
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-05-20 17:06:47",
-        "from_id": 2,
-        "id": 2,
-        "note": null,
-        "read_at": null,
-        "user_id": 14
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-20 18:41:57",
-        "from_id": 2,
-        "id": 3,
-        "note": null,
-        "read_at": null,
-        "user_id": 14
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-01 19:03:22",
-        "from_id": 2,
-        "id": 4,
-        "note": null,
-        "read_at": null,
-        "user_id": 15
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-11-15 19:18:57",
-        "from_id": 2,
-        "id": 5,
-        "note": null,
-        "read_at": null,
-        "user_id": 15
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-23 19:30:50",
-        "from_id": 2,
-        "id": 6,
-        "note": null,
-        "read_at": null,
-        "user_id": 15
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-07-08 19:44:03",
-        "from_id": 2,
-        "id": 7,
-        "note": null,
-        "read_at": null,
-        "user_id": 15
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-08 19:52:11",
-        "from_id": 2,
-        "id": 8,
-        "note": null,
-        "read_at": null,
-        "user_id": 16
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-08 19:52:23",
-        "from_id": 2,
-        "id": 9,
-        "note": null,
-        "read_at": null,
-        "user_id": 16
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-09-28 20:11:55",
-        "from_id": 2,
-        "id": 10,
-        "note": null,
-        "read_at": null,
-        "user_id": 16
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-01-08 20:35:59",
-        "from_id": 2,
-        "id": 11,
-        "note": null,
-        "read_at": null,
-        "user_id": 17
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-02-10 20:38:59",
-        "from_id": 2,
-        "id": 12,
-        "note": null,
-        "read_at": null,
-        "user_id": 17
-    },
-    {
-        "content": "تم قبول الطلب بنجاح",
-        "create_at": "2023-10-18 20:41:57",
-        "from_id": 2,
-        "id": 13,
-        "note": null,
-        "read_at": null,
-        "user_id": 18
-    }
-]
+    [
+        {
+            "id": "1",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "14",
+            "from_id": "2",
+            "create_at": "2025-09-17 12:48:47",
+            "read_at": "2025-09-17 09:48:47",
+            "note": null
+        },
+        {
+            "id": "2",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "14",
+            "from_id": "2",
+            "create_at": "2025-09-17 12:48:55",
+            "read_at": "2025-09-17 09:48:55",
+            "note": null
+        },
+        {
+            "id": "3",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "15",
+            "from_id": "2",
+            "create_at": "2023-09-01 19:03:22",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "4",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "15",
+            "from_id": "2",
+            "create_at": "2023-11-15 19:18:57",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "5",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "15",
+            "from_id": "2",
+            "create_at": "2023-09-23 19:30:50",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "6",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "15",
+            "from_id": "2",
+            "create_at": "2023-07-08 19:44:03",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "7",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "16",
+            "from_id": "2",
+            "create_at": "2023-09-08 19:52:11",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "8",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "16",
+            "from_id": "2",
+            "create_at": "2023-09-08 19:52:23",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "9",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "16",
+            "from_id": "2",
+            "create_at": "2023-09-28 20:11:55",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "10",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "17",
+            "from_id": "2",
+            "create_at": "2023-01-08 20:35:59",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "11",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "17",
+            "from_id": "2",
+            "create_at": "2023-02-10 20:38:59",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "12",
+            "content": "تم قبول الطلب بنجاح",
+            "user_id": "18",
+            "from_id": "2",
+            "create_at": "2023-10-18 20:41:57",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "13",
+            "content": "            لا يمكن إصدار وثيقة دوام قبل الانتهاء من التسجيل ضمن العام الجديد <br\/>\n            You can show request from here :<br\/>\n            <a   style='color: blue; text-decoration: underline;' href='http:\/\/127.0.0.1:8000\/user\/requests\/show\/14'  target='_blank'> request page<\/a> ",
+            "user_id": "14",
+            "from_id": "9",
+            "create_at": "2025-09-17 12:49:00",
+            "read_at": "2025-09-17 09:49:00",
+            "note": null
+        },
+        {
+            "id": "14",
+            "content": "            الرقم الجامعي غير صحيح <br\/>\n            You can show request from here :<br\/>\n            <a   style='color: blue; text-decoration: underline;' href='http:\/\/127.0.0.1:8000\/user\/requests\/show\/15'  target='_blank'> request page<\/a> ",
+            "user_id": "14",
+            "from_id": "12",
+            "create_at": "2025-09-17 09:56:09",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "15",
+            "content": "            الاختصاص المطلوب غير موجود يرجى اختيار احد الاختصاصات التالية :\nهندسة برمجيات , شبكات و نظم حاسوبية <br\/>\n            You can show request from here :<br\/>\n            <a   style='color: blue; text-decoration: underline;' href='http:\/\/127.0.0.1:8000\/user\/requests\/show\/18'  target='_blank'> request page<\/a> ",
+            "user_id": "14",
+            "from_id": "9",
+            "create_at": "2025-09-17 10:00:23",
+            "read_at": null,
+            "note": null
+        },
+        {
+            "id": "16",
+            "content": "            تم قبول الطلب بنجاح <br\/>\n            You can show request from here :<br\/>\n            <a   style='color: blue; text-decoration: underline;' href='http:\/\/127.0.0.1:8000\/user\/requests\/show\/16'  target='_blank'> request page<\/a> ",
+            "user_id": "14",
+            "from_id": "2",
+            "create_at": "2025-09-17 10:17:36",
+            "read_at": null,
+            "note": null
+        }
+        ]
+        
 
 }
