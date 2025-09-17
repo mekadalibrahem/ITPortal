@@ -105,7 +105,6 @@ class RequestListTable extends CustomeDataTableComponent
                     dd($re->requestLog);
                 if ($re->requestLog) {
                     foreach ($re->requestLog as $log) {
-                        dd($log);
                         $log->delete();
                     }
                 }
