@@ -11,5 +11,6 @@ return [
     'accept'=> "مقبول",
     'under delivery'=> " قيد التسليم",
     'delevered' => "تم التسليم",
+    "wating to edit" => "بإنتظار التعديل",
 ];
 

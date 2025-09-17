@@ -405,7 +405,7 @@
             "employee_id": "8",
             "request_list_id": "14",
             "request_tamplates_step_id": "3",
-            "note": null,
+            "note": "لا يمكن إصدار وثيقة دوام قبل الانتهاء من عملية التسجيل على العام الجديد\n by : std_emp_02@gmail.com  \n in  : 2025-09-17 09:46:04",
             "start_at": "2025-09-17 09:45:23",
             "end_at": "2025-09-17 09:46:04",
             "created_at": "2025-09-17 09:43:25",
@@ -504,7 +504,8 @@
             "employee_id": "8",
             "request_list_id": "18",
             "request_tamplates_step_id": "3",
-            "note": null,
+            "note": "الاختصاص المطلوب غير متاح حاليا يرجى اختيار احد الاختصاصات التالية : هندسة برمجيات و نظم معلومات او شبكات ة نظم حاسوبية\n by : std_emp_02@gmail.com  \n in  : 2025-09-17 09:46:04",
+
             "start_at": "2025-09-17 09:59:43",
             "end_at": null,
             "created_at": "2025-09-17 09:59:26",
