@@ -71,6 +71,7 @@ class RequestsCard extends Component
     public function show()
     {
 
+
         $this->hidden = false;
         $this->request_id = $this->id;
         $this->request = RequestList::with(['data', 'user', 'data.require_data'])
@@ -102,6 +103,12 @@ class RequestsCard extends Component
     public function mount()
     {
         $this->current_employee = Employee::where('user_id', Auth::id())->first();
+        $requestListIds = $this->current_employee->get_requests_ids();
+       
+        if (!$requestListIds->search($this->id)) {
+            abort(403);
+        }
+       
         $this->show();
         $this->can_work_in_request();
     }
